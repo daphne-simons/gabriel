@@ -5,7 +5,7 @@ async function loadMoonPhases(obj: MoonConfig) {
   for (let i in obj) {
     gets.push(i + '=' + encodeURIComponent(obj[i]))
   }
-  const url = 'http://www.icalendar37.net/lunar/api/?' + gets.join('&')
+  const url = 'https://www.icalendar37.net/lunar/api/?' + gets.join('&')
 
   try {
     const response = await fetch(url)
@@ -13,6 +13,8 @@ async function loadMoonPhases(obj: MoonConfig) {
       throw new Error('Network response was not ok.')
     }
     const data = await response.json()
+    console.log(data)
+
     return data
   } catch (error) {
     console.error('There was a problem with the fetch operation:', error)
