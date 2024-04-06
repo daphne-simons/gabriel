@@ -21,43 +21,31 @@ export default function Moon() {
   if (isError) {
     return <div>Sorry There was an Error</div>
   }
+  function calculateBgColor(lightVal: number) {
+    const bgColors = [
+      'bg-gray-950',
+      'bg-gray-900',
+      'bg-gray-800',
+      'bg-gray-700',
+      'bg-gray-600',
+      'bg-gray-500',
+      'bg-gray-400',
+      'bg-gray-300',
+      'bg-gray-200',
+      'bg-gray-100',
+    ]
+
+    // Calculate index based on lightValue
+    const index = Math.floor(lightVal / 10)
+    // Ensure the index stays within bounds
+    const safeIndex = Math.min(Math.max(index, 0), bgColors.length - 1)
+    return bgColors[safeIndex]
+  }
 
   if (moonData) {
     const rawLighting = moonData.phase[new Date().getDate()].lighting
     const lightValue = Math.round(rawLighting)
-    // Logic to set a tailwind bg-color value in relation to moon phase
-    let bgValue = ''
-    if (lightValue < 10) {
-      bgValue = 'bg-gray-950'
-    }
-    if (lightValue >= 10 && lightValue < 20) {
-      bgValue = 'bg-gray-900'
-    }
-    if (lightValue >= 20 && lightValue < 30) {
-      bgValue = 'bg-gray-800'
-    }
-    if (lightValue >= 30 && lightValue < 40) {
-      bgValue = 'bg-gray-700'
-    }
-    if (lightValue >= 40 && lightValue < 50) {
-      bgValue = 'bg-gray-600'
-    }
-    if (lightValue >= 50 && lightValue < 60) {
-      bgValue = 'bg-gray-500'
-    }
-    if (lightValue >= 60 && lightValue < 70) {
-      bgValue = 'bg-gray-400'
-    }
-    if (lightValue >= 70 && lightValue < 80) {
-      bgValue = 'bg-gray-300'
-    }
-    if (lightValue >= 80 && lightValue < 90) {
-      bgValue = 'bg-gray-200'
-    }
-    if (lightValue >= 90 && lightValue < 100) {
-      bgValue = 'bg-gray-100'
-    }
-    console.log(bgValue)
+    const bgValue = calculateBgColor(lightValue)
 
     return (
       <div
