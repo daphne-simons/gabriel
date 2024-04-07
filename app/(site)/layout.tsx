@@ -18,12 +18,12 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="max-w-3xl mx-auto py-10 px-5">
-        <Nav />
-        <ReactQueryProvider>
-          <main className="py-20">{children}</main>
-        </ReactQueryProvider>
-      </body>
+      {/* <body className="max-w-3xl mx-auto py-10 px-5"> */}
+      {/* <Nav /> */}
+      <ReactQueryProvider>
+        <main>{children}</main>
+      </ReactQueryProvider>
+      {/* </body> */}
     </html>
   )
 }
