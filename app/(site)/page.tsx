@@ -3,6 +3,7 @@ import Projects from './components/Projects'
 import Link from 'next/link'
 import { PT_Serif } from 'next/font/google'
 import SearchBar from './components/SearchBar'
+import MoonWidget from './components/MoonWidget'
 
 const serif = PT_Serif({
   subsets: ['latin'],
@@ -19,8 +20,9 @@ export default async function Home() {
           <Link href="#" className="flex gap-8 hover:underline">
             About
           </Link>
-          <Link href="#" className="flex gap-8 hover:underline">
+          <Link href="/moon" className="flex gap-8 hover:underline">
             Moon Widget
+            <MoonWidget />
           </Link>
         </div>
         {/* Middle section  */}

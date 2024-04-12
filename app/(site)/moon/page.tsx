@@ -57,11 +57,7 @@ export default function Moon() {
           <div>
             {new Date().getDate()} {moonData.monthName} {moonData.year}
           </div>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: moonData.phase[new Date().getDate()].svg,
-            }}
-          />
+
           <div>
             {moonData.phase[new Date().getDate()].phaseName}{' '}
             {Math.round(moonData.phase[new Date().getDate()].lighting)}%
