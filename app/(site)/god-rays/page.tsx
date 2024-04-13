@@ -14,4 +14,6 @@ export default async function Styling() {
       </main>
     </>
   )
+
+  
 }
