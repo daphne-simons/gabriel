@@ -52,10 +52,7 @@ export default function BackGround({
     const theme = calculateBgColor(lightValue)
 
     return (
-      <div className={`${theme.bgValue} ${theme.textValue}`}>
-        <h1>test</h1>
-        {children}
-      </div>
+      <div className={`${theme.bgValue} ${theme.textValue}`}>{children}</div>
     )
   }
 }
