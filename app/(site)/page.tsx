@@ -21,6 +21,9 @@ export default async function Home() {
             <Link href="#" className="flex gap-8 hover:underline">
               About
             </Link>
+            <Link href="/search-results" className="flex gap-8 hover:underline">
+              Search
+            </Link>
             <Link href="/moon" className="flex gap-8 hover:underline">
               Moon Widget
               <MoonWidget />
