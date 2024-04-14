@@ -8,8 +8,8 @@ export default function SearchBar() {
   }
   return (
     <div
-      className={`relative flex flex-col w-full max-w-xl justify-start bg-[#202124] border border-gray-500 rounded-full hover:border-none hover:bg-[#303134] outline-none pl-14 py-3 ${
-        isOpen ? 'h-auto border-none w-[90%]' : ''
+      className={`relative flex flex-col w-full max-w-xl justify-start bg-[#202124] border border-gray-500 rounded-full hover:ring-none hover:bg-[#303134] outline-none pl-14 py-3 ${
+        isOpen ? 'h-auto ring-none w-[90%]' : ''
       }`}
       onClick={toggleDropdown}
     >
