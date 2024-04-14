@@ -22,7 +22,7 @@ export default async function Home() {
               About
             </Link>
             <Link href="/search-results" className="flex gap-8 hover:underline">
-              Search
+              Search Results
             </Link>
             <Link href="/moon" className="flex gap-8 hover:underline">
               Moon Widget
