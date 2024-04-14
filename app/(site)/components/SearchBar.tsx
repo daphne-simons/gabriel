@@ -8,8 +8,8 @@ export default function SearchBar() {
   }
   return (
     <div
-      className={`relative flex flex-col w-full max-w-xl justify-start bg-[#202124] border border-gray-500 rounded-full hover:border-none hover:bg-[#303134] outline-none pl-14 py-3 ${
-        isOpen ? 'h-auto border-none w-[90%]' : ''
+      className={`relative flex flex-col w-full max-w-xl justify-start bg-[#202124] border border-gray-500 rounded-full hover:outline-none hover:bg-[#303134] outline-none pl-14 py-3 ${
+        isOpen ? 'h-auto outline-none w-[90%]' : ''
       }`}
       onClick={toggleDropdown}
     >
@@ -33,12 +33,12 @@ export default function SearchBar() {
       {/* Dropdown Menu */}
       <div
         id="dropdown"
-        className={`absolute z-10 pl-10 py-1 max-w-xl text-gray-400  w-full rounded-xl left-1/2 -translate-x-1/2 -translate-y-3.5 flex flex-col gap-2 bg-[#303134] ${
+        className={`absolute z-10 pl-10 py-1.5 max-w-xl text-gray-400  w-full rounded-[25px] left-1/2 -translate-x-1/2 -translate-y-3.5 flex flex-col gap-2 bg-[#303134] ${
           isOpen ? 'block' : 'hidden'
         }`}
       >
         {/* Option */}
-        <div className="flex flex-row relative hover:bg-[#303134]">
+        <div className="flex flex-row relative hover:bg-[#303134] rounded-full">
           <span className="h-5 w-5 -ml-4 mt-2.5 absolute">
             <svg
               focusable="false"
