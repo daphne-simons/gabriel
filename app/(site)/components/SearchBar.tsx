@@ -33,7 +33,7 @@ export default function SearchBar() {
       {/* Dropdown Menu */}
       <div
         id="dropdown"
-        className={`absolute z-10 pl-10 py-1.5 max-w-xl text-gray-400  w-full rounded-xl left-1/2 -translate-x-1/2 -translate-y-3.5 flex flex-col gap-2 bg-[#303134] ${
+        className={`absolute z-10 pl-10 py-1.5 max-w-xl text-gray-400  w-full rounded-[25px] left-1/2 -translate-x-1/2 -translate-y-3.5 flex flex-col gap-2 bg-[#303134] ${
           isOpen ? 'block' : 'hidden'
         }`}
       >
