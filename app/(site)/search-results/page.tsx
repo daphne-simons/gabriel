@@ -24,7 +24,9 @@ export default function SearchResults() {
             {/* Logo */}
             <div className="p-6 flex items-center">
               <h1 className={serif.className}>
-                <span className="text-3xl">Gabriel</span>
+                <Link href="/">
+                  <span className="text-3xl">Gabriel</span>
+                </Link>
               </h1>
             </div>
             {/* Searchbar */}
