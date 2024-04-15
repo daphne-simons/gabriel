@@ -9,7 +9,7 @@ const serif = PT_Serif({
   style: ['normal', 'italic'],
 })
 export default function SearchResults() {
-  const [activeLink, setActiveLink] = useState(null)
+  const [activeLink, setActiveLink] = useState<null | number>(null) // state for active link
 
   const handleLinkClick = (index: number) => {
     setActiveLink(index)
