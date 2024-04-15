@@ -1,19 +1,24 @@
-import Image from 'next/image'
-import SearchBar from '../components/SearchBar'
+'use client'
 import MoonWidget from '../components/MoonWidget'
 import { PT_Serif } from 'next/font/google'
-
+import Link from 'next/link'
+import { useState } from 'react'
 const serif = PT_Serif({
   subsets: ['latin'],
   weight: ['400', '700'],
   style: ['normal', 'italic'],
 })
 export default function SearchResults() {
+  const [activeLink, setActiveLink] = useState(null)
+
+  const handleLinkClick = (index: number) => {
+    setActiveLink(index)
+  }
   return (
     <>
-      <div className="h-auto">
+      <div className="h-auto flex flex-col border-b border-gray-300 ">
         {/* Header */}
-        <div className="flex flex-row relative gap-4 border-b border-gray-300 p-2">
+        <div id="header" className="flex flex-row relative gap-4 p-2">
           {/* Wrapper logo and search bar */}
           <div className="flex w-full">
             {/* Logo */}
@@ -45,12 +50,49 @@ export default function SearchResults() {
               />
             </div>
           </div>
-          <div className="flex flex-row relative">
+          <div className="flex flex-row">
             {/* </div> */}
-            <div className="absolute right-6 mt-5">
+            <div className="mr-8 flex items-center">
               <MoonWidget />
             </div>
           </div>
+        </div>
+        <div className="flex text-gray-500">
+          <ul className="flex flex-row ml-40 gap-8">
+            <Link
+              href="/search-results"
+              onClick={() => handleLinkClick(0)}
+              className={`cursor-pointer ${
+                activeLink === 0
+                  ? 'text-blue-500 border-b-4 border-blue-500'
+                  : ''
+              }`}
+            >
+              <li className="">All</li>
+            </Link>
+            <Link
+              href="/search-results"
+              onClick={() => handleLinkClick(1)}
+              className={`cursor-pointer ${
+                activeLink === 1
+                  ? 'text-blue-500 border-b-4 border-blue-500'
+                  : ''
+              }`}
+            >
+              <li>Pricing</li>
+            </Link>
+            <Link
+              href="/search-results"
+              onClick={() => handleLinkClick(2)}
+              className={`cursor-pointer ${
+                activeLink === 2
+                  ? 'text-blue-500 border-b-4 border-blue-500'
+                  : ''
+              }`}
+            >
+              <li>Terms</li>
+            </Link>
+          </ul>
         </div>
       </div>
     </>
