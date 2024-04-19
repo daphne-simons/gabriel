@@ -16,8 +16,8 @@ export default function SearchResults() {
   }
   return (
     <>
+      {/* Header */}
       <div className="h-auto flex flex-col border-b border-gray-300 ">
-        {/* Header */}
         <div id="header" className="flex flex-row relative gap-4 p-2">
           {/* Wrapper logo and search bar */}
           <div className="flex w-full">
@@ -96,6 +96,39 @@ export default function SearchResults() {
             </Link>
           </ul>
         </div>
+      </div>
+      {/* Body */}
+      <div className="flex flex-row pl-40">
+        {/* Options List */}
+        <div className="w-1/2">
+          <div id="searchresult">
+            <div className="flex flex-row">
+              <div className="border border-gray-300 rounded-full w-10 h-10 bg-blue-600"></div>
+              <div>
+                <h2 className="leading-tight font-normal text-blue-600 mt-6 mb-0">
+                  Search Result Option
+                </h2>
+                <div className="flex flex-row">
+                  <a href="#" className="text-base leading-base text-green-600">
+                    Link
+                  </a>
+                  <button className="text-xs leading-base text-green-600 bg-white border-0 p-0">
+                    ▼
+                  </button>
+                </div>
+              </div>
+            </div>
+            <h2 className="text-2xl">Option 1</h2>
+            <p>
+              In computer science, a lock or mutex (from mutual exclusion) is a
+              synchronization mechanism for enforcing limits on access to a
+              resource in an
+            </p>
+            <p> environment where there are many threads of execution.</p>
+          </div>
+        </div>
+        {/* Side bar - Photo, info, etc */}
+        <div className="w-1/2">Side-Bar</div>
       </div>
     </>
   )
