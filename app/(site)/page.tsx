@@ -39,8 +39,8 @@ export default async function Home() {
             <SearchBar />
             <div>
               {/* Feeling Lucky/ Contact Button */}
-              <button className="px-4 py-2 bg-[#303134] rounded border border-[#202124] hover:border hover:border-gray-500 text-sm text-gray-400">
-                <p>I&apos;m Feeling Lucky</p>
+              <button className="px-4 py-2 bg-gray-300 rounded border border-[#202124] hover:border hover:border-gray-500 text-sm">
+                I&apos;m Feeling Lucky
               </button>
             </div>
           </div>
