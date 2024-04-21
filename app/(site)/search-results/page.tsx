@@ -24,7 +24,9 @@ export default function SearchResults() {
           <div className="flex w-full">
             {/* Logo */}
             <div className="p-6 flex items-center">
-              <Header color="bg-red-600" size="text-3xl" />
+              <Link href="/">
+                <Header color="bg-red-600" size="text-3xl" />
+              </Link>
             </div>
             {/* Searchbar */}
             <div id="search-area" className="flex flex-row relative w-[50%]">
