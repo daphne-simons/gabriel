@@ -1,14 +1,8 @@
 import Link from 'next/link'
-import { PT_Serif } from 'next/font/google'
 import BackGround from './components/BackGround'
 import SearchBar from './components/SearchBar'
 import MoonWidget from './components/MoonWidget'
-
-const serif = PT_Serif({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  style: ['normal', 'italic'],
-})
+import Header from './components/Header'
 
 export default async function Home() {
   return (
@@ -32,9 +26,7 @@ export default async function Home() {
           {/* Middle section  */}
           <div className="middle flex flex-col justify-evenly items-center h-[30%] -mt-40">
             {/* Heading */}
-            <h1 className={serif.className}>
-              <span className="text-5xl">Gabriel</span>
-            </h1>
+            <Header color="bg-yellow-300" size="text-5xl" />
             {/* Div for Search Input */}
             <SearchBar />
             <div>

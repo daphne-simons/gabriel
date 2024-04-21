@@ -3,6 +3,7 @@ import MoonWidget from '../components/MoonWidget'
 import { PT_Serif } from 'next/font/google'
 import Link from 'next/link'
 import { useState } from 'react'
+import Header from '../components/Header'
 const serif = PT_Serif({
   subsets: ['latin'],
   weight: ['400', '700'],
@@ -23,11 +24,7 @@ export default function SearchResults() {
           <div className="flex w-full">
             {/* Logo */}
             <div className="p-6 flex items-center">
-              <h1 className={serif.className}>
-                <Link href="/">
-                  <span className="text-3xl">Gabriel</span>
-                </Link>
-              </h1>
+              <Header color="bg-red-600" size="text-3xl" />
             </div>
             {/* Searchbar */}
             <div id="search-area" className="flex flex-row relative w-[50%]">
