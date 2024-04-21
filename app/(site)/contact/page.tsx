@@ -1,13 +1,16 @@
+'use client'
 import EmailTemplate from '../components/Email'
 import { Resend } from 'resend'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+console.log(process.env.NEXT_PUBLIC_RESEND_API_KEY)
 
-export default async function Contact() {
+const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY)
+
+export default function Contact() {
   async function send(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault() // Prevent the default form submission
     // Server actions to do the server side email sending.
-    ;('use server')
+
     await resend.emails.send({
       // From needs to be a verified domain email
       from: 'Acme <onboarding@resend.dev>',
@@ -17,6 +20,7 @@ export default async function Contact() {
       react: EmailTemplate({ firstName: 'Jane2' }),
     })
   }
+
   return (
     <form onSubmit={send}>
       <button type="submit">Send Email</button>
