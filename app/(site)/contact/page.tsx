@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useState } from 'react'
 
 const ContactForm = () => {
@@ -39,23 +40,42 @@ const ContactForm = () => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        name="firstName"
-        type="text"
-        value={firstName}
-        onChange={handleChange}
-        placeholder="First Name"
-      />
-      <input
-        name="email"
-        type="email"
-        value={email}
-        onChange={handleChange}
-        placeholder="Email"
-      />
-      <button type="submit">Send Email</button>
-    </form>
+    <div className="p-6">
+      <form onSubmit={handleSubmit}>
+        <div className="flex gap-6">
+          <input
+            className="px-2 outline-dotted outline-2 outline-offset-2 rounded"
+            name="firstName"
+            type="text"
+            value={firstName}
+            onChange={handleChange}
+            placeholder="First Name"
+          />
+
+          <input
+            className="px-2 outline-dotted outline-2 outline-offset-2 rounded "
+            name="email"
+            type="email"
+            value={email}
+            onChange={handleChange}
+            placeholder="Email"
+          />
+          <button
+            className="px-2 outline outline-offset-2 rounded"
+            type="submit"
+          >
+            Send Email
+          </button>
+        </div>
+      </form>
+      <div className="pt-6 flex">
+        <Link href="/">
+          <button className="px-2 outline outline-yellow-400 outline-offset-4 rounded">
+            Home
+          </button>
+        </Link>
+      </div>
+    </div>
   )
 }
 
