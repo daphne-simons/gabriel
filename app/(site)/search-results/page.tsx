@@ -4,6 +4,7 @@ import { PT_Serif } from 'next/font/google'
 import Link from 'next/link'
 import { useState } from 'react'
 import Header from '../components/Header'
+import SearchOptionsList from '../components/SearchOptionsList'
 const serif = PT_Serif({
   subsets: ['latin'],
   weight: ['400', '700'],
@@ -23,7 +24,7 @@ export default function SearchResults() {
           {/* Wrapper logo and search bar */}
           <div className="flex w-full">
             {/* Logo */}
-            <div className="p-6 flex items-center">
+            <div className="pr-6 pl-6 pt-2 flex items-center">
               <Link href="/">
                 <Header color="bg-red-600" size="text-3xl" />
               </Link>
@@ -45,9 +46,8 @@ export default function SearchResults() {
               <input
                 id="search-bar"
                 className="mt-5 p-5 w-full h-[46px] pl-10 border border-gray-300 rounded-full text-black placeholder-gray-500 outline-none text-base focus:shadow-md focus:border-transparent hover:border-transparent"
-                placeholder="Search..."
+                placeholder="I want an identity"
                 type="text"
-                // value="computer engineering mutex concept"
               />
             </div>
           </div>
@@ -58,6 +58,7 @@ export default function SearchResults() {
             </div>
           </div>
         </div>
+        {/* Second Nav bar - All Pricing Terms */}
         <div className="flex text-gray-500">
           <ul className="flex flex-row ml-40 gap-8">
             <Link
@@ -80,18 +81,7 @@ export default function SearchResults() {
                   : ''
               }`}
             >
-              <li>Pricing</li>
-            </Link>
-            <Link
-              href="/search-results"
-              onClick={() => handleLinkClick(2)}
-              className={`cursor-pointer ${
-                activeLink === 2
-                  ? 'text-blue-500 border-b-4 border-blue-500'
-                  : ''
-              }`}
-            >
-              <li>Terms</li>
+              <li>Details</li>
             </Link>
           </ul>
         </div>
@@ -100,31 +90,7 @@ export default function SearchResults() {
       <div className="flex flex-row pl-40">
         {/* Options List */}
         <div className="w-1/2">
-          <div id="searchresult">
-            <div className="flex flex-row">
-              <div className="border border-gray-300 rounded-full w-10 h-10 bg-blue-600"></div>
-              <div>
-                <h2 className="leading-tight font-normal text-blue-600 mt-6 mb-0">
-                  Search Result Option
-                </h2>
-                <div className="flex flex-row">
-                  <a href="#" className="text-base leading-base text-green-600">
-                    Link
-                  </a>
-                  <button className="text-xs leading-base text-green-600 bg-white border-0 p-0">
-                    ▼
-                  </button>
-                </div>
-              </div>
-            </div>
-            <h2 className="text-2xl">Option 1</h2>
-            <p>
-              In computer science, a lock or mutex (from mutual exclusion) is a
-              synchronization mechanism for enforcing limits on access to a
-              resource in an
-            </p>
-            <p> environment where there are many threads of execution.</p>
-          </div>
+          <SearchOptionsList />
         </div>
         {/* Side bar - Photo, info, etc */}
         <div className="w-1/2">Side-Bar</div>
