@@ -12,7 +12,6 @@ interface Props {
 }
 export default function Header(props: Props) {
   const { color, size } = props
-  console.log(color, size)
 
   const spanStyle = `absolute mx-auto py-4 flex border blur-lg ${color} bg-clip-text ${size} box-content text-transparent text-center select-none`
   const h1Style = `relative top-0 py-4 justify-center flex items-center ${color} bg-clip-text ${size} text-transparent text-center select-auto `
