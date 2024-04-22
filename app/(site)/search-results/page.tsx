@@ -89,12 +89,49 @@ export default function SearchResults() {
       {/* Body */}
       <div className="flex flex-row pl-40">
         {/* Options List */}
-        <div className="w-1/2">
+        <div className="w-2/3">
           <SearchOptionsList />
         </div>
         {/* Side bar - Photo, info, etc */}
-        <div className="w-1/2">Side-Bar</div>
+        <div className="w-1/2 flex flex-col pr-32 pt-6">
+          <div className="h-full border rounded-2xl">
+            {/* Gallery Grid */}
+            <div className="h-2/5 border-b border-gray-200">
+              <div
+                id="gallery-grid"
+                className="w-full h-full grid grid-cols-8 grid-rows-4 gap-1"
+              >
+                {/* TODO - Add Images to Gallery */}
+                {/* Gallery Item1 */}
+                <div className="bg-blue-200 col-span-4 row-span-4 rounded-tl-2xl"></div>
+                {/* Gallery Item2 */}
+                <div className="bg-blue-300 col-span-3 row-span-2"></div>
+                {/* Gallery Item3 */}
+                <div className="bg-blue-400 col-span-1 row-span-2 rounded-tr-2xl"></div>
+                {/* Gallery Item4 */}
+                <div className="bg-blue-500 col-span-2 row-span-2"></div>
+                {/* Gallery Item5 */}
+                <div className="bg-blue-600 col-span-2 row-span-2"></div>
+              </div>
+            </div>
+            {/* Text Part */}
+            <div className="h-1/5 px-2 pt-2">
+              <h1 className="text-blue-600 text-3xl">Sapphire</h1>
+              <p className="pt-2 text-gray-500 text-sm">Essential Identity</p>
+            </div>
+            <div className="px-2 pt-2 h-2/5 border-t  border-gray-200">
+              <p className=" text-gray-500 text-base">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                Incidunt, veritatis tempora eum eos a dolore exercitationem
+                assumenda et officiis commodi explicabo beatae voluptas sint quo
+                eveniet omnis eligendi accusantium hic.
+              </p>
+              <h3 className="pt-2 text-l font-bold text-blue-400">Enquire</h3>
+            </div>
+          </div>
+        </div>
       </div>
+      {/* </div> */}
     </>
   )
 }
