@@ -1,27 +1,62 @@
 'use client'
-import EmailTemplate from '../components/Email'
-import { Resend } from 'resend'
 
-const resend = new Resend(process.env.NEXT_PUBLIC_RESEND_API_KEY)
+import { useState } from 'react'
 
-export default function Contact() {
-  async function send(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault() // Prevent the default form submission
-    // Server actions to do the server side email sending.
+const ContactForm = () => {
+  const [firstName, setFirstName] = useState('')
+  const [email, setEmail] = useState('')
 
-    await resend.emails.send({
-      // From needs to be a verified domain email
-      from: 'Acme <onboarding@resend.dev>',
-      // This can be whatever email you want to send to
-      to: 'daphnejasminesimons@gmail.com',
-      subject: 'Hello Gabriel client',
-      react: EmailTemplate({ firstName: 'Jane2' }),
-    })
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target
+    if (name === 'firstName') {
+      setFirstName(value)
+    } else if (name === 'email') {
+      setEmail(value)
+    }
+  }
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    console.log(firstName, email)
+
+    try {
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ firstName, email }),
+      })
+
+      if (response.ok) {
+        console.log('Email sent successfully!')
+      } else {
+        console.error('Failed to send email:', await response.text())
+      }
+    } catch (error) {
+      console.error('Error sending email:', error)
+    }
   }
 
   return (
-    <form onSubmit={send}>
+    <form onSubmit={handleSubmit}>
+      <input
+        name="firstName"
+        type="text"
+        value={firstName}
+        onChange={handleChange}
+        placeholder="First Name"
+      />
+      <input
+        name="email"
+        type="email"
+        value={email}
+        onChange={handleChange}
+        placeholder="Email"
+      />
       <button type="submit">Send Email</button>
     </form>
   )
 }
+
+export default ContactForm
