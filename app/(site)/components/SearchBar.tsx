@@ -4,12 +4,13 @@ export default function SearchBar() {
   const [isOpen, setIsOpen] = useState(false)
 
   const toggleDropdown = () => {
+    console.log('closed')
     setIsOpen(!isOpen)
   }
   return (
     <div
-      className={`relative flex flex-col w-full max-w-xl justify-start bg-[#202124] border border-gray-500 rounded-full hover:outline-none hover:bg-[#303134] outline-none pl-14 py-3 ${
-        isOpen ? 'h-auto outline-none w-[90%]' : ''
+      className={`relative flex flex-col w-full max-w-xl justify-start bg-[#202124] outline outline-offset-0 outline-1 outline-gray-500 rounded-full hover:outline-transparent hover:bg-[#303134] pl-14 py-3.5 ${
+        isOpen ? 'outline-transparent' : 'outline'
       }`}
       onClick={toggleDropdown}
     >
@@ -33,7 +34,7 @@ export default function SearchBar() {
       {/* Dropdown Menu */}
       <div
         id="dropdown"
-        className={`absolute z-10 pl-10 py-1.5 max-w-xl text-gray-400  w-full rounded-[25px] left-1/2 -translate-x-1/2 -translate-y-3.5 flex flex-col gap-2 bg-[#303134] ${
+        className={`absolute z-10 pl-10 py-1.5 py-["5px"] max-w-xl text-gray-400  w-full rounded-[25px] left-1/2 -translate-x-1/2 -translate-y-3.5 flex flex-col gap-2 bg-[#303134] ${
           isOpen ? 'block' : 'hidden'
         }`}
       >
