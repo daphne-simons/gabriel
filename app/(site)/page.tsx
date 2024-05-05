@@ -3,8 +3,12 @@ import BackGround from './components/BackGround'
 import SearchBar from './components/SearchBar'
 import MoonWidget from './components/MoonWidget'
 import Header from './components/Header'
+import getMoon from '@/query/utils/getMoonData'
 
 export default async function Home() {
+  const data = await getMoon()
+  console.log(data)
+
   return (
     <>
       {/* Background wrapper to dynamically change theme according to Moon Phase. */}
@@ -19,14 +23,14 @@ export default async function Home() {
               Search Results
             </Link>
             <Link href="/moon" className="flex gap-8 hover:underline">
-              Moon Widget
+              {data?.phase[new Date().getDate()].phaseName}
               <MoonWidget />
             </Link>
           </div>
           {/* Middle section  */}
           <div className="middle flex flex-col justify-evenly items-center h-[30%] -mt-40">
             {/* Heading */}
-            <Header color="bg-yellow-300" size="text-5xl" weight="thin" />
+            <Header color="bg-yellow-300" size="text-5xl" />
             {/* Div for Search Input */}
             <SearchBar />
             <div>

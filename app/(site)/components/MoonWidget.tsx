@@ -23,7 +23,7 @@ export default function MoonWidget() {
     const moonPhaseSVG = moonData.phase[new Date().getDate()].svg // Assuming moonData is available in scope
 
     return (
-      <>
+      <div className="-mt-1">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 100 100"
@@ -31,7 +31,7 @@ export default function MoonWidget() {
         >
           <g dangerouslySetInnerHTML={{ __html: moonPhaseSVG }} />{' '}
         </svg>
-      </>
+      </div>
     )
   }
 }
