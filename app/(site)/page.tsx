@@ -26,7 +26,7 @@ export default async function Home() {
           {/* Middle section  */}
           <div className="middle flex flex-col justify-evenly items-center h-[30%] -mt-40">
             {/* Heading */}
-            <Header color="bg-yellow-300" size="text-5xl" />
+            <Header color="bg-yellow-300" size="text-5xl" weight="thin" />
             {/* Div for Search Input */}
             <SearchBar />
             <div>

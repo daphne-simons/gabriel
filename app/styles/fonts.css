@@ -1,0 +1,63 @@
+/* Variable Font Imports */
+/* Gramercy Fine */
+/* Thin */
+@font-face {
+  font-family: 'Gramercy Fine';
+  font-style: thin; /* Note: Remove quotes around thin */
+  font-weight: 100;
+  font-display: swap;
+  src: url('/fonts/ABCGramercyFine-Thin-Trial.woff2') format('woff2'); /* Update the URL */
+}
+
+/* Light */
+@font-face {
+  font-family: 'Gramercy Fine';
+  font-style: light;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/ABCGramercyFine-Light-Trial.woff2') format('woff2');
+}
+/* Book */
+@font-face {
+  font-family: 'Gramercy Fine';
+  font-style: normal; /* Note: Use normal for regular fonts */
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/ABCGramercyFine-Book-Trial.woff2') format('woff2');
+}
+
+/* Regular */
+@font-face {
+  font-family: 'Gramercy Fine';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/ABCGramercyFine-Regular-Trial.woff2') format('woff2');
+}
+
+/* Medium */
+@font-face {
+  font-family: 'Gramercy Fine';
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url('/fonts/ABCGramercyFine-Medium-Trial.woff2') format('woff2');
+}
+
+/* Bold */
+@font-face {
+  font-family: 'Gramercy Fine';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/ABCGramercyFine-Bold-Trial.woff2') format('woff2');
+}
+
+/* Black */
+@font-face {
+  font-family: 'Gramercy Fine';
+  font-style: normal;
+  font-weight: 900;
+  font-display: swap;
+  src: url('/fonts/ABCGramercyFine-Black-Trial.woff2') format('woff2');
+}
