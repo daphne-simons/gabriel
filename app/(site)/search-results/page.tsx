@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { useState } from 'react'
 import Header from '../components/Header'
 import SearchOptionsList from '../components/SearchOptionsList'
-import All from '../components/All'
+import ResultsComponent from '../components/ResultsComponent'
 import Details from '../components/Details'
 const serif = PT_Serif({
   subsets: ['latin'],
@@ -90,7 +90,7 @@ export default function SearchResults() {
       </div>
       {/* Body */}
       <div className="flex flex-row pl-40">
-        {activeLink ? <Details /> : <All />}
+        {activeLink ? <Details /> : <ResultsComponent />}
       </div>
     </>
   )

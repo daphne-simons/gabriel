@@ -1,6 +1,15 @@
+import Link from 'next/link'
 import Gallery from './Gallery'
 
-export default function SearchSideBar() {
+interface Props {
+  option: {
+    gem: string
+    level: string
+    cost: string
+  }
+}
+export default function SearchSideBar({ option }: Props) {
+  console.log(option)
   return (
     <div className="h-full border rounded-2xl">
       {/* Gallery Grid */}
@@ -9,8 +18,8 @@ export default function SearchSideBar() {
       </div>
       {/* Text Part */}
       <div className="h-1/5 px-2 pt-2">
-        <h1 className="text-blue-600 text-3xl">Sapphire</h1>
-        <p className="pt-2 text-gray-500 text-sm">Essential Identity</p>
+        <h1 className="text-blue-600 text-3xl">{option.gem}</h1>
+        <p className="pt-2 text-gray-500 text-sm">{option.level}</p>
       </div>
       <div className="px-2 pt-2 h-2/5 border-t  border-gray-200">
         <p className=" text-gray-500 text-base">
@@ -19,7 +28,12 @@ export default function SearchSideBar() {
           officiis commodi explicabo beatae voluptas sint quo eveniet omnis
           eligendi accusantium hic.
         </p>
-        <h3 className="pt-2 text-l font-bold text-blue-400">Enquire</h3>
+        {/* this should be a query parameter, instead of a path */}
+        <Link
+          href={`/contact?gem=${option.gem}&level=${option.level}&cost=${option.cost}`}
+        >
+          <h3 className="pt-2 text-l font-bold text-blue-400">Enquire</h3>
+        </Link>
       </div>
     </div>
   )

@@ -3,7 +3,15 @@
 import Link from 'next/link'
 import { useState } from 'react'
 
-const ContactForm = () => {
+interface Props {
+  product: {
+    service: string[]
+    level: string[]
+  }
+}
+const ContactForm = ({ product }: Props) => {
+  const { service, level } = product
+
   const [firstName, setFirstName] = useState('')
   const [email, setEmail] = useState('')
 

@@ -1,6 +1,7 @@
 // pages/api/send/route.ts
 
 import { Resend } from 'resend'
+import { renderToStaticMarkup } from 'react-dom/server'
 
 export async function POST(req: Request, res: Response) {
   const person = await req.json()
@@ -13,7 +14,9 @@ export async function POST(req: Request, res: Response) {
       from: 'Acme <onboarding@resend.dev>',
       to: email,
       subject: `Hello ${firstName}!`,
-      text: `Welcome, ${firstName}!`,
+      text: '',
+      // need to make this component first:
+      // react: <EmailComponent />,
     })
     return new Response(JSON.stringify(person), {
       status: 200,
