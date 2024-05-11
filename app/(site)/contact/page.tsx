@@ -2,15 +2,14 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 
-interface Props {
-  product: {
-    service: string[]
-    level: string[]
-  }
-}
-const ContactForm = ({ product }: Props) => {
-  const { service, level } = product
+const ContactForm = () => {
+  const searchParams = useSearchParams()
+
+  const gem = searchParams.get('gem')
+  const level = searchParams.get('level')
+  const cost = searchParams.get('cost')
 
   const [firstName, setFirstName] = useState('')
   const [email, setEmail] = useState('')
@@ -49,40 +48,52 @@ const ContactForm = ({ product }: Props) => {
 
   return (
     <div className="p-6">
+      <h1 className="text-3xl font-bold pb-6">Enquiry</h1>
       <form onSubmit={handleSubmit}>
-        <div className="flex gap-6">
-          <input
-            className="px-2 outline-dotted outline-2 outline-offset-2 rounded"
-            name="firstName"
-            type="text"
-            value={firstName}
-            onChange={handleChange}
-            placeholder="First Name"
-          />
-
-          <input
-            className="px-2 outline-dotted outline-2 outline-offset-2 rounded "
-            name="email"
-            type="email"
-            value={email}
-            onChange={handleChange}
-            placeholder="Email"
-          />
+        <div className="pb-6">
+          <div className="flex flex-row gap-4">
+            <span>
+              <p>Dear Gabriel, My name is</p>
+            </span>
+            <input
+              className="px-2 outline-dotted rounded"
+              name="firstName"
+              type="text"
+              value={firstName}
+              onChange={handleChange}
+              placeholder="First Name"
+            />
+            <span>
+              <p>and my email is </p>
+            </span>
+            <input
+              className="px-2 outline-dotted  outline-offset-2 rounded"
+              name="email"
+              type="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="Email"
+            />
+          </div>
+          <p>
+            I am writing to find out more about INSERT DESIGN OFFER HERE, more
+            specifically about the {gem} {level} option.
+          </p>
+        </div>
+        <div className="pt-6 gap-8 flex">
           <button
-            className="px-2 outline outline-offset-2 rounded"
+            className="px-2 outline outline-green-400 outline-offset-2 rounded"
             type="submit"
           >
             Send Email
           </button>
+          <Link href="/">
+            <button className="px-2 outline outline-yellow-400 outline-offset-2 rounded">
+              Home
+            </button>
+          </Link>
         </div>
       </form>
-      <div className="pt-6 flex">
-        <Link href="/">
-          <button className="px-2 outline outline-yellow-400 outline-offset-4 rounded">
-            Home
-          </button>
-        </Link>
-      </div>
     </div>
   )
 }
