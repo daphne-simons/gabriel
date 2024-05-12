@@ -16,6 +16,9 @@ const config: Config = {
       fontFamily: {
         gramercy: ['Gramercy Fine'],
       },
+      animation: {
+        'font-weight': 'font-weight-animation 5s infinite',
+      },
     },
   },
   plugins: [],
