@@ -1,7 +1,6 @@
 // pages/api/send/route.ts
 
 import { Resend } from 'resend'
-import { renderToStaticMarkup } from 'react-dom/server'
 
 export async function POST(req: Request, res: Response) {
   const person = await req.json()
