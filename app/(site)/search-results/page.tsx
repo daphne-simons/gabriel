@@ -1,38 +1,43 @@
 'use client'
 import MoonWidget from '../components/MoonWidget'
-import { PT_Serif } from 'next/font/google'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Header from '../components/Header'
-import SearchOptionsList from '../components/SearchOptionsList'
 import ResultsComponent from '../components/ResultsComponent'
 import Details from '../components/Details'
-const serif = PT_Serif({
-  subsets: ['latin'],
-  weight: ['400', '700'],
-  style: ['normal', 'italic'],
-})
+import { useSearchParams } from 'next/navigation'
+import SearchResultBar from '../components/SearchResultBar'
+
 export default function SearchResults() {
   const [activeLink, setActiveLink] = useState<number>(0) // state for active link
 
   const handleLinkClick = (index: number) => {
     setActiveLink(index)
   }
+  const [service, setService] = useState('')
+  const chosenService = useSearchParams().get('service')
+
+  useEffect(() => {
+    setService(chosenService || 'What are you looking for?')
+  }, [])
+
   return (
     <>
-      {/* Header */}
-      <div className="h-auto flex flex-col border-b border-gray-300 ">
-        <div id="header" className="flex flex-row relative gap-4 p-2">
-          {/* Wrapper logo and search bar */}
-          <div className="flex w-full">
-            {/* Logo */}
-            <div className="pr-8 pl-5 pt-2 flex items-center">
-              <Link href="/">
-                <Header color="bg-red-600" size="text-3xl" />
-              </Link>
-            </div>
-            {/* Searchbar */}
-            <div id="search-area" className="flex flex-row relative w-[50%]">
+      <div className="">
+        {/* Header */}
+        <div className="h-auto flex flex-col border-b border-gray-300 ">
+          <div id="header" className="flex flex-row relative gap-4 p-2">
+            {/* Wrapper logo and search bar */}
+            <div className="flex w-full">
+              {/* Logo */}
+              <div className="pr-8 pl-5 pt-2 flex items-center">
+                <Link href="/">
+                  <Header color="bg-red-600" size="text-3xl" />
+                </Link>
+              </div>
+              {/* Searchbar */}
+              <SearchResultBar chosenService={service} />
+              {/* <div id="search-area" className="flex flex-row relative w-[50%]">
               <button
                 id="search-btn"
                 className="h-20 w-6 top-1 left-3 absolute "
@@ -48,49 +53,50 @@ export default function SearchResults() {
               <input
                 id="search-bar"
                 className="mt-5 p-5 w-full h-[46px] pl-10 border border-gray-300 rounded-full text-black placeholder-gray-500 outline-none text-base focus:shadow-md focus:border-transparent hover:border-transparent"
-                placeholder="I want an identity"
+                placeholder={`I want ${service}`}
                 type="text"
               />
+            </div> */}
+            </div>
+            <div className="flex flex-row">
+              {/* </div> */}
+              <div className="mr-8 flex items-center">
+                <MoonWidget />
+              </div>
             </div>
           </div>
-          <div className="flex flex-row">
-            {/* </div> */}
-            <div className="mr-8 flex items-center">
-              <MoonWidget />
-            </div>
+          {/* Second Nav bar - All Pricing Terms */}
+          <div className="flex text-gray-500">
+            <ul className="flex flex-row ml-40 gap-8">
+              <Link
+                href="/search-results"
+                onClick={() => handleLinkClick(0)}
+                className={`cursor-pointer ${
+                  activeLink === 0
+                    ? 'text-blue-500 border-b-4 border-blue-500'
+                    : ''
+                }`}
+              >
+                <li className="">All</li>
+              </Link>
+              <Link
+                href="/search-results"
+                onClick={() => handleLinkClick(1)}
+                className={`cursor-pointer ${
+                  activeLink === 1
+                    ? 'text-blue-500 border-b-4 border-blue-500'
+                    : ''
+                }`}
+              >
+                <li>Details</li>
+              </Link>
+            </ul>
           </div>
         </div>
-        {/* Second Nav bar - All Pricing Terms */}
-        <div className="flex text-gray-500">
-          <ul className="flex flex-row ml-40 gap-8">
-            <Link
-              href="/search-results"
-              onClick={() => handleLinkClick(0)}
-              className={`cursor-pointer ${
-                activeLink === 0
-                  ? 'text-blue-500 border-b-4 border-blue-500'
-                  : ''
-              }`}
-            >
-              <li className="">All</li>
-            </Link>
-            <Link
-              href="/search-results"
-              onClick={() => handleLinkClick(1)}
-              className={`cursor-pointer ${
-                activeLink === 1
-                  ? 'text-blue-500 border-b-4 border-blue-500'
-                  : ''
-              }`}
-            >
-              <li>Details</li>
-            </Link>
-          </ul>
+        {/* Body */}
+        <div className="flex flex-row pl-40">
+          {activeLink ? <Details /> : <ResultsComponent />}
         </div>
-      </div>
-      {/* Body */}
-      <div className="flex flex-row pl-40">
-        {activeLink ? <Details /> : <ResultsComponent />}
       </div>
     </>
   )
