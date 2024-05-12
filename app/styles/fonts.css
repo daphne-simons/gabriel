@@ -2,8 +2,7 @@
 /* Gramercy Fine */
 /* Thin */
 @font-face {
-  font-family: 'Gramercy Fine';
-  font-style: thin; /* Note: Remove quotes around thin */
+  font-family: 'Gramercy Fine'; /* Note: Remove quotes around thin */
   font-weight: 100;
   font-display: swap;
   src: url('/fonts/ABCGramercyFine-Thin-Trial.woff2') format('woff2'); /* Update the URL */
@@ -12,15 +11,13 @@
 /* Light */
 @font-face {
   font-family: 'Gramercy Fine';
-  font-style: light;
   font-weight: 300;
   font-display: swap;
   src: url('/fonts/ABCGramercyFine-Light-Trial.woff2') format('woff2');
 }
 /* Book */
 @font-face {
-  font-family: 'Gramercy Fine';
-  font-style: normal; /* Note: Use normal for regular fonts */
+  font-family: 'Gramercy Fine'; /* Note: Use normal for regular fonts */
   font-weight: 400;
   font-display: swap;
   src: url('/fonts/ABCGramercyFine-Book-Trial.woff2') format('woff2');
@@ -29,7 +26,6 @@
 /* Regular */
 @font-face {
   font-family: 'Gramercy Fine';
-  font-style: normal;
   font-weight: 500;
   font-display: swap;
   src: url('/fonts/ABCGramercyFine-Regular-Trial.woff2') format('woff2');
@@ -38,7 +34,6 @@
 /* Medium */
 @font-face {
   font-family: 'Gramercy Fine';
-  font-style: normal;
   font-weight: 600;
   font-display: swap;
   src: url('/fonts/ABCGramercyFine-Medium-Trial.woff2') format('woff2');
@@ -47,7 +42,6 @@
 /* Bold */
 @font-face {
   font-family: 'Gramercy Fine';
-  font-style: normal;
   font-weight: 700;
   font-display: swap;
   src: url('/fonts/ABCGramercyFine-Bold-Trial.woff2') format('woff2');
@@ -56,8 +50,33 @@
 /* Black */
 @font-face {
   font-family: 'Gramercy Fine';
-  font-style: normal;
   font-weight: 900;
   font-display: swap;
   src: url('/fonts/ABCGramercyFine-Black-Trial.woff2') format('woff2');
+}
+
+@keyframes gramercy-animation {
+  from {
+    font-variation-settings: 'wght' var(--start-weight);
+  }
+  to {
+    font-variation-settings: 'wght' var(--end-weight);
+  }
+}
+
+.my-variable-text {
+  font-family: 'Gramercy Fine';
+  --start-weight: 100; /* Define the starting font weight */
+  --end-weight: 900; /* Define the ending font weight */
+  transition: font-variation-settings var(--animation-duration) ease;
+  animation-name: gramercy-animation;
+  animation-duration: var(--animation-duration);
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+/* Define animation duration as a variable */
+:root {
+  --animation-duration: 1.5s;
 }

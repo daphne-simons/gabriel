@@ -16,6 +16,19 @@ const config: Config = {
       fontFamily: {
         gramercy: ['Gramercy Fine'],
       },
+      keyframes: {
+        gramercy: {
+          from: {
+            '--tw-gramercy-weight': '100',
+          },
+          to: {
+            '--tw-gramercy-weight': '900',
+          },
+        },
+      },
+      animation: {
+        'gramercy-animation': 'gramercy 5s ease-in-out infinite alternate',
+      },
     },
   },
   plugins: [],

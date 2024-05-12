@@ -30,44 +30,43 @@ export default function Header(props: Props) {
   function getFontWeightByMoonPhase(phase: string | undefined) {
     switch (phase) {
       case 'New Moon':
-        return 'font-thin'
+        return 100
       case 'Waxing':
-        return 'font-light'
+        return 300
       case 'First quarter':
-        return 'font-regular'
+        return 400
       case 'Waxing':
-        return 'font-medium'
+        return 600
       case 'Full moon':
-        return 'font-bold'
+        return 700
       case 'Waning':
-        return 'font-medium'
+        return 600
       case 'Last quarter':
-        return 'font-regular'
+        return 400
       case 'Waning':
-        return 'font-light'
+        return 300
       default:
-        return 'font-regular' // Default to regular if phase is unknown
+        return 400 // Default to regular if phase is unknown
     }
   }
   const currentPhase: string | undefined =
     moonData?.phase[new Date().getDate()].phaseName
 
-  const fontWeight = getFontWeightByMoonPhase(currentPhase)
+  let fontWeight = getFontWeightByMoonPhase(currentPhase)
+  console.log(fontWeight)
 
   return (
-    <h1 className={`font-gramercy ${fontWeight}`}>
-      <div className="">
-        <span
-          className={`absolute mx-auto py-4 flex border blur-lg ${color} bg-clip-text ${size} box-content text-transparent text-center select-none`}
-        >
-          Gabriel
-        </span>
-        <h1
-          className={`relative top-0 py-4 justify-center flex items-center ${color} bg-clip-text ${size} text-transparent text-center select-auto`}
-        >
-          Gabriel
-        </h1>
-      </div>
+    <h1 className={`font-gramercy animate-gramercy-animation`}>
+      <span
+        className={`absolute mx-auto py-4 flex border blur-lg ${color} bg-clip-text ${size} box-content text-transparent text-center select-none`}
+      >
+        Gabriel
+      </span>
+      <h1
+        className={`relative top-0 py-4 justify-center flex items-center ${color} bg-clip-text ${size} text-transparent text-center select-auto`}
+      >
+        Gabriel
+      </h1>
     </h1>
   )
 }
