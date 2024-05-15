@@ -7,9 +7,9 @@ interface Props {
     level: string
     cost: string
   }
+  chosenService: string
 }
-export default function SearchSideBar({ option }: Props) {
-  console.log(option)
+export default function SearchSideBar({ option, chosenService }: Props) {
   return (
     <div className="h-full border rounded-2xl">
       {/* Gallery Grid */}
@@ -30,7 +30,7 @@ export default function SearchSideBar({ option }: Props) {
         </p>
         {/* this should be a query parameter, instead of a path */}
         <Link
-          href={`/contact?gem=${option.gem}&level=${option.level}&cost=${option.cost}`}
+          href={`/contact?service=${chosenService}&gem=${option.gem}&level=${option.level}&cost=${option.cost}`}
         >
           <h3 className="pt-2 text-l font-bold text-blue-400">Enquire</h3>
         </Link>

@@ -70,3 +70,28 @@ body {
   background-attachment: fixed;
   mix-blend-mode: difference;
 }
+
+/* This doesn't work yet.... Maybe not worth pursueing.  */
+@keyframes font-weight-animation {
+  0% {
+    font-weight: 100; /* Thin */
+  }
+  17% {
+    font-weight: 300; /* Light */
+  }
+  33% {
+    font-weight: 400; /* Book */
+  }
+  50% {
+    font-weight: 500; /* Regular */
+  }
+  67% {
+    font-weight: 600; /* Medium */
+  }
+  83% {
+    font-weight: 700; /* Bold */
+  }
+  100% {
+    font-weight: 900; /* Black */
+  }
+}

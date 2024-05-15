@@ -27,7 +27,7 @@ const config: Config = {
         },
       },
       animation: {
-        'gramercy-animation': 'gramercy 5s ease-in-out infinite alternate',
+        'font-weight': 'font-weight-animation 5s infinite',
       },
     },
   },

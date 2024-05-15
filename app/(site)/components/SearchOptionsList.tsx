@@ -7,9 +7,10 @@ interface Props {
     level: string
     cost: string
   }[]
+  chosenService: string
 }
 
-export default function SearchOptionsList({ options }: Props) {
+export default function SearchOptionsList({ options, chosenService }: Props) {
   // TODO - make data structure in sanity that I can fetch with a query here and map through!
   // This state is for the sideBar component.
   const [option, setOption] = useState({
@@ -65,7 +66,7 @@ export default function SearchOptionsList({ options }: Props) {
           ))}
         </div>
         <div className="w-1/2 flex flex-col pr-32 pt-6">
-          <SearchSideBar option={option} />
+          <SearchSideBar option={option} chosenService={chosenService} />
         </div>
       </div>
     </>

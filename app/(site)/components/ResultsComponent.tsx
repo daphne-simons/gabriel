@@ -1,9 +1,12 @@
 'use client'
 import React from 'react'
 import SearchOptionsList from './SearchOptionsList'
-import SearchSideBar from './SearchSideBar'
 import { useState } from 'react'
-export default function ResultsComponent() {
+export default function ResultsComponent({
+  chosenService,
+}: {
+  chosenService: string
+}) {
   const [products, setProducts] = useState({
     services: [
       'an identity',
@@ -23,7 +26,10 @@ export default function ResultsComponent() {
     <>
       {/* Options List and Side bar with Gallery, info, links*/}
       <div>
-        <SearchOptionsList options={products.options} />
+        <SearchOptionsList
+          options={products.options}
+          chosenService={chosenService}
+        />
       </div>
     </>
   )

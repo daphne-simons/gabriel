@@ -2,11 +2,12 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { useSearchParams } from 'next/navigation'
+import { useSearchParams, useRouter } from 'next/navigation'
 
 const ContactForm = () => {
   const searchParams = useSearchParams()
-
+  const router = useRouter()
+  const chosenService = searchParams.get('service')
   const gem = searchParams.get('gem')
   const level = searchParams.get('level')
   const cost = searchParams.get('cost')
@@ -22,10 +23,8 @@ const ContactForm = () => {
       setEmail(value)
     }
   }
-
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(firstName, email)
 
     try {
       const response = await fetch('/api/send', {
@@ -33,15 +32,28 @@ const ContactForm = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ firstName, email }),
+        body: JSON.stringify({
+          firstName,
+          email,
+          chosenService,
+          gem,
+          level,
+          cost,
+        }),
       })
 
       if (response.ok) {
+        // Make a page for route '/contact/success' and redirect to it
+        router.push('/')
         console.log('Email sent successfully!')
       } else {
+        // some kind of page for "failed to send email, please try again later"
+        // redirect to the home page.
         console.error('Failed to send email:', await response.text())
       }
     } catch (error) {
+      // some kind of page for "failed to send email, please try again later"
+      // redirect to the home page.
       console.error('Error sending email:', error)
     }
   }
@@ -76,8 +88,13 @@ const ContactForm = () => {
             />
           </div>
           <p>
-            I am writing to find out more about INSERT DESIGN OFFER HERE, more
-            specifically about the {gem} {level} option.
+            I am writing to find out more about{' '}
+            <span className="font-semibold">{chosenService}</span>. <br />
+            Specifically about the <span className="font-semibold">
+              {gem}
+            </span>, <span className="font-semibold">{level}</span> option.{' '}
+            <br />
+            Looking forward to speaking more soon!
           </p>
         </div>
         <div className="pt-6 gap-8 flex">
