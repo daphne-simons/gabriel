@@ -77,7 +77,11 @@ export default function SearchResults() {
         </div>
         {/* Body */}
         <div className="flex flex-row pl-40">
-          {activeLink ? <Details /> : <ResultsComponent />}
+          {activeLink ? (
+            <Details />
+          ) : (
+            <ResultsComponent chosenService={service} />
+          )}
         </div>
       </div>
     </>

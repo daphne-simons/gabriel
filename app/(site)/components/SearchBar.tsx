@@ -12,7 +12,6 @@ export default function SearchBar() {
     'something else',
   ])
   const toggleDropdown = () => {
-    console.log('closed')
     setIsOpen(!isOpen)
   }
   return (

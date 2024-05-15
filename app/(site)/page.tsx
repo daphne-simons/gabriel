@@ -7,7 +7,6 @@ import getMoon from '@/query/utils/getMoonData'
 
 export default async function Home() {
   const data = await getMoon()
-  console.log(data)
 
   return (
     <>
