@@ -80,7 +80,9 @@ export default function SearchResults() {
           {activeLink ? (
             <Details />
           ) : (
-            <ResultsComponent chosenService={service} />
+            <Suspense>
+              <ResultsComponent chosenService={service} />
+            </Suspense>
           )}
         </div>
       </div>
