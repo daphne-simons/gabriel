@@ -18,9 +18,6 @@ export default async function Home() {
             <Link href="#" className="flex gap-8 hover:underline">
               About
             </Link>
-            <Link href="/search-results" className="flex gap-8 hover:underline">
-              Search Results
-            </Link>
             <Link href="/moon" className="flex gap-8 hover:underline">
               {data?.phase[new Date().getDate()].phaseName}
               <MoonWidget />
