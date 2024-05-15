@@ -1,7 +1,6 @@
 'use client'
 import React from 'react'
 import SearchOptionsList from './SearchOptionsList'
-import SearchSideBar from './SearchSideBar'
 import { useState } from 'react'
 export default function ResultsComponent() {
   const [products, setProducts] = useState({
