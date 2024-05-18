@@ -13,6 +13,7 @@ async function loadMoonPhases(obj: MoonConfig) {
       throw new Error('Network response was not ok.')
     }
     const data = await response.json()
+    console.log(data)
 
     return data
   } catch (error) {
@@ -25,10 +26,10 @@ const configMoon = {
   month: new Date().getMonth() + 1, // 1 - 12
   year: new Date().getFullYear(),
   size: 100, // pixels - size of moon svg
-  lightColor: '#FFFF88', // CSS color
-  shadeColor: '#111111', // CSS color
+  lightColor: '#f7f7c8', // CSS color
+  shadeColor: '#1d1d1d', // CSS color
   sizeQuarter: 40, // pixels - size of moon svg
-  texturize: true, // true - false
+  texturize: false, // true - false
   // LDZ: Math.floor(new Date().getTime() / 1000), // rounds the percentage number of moon phase.
 }
 
