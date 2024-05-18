@@ -25,17 +25,15 @@ const config: Config = {
             '--tw-gramercy-weight': '900',
           },
         },
-      },
-      animation: {
-        'font-weight': 'font-weight-animation 5s infinite',
-      },
-      keyframes: {
         flip: {
           '50%': { transform: 'scale(-1)' },
         },
         roty: {
           '0%': { transform: 'rotateY(calc(var(--i) * 0.5turn))' },
         },
+      },
+      animation: {
+        'font-weight': 'font-weight-animation 5s infinite',
       },
       colors: {
         c0: '#e2e2bf',
