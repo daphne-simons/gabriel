@@ -29,6 +29,27 @@ const config: Config = {
       animation: {
         'font-weight': 'font-weight-animation 5s infinite',
       },
+      keyframes: {
+        flip: {
+          '50%': { transform: 'scale(-1)' },
+        },
+        roty: {
+          '0%': { transform: 'rotateY(calc(var(--i) * 0.5turn))' },
+        },
+      },
+      colors: {
+        c0: '#e2e2bf',
+        c1: '#1d1d1d',
+      },
+      spacing: {
+        d: '8em',
+      },
+      durations: {
+        t: '1s',
+      },
+      blur: {
+        'blur-sm': '0.2px',
+      },
     },
   },
   plugins: [],

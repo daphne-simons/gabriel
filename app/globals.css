@@ -5,6 +5,8 @@
 /* import the styles/ fonts.css */
 @import 'styles/fonts.css';
 
+/* import MOON LOADER styles/moon.css */
+@import 'styles/moon.css';
 /* GOD RAYS CSS - By Tim Wilson */
 /* https://codepen.io/TWilson/pen/jOdWqbZ */
 /*
@@ -52,11 +54,8 @@ body {
   background-image: var(--stripes), var(--rainbow);
   background-size: 300%, 200%;
   background-position: 50% 50%, 50% 50%;
-
   filter: blur(10px) invert(100%);
-
   mask-image: radial-gradient(ellipse at 100% 0%, black 40%, transparent 70%);
-
   pointer-events: none;
 }
 
@@ -71,27 +70,10 @@ body {
   mix-blend-mode: difference;
 }
 
-/* This doesn't work yet.... Maybe not worth pursueing.  */
-@keyframes font-weight-animation {
-  0% {
-    font-weight: 100; /* Thin */
-  }
-  17% {
-    font-weight: 300; /* Light */
-  }
-  33% {
-    font-weight: 400; /* Book */
-  }
-  50% {
-    font-weight: 500; /* Regular */
-  }
-  67% {
-    font-weight: 600; /* Medium */
-  }
-  83% {
-    font-weight: 700; /* Bold */
-  }
-  100% {
-    font-weight: 900; /* Black */
-  }
+.bg-fade {
+  background-color: rgba(79, 79, 79, 0.5);
+  background-image: url('/moon-bg.png');
+  background-size: cover;
+  background-position: center;
+  /* filter: blur(5px); */
 }

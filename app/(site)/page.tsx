@@ -5,9 +5,7 @@ import MoonWidget from './components/MoonWidget'
 import Header from './components/Header'
 import getMoon from '@/query/utils/getMoonData'
 
-export default async function Home() {
-  const data = await getMoon()
-
+export default function Home() {
   return (
     <>
       {/* Background wrapper to dynamically change theme according to Moon Phase. */}
@@ -18,10 +16,7 @@ export default async function Home() {
             <Link href="#" className="flex gap-8 hover:underline">
               About
             </Link>
-            <Link href="/moon" className="flex gap-8 hover:underline">
-              {data?.phase[new Date().getDate()].phaseName}
-              <MoonWidget />
-            </Link>
+            <MoonWidget />
           </div>
           {/* Middle section  */}
           <div className="middle flex flex-col justify-evenly items-center h-[30%] -mt-40">
@@ -39,6 +34,7 @@ export default async function Home() {
             </div>
           </div>
           {/* TODO - Footer */}
+
           <div></div>
         </div>
       </BackGround>

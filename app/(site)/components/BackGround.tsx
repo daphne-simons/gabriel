@@ -2,6 +2,7 @@
 
 import getMoon from '@/query/utils/getMoonData'
 import { useQuery } from '@tanstack/react-query'
+import MoonLoader from './MoonLoader'
 
 export default function BackGround({
   children,
@@ -19,7 +20,13 @@ export default function BackGround({
   })
 
   if (isLoading) {
-    return <div>Loading...</div>
+    return (
+      <>
+        <div className="bg-fade h-screen flex items-center justify-center z-0">
+          <MoonLoader />
+        </div>
+      </>
+    )
   }
 
   if (isError) {

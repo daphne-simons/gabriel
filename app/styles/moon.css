@@ -1,0 +1,72 @@
+/* MOON LOADER STYLES */
+
+/* Variables */
+:root {
+  --c0: #e2e2bf;
+  --c1: #1d1d1d;
+  --d: 8em;
+  --t: 1s;
+}
+
+/* Styles */
+.moon-container {
+  display: grid;
+  grid-template: var(--d) / var(--d);
+  place-content: center;
+  margin: 0;
+}
+
+.moon-spin,
+.moon-spin::before,
+.moon-spin::after {
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    var(--c0) calc(var(--i, 0.5) * 100%),
+    var(--c1) 0
+  );
+  -webkit-filter: blur(0.2px);
+  -moz-filter: blur(0.2px);
+  -o-filter: blur(0.2px);
+  -ms-filter: blur(0.2px);
+  filter: blur(0.2px);
+}
+.moon-spin {
+  display: grid;
+  animation: flip calc(2 * var(--t)) steps(1) infinite;
+}
+.moon-spin::before,
+.moon-spin::after {
+  --i: 0;
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  transform: rotateY(calc((var(--i) + 1) * 0.5turn));
+  animation: roty var(--t) ease-in-out infinite alternate;
+  content: '';
+}
+.moon-spin::after {
+  --i: 1;
+}
+.moon-texture {
+  width: 129px;
+  height: 129px;
+  position: relative;
+  bottom: 128px;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #fefee0;
+  background-image: url('/moon-texture.jpeg');
+  background-size: cover;
+  opacity: 0.1;
+}
+
+/* Keyframes */
+@keyframes flip {
+  50% {
+    transform: scale(-1);
+  }
+}
+@keyframes roty {
+  0% {
+    transform: rotateY(calc(var(--i) * 0.5turn));
+  }
+}
