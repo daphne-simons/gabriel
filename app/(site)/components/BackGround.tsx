@@ -22,7 +22,7 @@ export default function BackGround({
   if (isLoading) {
     return (
       <>
-        <div className="bg-fade h-screen flex items-center justify-center z-0">
+        <div className="bg-gray-700 h-screen flex items-center justify-center z-0">
           <MoonLoader />
         </div>
       </>
