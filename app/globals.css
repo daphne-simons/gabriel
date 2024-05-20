@@ -77,3 +77,8 @@ body {
   background-position: center;
   /* filter: blur(5px); */
 }
+
+.bg-img {
+  background-image: url('/moon-bg.png');
+  background-size: cover;
+}
