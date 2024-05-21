@@ -1,5 +1,5 @@
-/* Variable Font Imports */
-/* Gramercy Fine */
+/* GRAMERCY FINE - STATIC FONT FILES */
+
 /* Thin */
 @font-face {
   font-family: 'Gramercy Fine'; /* Note: Remove quotes around thin */
@@ -7,7 +7,6 @@
   font-display: swap;
   src: url('/fonts/ABCGramercyFine-Thin-Trial.woff2') format('woff2'); /* Update the URL */
 }
-
 /* Light */
 @font-face {
   font-family: 'Gramercy Fine';
@@ -22,7 +21,6 @@
   font-display: swap;
   src: url('/fonts/ABCGramercyFine-Book-Trial.woff2') format('woff2');
 }
-
 /* Regular */
 @font-face {
   font-family: 'Gramercy Fine';
@@ -30,7 +28,6 @@
   font-display: swap;
   src: url('/fonts/ABCGramercyFine-Regular-Trial.woff2') format('woff2');
 }
-
 /* Medium */
 @font-face {
   font-family: 'Gramercy Fine';
@@ -38,7 +35,6 @@
   font-display: swap;
   src: url('/fonts/ABCGramercyFine-Medium-Trial.woff2') format('woff2');
 }
-
 /* Bold */
 @font-face {
   font-family: 'Gramercy Fine';
@@ -46,7 +42,6 @@
   font-display: swap;
   src: url('/fonts/ABCGramercyFine-Bold-Trial.woff2') format('woff2');
 }
-
 /* Black */
 @font-face {
   font-family: 'Gramercy Fine';
@@ -55,28 +50,38 @@
   src: url('/fonts/ABCGramercyFine-Black-Trial.woff2') format('woff2');
 }
 
-@keyframes gramercy-animation {
-  from {
-    font-variation-settings: 'wght' var(--start-weight);
-  }
-  to {
-    font-variation-settings: 'wght' var(--end-weight);
-  }
+/* GRAMERCY VARIABLE FONTS */
+
+@font-face {
+  font-family: 'Gramercy Variable';
+  src: url('/fonts/ABCGramercyVariable-Trial.woff2') format('woff2-variations'),
+    url('/fonts/ABCGramercyVariable-Trial.woff') format('woff-variations'),
+    url('/fonts/ABCGramercyVariable-Trial.ttf') format('truetype-variations');
 }
+
+/* GRAMERCY Variable Settings */
+/* wght - from 200 - 1000 */
+/* opsz - from 12 - 72 */
+
+/* GRAMERCY FEATURES: */
+/* .my-text {
+	font-feature-settings: "calt" 1, "liga" 1, "rlig" 1, "rvrn" 1, "kern" 1, "rclt" 1;
+	font-variation-settings: "wght" 200, "opsz" 72;
+} */
 
 .my-variable-text {
-  font-family: 'Gramercy Fine';
-  --start-weight: 100; /* Define the starting font weight */
-  --end-weight: 900; /* Define the ending font weight */
-  transition: font-variation-settings var(--animation-duration) ease;
-  animation-name: gramercy-animation;
-  animation-duration: var(--animation-duration);
-  animation-direction: alternate;
-  animation-iteration-count: infinite;
-  animation-timing-function: ease-in-out;
+  font-family: 'Gramercy Variable';
+  /* For the ON HOVER effect */
+  /* font-variation-settings: 'wght' 200, 'opsz' 50;
+  transition: font-variation-settings 0.3s ease-out; */
 }
+/* ON HOVER EFFECT */
+/* .my-variable-text:hover {
+  font-variation-settings: 'wght' 800, 'opsz' 72;
+} */
 
-/* Define animation duration as a variable */
-:root {
-  --animation-duration: 1.5s;
-}
+/* To make a FALLBACK STATIC FONT: */
+
+/* .font-page {
+  font-family: 'Gramercy Variable', 'Gramercy Fine', Georgia, serif;
+} */
