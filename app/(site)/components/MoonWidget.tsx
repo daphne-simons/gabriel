@@ -23,6 +23,7 @@ export default function MoonWidget() {
   if (moonData) {
     //  Gets the dynamic svg data from the moonData api query:
     const moonPhaseSVG = moonData.phase[new Date().getDate()].svg // Assuming moonData is available in scope
+    console.log(moonData)
     console.log(moonPhaseSVG)
     // TODO: Make this moon svg NOT have an a tag in there.
     // const newMoon = (
