@@ -15,6 +15,7 @@ const config: Config = {
       },
       fontFamily: {
         gramercy: ['Gramercy Fine'],
+        roboto: ['Roboto', 'sans-serif'],
       },
       keyframes: {
         gramercy: {
