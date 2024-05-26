@@ -13,7 +13,7 @@ export default function Home() {
         <div className="flex flex-col justify-between h-screen">
           {/* Nav */}
           <div className="flex justify-between mt-5 px-7 text-sm">
-            <Link href="#" className="flex gap-8 hover:underline">
+            <Link href="/about" className="flex gap-8 hover:underline">
               About
             </Link>
             <Link href="/fonts" className="flex gap-8 hover:underline">
