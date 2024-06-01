@@ -32,7 +32,15 @@ export default function SearchResultBar({
       id="search-area"
       className={`flex flex-row relative w-[50%] `}
     >
-      <span className="h-20 w-5 top-[18px] pt-4 left-4 absolute">
+      <input
+        id="search-bar"
+        className={`mt-5 p-5 w-full h-[46px] pl-12 text-black placeholder-gray-600 text-base rounded-full drop-shadow-lg ${
+          isOpen ? 'drop-shadow-2xl hidden' : 'drop-shadow-lg'
+        }`}
+        placeholder={`I want ${activeService}`}
+        type="text"
+      />
+      <span className="h-5 w-5 top-[18px] pt-4 left-4 absolute">
         <svg
           focusable="false"
           fill="#9aa0a6"
@@ -42,18 +50,10 @@ export default function SearchResultBar({
           <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
         </svg>
       </span>
-      <input
-        id="search-bar"
-        className={`mt-5 p-5 w-full h-[46px] pl-12 text-black placeholder-gray-600 text-base outline outline-offset-0 outline-1 outline-gray-500 rounded-full hover:outline-gray-300 ${
-          isOpen ? 'outline-transparent' : 'outline'
-        }`}
-        placeholder={`I want ${activeService}`}
-        type="text"
-      />
       {/* Dropdown Menu */}
       <div
         id="dropdown"
-        className={`absolute z-10 pl-8 py-1 pb-2 text-gray-600  w-full rounded-[25px] flex flex-col gap-2 bg-[#ffffff] top-5 outline outline-offset-0 outline-1 outline-gray-300 ${
+        className={`absolute z-10 pl-8 py-1 pb-2 text-gray-600  w-full rounded-[25px] flex flex-col gap-2 bg-[#ffffff] top-5 drop-shadow-lg ${
           isOpen ? 'block' : 'hidden'
         }`}
       >
