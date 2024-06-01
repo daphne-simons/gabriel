@@ -30,9 +30,6 @@ export default function Home() {
               <Link href="/about" className="flex gap-8 hover:underline">
                 About
               </Link>
-              <Link href="/fonts" className="flex gap-8 hover:underline">
-                Fonts
-              </Link>
               <MoonWidget />
             </div>
             {/* Middle section  */}
