@@ -3,6 +3,7 @@
 import getMoon from '@/query/utils/getMoonData'
 import { useQuery } from '@tanstack/react-query'
 import MoonLoader from './MoonLoader'
+import GodRays from './GodRays'
 
 export default function BackGround({
   children,
@@ -99,9 +100,11 @@ export default function BackGround({
     const theme = calculateBgColor(lightValue)
 
     return (
-      <div className={`${theme.bgValue} ${theme.textValue}`}>
-        <div className={`bg-cover ${theme.bgImg}`}>{children}</div>
-      </div>
+      <>
+        <div className={`${theme.bgValue} ${theme.textValue} `}>
+          <div className={`bg-cover ${theme.bgImg}`}>{children}</div>
+        </div>
+      </>
     )
   }
 }
