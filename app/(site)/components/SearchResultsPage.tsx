@@ -2,11 +2,11 @@
 import MoonWidget from '../components/MoonWidget'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import Header from '../components/Header'
 import ResultsComponent from '../components/ResultsComponent'
 import Details from '../components/Details'
 import { useSearchParams } from 'next/navigation'
 import SearchResultBar from '../components/SearchResultBar'
+import SearchResultLogo from './SearchResultLogo'
 
 export default function SearchResultsPage() {
   const [activeLink, setActiveLink] = useState<number>(0) // state for active link
@@ -31,7 +31,7 @@ export default function SearchResultsPage() {
               {/* Logo */}
               <div className="pr-8 pl-5 pt-2 flex items-center">
                 <Link href="/">
-                  <Header color="bg-red-600" size="text-3xl" />
+                  <SearchResultLogo />
                 </Link>
               </div>
               {/* Searchbar */}
@@ -40,7 +40,7 @@ export default function SearchResultsPage() {
             <div className="flex flex-row">
               {/* </div> */}
               <div className="mr-8 flex items-center">
-                <MoonWidget />
+                <MoonWidget size="smallMoon" />
               </div>
             </div>
           </div>

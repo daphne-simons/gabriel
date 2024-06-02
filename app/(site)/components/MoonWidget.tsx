@@ -4,7 +4,8 @@ import getMoon from '@/query/utils/getMoonData'
 import { useQuery } from '@tanstack/react-query'
 import MoonLoader from './MoonLoader'
 import Link from 'next/link'
-export default function MoonWidget() {
+
+export default function MoonWidget({ size }: { size: string }) {
   const {
     data: moonData,
     isLoading,
@@ -14,7 +15,7 @@ export default function MoonWidget() {
     queryFn: () => getMoon(),
   })
   if (isLoading) {
-    return <MoonLoader />
+    return <MoonLoader size={size} />
   }
 
   if (isError) {

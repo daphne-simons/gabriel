@@ -6,7 +6,6 @@ import BackGround from './components/BackGround'
 import HomeSearchBar from './components/SearchBar'
 import MoonWidget from './components/MoonWidget'
 import HomeLogo from './components/HomeLogo'
-import GodRays from './components/GodRays'
 
 export default function Home() {
   const [fontSettings, setFontSettings] = useState({ wght: 200, opsz: 72 })
