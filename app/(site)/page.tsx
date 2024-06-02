@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import Link from 'next/link'
 import BackGround from './components/BackGround'
-import SearchBar from './components/SearchBar'
+import HomeSearchBar from './components/SearchBar'
 import MoonWidget from './components/MoonWidget'
 import HomeLogo from './components/HomeLogo'
 import GodRays from './components/GodRays'
@@ -38,18 +38,10 @@ export default function Home() {
               {/* Heading */}
               <HomeLogo fontSettings={fontSettings} />
               {/* Div for Search Input */}
-              <SearchBar />
-              <div>
-                {/* Feeling Lucky/ Contact Button */}
-                <Link href="/contact">
-                  <button className="px-4 py-2  rounded border border-gray-400 hover:border hover:border-gray-500 border-1 text-sm">
-                    I&apos;m Feeling Lucky
-                  </button>
-                </Link>
-              </div>
+              <HomeSearchBar />
+              {/* Feeling Lucky/ Contact Button */}
             </div>
             {/* TODO - Footer */}
-
             <div></div>
           </div>
         </BackGround>
