@@ -20,7 +20,7 @@ export default function SearchOptionsList({ options, chosenService }: Props) {
   })
   return (
     <>
-      <div className="flex flex-row">
+      <div className="pt-6 flex flex-row">
         <div className="flex flex-col w-2/3">
           {options.map((option) => (
             <div key={option.gem} className="">
@@ -39,22 +39,22 @@ export default function SearchOptionsList({ options, chosenService }: Props) {
                       }`}
                     ></div>
                     <div>
-                      <h2 className=" pl-2 font-bold text-gray-500">
+                      <h2 className=" pl-2 text-sm  text-[#F8F9FA]">
                         {option.level}
                       </h2>
                       <div className="flex flex-row">
-                        <a href="#" className="pl-2 text-gray-500">
+                        <a href="#" className="pl-2  text-sm text-[#BDC1C5]">
                           Cost Guide AUD {option.cost}
                         </a>
                       </div>
                     </div>
                   </div>
                   <button onClick={() => setOption(option)}>
-                    <h2 className={`text-2xl font-medium ${'text-blue-400'}`}>
+                    <h2 className={`pt-2 text-xl font-medium text-[#8AB4F7]`}>
                       {option.gem}
                     </h2>
                   </button>
-                  <p className="w-5/6">
+                  <p className="w-5/6 text-base text-[#BDC1C5]">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Vero quos iure quia veritatis obcaecati, consequuntur cumque
                     consequatur similique alias vel animi beatae modi itaque

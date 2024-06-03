@@ -22,9 +22,9 @@ export default function SearchResultsPage() {
   }, [])
   return (
     <>
-      <div className="">
+      <div className="bg-[#202124] h-screen w-full">
         {/* Header */}
-        <div className="h-auto flex flex-col border-b border-gray-300 ">
+        <div className="h-auto flex flex-col border-b border-[#7d8084] ">
           <div id="header" className="flex flex-row relative gap-4 p-2">
             {/* Wrapper logo and search bar */}
             <div className="flex w-full">
@@ -38,36 +38,35 @@ export default function SearchResultsPage() {
               <SearchResultBar chosenService={service} />
             </div>
             <div className="flex flex-row">
-              {/* </div> */}
-              <div className="mr-8 flex items-center">
+              <div className="mr-8 flex items-center text-[#F8F9FA] text-sm font-roboto">
                 <MoonWidget size="smallMoon" />
               </div>
             </div>
           </div>
           {/* Second Nav bar - All Pricing Terms */}
-          <div className="flex text-gray-500">
+          <div className="flex text-[#F8F9FA]">
             <ul className="flex flex-row ml-40 gap-8">
               <Link
                 href="/search-results"
                 onClick={() => handleLinkClick(0)}
                 className={`cursor-pointer ${
                   activeLink === 0
-                    ? 'text-blue-500 border-b-4 border-blue-500'
+                    ? 'text-[#8AB4F7] text-sm border-b-2 border-[#8AB4F7]'
                     : ''
                 }`}
               >
-                <li className="">All</li>
+                <li className="px-4 pb-2 text-sm">All</li>
               </Link>
               <Link
                 href="/search-results"
                 onClick={() => handleLinkClick(1)}
                 className={`cursor-pointer ${
                   activeLink === 1
-                    ? 'text-blue-500 border-b-4 border-blue-500'
+                    ? 'text-[#8AB4F7] border-b-2 border-[#8AB4F7]'
                     : ''
                 }`}
               >
-                <li>Details</li>
+                <li className="px-4 pb-2 text-sm">Details</li>
               </Link>
             </ul>
           </div>

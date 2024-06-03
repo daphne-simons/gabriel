@@ -30,7 +30,7 @@ export default function Home() {
               <Link href="/about" className="flex gap-8 hover:underline">
                 About
               </Link>
-              <MoonWidget />
+              <MoonWidget size={'medMoon'} />
             </div>
             {/* Middle section  */}
             <div className="middle flex flex-col justify-evenly items-center h-[30%] -mt-40">
