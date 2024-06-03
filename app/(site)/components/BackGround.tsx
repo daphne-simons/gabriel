@@ -23,8 +23,8 @@ export default function BackGround({
   if (isLoading) {
     return (
       <>
-        <div className="bg-gray-700 h-screen flex items-center justify-center z-0">
-          <MoonLoader size="bigMoon" />
+        <div className="bg-gray-800 h-screen flex items-center justify-center z-0">
+          <MoonLoader size="medMoon" />
         </div>
       </>
     )
