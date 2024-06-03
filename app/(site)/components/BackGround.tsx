@@ -24,7 +24,7 @@ export default function BackGround({
     return (
       <>
         <div className="bg-gray-700 h-screen flex items-center justify-center z-0">
-          <MoonLoader />
+          <MoonLoader size="bigMoon" />
         </div>
       </>
     )
