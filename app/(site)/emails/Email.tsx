@@ -9,7 +9,7 @@ interface EmailTemplateProps {
   }
 }
 
-export default function EmailTemplate({ person }: EmailTemplateProps) {
+export default function EnquiryEmail({ person }: EmailTemplateProps) {
   console.log('e-template', person)
 
   return (

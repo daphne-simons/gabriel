@@ -1,7 +1,7 @@
 // pages/api/send/route.ts
 
 import { Resend } from 'resend'
-import EmailTemplate from '../../emails/Email'
+import EnquiryEmail from '../../emails/EnquiryEmail'
 
 export async function POST(req: Request, res: Response) {
   const resend = new Resend(process.env.RESEND_API_KEY)
@@ -22,10 +22,9 @@ export async function POST(req: Request, res: Response) {
       // text: `Hi Gabriel! My name is: ${firstName}, and I would love to know more about your services. My email address is: ${email}.
       // Specifically; I am interested in the service: ${chosenService}, gem: ${gem}, level: ${level}, and cost: ${cost}. Thank you!`,
       // TODO: Creat e an email Component, and call like a function, props are params:
-      react: EmailTemplate({ person }),
-
-      // FIGURE OUT: For replying to another email??? CAN I INCLUDE A DIFFERENT 'AUTOMATIC REPLY' EMAIL?
-      reply_to: person.email,
+      react: EnquiryEmail({ person }),
+      // TODO: put Gabriel's email address here. For the user to 'reply_to'
+      // reply_to: 'gabriel@gabriel.exchange',
     })
     return new Response(JSON.stringify(person), {
       status: 200,

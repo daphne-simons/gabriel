@@ -1,7 +1,7 @@
 // pages/api/send/route.ts
 
 import { Resend } from 'resend'
-import EmailTemplate from '../../emails/Email'
+import EmailTemplate from '../../emails/EnquiryEmail'
 import AutoReply from '../../emails/AutoReply'
 
 export async function POST(req: Request, res: Response) {
