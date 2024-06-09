@@ -1,3 +1,12 @@
+import {
+  Body,
+  Container,
+  Head,
+  Html,
+  Section,
+  Text,
+} from '@react-email/components'
+
 interface EmailTemplateProps {
   person: {
     firstName: string
@@ -9,12 +18,21 @@ interface EmailTemplateProps {
   }
 }
 
-export default function EnquiryEmail({ person }: EmailTemplateProps) {
-  console.log('e-template', person)
-
+const EnquiryEmail = ({ person }: EmailTemplateProps) => {
   return (
-    <div>
-      <h1>Hi Ella, you just got an enquiry from {person.firstName}!</h1>
-    </div>
+    <Html>
+      <Head />
+      <Body>
+        <Container>
+          <Section>
+            <Text>
+              Hi Ella, you just got an enquiry from {person.firstName}!
+            </Text>
+          </Section>
+        </Container>
+      </Body>
+    </Html>
   )
 }
+
+export default EnquiryEmail

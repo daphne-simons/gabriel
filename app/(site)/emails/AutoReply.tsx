@@ -24,10 +24,6 @@ const AutoReplyEmail = ({ person }: EmailTemplateProps) => {
       <Body>
         <Container>
           <Section>
-            <Text style={{ textAlign: 'center' }}>Test</Text>
-          </Section>
-
-          <Section>
             <Text style={{ textAlign: 'center' }}>
               Hi {person.firstName},<br />
               Thank you for your interest in{' '}
@@ -54,9 +50,10 @@ const AutoReplyEmail = ({ person }: EmailTemplateProps) => {
           </Section>
 
           <Section>
+            <Text>Follow us (instagram icon)</Text>
+          </Section>
+          <Section>
             <Text>
-              Follow us (instagram icon)
-              <br />
               We acknowledge and pay respect to the Traditional Owners and
               Elders—past, present and emerging—of the lands on which we
               operate.
