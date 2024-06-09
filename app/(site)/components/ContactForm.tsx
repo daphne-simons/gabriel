@@ -43,18 +43,47 @@ const ContactForm = () => {
       })
 
       if (response.ok) {
-        // Make a page for route '/contact/success' and redirect to it
+        // TODO / TOTRY: Make another post route that sends an automated reply to the user/ enquirer??
+        try {
+          await fetch('/api/autoreply', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              firstName,
+              email,
+              chosenService,
+              gem,
+              level,
+              cost,
+            }),
+          })
+
+          if (response.ok) {
+            console.log('Auto-reply email sent successfully!')
+          } else {
+            console.error(
+              'Failed to send auto-reply email:',
+              await response.text()
+            )
+          }
+        } catch (error) {
+          console.error('Error sending auto-reply email:', error)
+        }
+
+        // If successful - Make a page for route '/contact/success' and redirect to it
         router.push('/')
         console.log('Email sent successfully!')
       } else {
         // some kind of page for "failed to send email, please try again later"
         // redirect to the home page.
-        console.error('Failed to send email:', await response.text())
+        console.error('Failed to send enquiry email:', await response.text())
       }
     } catch (error) {
       // some kind of page for "failed to send email, please try again later"
       // redirect to the home page.
-      console.error('Error sending email:', error)
+      console.error('Error sending enquiry email:', error)
     }
   }
 
