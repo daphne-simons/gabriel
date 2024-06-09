@@ -14,7 +14,7 @@ export default function EnquiryEmail({ person }: EmailTemplateProps) {
 
   return (
     <div>
-      <h1>Welcome, {person.firstName}!</h1>
+      <h1>Hi Ella, you just got an enquiry from {person.firstName}!</h1>
     </div>
   )
 }

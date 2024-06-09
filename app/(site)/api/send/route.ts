@@ -3,6 +3,7 @@
 import { Resend } from 'resend'
 import EnquiryEmail from '../../emails/EnquiryEmail'
 
+// THIS IS THE ENQUIRY EMAIL THAT IS SENT TO ELLA
 export async function POST(req: Request, res: Response) {
   const resend = new Resend(process.env.RESEND_API_KEY)
   try {

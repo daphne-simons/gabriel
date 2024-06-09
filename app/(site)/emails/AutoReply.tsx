@@ -14,19 +14,20 @@ interface EmailTemplateProps {
 export default function AutoReply({ person }: EmailTemplateProps) {
   console.log('auto-reply e-template', person)
 
-  const fakePerson = {
-    firstName: 'D6',
-    email: 'daphnejasminesimons@gmail.com',
-    chosenService: 'ephemera',
-    gem: 'Sapphire',
-    level: 'Essential Identity',
-    cost: '2000-4000',
-  }
-  const { firstName, email, chosenService, gem, level, cost } = fakePerson
+  // const fakePerson = {
+  //   firstName: 'D6',
+  //   email: 'daphnejasminesimons@gmail.com',
+  //   chosenService: 'ephemera',
+  //   gem: 'Sapphire',
+  //   level: 'Essential Identity',
+  //   cost: '2000-4000',
+  // }
+  const { firstName, email, chosenService, gem, level, cost } = person
 
   return (
-    <>
+    <div>
       <h2>
+        test
         <section className="flex justify-center text-center ">
           <article className="font-roboto text-xl w-2/3">
             Hi {person.firstName},<br></br>
@@ -62,6 +63,6 @@ export default function AutoReply({ person }: EmailTemplateProps) {
           </article>
         </section>
       </div>
-    </>
+    </div>
   )
 }
