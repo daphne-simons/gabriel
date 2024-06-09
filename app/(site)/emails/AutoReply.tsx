@@ -62,7 +62,6 @@ export default function AutoReply({ person }: EmailTemplateProps) {
           </article>
         </section>
       </div>
-    <>
-    
+    </>
   )
 }
