@@ -4,7 +4,8 @@ import getMoon from '@/query/utils/getMoonData'
 import { useQuery } from '@tanstack/react-query'
 import MoonLoader from './MoonLoader'
 import Link from 'next/link'
-export default function MoonWidget() {
+
+export default function MoonWidget({ size }: { size: string }) {
   const {
     data: moonData,
     isLoading,
@@ -14,7 +15,7 @@ export default function MoonWidget() {
     queryFn: () => getMoon(),
   })
   if (isLoading) {
-    return <MoonLoader />
+    return <MoonLoader size={size} />
   }
 
   if (isError) {
@@ -23,6 +24,7 @@ export default function MoonWidget() {
   if (moonData) {
     //  Gets the dynamic svg data from the moonData api query:
     const moonPhaseSVG = moonData.phase[new Date().getDate()].svg // Assuming moonData is available in scope
+    console.log(moonData)
     console.log(moonPhaseSVG)
     // TODO: Make this moon svg NOT have an a tag in there.
     // const newMoon = (

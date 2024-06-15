@@ -56,17 +56,19 @@ export default function Header(props: Props) {
   console.log(fontWeight)
 
   return (
-    <h1 className={`font-gramercy animate-gramercy-animation`}>
-      <span
-        className={`absolute mx-auto py-4 flex border blur-lg ${color} bg-clip-text ${size} box-content text-transparent text-center select-none`}
-      >
-        Gabriel
-      </span>
-      <h1
-        className={`relative top-0 py-4 justify-center flex items-center ${color} bg-clip-text ${size} text-transparent text-center select-auto`}
-      >
-        Gabriel
+    <div className="blur-lg">
+      <h1 className={`font-gramercy animate-gramercy-animation `}>
+        <span
+          className={`absolute mx-auto py-4 flex border blur-lg ${color} bg-clip-text ${size} box-content text-transparent text-center select-none`}
+        >
+          Gabriel
+        </span>
+        <h1
+          className={`relative top-0 py-4 justify-center flex items-center ${color} bg-clip-text ${size} text-transparent text-center select-auto`}
+        >
+          Gabriel
+        </h1>
       </h1>
-    </h1>
+    </div>
   )
 }

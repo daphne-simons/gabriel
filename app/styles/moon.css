@@ -4,21 +4,25 @@
 :root {
   --c0: #f7f7c8;
   --c1: #1d1d1d;
-  --d: 8em;
+  --d: 2em;
+  --medD: 8em;
+  --bigD: 16em;
   --t: 1s;
 }
 
+/* Small-Loader: */
 /* Styles */
-.moon-container {
+.small-moon-container {
   display: grid;
+  /* size of grid template changes */
   grid-template: var(--d) / var(--d);
   place-content: center;
   margin: 0;
 }
 
-.moon-spin,
-.moon-spin::before,
-.moon-spin::after {
+.small-moon-spin,
+.small-moon-spin::before,
+.small-moon-spin::after {
   border-radius: 50%;
   background: linear-gradient(
     90deg,
@@ -31,12 +35,12 @@
   -ms-filter: blur(0.2px);
   filter: blur(0.2px);
 }
-.moon-spin {
+.small-moon-spin {
   display: grid;
   animation: flip calc(2 * var(--t)) steps(1) infinite;
 }
-.moon-spin::before,
-.moon-spin::after {
+.small-moon-spin::before,
+.small-moon-spin::after {
   --i: 0;
   grid-area: 1 / 1;
   backface-visibility: hidden;
@@ -44,14 +48,15 @@
   animation: roty var(--t) ease-in-out infinite alternate;
   content: '';
 }
-.moon-spin::after {
+.small-moon-spin::after {
   --i: 1;
 }
-.moon-texture {
-  width: 129px;
-  height: 129px;
+.small-moon-texture {
+  /* size of width, height and bottom change */
+  height: 2em;
+  width: 2em;
+  bottom: 32px;
   position: relative;
-  bottom: 128px;
   border-radius: 50%;
   box-shadow: 0 0 20px #fefee0;
   background-image: url('/moon-texture.jpeg');
@@ -69,4 +74,114 @@
   0% {
     transform: rotateY(calc(var(--i) * 0.5turn));
   }
+}
+
+/* Med-Loader: */
+/* Styles */
+
+.med-moon-container {
+  display: grid;
+  /* size of grid template changes */
+  grid-template: var(--medD) / var(--medD);
+  place-content: center;
+  margin: 0;
+}
+
+.med-moon-spin,
+.med-moon-spin::before,
+.med-moon-spin::after {
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    var(--c0) calc(var(--i, 0.5) * 100%),
+    var(--c1) 0
+  );
+  -webkit-filter: blur(0.2px);
+  -moz-filter: blur(0.2px);
+  -o-filter: blur(0.2px);
+  -ms-filter: blur(0.2px);
+  filter: blur(0.2px);
+}
+.med-moon-spin {
+  display: grid;
+  animation: flip calc(2 * var(--t)) steps(1) infinite;
+}
+.med-moon-spin::before,
+.med-moon-spin::after {
+  --i: 0;
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  transform: rotateY(calc((var(--i) + 1) * 0.5turn));
+  animation: roty var(--t) ease-in-out infinite alternate;
+  content: '';
+}
+.med-moon-spin::after {
+  --i: 1;
+}
+.med-moon-texture {
+  /* size of width, height and bottom change */
+  width: 129px;
+  height: 129px;
+  bottom: 128px;
+  position: relative;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #fefee0;
+  background-image: url('/moon-texture.jpeg');
+  background-size: cover;
+  opacity: 0.1;
+}
+
+/* Big-Loader: */
+/* Styles */
+
+.big-moon-container {
+  display: grid;
+  /* size of grid template changes */
+  grid-template: var(--bigD) / var(--bigD);
+  place-content: center;
+  margin: 0;
+}
+
+.big-moon-spin,
+.big-moon-spin::before,
+.big-moon-spin::after {
+  border-radius: 50%;
+  background: linear-gradient(
+    90deg,
+    var(--c0) calc(var(--i, 0.5) * 100%),
+    var(--c1) 0
+  );
+  -webkit-filter: blur(0.2px);
+  -moz-filter: blur(0.2px);
+  -o-filter: blur(0.2px);
+  -ms-filter: blur(0.2px);
+  filter: blur(0.2px);
+}
+.big-moon-spin {
+  display: grid;
+  animation: flip calc(2 * var(--t)) steps(1) infinite;
+}
+.big-moon-spin::before,
+.big-moon-spin::after {
+  --i: 0;
+  grid-area: 1 / 1;
+  backface-visibility: hidden;
+  transform: rotateY(calc((var(--i) + 1) * 0.5turn));
+  animation: roty var(--t) ease-in-out infinite alternate;
+  content: '';
+}
+.big-moon-spin::after {
+  --i: 1;
+}
+.big-moon-texture {
+  /* size of width, height and bottom change */
+  width: 256px;
+  height: 256px;
+  bottom: 256px;
+  position: relative;
+  border-radius: 50%;
+  box-shadow: 0 0 20px #fefee0;
+  background-image: url('/moon-texture.jpeg');
+  background-size: cover;
+  opacity: 0.1;
 }

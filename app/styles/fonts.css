@@ -1,5 +1,13 @@
+/* GOOGLE FONTS */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+/* ROBOTO - GOOGLE FONTS */
+@font-face {
+  font-family: 'Roboto';
+  font-weight: 200;
+  font-display: swap;
+  src: url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,600;1,400;1,600&display=swap');
+}
 /* GRAMERCY FINE - STATIC FONT FILES */
-
 /* Thin */
 @font-face {
   font-family: 'Gramercy Fine'; /* Note: Remove quotes around thin */
@@ -81,7 +89,6 @@
 } */
 
 /* To make a FALLBACK STATIC FONT: */
-
 /* .font-page {
   font-family: 'Gramercy Variable', 'Gramercy Fine', Georgia, serif;
 } */
