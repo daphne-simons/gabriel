@@ -29,7 +29,7 @@ const configMoon = {
   lightColor: '#f7f7c8', // CSS color
   shadeColor: '#1d1d1d', // CSS color
   sizeQuarter: 40, // pixels - size of moon svg
-  texturize: false, // true - false
+  texturize: false, // true - false // Creates a more realistic moon texture
   // LDZ: Math.floor(new Date().getTime() / 1000), // rounds the percentage number of moon phase.
 }
 
