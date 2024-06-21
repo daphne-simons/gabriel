@@ -3,7 +3,7 @@
 import getMoon from '@/query/utils/getMoonData'
 import { useQuery } from '@tanstack/react-query'
 import MoonLoader from './MoonLoader'
-import GodRays from './GodRays'
+// import GodRays from './GodRays'
 
 export default function BackGround({
   children,

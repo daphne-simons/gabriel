@@ -1,5 +1,5 @@
 'use client'
-import { useRef, useState } from 'react'
+import { useRef } from 'react'
 
 interface Props {
   fontSettings: { wght: number; opsz: number }
