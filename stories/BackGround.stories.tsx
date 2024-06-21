@@ -18,12 +18,12 @@ Default.args = {
 }
 
 // Mock the loadMoonPhases function for Storybook
-vi.mock('../path/to/loadMoonPhases')
+vi.mock('@/query/utils/getMoonData')
 
 // Example usage in Storybook story
 Default.decorators = [
   (Story) => {
-    getMoon.mockResolvedValue(fakeMoonRes)
+    vi.mocked(getMoon).mockResolvedValue(fakeMoonRes)
     return <Story />
   },
 ]
