@@ -10,20 +10,11 @@ export default {
   component: Background,
 }
 
-const Template = (args) => <Background {...args} />
+const Template = (args: any) => <Background {...args} />
 
 export const Default = Template.bind({})
-Default.args = {
-  children: <div>This is the content inside Background component</div>,
-}
 
 // Mock the loadMoonPhases function for Storybook
 vi.mock('@/query/utils/getMoonData')
 
 // Example usage in Storybook story
-Default.decorators = [
-  (Story) => {
-    vi.mocked(getMoon).mockResolvedValue(fakeMoonRes)
-    return <Story />
-  },
-]
