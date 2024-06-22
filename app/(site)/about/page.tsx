@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import Nav from '../components/Nav'
-import Header from '../components/Header'
+// import Nav from '../components/Nav'
+import NavLogo from '../components/Logos/NavLogo'
 
 export default function AboutPage() {
   return (
@@ -11,7 +11,7 @@ export default function AboutPage() {
 
         <div className="flex justify-between mt-5 px-7 text-sm">
           <Link href="/">
-            <Header color="bg-[#24FF00]" size="text-2xl" />
+            <NavLogo />
           </Link>
           {/* TODO: Make underline lower */}
           <Link

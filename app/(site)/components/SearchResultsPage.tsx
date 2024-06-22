@@ -6,7 +6,7 @@ import ResultsComponent from '../components/ResultsComponent'
 import Details from '../components/Details'
 import { useSearchParams } from 'next/navigation'
 import SearchResultBar from '../components/SearchResultBar'
-import SearchResultLogo from './SearchResultLogo'
+import SearchResultLogo from './Logos/SearchResultLogo'
 
 export default function SearchResultsPage() {
   const [activeLink, setActiveLink] = useState<number>(0) // state for active link

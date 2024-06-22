@@ -5,7 +5,7 @@ import Link from 'next/link'
 import BackGround from './components/BackGround'
 import HomeSearchBar from './components/SearchBar'
 import MoonWidget from './components/MoonWidget'
-import HomeLogo from './components/HomeLogo'
+import HomeLogo from './components/Logos/HomeLogo'
 
 export default function Home() {
   const [fontSettings, setFontSettings] = useState({ wght: 200, opsz: 72 })

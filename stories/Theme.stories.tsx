@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react'
 
-import HomeLogo from '../app/(site)/components/HomeLogo'
+import HomeLogo from '../app/(site)/components/Logos/HomeLogo'
 // import Background from '../app/(site)/components/BackGround'
 
 const meta: Meta<typeof HomeLogo> = {
