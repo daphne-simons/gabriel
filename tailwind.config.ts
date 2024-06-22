@@ -41,6 +41,13 @@ const config: Config = {
       colors: {
         c0: '#e2e2bf',
         c1: '#1d1d1d',
+        googleRed: '#EA4335',
+        googleLightRed: '#F86F78',
+        googleNeonGreen: '#24FF00',
+        googleGreen: '#34A853',
+        googleBlue: '#1C73E8',
+        googleOrange: '#E37400',
+        googleGray: '#5F6368',
       },
       spacing: {
         d: '8em',
