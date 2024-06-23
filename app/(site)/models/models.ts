@@ -18,6 +18,11 @@ export interface MoonApiResponse {
       svg: string
       phaseName: string
       lighting: number
+      timeEvent?: boolean | string
+      dis?: number
+      isPhaseLimit?: boolean | number
+      svgMini?: boolean | string
+      npWidget?: string
     }
   }
   receivedVariables: {

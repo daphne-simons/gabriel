@@ -11,6 +11,9 @@ const config: Config = {
   theme: {
     extend: {
       backgroundImage: {
+        'moon-bg': "url('/moon-bg.png')",
+        'moon-bg-80': "url('/moon-bg-80.png')",
+        'moon-bg-60': "url('/moon-bg-60.png')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
