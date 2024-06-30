@@ -10,6 +10,30 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      textColor: {
+        skin: {
+          newMoon: 'var(--moon-text-new-moon)',
+          waxing: 'var(--moon-text-waxing)',
+          firstQuarter: 'var(--moon-text-first-quarter)',
+          waxingGibbous: 'var(--moon-text-waxing-gibbous)',
+          fullMoon: 'var(--moon-text-full-moon)',
+          waningGibbous: 'var(--moon-text-waning-gibbous)',
+          lastQuarter: 'var(--moon-text-last-quarter)',
+          waning: 'var(--moon-text-waning)',
+        },
+      },
+      backgroundColor: {
+        skin: {
+          newMoon: 'var(--moon-bg-color-new-moon)',
+          waxing: 'var(--moon-bg-color-waxing)',
+          firstQuarter: 'var(--moon-bg-color-first-quarter)',
+          waxingGibbous: 'var(--moon-bg-color-waxing-gibbous)',
+          fullMoon: 'var(--moon-bg-color-full-moon)',
+          waningGibbous: 'var(--moon-bg-color-waning-gibbous)',
+          lastQuarter: 'var(--moon-bg-color-last-quarter)',
+          waning: 'var(--moon-bg-color-waning)',
+        },
+      },
       backgroundImage: {
         'moon-bg': "url('/moon-bg.png')",
         'moon-bg-80': "url('/moon-bg-80.png')",

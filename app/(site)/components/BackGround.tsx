@@ -33,80 +33,80 @@ export default function BackGround({
   if (isError) {
     return <div>Sorry There was an Error</div>
   }
-  function calculateBgColor(lightVal: number) {
-    const moonThemes = [
-      {
-        bgValue: 'bg-gray-950',
-        textValue: 'text-white',
+  function calculateBgColor(lighting: number) {
+    if (lighting >= 0 && lighting <= 5) {
+      return {
+        id: 1,
+        bgColor: 'bg-skin-newMoon',
+        textColor: 'text-skin-newMoon',
         bgImg: 'bg-moon-bg',
-      },
-      {
-        bgValue: 'bg-gray-900',
-        textValue: 'text-white',
+      }
+    } else if (lighting >= 6 && lighting <= 42) {
+      return {
+        id: 2,
+        bgColor: 'bg-skin-waxing',
+        textColor: 'text-skin-waxing',
         bgImg: 'bg-moon-bg-80',
-      },
-      {
-        bgValue: 'bg-gray-800',
-        textValue: 'text-white',
+      }
+    } else if (lighting >= 43 && lighting <= 60) {
+      return {
+        id: 3,
+        bgColor: 'bg-skin-firstQuarter',
+        textColor: 'text-skin-firstQuarter',
         bgImg: 'bg-moon-bg-80',
-      },
-      {
-        bgValue: 'bg-gray-700',
-        textValue: 'text-white',
-        bgImg: 'bg-moon-bg-80',
-      },
-      {
-        bgValue: 'bg-gray-600',
-        textValue: 'text-white',
-        bgImg: 'bg-moon-bg-80',
-      },
-      {
-        bgValue: 'bg-gray-500',
-        textValue: 'text-gray-950',
-        bgImg: 'bg-moon-bg-80',
-      },
-      {
-        bgValue: 'bg-gray-400',
-        textValue: 'text-gray-950',
-        bgImg: 'bg-moon-bg-80',
-      },
-      {
-        bgValue: 'bg-gray-300',
-        textValue: 'text-black',
+      }
+    } else if (lighting >= 61 && lighting <= 95) {
+      return {
+        id: 4,
+        bgColor: 'bg-skin-waxingGibbous',
+        textColor: 'text-skin-waxingGibbous',
         bgImg: 'bg-moon-bg-60',
-      },
-      {
-        bgValue: 'bg-gray-200',
-        textValue: 'text-black',
+      }
+    } else if (lighting >= 96 && lighting <= 105) {
+      return {
+        id: 5,
+        bgColor: 'bg-skin-fullMoon',
+        textColor: 'text-skin-fullMoon',
         bgImg: 'bg-moon-bg-60',
-      },
-      {
-        bgValue: 'bg-gray-100',
-        textValue: 'text-black',
+      }
+    } else if (lighting <= 97 && lighting >= 66) {
+      return {
+        id: 6,
+        bgColor: 'bg-skin-waningGibbous',
+        textColor: 'text-skin-waningGibbous',
         bgImg: 'bg-moon-bg-60',
-      },
-    ]
-
-    // Calculate index based on lightValue
-    const index = Math.floor(lightVal / 10)
-    // Ensure the index stays within bounds
-    const safeIndex = Math.min(Math.max(index, 0), moonThemes.length - 1)
-    return moonThemes[safeIndex]
+      }
+    } else if (lighting <= 65 && lighting >= 44) {
+      return {
+        id: 7,
+        bgColor: 'bg-skin-lastQuarter',
+        textColor: 'text-skin-lastQuarter',
+        bgImg: 'bg-moon-bg-80',
+      }
+    } else if (lighting <= 43 && lighting >= 5) {
+      return {
+        id: 8,
+        bgColor: 'bg-skin-waning',
+        textColor: 'text-skin-waning',
+        bgImg: 'bg-moon-bg-60',
+      }
+    }
   }
 
   if (moonData) {
-    const rawLighting = moonData.phase[new Date().getDate()].lighting
-    const lightValue = Math.round(rawLighting)
+    const lightValue = Number(
+      moonData.phase[new Date().getDate()].lighting.toFixed(0)
+    )
     const theme = calculateBgColor(lightValue)
 
-    console.log('tailwind stuff: ', theme)
-
-    return (
-      <>
-        <div className={`${theme.bgValue} ${theme.textValue} `}>
-          <div className={`bg-cover ${theme.bgImg}`}>{children}</div>
-        </div>
-      </>
-    )
+    console.log('tailwind stuff: ', theme, 'light value: ', lightValue)
+    if (theme)
+      return (
+        <>
+          <div className={`${theme.bgColor} ${theme.textColor} `}>
+            <div className={`bg-cover ${theme.bgImg}`}>{children}</div>
+          </div>
+        </>
+      )
   }
 }

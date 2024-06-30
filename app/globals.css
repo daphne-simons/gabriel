@@ -26,10 +26,14 @@ body {
 
 @keyframes jumbo {
   from {
-    background-position: 50% 50%, 50% 50%;
+    background-position:
+      50% 50%,
+      50% 50%;
   }
   to {
-    background-position: 350% 50%, 350% 50%;
+    background-position:
+      350% 50%,
+      350% 50%;
   }
 }
 
@@ -53,7 +57,9 @@ body {
   );
   background-image: var(--stripes), var(--rainbow);
   background-size: 300%, 200%;
-  background-position: 50% 50%, 50% 50%;
+  background-position:
+    50% 50%,
+    50% 50%;
   filter: blur(10px) invert(100%);
   mask-image: radial-gradient(ellipse at 100% 0%, black 40%, transparent 70%);
   pointer-events: none;
@@ -81,4 +87,38 @@ body {
 .bg-img {
   background-image: url('/moon-bg.png');
   background-size: cover;
+}
+
+/* TAILWIND SKINS - MOON BACKGROUND */
+
+@layer base {
+  :root {
+    --moon-text-new-moon: #ffffff;
+    --moon-text-waxing: #ffffff;
+    --moon-text-first-quarter: #ffffff;
+    --moon-text-waxing-gibbous: #353535;
+    --moon-text-full-moon: #000000;
+    --moon-text-waning-gibbous: #353535;
+    --moon-text-last-quarter: #ffffff;
+    --moon-text-waning: #ffffff;
+    --moon-bg-img-new-moon: url('/moon-bg.png');
+    --moon-bg-img-waxing: url('/moon-bg.png');
+    --moon-bg-img-first-quarter: url('/moon-bg.png');
+    --moon-bg-img-waxing-gibbous: url('/moon-bg.png');
+    --moon-bg-img-full-moon: url('/moon-bg.png');
+    --moon-bg-img-waning-gibbous: url('/moon-bg.png');
+    --moon-bg-img-last-quarter: url('/moon-bg.png');
+    --moon-bg-img-waning: url('/moon-bg.png');
+    --moon-bg-color-new-moon: #3d3d3d;
+    --moon-bg-color-waxing: #8a8a8a;
+    --moon-bg-color-first-quarter: #bcbcbc;
+    --moon-bg-color-waxing-gibbous: #e3e3e3;
+    --moon-bg-color-full-moon: #ffffff;
+    --moon-bg-color-waning-gibbous: #e3e3e3;
+    --moon-bg-color-last-quarter: #bcbcbc;
+    --moon-bg-color-waning: #8a8a8a;
+    --moon-border-color: #fff;
+    --moon-svg-color: #fff;
+    --moon-hover-color: #adadad;
+  }
 }
