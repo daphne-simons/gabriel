@@ -1,0 +1,147 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* import the styles/ fonts.css */
+@import 'styles/fonts.css';
+
+/* import MOON LOADER styles/moon.css */
+@import 'styles/moon.css';
+/* GOD RAYS CSS - By Tim Wilson */
+/* https://codepen.io/TWilson/pen/jOdWqbZ */
+/*
+NOTE: This is just an experiment and
+      could use some changes to improve performance:
+
+https://x.com/actualTimWilson/status/1730753841795158313
+
+See a production optimized version here: https://charmui.com
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+
+body {
+  font-family: Inter, sans-serif;
+}
+
+@keyframes jumbo {
+  from {
+    background-position:
+      50% 50%,
+      50% 50%;
+  }
+  to {
+    background-position:
+      350% 50%,
+      350% 50%;
+  }
+}
+
+.jumbo {
+  --stripes: repeating-linear-gradient(
+    100deg,
+    #fff 0%,
+    #fff 7%,
+    transparent 10%,
+    transparent 12%,
+    #fff 16%
+  );
+
+  --rainbow: repeating-linear-gradient(
+    100deg,
+    #60a5fa 10%,
+    #e879f9 15%,
+    #60a5fa 20%,
+    #5eead4 25%,
+    #60a5fa 30%
+  );
+  background-image: var(--stripes), var(--rainbow);
+  background-size: 300%, 200%;
+  background-position:
+    50% 50%,
+    50% 50%;
+  filter: blur(10px) invert(100%);
+  mask-image: radial-gradient(ellipse at 100% 0%, black 40%, transparent 70%);
+  pointer-events: none;
+}
+
+.jumbo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: var(--stripes), var(--rainbow);
+  background-size: 200%, 100%;
+  animation: jumbo 80s linear infinite;
+  background-attachment: fixed;
+  mix-blend-mode: difference;
+}
+
+.bg-fade {
+  background-color: rgba(79, 79, 79, 0.5);
+  background-image: url('/moon-bg.png');
+  background-size: cover;
+  background-position: center;
+  /* filter: blur(5px); */
+}
+
+.bg-img {
+  background-image: url('/moon-bg.png');
+  background-size: cover;
+}
+
+/* MOON SKIN VARIABLES */
+
+@layer base {
+  :root {
+    /* Text Colour  */
+    --moon-text-new-moon: #ffffff;
+    --moon-text-waxing: #ffffff;
+    --moon-text-first-quarter: #ffffff;
+    --moon-text-waxing-gibbous: #353535;
+    --moon-text-full-moon: #000000;
+    --moon-text-waning-gibbous: #353535;
+    --moon-text-last-quarter: #ffffff;
+    --moon-text-waning: #ffffff;
+    /* Outline Color  */
+    --moon-outline-new-moon: #ff0000;
+    --moon-outline-waxing: #ff0000;
+    --moon-outline-first-quarter: #ff0000;
+    --moon-outline-waxing-gibbous: #353535;
+    --moon-outline-full-moon: #000000;
+    --moon-outline-waning-gibbous: #353535;
+    --moon-outline-last-quarter: #ffffff;
+    --moon-outline-waning: #ffffff;
+    /* Background Img  */
+    --moon-bg-img-new-moon: url('/moon-bg.png');
+    --moon-bg-img-waxing: url('/moon-bg.png');
+    --moon-bg-img-first-quarter: url('/moon-bg.png');
+    --moon-bg-img-waxing-gibbous: url('/moon-bg.png');
+    --moon-bg-img-full-moon: url('/moon-bg.png');
+    --moon-bg-img-waning-gibbous: url('/moon-bg.png');
+    --moon-bg-img-last-quarter: url('/moon-bg.png');
+    --moon-bg-img-waning: url('/moon-bg.png');
+    /* Background Color  */
+    --moon-bg-color-new-moon: #3d3d3d;
+    --moon-bg-color-waxing: #8a8a8a;
+    --moon-bg-color-first-quarter: #bcbcbc;
+    --moon-bg-color-waxing-gibbous: #e3e3e3;
+    --moon-bg-color-full-moon: #ffffff;
+    --moon-bg-color-waning-gibbous: #e3e3e3;
+    --moon-bg-color-last-quarter: #bcbcbc;
+    --moon-bg-color-waning: #8a8a8a;
+    /* Various Color  */
+    --moon-border-color: #fff;
+    --moon-hover-color: #adadad;
+  }
+  /* These global themes may not be necessary due to my theme function in Background */
+  .theme-newMoon {
+    --moon-text-new-moon: #ffffff;
+    --moon-bg-img-new-moon: url('/moon-bg.png');
+    --moon-bg-color-new-moon: #3d3d3d;
+  }
+  .theme-fullMoon {
+    --moon-text-full-moon: #000000;
+    --moon-bg-img-full-moon: url('/moon-bg.png');
+    --moon-bg-color-full-moon: #ffffff;
+  }
+}

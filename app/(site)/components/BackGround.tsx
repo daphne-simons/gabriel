@@ -106,7 +106,6 @@ export default function BackGround({
     )
     const theme = calculateBgColor(lightValue)
 
-    console.log('tailwind stuff: ', theme, 'light value: ', lightValue)
     if (theme)
       return (
         <>
