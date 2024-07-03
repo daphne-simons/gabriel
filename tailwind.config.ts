@@ -22,6 +22,18 @@ const config: Config = {
           waning: 'var(--moon-text-waning)',
         },
       },
+      outlineColor: {
+        skin: {
+          newMoon: 'var(--moon-outline-new-moon)',
+          waxing: 'var(--moon-outline-waxing)',
+          firstQuarter: 'var(--moon-outline-first-quarter)',
+          waxingGibbous: 'var(--moon-outline-waxing-gibbous)',
+          fullMoon: 'var(--moon-outline-full-moon)',
+          waningGibbous: 'var(--moon-outline-waning-gibbous)',
+          lastQuarter: 'var(--moon-outline-last-quarter)',
+          waning: 'var(--moon-outline-waning)',
+        },
+      },
       backgroundColor: {
         skin: {
           newMoon: 'var(--moon-bg-color-new-moon)',

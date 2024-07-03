@@ -89,10 +89,11 @@ body {
   background-size: cover;
 }
 
-/* TAILWIND SKINS - MOON BACKGROUND */
+/* MOON SKIN VARIABLES */
 
 @layer base {
   :root {
+    /* Text Colour  */
     --moon-text-new-moon: #ffffff;
     --moon-text-waxing: #ffffff;
     --moon-text-first-quarter: #ffffff;
@@ -101,6 +102,16 @@ body {
     --moon-text-waning-gibbous: #353535;
     --moon-text-last-quarter: #ffffff;
     --moon-text-waning: #ffffff;
+    /* Outline Color  */
+    --moon-outline-new-moon: #ff0000;
+    --moon-outline-waxing: #ff0000;
+    --moon-outline-first-quarter: #ff0000;
+    --moon-outline-waxing-gibbous: #353535;
+    --moon-outline-full-moon: #000000;
+    --moon-outline-waning-gibbous: #353535;
+    --moon-outline-last-quarter: #ffffff;
+    --moon-outline-waning: #ffffff;
+    /* Background Img  */
     --moon-bg-img-new-moon: url('/moon-bg.png');
     --moon-bg-img-waxing: url('/moon-bg.png');
     --moon-bg-img-first-quarter: url('/moon-bg.png');
@@ -109,6 +120,7 @@ body {
     --moon-bg-img-waning-gibbous: url('/moon-bg.png');
     --moon-bg-img-last-quarter: url('/moon-bg.png');
     --moon-bg-img-waning: url('/moon-bg.png');
+    /* Background Color  */
     --moon-bg-color-new-moon: #3d3d3d;
     --moon-bg-color-waxing: #8a8a8a;
     --moon-bg-color-first-quarter: #bcbcbc;
@@ -117,8 +129,19 @@ body {
     --moon-bg-color-waning-gibbous: #e3e3e3;
     --moon-bg-color-last-quarter: #bcbcbc;
     --moon-bg-color-waning: #8a8a8a;
+    /* Various Color  */
     --moon-border-color: #fff;
-    --moon-svg-color: #fff;
     --moon-hover-color: #adadad;
+  }
+  /* These global themes may not be necessary due to my theme function in Background */
+  .theme-newMoon {
+    --moon-text-new-moon: #ffffff;
+    --moon-bg-img-new-moon: url('/moon-bg.png');
+    --moon-bg-color-new-moon: #3d3d3d;
+  }
+  .theme-fullMoon {
+    --moon-text-full-moon: #000000;
+    --moon-bg-img-full-moon: url('/moon-bg.png');
+    --moon-bg-color-full-moon: #ffffff;
   }
 }

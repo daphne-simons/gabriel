@@ -13,22 +13,30 @@ export default function HomeSearchBar() {
   ])
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
+    console.log({ isOpen })
   }
   return (
     <>
       <div
-        className={`relative flex flex-col w-full max-w-xl justify-start rounded-full   hover:outline-none pl-14 py-3.5 hover:shadow-md  ${
-          isOpen ? '' : 'outline outline-gray-300 outline-1'
+        className={`relative flex flex-col w-full max-w-xl justify-start rounded-full pl-14 py-3.5  hover:outline-none hover:shadow-md  ${
+          isOpen
+            ? 'outline-none shadow-none hover:shadow-none'
+            : 'outline outline-1'
         }`}
         onClick={toggleDropdown}
       >
         {/* Main Search Bar */}
         <div className="flex flex-row relative cursor-pointer">
           <div className="">
-            <span className="h-6 w-6 -ml-[40px] mb-[5px] absolute">
+            <span
+              className={
+                !isOpen
+                  ? 'block h-6 w-6 -ml-[40px] mb-[5px] absolute'
+                  : 'h-6 w-6 -ml-[40px] mb-[5px] absolute opacity-0'
+              }
+            >
               <svg
                 focusable="false"
-                fill="#9aa0a6"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 25 25"
               >
@@ -37,12 +45,14 @@ export default function HomeSearchBar() {
             </span>
           </div>
           {/* Search input */}
-          <p className=" pl-1">What are you looking for?</p>
+          <p className={!isOpen ? 'block pl-1' : 'opacity-0 pl-1'}>
+            What are you looking for?
+          </p>
         </div>
         {/* Dropdown Menu */}
         <div
           id="dropdown"
-          className={`absolute z-10 pl-10 py-1.5 py-["5px"] max-w-xl   w-full rounded-[25px] left-1/2 -translate-x-1/2 -translate-y-3.5 flex flex-col gap-2  ${
+          className={`absolute z-10 pl-10 py-1.5 py-["5px"] max-w-xl w-full rounded-[25px] left-1/2 -translate-x-1/2 -translate-y-3.5 flex flex-col gap-2  ${
             isOpen ? 'block bg-transparent shadow-lg' : 'hidden'
           }`}
         >
@@ -51,7 +61,6 @@ export default function HomeSearchBar() {
             <span className="h-6 w-6 -ml-[24px] mt-[8px] absolute">
               <svg
                 focusable="false"
-                fill="#9aa0a6"
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 25 25"
               >
@@ -62,7 +71,7 @@ export default function HomeSearchBar() {
               What are you looking for?
             </li>
           </div>
-          <div className="translate-x-4 -translate-y-2.5 border-b w-[90%] h-1 border-gray-400 "></div>
+          <div className="translate-x-4 -translate-y-2.5 border-b w-[90%] h-1 border-gray-300"></div>
           {/* Options - Map through services state */}
           {services.map((service, index) => (
             <div key={index} className=" ">
@@ -70,7 +79,6 @@ export default function HomeSearchBar() {
                 <span className="h-6 w-6 -ml-[24px] mt-[8px] absolute">
                   <svg
                     focusable="false"
-                    fill="#9aa0a6"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 25 25"
                   >
@@ -91,7 +99,7 @@ export default function HomeSearchBar() {
       {/* I'm Feeling Lucky */}
       <div className={`pt-4 ${!isOpen ? 'opacity-1' : 'opacity-0'}`}>
         <Link href="/contact">
-          <button className="px-4 py-2 rounded-lg outline outline-gray-400 hover:outline hover:outline-gray-500 outline-1 hover:shadow-mdtext-sm">
+          <button className="px-4 py-2 rounded-lg outline outline-1 hover:outline-none hover:shadow-md ">
             I&apos;m Feeling Lucky
           </button>
         </Link>

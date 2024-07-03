@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import Link from 'next/link'
 import BackGround from './components/BackGround'
-import HomeSearchBar from './components/SearchBar'
+import HomeSearchBar from './components/HomeSearchBar'
 import MoonWidget from './components/MoonWidget'
 import HomeLogo from './components/Logos/HomeLogo'
 
