@@ -53,7 +53,7 @@ export default function BackGround({
       return {
         id: 3,
         bgColor: 'bg-skin-firstQuarter',
-        bgImg: 'bg-moon-bg-80',
+        bgImg: 'bg-moon-bg-60',
         textColor: 'text-skin-firstQuarter',
         outlineColor: 'outline-skin-firstQuarter',
       }
@@ -85,7 +85,7 @@ export default function BackGround({
       return {
         id: 7,
         bgColor: 'bg-skin-lastQuarter',
-        bgImg: 'bg-moon-bg-80',
+        bgImg: 'bg-moon-bg-60',
         textColor: 'text-skin-lastQuarter',
         outlineColor: 'outline-skin-lastQuarter',
       }
@@ -93,7 +93,7 @@ export default function BackGround({
       return {
         id: 8,
         bgColor: 'bg-skin-waning',
-        bgImg: 'bg-moon-bg-60',
+        bgImg: 'bg-moon-bg-80',
         textColor: 'text-skin-waning',
         outlineColor: 'outline-skin-waning',
       }
