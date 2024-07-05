@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from '@storybook/react'
-
 import {
   FullMoonBg,
   FirstQuarterBg,
@@ -10,7 +9,6 @@ import {
   WaxingBg,
   WaxingGibbousBg,
 } from './FakeComponents/MoonBgs'
-import Image from 'next/image'
 import HomeLogo from '../app/(site)/components/Logos/HomeLogo'
 
 const meta: Meta<typeof NewMoonBg> = {

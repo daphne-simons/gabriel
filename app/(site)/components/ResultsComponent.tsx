@@ -17,9 +17,9 @@ export default function ResultsComponent({
       'something',
     ],
     options: [
-      { gem: 'Sapphire', level: 'Essential Identity', cost: '2000-4000' },
-      { gem: 'Emerald', level: 'Comprehensive Identity', cost: '4000-6000' },
-      { gem: 'Ruby', level: 'Premium Identity', cost: '6000-10000' },
+      { gem: 'Sapphire', level: 'Essential', cost: '2000-4000' },
+      { gem: 'Emerald', level: 'Comprehensive', cost: '4000-6000' },
+      { gem: 'Ruby', level: 'Premium', cost: '6000-10000' },
     ],
   })
   return (

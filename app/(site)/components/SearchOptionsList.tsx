@@ -15,7 +15,7 @@ export default function SearchOptionsList({ options, chosenService }: Props) {
   // This state is for the sideBar component.
   const [option, setOption] = useState({
     gem: 'Sapphire',
-    level: 'Essential Identity',
+    level: 'Essential',
     cost: '2000-4000',
   })
   return (
@@ -32,15 +32,15 @@ export default function SearchOptionsList({ options, chosenService }: Props) {
                         option.gem === 'Sapphire'
                           ? 'bg-blue-600'
                           : option.gem === 'Emerald'
-                          ? 'bg-green-600'
-                          : option.gem === 'Ruby'
-                          ? 'bg-red-600'
-                          : ''
+                            ? 'bg-green-600'
+                            : option.gem === 'Ruby'
+                              ? 'bg-red-600'
+                              : ''
                       }`}
                     ></div>
                     <div>
                       <h2 className=" pl-2 text-sm  text-[#F8F9FA]">
-                        {option.level}
+                        {option.level} Identity
                       </h2>
                       <div className="flex flex-row">
                         <a href="#" className="pl-2  text-sm text-[#BDC1C5]">

@@ -87,6 +87,7 @@ const config: Config = {
         googleBlue: '#1C73E8',
         googleOrange: '#E37400',
         googleGray: '#5F6368',
+        googleLightGray: '#E5E7EB',
       },
       spacing: {
         d: '8em',

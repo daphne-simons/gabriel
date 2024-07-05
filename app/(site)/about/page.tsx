@@ -1,6 +1,6 @@
 import Link from 'next/link'
 // import Nav from '../components/Nav'
-import AboutLogo from '../components/Logos/NavLogo'
+import AboutLogo from '../components/Logos/AboutLogo'
 
 export default function AboutPage() {
   return (

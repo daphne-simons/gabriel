@@ -18,5 +18,4 @@ export const HeadingHome: Story = {
   ),
 }
 
-
 export default meta
