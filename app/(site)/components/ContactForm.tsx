@@ -15,14 +15,6 @@ const ContactForm = () => {
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-
-  const changedService = chosenService.split(' ')
-  if (changedService.length > 1) {
-    changedService.shift()
-  }
-  // const service = changedService.join(' ')
-  console.log(changedService)
-
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     if (name === 'name') {
@@ -94,85 +86,93 @@ const ContactForm = () => {
     }
   }
 
-  return (
-    <div className="h-screen w-full">
-      {/* Header */}
-      <div className="h-auto flex flex-col ">
-        <div id="header" className="flex flex-row relative gap-4 p-2">
-          {/* Wrapper logo and search bar */}
-          <div className="flex w-full">
-            {/* Logo */}
-            <div className="pr-8 pl-5 pt-2 flex items-center">
-              <Link href="/">
-                <AboutLogo />
-              </Link>
+  if (chosenService) {
+    const changedService = chosenService.split(' ')
+    if (changedService.length > 1) {
+      changedService.shift()
+    }
+    console.log(changedService)
+
+    return (
+      <div className="h-screen w-full">
+        {/* Header */}
+        <div className="h-auto flex flex-col ">
+          <div id="header" className="flex flex-row relative gap-4 p-2">
+            {/* Wrapper logo and search bar */}
+            <div className="flex w-full">
+              {/* Logo */}
+              <div className="pr-8 pl-5 pt-2 flex items-center">
+                <Link href="/">
+                  <AboutLogo />
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-      {/* Enquiry form */}
-      <div className="pt-10 pl-40 flex ">
-        <div className="font-roboto text-xl w-2/3">
-          <h1 className="text-6xl font-base">Hi, how can we help?</h1>
+        {/* Enquiry form */}
+        <div className="pt-10 pl-40 flex ">
+          <div className="font-roboto text-xl w-2/3">
+            <h1 className="text-6xl font-base">Hi, how can we help?</h1>
 
-          {/* Form */}
-          <form className="flex flex-col" onSubmit={handleSubmit}>
-            <div className="flex flex-row pb-6 pt-32">
-              <div className="pr-4 w-1/3">
-                <input
-                  aria-label="name"
-                  className="p-2 outline outline-googleLightGray rounded text-sm w-[100%]"
-                  name="name"
-                  type="text"
-                  value={name}
-                  onChange={handleChange}
-                  placeholder="My name is"
-                />
+            {/* Form */}
+            <form className="flex flex-col" onSubmit={handleSubmit}>
+              <div className="flex flex-row pb-6 pt-32">
+                <div className="pr-4 w-1/3">
+                  <input
+                    aria-label="name"
+                    className="p-2 outline outline-googleLightGray rounded text-sm w-[100%]"
+                    name="name"
+                    type="text"
+                    value={name}
+                    onChange={handleChange}
+                    placeholder="My name is"
+                  />
+                </div>
+                <div className="pl-4 w-1/3">
+                  <input
+                    aria-label="email"
+                    className="p-2 outline outline-googleLightGray rounded text-sm w-[100%]"
+                    name="email"
+                    type="email"
+                    value={email}
+                    onChange={handleChange}
+                    placeholder="My email address is"
+                  />
+                </div>
               </div>
-              <div className="pl-4 w-1/3">
-                <input
-                  aria-label="email"
-                  className="p-2 outline outline-googleLightGray rounded text-sm w-[100%]"
-                  name="email"
-                  type="email"
-                  value={email}
-                  onChange={handleChange}
-                  placeholder="My email address is"
-                />
-              </div>
-            </div>
-            <p>
-              I&apos;d like to learn more about the{' '}
-              <span
-                className={`font-semibold ${gem === 'Sapphire' ? 'text-googleBlue' : gem === 'Emerald' ? 'text-googleGreen' : gem === 'Ruby' ? 'text-googleRed' : ''}`}
-              >
-                {level?.toLowerCase()}
-              </span>{' '}
-              <span
-                className="font-semibold text-googleGreen
-            "
-              >
-                {changedService}{' '}
-              </span>
-              package, <br />
-              could you send me some information?
-            </p>
-
-            <div className="flex flex-row pt-20">
-              <div className="">
-                <button
-                  className="px-12 py-3 bg-googleBlue rounded text-white text-sm"
-                  type="submit"
+              <p>
+                I&apos;d like to learn more about the{' '}
+                <span
+                  className={`font-semibold ${gem === 'Sapphire' ? 'text-googleBlue' : gem === 'Emerald' ? 'text-googleGreen' : gem === 'Ruby' ? 'text-googleRed' : ''}`}
                 >
-                  Send
-                </button>
+                  {level?.toLowerCase()}
+                </span>{' '}
+                <span
+                  className="font-semibold text-googleGreen
+            "
+                >
+                  {changedService}{' '}
+                </span>
+                package, <br />
+                could you send me some information?
+              </p>
+
+              <div className="flex flex-row pt-20">
+                <div className="">
+                  <button
+                    className="px-12 py-3 bg-googleBlue rounded text-white text-sm"
+                    type="submit"
+                  >
+                    Send
+                  </button>
+                </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  )
+    )
+  }
 }
 
 export default ContactForm
