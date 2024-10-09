@@ -18,9 +18,9 @@ export default function HomeSearchBar() {
   return (
     <>
       <div
-        className={`relative flex flex-col w-full max-w-xl justify-start rounded-full pl-14 py-3.5  hover:outline-none hover:shadow-md  ${
+        className={`relative flex flex-col lg:w-1/2 md:w-2/3 sm:w-2/3 justify-start rounded-full pl-14 pr-14 py-2.5 hover:outline-none hover:shadow-md  ${
           isOpen
-            ? 'outline-none shadow-none hover:shadow-none'
+            ? 'outline-none shadow-none hover:shadow-none '
             : 'outline outline-1'
         }`}
         onClick={toggleDropdown}
@@ -28,6 +28,7 @@ export default function HomeSearchBar() {
         {/* Main Search Bar */}
         <div className="flex flex-row relative cursor-pointer">
           <div className="">
+            {/* magnifying glass icon svg */}
             <span
               className={
                 !isOpen
@@ -52,12 +53,14 @@ export default function HomeSearchBar() {
         {/* Dropdown Menu */}
         <div
           id="dropdown"
-          className={`absolute z-10 pl-10 py-1.5 py-["5px"] max-w-xl w-full rounded-[25px] left-1/2 -translate-x-1/2 -translate-y-3.5 flex flex-col gap-2  ${
-            isOpen ? 'block bg-transparent shadow-lg' : 'hidden'
+          className={`absolute z-10 pl-10 py-1.5 rounded-[25px] left-1/2 -translate-x-1/2 -translate-y-3.5 flex flex-col w-full ${
+            isOpen
+              ? 'block bg-transparent shadow-xl outline outline-1'
+              : 'hidden'
           }`}
         >
           {/* Landing Option*/}
-          <div className="flex flex-row relative rounded-full">
+          <div className="flex flex-row relative rounded-full gap-2 lg:w-1/2 md:w-2/3 sm:w-2/3 ">
             <span className="h-6 w-6 -ml-[24px] mt-[8px] absolute">
               <svg
                 focusable="false"

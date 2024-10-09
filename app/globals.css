@@ -103,14 +103,14 @@ body {
     --moon-text-last-quarter: #ffffff;
     --moon-text-waning: #ffffff;
     /* Outline Color  */
-    --moon-outline-new-moon: #ff0000;
-    --moon-outline-waxing: #ff0000;
-    --moon-outline-first-quarter: #ff0000;
+    --moon-outline-new-moon: #d8d8d8;
+    --moon-outline-waxing: #353535;
+    --moon-outline-first-quarter: #353535;
     --moon-outline-waxing-gibbous: #353535;
-    --moon-outline-full-moon: #000000;
+    --moon-outline-full-moon: #ff0000;
     --moon-outline-waning-gibbous: #353535;
-    --moon-outline-last-quarter: #ffffff;
-    --moon-outline-waning: #ffffff;
+    --moon-outline-last-quarter: #353535;
+    --moon-outline-waning: #d8d8d8;
     /* Background Img  */
     --moon-bg-img-new-moon: url('/moon-bg.png');
     --moon-bg-img-waxing: url('/moon-bg.png');

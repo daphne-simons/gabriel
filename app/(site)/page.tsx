@@ -33,7 +33,7 @@ export default function Home() {
               <MoonWidget size={'medMoon'} />
             </div>
             {/* Middle section  */}
-            <div className="middle flex flex-col justify-evenly items-center h-[30%] -mt-40">
+            <div className="middle flex flex-col justify-evenly items-center h-[30%] -mt-80">
               {/* Heading */}
               <HomeLogo fontSettings={fontSettings} />
               {/* Div for Search Input */}

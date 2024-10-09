@@ -104,13 +104,14 @@ export default function BackGround({
     const lightValue = Number(
       moonData.phase[new Date().getDate()].lighting.toFixed(0)
     )
-    const theme = calculateBgColor(lightValue)
+    // const theme = calculateBgColor(lightValue)
+    const theme = calculateBgColor(100)
 
     if (theme)
       return (
         <>
           <div
-            className={`${theme.bgColor} fill-current ${theme.textColor} outline outline-${theme.outlineColor} outline-1`}
+            className={`${theme.bgColor} fill-current ${theme.textColor} outline outline-1 ${theme.outlineColor}`}
           >
             <div className={`bg-cover ${theme.bgImg}`}>{children}</div>
           </div>

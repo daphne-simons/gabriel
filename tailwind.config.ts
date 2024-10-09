@@ -34,6 +34,9 @@ const config: Config = {
           waning: 'var(--moon-outline-waning)',
         },
       },
+      outlineWidth: {
+        0.5: '0.5px',
+      },
       backgroundColor: {
         skin: {
           newMoon: 'var(--moon-bg-color-new-moon)',
