@@ -1,13 +1,15 @@
 'use client'
 import Link from 'next/link'
 import { useState } from 'react'
-export default function HomeSearchBar(theme: {
+interface Props {
   id: number
   bgColor: string
   bgImg: string
   textColor: string
   outlineColor: string
-}) {
+}
+
+export default function HomeSearchBar(theme: Props) {
   const [isOpen, setIsOpen] = useState(false)
   const [services, setServices] = useState([
     'an identity',
@@ -20,7 +22,7 @@ export default function HomeSearchBar(theme: {
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
   }
-  console.log(theme)
+  if (theme) console.log(theme.outlineColor)
   return (
     <>
       <div
