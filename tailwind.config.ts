@@ -10,6 +10,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      padding: {
+        custom: '2px',
+      },
       textColor: {
         skin: {
           newMoon: 'var(--moon-text-new-moon)',

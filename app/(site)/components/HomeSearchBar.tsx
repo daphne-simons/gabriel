@@ -1,7 +1,13 @@
 'use client'
 import Link from 'next/link'
 import { useState } from 'react'
-export default function HomeSearchBar() {
+export default function HomeSearchBar(theme: {
+  id: number
+  bgColor: string
+  bgImg: string
+  textColor: string
+  outlineColor: string
+}) {
   const [isOpen, setIsOpen] = useState(false)
   const [services, setServices] = useState([
     'an identity',
@@ -13,15 +19,15 @@ export default function HomeSearchBar() {
   ])
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
-    console.log({ isOpen })
   }
+  console.log(theme)
   return (
     <>
       <div
-        className={`relative flex flex-col lg:w-1/2 md:w-2/3 sm:w-2/3 justify-start rounded-full pl-14 pr-14 py-2.5 hover:outline-none hover:shadow-md  ${
+        className={`relative flex flex-col lg:w-1/2 md:w-2/3 sm:w-2/3 justify-start rounded-full pl-14 pr-14 py-2.5  ${
           isOpen
-            ? 'outline-none shadow-none hover:shadow-none '
-            : 'outline outline-1'
+            ? 'outline-none shadow-none'
+            : `outline outline-1 ${theme.outlineColor} hover:shadow-xl `
         }`}
         onClick={toggleDropdown}
       >
@@ -53,14 +59,14 @@ export default function HomeSearchBar() {
         {/* Dropdown Menu */}
         <div
           id="dropdown"
-          className={`absolute z-10 pl-10 py-1.5 rounded-[25px] left-1/2 -translate-x-1/2 -translate-y-3.5 flex flex-col w-full ${
+          className={`absolute z-10 pl-10 rounded-[22px] p-custom left-1/2 -translate-x-1/2 -translate-y-2.5 flex flex-col w-full ${
             isOpen
               ? 'block bg-transparent shadow-xl outline outline-1'
               : 'hidden'
           }`}
         >
           {/* Landing Option*/}
-          <div className="flex flex-row relative rounded-full gap-2 lg:w-1/2 md:w-2/3 sm:w-2/3 ">
+          <div className="flex flex-row relative rounded-full gap-1.5 lg:w-1/2 md:w-2/3 sm:w-2/3 ">
             <span className="h-6 w-6 -ml-[24px] mt-[8px] absolute">
               <svg
                 focusable="false"
@@ -102,7 +108,7 @@ export default function HomeSearchBar() {
       {/* I'm Feeling Lucky */}
       <div className={`pt-4 ${!isOpen ? 'opacity-1' : 'opacity-0'}`}>
         <Link href="/contact">
-          <button className="px-4 py-2 rounded-lg outline outline-1 hover:outline-none hover:shadow-md ">
+          <button className="px-4 py-2 rounded-lg outline outline-1 hover:shadow-lg">
             I&apos;m Feeling Lucky
           </button>
         </Link>
