@@ -53,7 +53,8 @@ export default function Home() {
     // To test dynamic moon data:
     // const theme = calculateBgColor(lightValue)
     // To test hard coded Full Moon Styling:
-    const theme = calculateBgColor(100)
+    const theme = calculateBgColor(90)
+    console.log('page', theme)
 
     if (theme)
       return (
@@ -75,7 +76,7 @@ export default function Home() {
                   {/* Heading */}
                   <HomeLogo fontSettings={fontSettings} />
                   {/* Div for Search Input */}
-                  <HomeSearchBar theme={theme} />
+                  <HomeSearchBar {...theme} />
                   {/* Feeling Lucky/ Contact Button */}
                 </div>
                 {/* TODO - Footer */}

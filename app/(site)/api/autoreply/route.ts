@@ -7,7 +7,7 @@ export async function POST(req: Request, res: Response) {
   const resend = new Resend(process.env.RESEND_API_KEY)
   try {
     const person = await req.json()
-    console.log(person)
+    // console.log(person)
     // const { firstName, email, chosenService, gem, level, cost } = person
     // Send the email using Resend API
     await resend.emails.send({

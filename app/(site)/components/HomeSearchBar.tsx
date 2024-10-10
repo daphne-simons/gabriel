@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { useState } from 'react'
+import classNames from 'classnames'
 interface Props {
   id: number
   bgColor: string
@@ -22,15 +23,20 @@ export default function HomeSearchBar(theme: Props) {
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
   }
-  if (theme) console.log(theme.outlineColor)
+
+  // BUG: this prints the right class, but it doesn't work when dynamically included inline
+  console.log(theme.outlineColor) //
+
   return (
     <>
       <div
-        className={`relative flex flex-col lg:w-1/2 md:w-2/3 sm:w-2/3 justify-start rounded-full pl-14 pr-14 py-2.5  ${
+        // BUG: here is where it's not working when dynamic
+        className={
           isOpen
-            ? 'outline-none shadow-none'
-            : `outline outline-1 ${theme.outlineColor} hover:shadow-xl `
-        }`}
+            ? `relative flex flex-col lg:w-1/2 md:w-2/3 sm:w-2/3 justify-start rounded-full pl-14 pr-14 py-2.5 outline-none shadow-none`
+            : `relative flex flex-col lg:w-1/2 md:w-2/3 sm:w-2/3 justify-start rounded-full pl-14 pr-14 py-2.5 outline outline-1 
+            outline-skin-fullMoon hover:shadow-xl`
+        }
         onClick={toggleDropdown}
       >
         {/* Main Search Bar */}

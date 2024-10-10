@@ -25,7 +25,7 @@ export default function MoonWidget({ size }: { size: string }) {
   if (moonData) {
     //  Gets the dynamic svg data from the moonData api query:
     const moonPhaseSVG = moonData.phase[new Date().getDate()].svg
-    console.log(moonData.phase[new Date().getDate()])
+    // console.log(moonData.phase[new Date().getDate()])
 
     // List out all moonPhases from api:
     for (let key in moonData.phase) {
@@ -103,7 +103,7 @@ export default function MoonWidget({ size }: { size: string }) {
     const moonLighting = Number(
       moonData.phase[new Date().getDate()].lighting.toFixed(0)
     )
-    console.log(moonLighting)
+    // console.log(moonLighting)
 
     const moonImgData = getMoonImgByLighting(moonLighting)
 

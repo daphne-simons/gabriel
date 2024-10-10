@@ -13,7 +13,7 @@ async function loadMoonPhases(obj: MoonConfig) {
       throw new Error('Network response was not ok.')
     }
     const data = await response.json()
-    console.log(data)
+    // console.log(data)
 
     return data
   } catch (error) {
@@ -35,7 +35,7 @@ const configMoon = {
 
 export default async function getMoon() {
   const data = await loadMoonPhases(configMoon)
-  console.log(data)
+  // console.log(data)
 
   return data as MoonApiResponse
 }

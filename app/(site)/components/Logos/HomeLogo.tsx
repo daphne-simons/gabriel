@@ -15,14 +15,14 @@ export default function HomeLogo({ fontSettings }: Props) {
         Gabriel
       </span>
 
-      <h1
+      <span
         className={`relative top-0 py-4 justify-center flex items-center bg-yellow-200 bg-clip-text text-6xl text-transparent text-center select-auto my-variable-text `}
         style={{
           fontVariationSettings: `"wght" ${fontSettings.wght}, "opsz" ${fontSettings.opsz}`,
         }}
       >
         Gabriel
-      </h1>
+      </span>
     </h1>
   )
 }
