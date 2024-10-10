@@ -1,6 +1,7 @@
 'use client'
 import Link from 'next/link'
 import { useState } from 'react'
+import classNames from 'classnames'
 interface Props {
   id: number
   bgColor: string
@@ -33,8 +34,8 @@ export default function HomeSearchBar(theme: Props) {
         className={
           isOpen
             ? `relative flex flex-col lg:w-1/2 md:w-2/3 sm:w-2/3 justify-start rounded-full pl-14 pr-14 py-2.5 outline-none shadow-none`
-            : `relative flex flex-col lg:w-1/2 md:w-2/3 sm:w-2/3 justify-start rounded-full pl-14 pr-14 py-2.5 outline outline-1 
-            outline-skin-fullMoon hover:shadow-xl`
+            : `relative flex flex-col lg:w-1/2 md:w-2/3 sm:w-2/3 justify-start rounded-full pl-14 pr-14 py-2.5 outline outline-1
+            ${theme.outlineColor} hover:shadow-xl`
         }
         onClick={toggleDropdown}
       >
