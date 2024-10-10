@@ -10,6 +10,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        customSearchLight: '0px 4px 20px -10px rgba(0, 0, 0, 0.5)',
+        customSearchDark: '0px 4px 20px -10px rgba(0, 0, 0, 1)',
+      },
       padding: {
         custom: '2px',
       },

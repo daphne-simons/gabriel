@@ -33,8 +33,8 @@ export default function HomeSearchBar(theme: Props) {
         <div
           className={`relative flex flex-col lg:w-1/2 md:w-2/3 sm:w-2/3 justify-start rounded-full pl-14 pr-14 py-2.5 ${
             isOpen
-              ? `outline-none shadow-none`
-              : `outline outline-1 hover:shadow-xl ${outline}`
+              ? `outline-none shadow-none hover:none`
+              : `outline outline-[0.5px] shadow-customSearchLight hover:shadow-customSearchDark ${outline}`
           }`}
           onClick={toggleDropdown}
         >
@@ -66,9 +66,9 @@ export default function HomeSearchBar(theme: Props) {
           {/* Dropdown Menu */}
           <div
             id="dropdown"
-            className={`absolute z-10 pl-10 rounded-[22px] p-custom left-1/2 -translate-x-1/2 -translate-y-2.5 flex flex-col w-full ${
+            className={`absolute z-10 pl-10 rounded-[22px] p-custom pb-2 left-1/2 -translate-x-1/2 -translate-y-2.5 flex flex-col w-full ${
               isOpen
-                ? 'block bg-transparent shadow-xl outline outline-1'
+                ? 'block bg-transparent shadow-customSearchDark outline outline-[0.5px]'
                 : 'hidden'
             }`}
           >
@@ -114,7 +114,7 @@ export default function HomeSearchBar(theme: Props) {
         {/* I'm Feeling Lucky */}
         <div className={`pt-4 ${!isOpen ? 'opacity-1' : 'opacity-0'}`}>
           <Link href="/contact">
-            <button className="px-4 py-2 rounded-lg outline outline-1 hover:shadow-lg">
+            <button className="px-4 py-2 rounded-lg outline outline-[0.5px] shadow-customSearchLight hover:shadow-customSearchDark">
               I&apos;m Feeling Lucky
             </button>
           </Link>
