@@ -8,7 +8,7 @@ import MoonWidget from './components/MoonWidget'
 import HomeLogo from './components/Logos/HomeLogo'
 import { useQuery } from '@tanstack/react-query'
 import getMoon from '@/query/utils/getMoonData'
-import { calculateBgColor } from '@/util-functions'
+import { calculateBgColor } from '@/functions/util-functions'
 import MoonLoader from './components/MoonLoader'
 
 export default function Home() {
@@ -53,8 +53,7 @@ export default function Home() {
     // To test dynamic moon data:
     // const theme = calculateBgColor(lightValue)
     // To test hard coded Full Moon Styling:
-    const theme = calculateBgColor(90)
-    console.log('page', theme)
+    const theme = calculateBgColor(100)
 
     if (theme)
       return (

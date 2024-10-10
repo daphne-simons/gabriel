@@ -25,11 +25,12 @@ export default function HomeSearchBar(theme: Props) {
   }
 
   const outline = theme.outlineColor as string
+  console.log('searchBar:', outline)
+
   if (outline)
     return (
       <>
         <div
-          // BUG: here is where it's not working when dynamic
           className={`relative flex flex-col lg:w-1/2 md:w-2/3 sm:w-2/3 justify-start rounded-full pl-14 pr-14 py-2.5 ${
             isOpen
               ? `outline-none shadow-none`
@@ -86,7 +87,6 @@ export default function HomeSearchBar(theme: Props) {
                 What are you looking for?
               </li>
             </div>
-            <div className="translate-x-4 -translate-y-2.5 border-b w-[90%] h-1 border-gray-300"></div>
             {/* Options - Map through services state */}
             {services.map((service, index) => (
               <div key={index} className=" ">
