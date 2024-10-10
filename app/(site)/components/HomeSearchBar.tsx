@@ -24,37 +24,7 @@ export default function HomeSearchBar(theme: Props) {
     setIsOpen(!isOpen)
   }
 
-  // BUG: this prints the right class, but it doesn't work when dynamically included inline
-  console.log(theme.outlineColor) //
-
-  function checkOutlineTheme() {
-    let outlineClass = ''
-    if (theme.outlineColor === 'outline-skin-newMoon') {
-      outlineClass = `outline-skin-newMoon`
-      return outlineClass as string
-    } else if (theme.outlineColor === 'outline-skin-waxing') {
-      outlineClass = `outline-skin-waxing`
-      return outlineClass as string
-    } else if (theme.outlineColor === 'outline-skin-firstQuarter') {
-      outlineClass = `outline-skin-firstQuarter`
-      return outlineClass as string
-    } else if (theme.outlineColor === 'outline-skin-waxingGibbous') {
-      outlineClass = `outline-skin-waxingGibbous`
-      return outlineClass as string
-    } else if (theme.outlineColor === 'outline-skin-fullMoon') {
-      outlineClass = `outline-skin-fullMoon`
-      return outlineClass as string
-    } else if (theme.outlineColor === 'outline-skin-waningGibbous') {
-      outlineClass = `outline-skin-waningGibbous`
-      return outlineClass as string
-    } else if (theme.outlineColor === 'outline-skin-lastQuarter') {
-      outlineClass = `outline-skin-lastQuarter`
-      return outlineClass as string
-    }
-  }
-
-  const outline = checkOutlineTheme()
-
+  const outline = theme.outlineColor as string
   if (outline)
     return (
       <>
