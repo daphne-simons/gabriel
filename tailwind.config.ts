@@ -14,6 +14,7 @@ const config: Config = {
         customSearchLight: '0px 4px 20px -10px rgba(0, 0, 0, 0.5)',
         customSearchDark: '0px 4px 20px -10px rgba(0, 0, 0, 1)',
       },
+
       padding: {
         custom: '2px',
       },
@@ -54,6 +55,17 @@ const config: Config = {
           waningGibbous: 'var(--moon-bg-color-waning-gibbous)',
           lastQuarter: 'var(--moon-bg-color-last-quarter)',
           waning: 'var(--moon-bg-color-waning)',
+          btnSearchNewMoon: 'var(--moon-bg-color-btn-search-new-moon)',
+          btnSearchWaxing: 'var(--moon-bg-color-btn-search-waxing)',
+          btnSearchFirstQuarter:
+            'var(--moon-bg-color-btn-search-first-quarter)',
+          btnSearchWaxingGibbous:
+            'var(--moon-bg-color-btn-search-waxing-gibbous)',
+          btnSearchFullMoon: 'var(--moon-bg-color-btn-search-full-moon)',
+          btnSearchWaningGibbous:
+            'var(--moon-bg-color-btn-search-waning-gibbous)',
+          btnSearchLastQuarter: 'var(--moon-btn-search-bg-last-quarter)',
+          btnSearchWaning: 'var(--moon-bg-color-btn-search-last-quarter)',
         },
       },
       backgroundImage: {

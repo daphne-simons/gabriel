@@ -53,7 +53,7 @@ export default function Home() {
     // To test dynamic moon data:
     // const theme = calculateBgColor(lightValue)
     // To test hard coded Full Moon Styling:
-    const theme = calculateBgColor(80)
+    const theme = calculateBgColor(20)
 
     if (theme)
       return (
