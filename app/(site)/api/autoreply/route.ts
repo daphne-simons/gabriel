@@ -22,11 +22,10 @@ export async function POST(req: Request, res: Response) {
       to: ['daphnejasminesimons@gmail.com'],
       bcc: ['delivered@resend.dev'],
       subject: `Auto-Reply to ${person.name}!`,
-      // react: AutoReply(person),
-      html: render(AutoReply(person)),
+      react: AutoReply(person),
 
       // TODO: put Gabriel's email address here. For the user to 'reply_to'
-      // reply_to: 'daphnejasminesimons@gmail.com',
+      // reply_to: 'emailforgabriel',
     })
     return new Response(JSON.stringify(person), {
       status: 200,

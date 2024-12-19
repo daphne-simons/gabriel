@@ -21,8 +21,7 @@ export async function POST(req: Request, res: Response) {
       to: ['daphnejasminesimons@gmail.com'],
       bcc: ['delivered@resend.dev'],
       subject: `Enquiry from ${person.name}!`,
-      // react: EnquiryEmail(person),
-      html: render(EnquiryEmail(person)),
+      react: EnquiryEmail(person),
       // TODO: put Users email address here. For Ella to 'reply_to'
       reply_to: `${person.email}`,
     })
