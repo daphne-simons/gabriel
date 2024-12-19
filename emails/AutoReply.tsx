@@ -10,18 +10,12 @@ import {
 } from '@react-email/components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram } from '@fortawesome/free-brands-svg-icons'
+import { EmailTemplateProps } from '@/app/(site)/models/models'
 // import gramercyFont from './fonts/ABCGramercyFine-Regular-Trial.woff2'
 
-interface EmailTemplateProps {
-  person: {
-    firstName: string
-    email: string
-    chosenService: string
-    gem: string
-  }
-}
+const AutoReplyEmail = (person: EmailTemplateProps) => {
+  console.log(person)
 
-const AutoReplyEmail = ({ person }: EmailTemplateProps) => {
   return (
     <Html>
       <Head />
@@ -31,6 +25,8 @@ const AutoReplyEmail = ({ person }: EmailTemplateProps) => {
             fontFamily:
               '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
             fontWeight: 275,
+            width: '100%',
+            textAlign: 'left',
           }}
         >
           <Section>
@@ -40,34 +36,34 @@ const AutoReplyEmail = ({ person }: EmailTemplateProps) => {
               }}
             >
               {/* FOR STYLE TESTING */}
-              Hi Daphne,
+              {/* Hi Daphne, */}
               <br />
               <br />
-              {/* FOR STYLE TESTING */}
-              Thank you for your enquiry about the {/* DYNAMIC */}
               {/* DYNAMIC */}
-              {/* Hi {person.firstName},<br /> */}
+              Hi {person.name},<br />
+              {/* FOR STYLE TESTING */}
+              Thank you for your enquiry about the {/* -------- */}
               {/* FOR STYLE TESTING  */}
-              <span
+              {/* <span
                 style={{
                   color: '#EA4335',
                 }}
               >
                 premium
-              </span>
+              </span> */}
               {/* DYNAMIC */}
-              {/* <span style={{ color: '#EA4335' }}>{person.gem}</span> */}{' '}
+              <span style={{ color: '#EA4335' }}> {person.gem}</span>{' '}
               {/* FOR STYLE TESTING */}
-              <span
+              {/* <span
                 style={{
                   color: '#34A853',
                 }}
               >
                 identity
               </span>{' '}
-              package,
+              package, */}
               {/* DYNAMIC */}
-              {/* <span style={{ color: '#34A853' }}>{person.chosenService}</span>, */}
+              <span style={{ color: '#34A853' }}>{person.chosenService}</span>,
               <br />
               we’ll be in touch shortly.
               <br />
@@ -123,6 +119,7 @@ const AutoReplyEmail = ({ person }: EmailTemplateProps) => {
               }}
             >
               Follow us
+              {/* TODO: find out why this logo is not appearing in the real emails.  */}
               <span style={{}}>
                 <Link href="https://www.google.com">
                   <FontAwesomeIcon

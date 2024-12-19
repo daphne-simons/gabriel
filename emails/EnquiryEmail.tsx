@@ -1,3 +1,4 @@
+import { EmailTemplateProps } from '@/app/(site)/models/models'
 import {
   Body,
   Container,
@@ -5,29 +6,49 @@ import {
   Html,
   Section,
   Text,
+  Row,
+  Column,
+  Heading,
 } from '@react-email/components'
 
-interface EmailTemplateProps {
-  person: {
-    firstName: string
-    email: string
-    chosenService: string
-    gem: string
-    level: string
-    cost: string
-  }
-}
-
-const EnquiryEmail = ({ person }: EmailTemplateProps) => {
+const EnquiryEmail = (person: EmailTemplateProps) => {
   return (
     <Html>
       <Head />
-      <Body>
+      <Body style={{ width: '100%' }}>
         <Container>
           <Section>
-            <Text>
-              Hi Ella, you just got an enquiry from {person.firstName}!
-            </Text>
+            <Heading>
+              Hi Gabriel, my name is {person.name} and I would like to know more
+              about...{' '}
+            </Heading>
+            <Row>
+              <Column>🟡</Column>
+              <Column>
+                <Text>Service: {person.chosenService}</Text>
+              </Column>
+            </Row>
+            <Row>
+              <Column>🔵</Column>
+              <Column>
+                <Text>
+                  Level / Gem:
+                  {person.gem}
+                </Text>
+              </Column>
+            </Row>
+            <Row>
+              <Column>🟢</Column>
+              <Column>
+                <Text>Cost Estimate: {person.cost}</Text>
+              </Column>
+            </Row>
+            <Row>
+              <Column>🔴</Column>
+              <Column>
+                <Text>Contact me at: {person.email}</Text>
+              </Column>
+            </Row>
           </Section>
         </Container>
       </Body>
