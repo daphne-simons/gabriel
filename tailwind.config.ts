@@ -99,6 +99,7 @@ const config: Config = {
         googleGray: '#5F6368',
         googleLightGray: '#E5E7EB',
         googleButton: '#1c73EB',
+        lightGrayText: '#F8F9FA',
       },
       spacing: {
         d: '8em',
