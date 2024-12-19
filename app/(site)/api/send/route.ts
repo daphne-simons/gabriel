@@ -3,7 +3,6 @@
 import { Resend } from 'resend'
 import EnquiryEmail from '../../../../emails/EnquiryEmail'
 import { EmailTemplateProps } from '../../models/models'
-import { render } from '@react-email/render'
 
 // EMAIL THAT IS SENT TO ELLA - (To let her know someone has made an Enquiry)
 export async function POST(req: Request, res: Response) {

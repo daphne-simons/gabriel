@@ -1,10 +1,9 @@
 // EMAIL THAT IS SENT TO THE USER (PERSON MAKING ENQUIRY)
 // pages/api/autoreply/route.ts
-import { render } from '@react-email/render'
+
 import { Resend } from 'resend'
 import AutoReply from '../../../../emails/AutoReply'
 import { EmailTemplateProps } from '../../models/models'
-// import { render } from '@react-email/components'
 
 export async function POST(req: Request, res: Response) {
   // TODO: Create rate limit so that users can't spam us.
