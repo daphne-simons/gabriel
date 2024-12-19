@@ -6,11 +6,11 @@ export default function SearchResultLogo() {
       >
         Gabriel
       </span>
-      <h1
+      <span
         className={`relative top-0 py-4 justify-center flex items-center bg-googleLightRed bg-clip-text text-3xl text-transparent text-center select-auto`}
       >
         Gabriel
-      </h1>
+      </span>
     </h1>
   )
 }
