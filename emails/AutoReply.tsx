@@ -4,11 +4,13 @@ import {
   Head,
   Html,
   Link,
+  Font,
   Section,
   Text,
 } from '@react-email/components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram } from '@fortawesome/free-brands-svg-icons'
+// import gramercyFont from './fonts/ABCGramercyFine-Regular-Trial.woff2'
 
 interface EmailTemplateProps {
   person: {
@@ -28,10 +30,15 @@ const AutoReplyEmail = ({ person }: EmailTemplateProps) => {
           style={{
             fontFamily:
               '-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif',
+            fontWeight: 275,
           }}
         >
           <Section>
-            <Text style={{ fontSize: '18px' }}>
+            <Text
+              style={{
+                fontSize: '18px',
+              }}
+            >
               {/* FOR STYLE TESTING */}
               Hi Daphne,
               <br />
@@ -41,11 +48,24 @@ const AutoReplyEmail = ({ person }: EmailTemplateProps) => {
               {/* DYNAMIC */}
               {/* Hi {person.firstName},<br /> */}
               {/* FOR STYLE TESTING  */}
-              <span style={{ color: '#EA4335' }}>premium</span>
+              <span
+                style={{
+                  color: '#EA4335',
+                }}
+              >
+                premium
+              </span>
               {/* DYNAMIC */}
               {/* <span style={{ color: '#EA4335' }}>{person.gem}</span> */}{' '}
               {/* FOR STYLE TESTING */}
-              <span style={{ color: '#34A853' }}>identity</span> package,
+              <span
+                style={{
+                  color: '#34A853',
+                }}
+              >
+                identity
+              </span>{' '}
+              package,
               {/* DYNAMIC */}
               {/* <span style={{ color: '#34A853' }}>{person.chosenService}</span>, */}
               <br />
@@ -63,27 +83,45 @@ const AutoReplyEmail = ({ person }: EmailTemplateProps) => {
             }}
           >
             <Text
-              // CONNECT THIS FONT TO THE ACTUAL FONT. ? DO I NEED A FILE?
+              // most email providers don't support custom fonts, so will have to use basic fonts
+              // 0R an img for the Gabriel logo.
               style={{
-                fontFamily: 'Gramercy Variable, serif',
-                fontSize: '36px',
-                paddingTop: 40,
+                fontFamily: 'times, serif',
+                fontSize: '38px',
               }}
             >
               Gabriel
             </Text>
-            <Text style={{ fontSize: '12px', marginTop: '-25px' }}>
+            <Text
+              style={{
+                fontSize: '12px',
+                marginTop: '-25px',
+
+                color: '#1c73EB',
+              }}
+            >
               <br />
               140–142 McEvoy Street,
               <br />
               Alexandria, Sydney 2015, AU
               <br />
-              <Link href="https://gabriel.exchange">gabriel.exchange</Link>
+              <Link
+                href="https://gabriel.exchange"
+                style={{
+                  color: '#1c73EB',
+                }}
+              >
+                gabriel.exchange
+              </Link>
             </Text>
           </Section>
 
           <Section>
-            <Text style={{ fontSize: '10px' }}>
+            <Text
+              style={{
+                fontSize: '10px',
+              }}
+            >
               Follow us
               <span style={{}}>
                 <Link href="https://www.google.com">
@@ -98,7 +136,7 @@ const AutoReplyEmail = ({ person }: EmailTemplateProps) => {
                   />{' '}
                 </Link>
               </span>
-              <br /> <br />
+              <br />
               We acknowledge and pay respect to the Traditional Owners and
               Elders—past, present and emerging—of the lands on which we
               operate.
