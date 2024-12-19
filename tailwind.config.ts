@@ -98,6 +98,7 @@ const config: Config = {
         googleOrange: '#E37400',
         googleGray: '#5F6368',
         googleLightGray: '#E5E7EB',
+        googleButton: '#1c73EB',
       },
       spacing: {
         d: '8em',

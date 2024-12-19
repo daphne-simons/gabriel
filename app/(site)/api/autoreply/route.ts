@@ -1,7 +1,7 @@
 // pages/api/autoreply/route.ts
 
 import { Resend } from 'resend'
-import AutoReply from '../../emails/AutoReply'
+import AutoReply from '../../../../emails/AutoReply'
 // THIS IS THE EMAIL THAT IS SENT TO THE USER (PERSON MAKING ENQUIRY)
 export async function POST(req: Request, res: Response) {
   const resend = new Resend(process.env.RESEND_API_KEY)
