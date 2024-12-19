@@ -94,9 +94,9 @@ const ContactForm = () => {
     // console.log(changedService)
 
     return (
-      <div className="h-screen w-full">
+      <div className="w-full mb-auto pb-20">
         {/* Header */}
-        <div className="h-auto flex flex-col ">
+        <div className="flex flex-col ">
           <div id="header" className="flex flex-row relative gap-4 p-2">
             {/* Wrapper logo and search bar */}
             <div className="flex w-full">
@@ -112,7 +112,7 @@ const ContactForm = () => {
         {/* Enquiry form */}
         <div className="pt-10 pl-40 flex ">
           <div className="font-roboto text-xl w-2/3">
-            <h1 className="text-6xl font-base">Hi, how can we help?</h1>
+            <h2 className="text-6xl font-base">Hi, how can we help?</h2>
 
             {/* Form */}
             <form className="flex flex-col" onSubmit={handleSubmit}>
