@@ -10,15 +10,20 @@ interface Props {
   chosenService: string
 }
 export default function SearchSideBar({ option, chosenService }: Props) {
+  const headingColor: { [key: string]: string } = {
+    Sapphire: 'text-blue-600',
+    Emerald: 'text-green-600',
+    Ruby: 'text-red-600',
+  }
   return (
-    <div className="h-full ring ring-1 rounded-xl ring-[#7d8084]">
+    <div className="h-full ring-1 rounded-xl ring-[#7d8084]">
       {/* Gallery Grid */}
       <div className="h-2/5 ">
         <Gallery />
       </div>
       {/* Text Part */}
       <div className="h-1/5 px-2 pt-2">
-        <h1 className="text-blue-600 text-3xl">{option.gem}</h1>
+        <h1 className={`${headingColor[option.gem]} text-3xl`}>{option.gem}</h1>
         <p className="pt-2 text-[#BDC1C5] text-sm">{option.level}</p>
       </div>
       <div className="px-2 pt-2 h-2/5 border-t  border-[#7d8084]">
