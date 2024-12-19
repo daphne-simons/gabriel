@@ -43,7 +43,7 @@ const ContactForm = () => {
       })
 
       if (response.ok) {
-        // TODO / TOTRY: Make another post route that sends an automated reply to the user/ enquirer??
+        // TODO : Make another post route that sends an automated reply to the user/ enquirer??
         try {
           await fetch('/api/autoreply', {
             method: 'POST',
@@ -71,7 +71,7 @@ const ContactForm = () => {
         } catch (error) {
           console.error('Error sending auto-reply email:', error)
         }
-        // If successful - Make a page for route '/contact/success' and redirect to it
+        // TODO: If successful - Make a page for route '/contact/success' and redirect to it
         router.push('/')
         console.log('Email sent successfully!')
       } else {
@@ -80,7 +80,7 @@ const ContactForm = () => {
         console.error('Failed to send enquiry email:', await response.text())
       }
     } catch (error) {
-      // some kind of page for "failed to send email, please try again later"
+      // TODO: some kind of page for "failed to send email, please try again later"
       // redirect to the home page.
       console.error('Error sending enquiry email:', error)
     }
@@ -91,7 +91,7 @@ const ContactForm = () => {
     if (changedService.length > 1) {
       changedService.shift()
     }
-    console.log(changedService)
+    // console.log(changedService)
 
     return (
       <div className="h-screen w-full">
