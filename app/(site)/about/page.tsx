@@ -1,6 +1,7 @@
 import Link from 'next/link'
 // import Nav from '../components/Nav'
 import AboutLogo from '../components/Logos/AboutLogo'
+import Footer from '../components/Footer'
 
 export default function AboutPage() {
   return (
@@ -21,7 +22,7 @@ export default function AboutPage() {
         </div>
       </div>
       {/* Rest of About Page content */}
-      <div className="pt-10">
+      <div className="pt-10 pb-14">
         <section className="flex justify-center text-center ">
           <article className="font-roboto text-xl w-2/3">
             Gabriel is a design studio led by{' '}
@@ -87,6 +88,7 @@ export default function AboutPage() {
           </section>
         </div>
       </div>
+      <Footer />
     </>
   )
 }

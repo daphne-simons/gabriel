@@ -14,7 +14,7 @@ export default function Footer() {
           </Link>
         </div>
       </div>
-      <div className="border border-bottom border-[#E5E7EB] w-[85%]"></div>
+      <div className="border-[0.8px] border-bottom border-[#E5E7EB] w-[85%]"></div>
       <div className="pt-8 pb-8">
         We acknowledge and pay respect to the Traditional Owners and
         Elders—past, present and emerging—of the lands on which we operate.
