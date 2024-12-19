@@ -33,7 +33,7 @@ export default function SearchSideBar({ option, chosenService }: Props) {
           officiis commodi explicabo beatae voluptas sint quo eveniet omnis
           eligendi accusantium hic.
         </p>
-        {/* this should be a query parameter, instead of a path */}
+        {/* TODO: this should be a query parameter, instead of a path */}
         <Link
           href={`/contact?service=${chosenService}&gem=${option.gem}&level=${option.level}&cost=${option.cost}`}
         >
