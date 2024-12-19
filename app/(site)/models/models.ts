@@ -63,3 +63,12 @@ export type MoonConfig = {
   // LDZ: number // Add LDZ property
   [key: string]: string | number | boolean // Index signature
 }
+
+export interface EmailTemplateProps {
+  name: string
+  email: string
+  chosenService: string
+  gem: string
+  level: string
+  cost: string
+}

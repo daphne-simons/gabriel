@@ -25,20 +25,20 @@ export default function HomeSearchBar(theme: Props) {
     setIsOpen(!isOpen)
   }
 
-  if (theme) console.log(theme.btnSearchBg)
-
   return (
     <>
       <div
-        className={`relative flex flex-col lg:w-1/2 md:w-2/3 sm:w-2/3 justify-start rounded-full pl-14 pr-14 py-2.5 ${
-          isOpen
-            ? `outline-none shadow-none hover:none`
-            : `outline outline-[0.5px] shadow-customSearchLight hover:shadow-customSearchDark ${theme.outlineColor} ${theme.bgColor}`
-        }`}
+        // CHANGE the BG to be dynamic
+        className={`relative flex flex-col lg:w-1/3 md:w-2/5 sm:w-1/3 justify-start rounded-full pl-14 pr-14 py-2.5 bg-gray-100
+            ${
+              isOpen
+                ? `shadow-none hover:none`
+                : `shadow-customSearchLight hover:shadow-customSearchDark`
+            }`}
         onClick={toggleDropdown}
       >
         {/* Main Search Bar */}
-        <div className={`flex flex-row relative cursor-pointer`}>
+        <div className="flex flex-row relative cursor-pointer ">
           <div className="">
             {/* magnifying glass icon svg */}
             <span
@@ -66,9 +66,8 @@ export default function HomeSearchBar(theme: Props) {
         <div
           id="dropdown"
           className={`absolute z-10 pl-10 rounded-[22px] p-custom pb-2 left-1/2 -translate-x-1/2 -translate-y-2.5 flex flex-col w-full ${
-            isOpen
-              ? `block shadow-customSearchDark outline outline-[0.5px] ${theme.bgColor} `
-              : 'hidden'
+            // CHANGE the BG to be dynamic
+            isOpen ? 'block bg-gray-100 shadow-customSearchDark' : 'hidden'
           }`}
         >
           {/* Landing Option*/}
@@ -111,11 +110,9 @@ export default function HomeSearchBar(theme: Props) {
         </div>
       </div>
       {/* I'm Feeling Lucky */}
-      <div className={`pt-4 ${!isOpen ? 'opacity-1' : 'opacity-0'}`}>
+      <div className={`pt-6 ${!isOpen ? 'opacity-1' : 'opacity-0'}`}>
         <Link href="/contact">
-          <button
-            className={`px-4 py-2 rounded-lg hover:outline hover:outline-[0.5px] ${theme.outlineColor} ${theme.btnSearchBg} `}
-          >
+          <button className="px-4 py-2 rounded-lg shadow-customSearchLight hover:shadow-customSearchDark bg-gray-100">
             I&apos;m Feeling Lucky
           </button>
         </Link>

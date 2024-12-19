@@ -1,14 +1,15 @@
 // pages/api/send/route.ts
 
 import { Resend } from 'resend'
-import EnquiryEmail from '../../emails/EnquiryEmail'
+import EnquiryEmail from '../../../../emails/EnquiryEmail'
+import { EmailTemplateProps } from '../../models/models'
 
-// THIS IS THE ENQUIRY EMAIL THAT IS SENT TO ELLA
+// EMAIL THAT IS SENT TO ELLA - (To let her know someone has made an Enquiry)
 export async function POST(req: Request, res: Response) {
   const resend = new Resend(process.env.RESEND_API_KEY)
   try {
-    const person = await req.json()
-    // console.log(person)
+    const person = (await req.json()) as EmailTemplateProps
+    console.log('notify ella email', person)
     // const { firstName, email, chosenService, gem, level, cost } = person
     // Send the email using Resend API
     await resend.emails.send({
@@ -18,14 +19,10 @@ export async function POST(req: Request, res: Response) {
       // use this one for testing success of delivery: 'delivered@resend.dev'
       to: ['daphnejasminesimons@gmail.com'],
       bcc: ['delivered@resend.dev'],
-      subject: `Enquiry from ${person.firstName}!`,
-      // For sending a simple string of text:
-      // text: `Hi Gabriel! My name is: ${firstName}, and I would love to know more about your services. My email address is: ${email}.
-      // Specifically; I am interested in the service: ${chosenService}, gem: ${gem}, level: ${level}, and cost: ${cost}. Thank you!`,
-      // TODO: Creat e an email Component, and call like a function, props are params:
-      react: EnquiryEmail({ person }),
-      // TODO: put Gabriel's email address here. For the user to 'reply_to'
-      // reply_to: 'gabriel@gabriel.exchange',
+      subject: `Enquiry from ${person.name}!`,
+      react: EnquiryEmail(person),
+      // TODO: put Users email address here. For Ella to 'reply_to'
+      reply_to: `${person.email}`,
     })
     return new Response(JSON.stringify(person), {
       status: 200,
