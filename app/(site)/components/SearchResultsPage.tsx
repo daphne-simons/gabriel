@@ -35,12 +35,13 @@ export default function SearchResultsPage() {
                   <SearchResultLogo />
                 </Link>
               </div>
-              {/* Searchbar */}
-              <SearchResultBar chosenService={service} />
-            </div>
-            <div className="flex flex-row">
-              <div className="mr-8 flex items-center text-[#F8F9FA] text-sm font-roboto">
-                <MoonWidget size="smallMoon" />
+              <div className="flex flex-row w-full justify-between">
+                {/* Searchbar */}
+                <SearchResultBar chosenService={service} />
+
+                <div className="mr-8 flex items-center text-[#F8F9FA] text-sm font-roboto">
+                  <MoonWidget size="smallMoon" />
+                </div>
               </div>
             </div>
           </div>

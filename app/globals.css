@@ -132,5 +132,14 @@ body {
     /* Various Color  */
     --moon-border-color: #fff;
     --moon-hover-color: #adadad;
+    /* Button and Search Background Colour */
+    --moon-bg-color-btn-search-new-moon: #3d3d3d;
+    --moon-bg-color-btn-search-waxing: #3d3d3d;
+    --moon-bg-color-btn-search-first-quarter: #8a8a8a;
+    --moon-bg-color-btn-search-waxing-gibbous: #e3e3e3;
+    --moon-bg-color-btn-search-full-moon: #ffffff;
+    --moon-bg-color-btn-search-waning-gibbous: #e3e3e3;
+    --moon-bg-color-btn-search-last-quarter: #8a8a8a;
+    --moon-bg-color-btn-search-waning: #3d3d3d;
   }
 }
