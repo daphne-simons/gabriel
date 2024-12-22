@@ -19,7 +19,8 @@ export default function SearchResultsPage() {
 
   useEffect(() => {
     setService(chosenService || 'What are you looking for?')
-  }, [])
+  }, [chosenService])
+
   return (
     <>
       <div className="bg-[#202124] h-screen w-full">
