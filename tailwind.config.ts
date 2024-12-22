@@ -124,15 +124,23 @@ const config: Config = {
     },
   },
   plugins: [],
+  // safelist ensures that my dynamic and conditional class names won't be purged when tw builds the css (TW tends to cull anything it can't recognise as a static class.)
   safelist: [
-    'bg-btnSearchNewMoon',
-    'bg-btnSearchWaxing',
-    'bg-btnSearchFirstQuarter',
-    'bg-btnSearchWaxingGibbous',
-    'bg-btnSearchFullMoon',
-    'bg-btnSearchWaningGibbous',
-    'bg-btnSearchLastQuarter',
-    'bg-btnSearchWaning',
+    // REGEX PATTERNS:
+    // Button Search Backgrounds
+    { pattern: /^bg-btnSearch/ },
+
+    // Skin Text Colors
+    { pattern: /^text-skin-/ },
+
+    // Skin Outline Colors
+    { pattern: /^outline-skin-/ },
+
+    // Skin Background Colors
+    { pattern: /^bg-skin-/ },
+    // Additional Variants if needed
+    { pattern: /^bg-btnSearch/, variants: ['hover', 'focus'] },
+    { pattern: /^outline-skin-/, variants: ['hover', 'focus'] },
   ],
 }
 export default config
