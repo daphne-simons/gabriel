@@ -50,10 +50,10 @@ export default function Home() {
     const lightValue = Number(
       moonData.phase[new Date().getDate()].lighting.toFixed(0)
     )
-    // To test dynamic moon data:
-    // const theme = calculateBgColor(lightValue)
+    // To test dynamic moon theme:
+    const theme = calculateBgColor(lightValue)
     // To test hard coded Full Moon Styling:
-    const theme = calculateBgColor(90)
+    // const theme = calculateBgColor(90)
 
     if (theme)
       return (
@@ -74,11 +74,10 @@ export default function Home() {
                 <div className="relative middle flex flex-col justify-evenly items-center h-[30%] -top-44">
                   {/* Heading */}
                   <HomeLogo fontSettings={fontSettings} />
-                  {/* Div for Search Input */}
-                  <HomeSearchBar {...theme} />
+                  {/* Div for Search Input  && */}
                   {/* Feeling Lucky/ Contact Button */}
+                  <HomeSearchBar {...theme} />
                 </div>
-                {/* TODO - Footer */}
                 <div></div>
               </div>
             </BackGround>

@@ -55,18 +55,17 @@ const config: Config = {
           waningGibbous: 'var(--moon-bg-color-waning-gibbous)',
           lastQuarter: 'var(--moon-bg-color-last-quarter)',
           waning: 'var(--moon-bg-color-waning)',
-          btnSearchNewMoon: 'var(--moon-bg-color-btn-search-new-moon)',
-          btnSearchWaxing: 'var(--moon-bg-color-btn-search-waxing)',
-          btnSearchFirstQuarter:
-            'var(--moon-bg-color-btn-search-first-quarter)',
-          btnSearchWaxingGibbous:
-            'var(--moon-bg-color-btn-search-waxing-gibbous)',
-          btnSearchFullMoon: 'var(--moon-bg-color-btn-search-full-moon)',
-          btnSearchWaningGibbous:
-            'var(--moon-bg-color-btn-search-waning-gibbous)',
-          btnSearchLastQuarter: 'var(--moon-btn-search-bg-last-quarter)',
-          btnSearchWaning: 'var(--moon-bg-color-btn-search-last-quarter)',
         },
+        btnSearchNewMoon: 'var(--moon-bg-color-btn-search-new-moon)',
+        btnSearchWaxing: 'var(--moon-bg-color-btn-search-waxing)',
+        btnSearchFirstQuarter: 'var(--moon-bg-color-btn-search-first-quarter)',
+        btnSearchWaxingGibbous:
+          'var(--moon-bg-color-btn-search-waxing-gibbous)',
+        btnSearchFullMoon: 'var(--moon-bg-color-btn-search-full-moon)',
+        btnSearchWaningGibbous:
+          'var(--moon-bg-color-btn-search-waning-gibbous)',
+        btnSearchLastQuarter: 'var(--moon-btn-search-bg-last-quarter)',
+        btnSearchWaning: 'var(--moon-bg-color-btn-search-last-quarter)',
       },
       backgroundImage: {
         'moon-bg': "url('/moon-bg.png')",
@@ -125,5 +124,15 @@ const config: Config = {
     },
   },
   plugins: [],
+  safelist: [
+    'bg-btnSearchNewMoon',
+    'bg-btnSearchWaxing',
+    'bg-btnSearchFirstQuarter',
+    'bg-btnSearchWaxingGibbous',
+    'bg-btnSearchFullMoon',
+    'bg-btnSearchWaningGibbous',
+    'bg-btnSearchLastQuarter',
+    'bg-btnSearchWaning',
+  ],
 }
 export default config

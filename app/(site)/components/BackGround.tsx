@@ -11,6 +11,7 @@ export default function BackGround({
         bgImg: string
         textColor: string
         outlineColor: string
+        btnSearchBg: string
       }
     | undefined
   children: React.ReactNode
@@ -18,7 +19,9 @@ export default function BackGround({
   if (theme)
     return (
       <>
-        <div className={`${theme.bgColor} fill-current ${theme.textColor} `}>
+        <div
+          className={`${theme.bgColor} fill-current ${theme.textColor} ${theme.btnSearchBg}`}
+        >
           <div className={`bg-cover ${theme.bgImg}`}>{children}</div>
         </div>
       </>

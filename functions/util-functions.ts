@@ -6,7 +6,7 @@ export function calculateBgColor(lighting: number) {
       bgImg: 'bg-moon-bg',
       textColor: 'text-skin-newMoon',
       outlineColor: 'outline-skin-newMoon',
-      btnSearchBg: 'bg-skin-btnSearchNewMoon',
+      btnSearchBg: 'bg-btnSearchNewMoon',
     }
   } else if (lighting >= 6 && lighting <= 42) {
     return {
@@ -15,7 +15,7 @@ export function calculateBgColor(lighting: number) {
       bgImg: 'bg-moon-bg-80',
       textColor: 'text-skin-waxing',
       outlineColor: 'outline-skin-waxing',
-      btnSearchBg: 'bg-skin-btnSearchWaxing',
+      btnSearchBg: 'bg-btnSearchWaxing',
     }
   } else if (lighting >= 43 && lighting <= 60) {
     return {
@@ -24,7 +24,7 @@ export function calculateBgColor(lighting: number) {
       bgImg: 'bg-moon-bg-60',
       textColor: 'text-skin-firstQuarter',
       outlineColor: 'outline-skin-firstQuarter',
-      btnSearchBg: 'bg-skin-btnSearchFirstQuarter',
+      btnSearchBg: 'bg-btnSearchFirstQuarter',
     }
   } else if (lighting >= 61 && lighting <= 75) {
     // Adjusted range
@@ -34,7 +34,7 @@ export function calculateBgColor(lighting: number) {
       bgImg: 'bg-moon-bg-60',
       textColor: 'text-skin-waxingGibbous',
       outlineColor: 'outline-skin-waxingGibbous',
-      btnSearchBg: 'bg-skin-btnSearchWaxingGibbous',
+      btnSearchBg: 'bg-btnSearchWaxingGibbous',
     }
   } else if (lighting >= 76 && lighting <= 95) {
     // Adjusted range
@@ -44,7 +44,7 @@ export function calculateBgColor(lighting: number) {
       bgImg: 'bg-moon-bg-60',
       textColor: 'text-skin-fullMoon',
       outlineColor: 'outline-skin-fullMoon',
-      btnSearchBg: 'bg-skin-btnSearchFullMoon',
+      btnSearchBg: 'bg-btnSearchFullMoon',
     }
   } else if (lighting >= 96 && lighting <= 105) {
     return {
@@ -53,7 +53,7 @@ export function calculateBgColor(lighting: number) {
       bgImg: 'bg-moon-bg-60',
       textColor: 'text-skin-waningGibbous',
       outlineColor: 'outline-skin-waningGibbous',
-      btnSearchBg: 'bg-skin-btnSearchWaningGibbous',
+      btnSearchBg: 'bg-btnSearchWaningGibbous',
     }
   } else if (lighting >= 66 && lighting <= 75) {
     // Adjusted range
@@ -63,7 +63,7 @@ export function calculateBgColor(lighting: number) {
       bgImg: 'bg-moon-bg-60',
       textColor: 'text-skin-lastQuarter',
       outlineColor: 'outline-skin-lastQuarter',
-      btnSearchBg: 'bg-skin-btnSearchLastQuarter',
+      btnSearchBg: 'bg-btnSearchLastQuarter',
     }
   } else if (lighting >= 44 && lighting < 66) {
     // Adjusted range
@@ -73,7 +73,7 @@ export function calculateBgColor(lighting: number) {
       bgImg: 'bg-moon-bg-80',
       textColor: 'text-skin-waning',
       outlineColor: 'outline-skin-waning',
-      btnSearchBg: 'bg-skin-btnSearchWaning',
+      btnSearchBg: 'bg-btnSearchWaning',
     }
   }
 }
