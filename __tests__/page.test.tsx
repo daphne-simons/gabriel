@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 // import Home from '../app/(site)/page'
 import HomeLogo from '../app/(site)/components/Logos/HomeLogo'
 test('Page', () => {
-  // This one doesn't work for some reason
+  // TODO: Fix this test.
   // render(<Home />)
   render(<HomeLogo fontSettings={{ wght: 200, opsz: 72 }} />)
   expect(
