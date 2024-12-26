@@ -19,12 +19,11 @@ export default function SearchOptionsList({ options, chosenService }: Props) {
     level: 'Essential',
     cost: '2000-4000',
   })
-  // State for toggling all works or a specific work on the side-bar gallery
-  // initial state is 0 - for showing all works
+  // State for toggling between AllProjects and SelectedProject on the side-bar gallery
+  // initial state is 0 : shows AllProjects
   const [selection, setSelection] = useState<number>(0)
 
   // handleClick to go between all or specific work
-
   const handleClickSelection = (index: number) => {
     setSelection(index)
   }
@@ -32,6 +31,7 @@ export default function SearchOptionsList({ options, chosenService }: Props) {
   return (
     <>
       <div className="pt-6 flex flex-row">
+        {/* LEFT SIDE BAR - SERVICES INFO  */}
         <div className="flex flex-col w-2/3">
           {options.map((option) => (
             <div key={option.gem} className="">
@@ -78,6 +78,7 @@ export default function SearchOptionsList({ options, chosenService }: Props) {
         </div>
         <div className="w-1/2 flex flex-col pr-32 pt-6">
           {/* Show SELECTED work: */}
+          {/* TODO: prop drill project data in here */}
           {/* Selected === truthy === 1 */}
           {selection ? (
             <SelectedProject handleClickSelection={handleClickSelection} />
