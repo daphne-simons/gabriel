@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import SearchSideBar from './SearchSideBar'
+import AllProjects from './AllProjects'
+import SelectedProject from './SelectedProject'
 
 interface Props {
   options: {
@@ -18,6 +19,16 @@ export default function SearchOptionsList({ options, chosenService }: Props) {
     level: 'Essential',
     cost: '2000-4000',
   })
+  // State for toggling all works or a specific work on the side-bar gallery
+  // initial state is 0 - for showing all works
+  const [selection, setSelection] = useState<number>(0)
+
+  // handleClick to go between all or specific work
+
+  const handleClickSelection = (index: number) => {
+    setSelection(index)
+  }
+
   return (
     <>
       <div className="pt-6 flex flex-row">
@@ -66,7 +77,19 @@ export default function SearchOptionsList({ options, chosenService }: Props) {
           ))}
         </div>
         <div className="w-1/2 flex flex-col pr-32 pt-6">
-          <SearchSideBar option={option} chosenService={chosenService} />
+          {/* Show SELECTED work: */}
+          {/* Selected === truthy === 1 */}
+          {selection ? (
+            <SelectedProject handleClickSelection={handleClickSelection} />
+          ) : (
+            // Show ALL works:
+            // Selected === falsy === 0
+            <AllProjects
+              option={option}
+              chosenService={chosenService}
+              handleClickSelection={handleClickSelection}
+            />
+          )}
         </div>
       </div>
     </>

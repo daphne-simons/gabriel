@@ -8,8 +8,13 @@ interface Props {
     cost: string
   }
   chosenService: string
+  handleClickSelection: (index: number) => void
 }
-export default function SearchSideBar({ option, chosenService }: Props) {
+export default function AllProjects({
+  option,
+  chosenService,
+  handleClickSelection,
+}: Props) {
   const headingColor: { [key: string]: string } = {
     Sapphire: 'text-blue-600',
     Emerald: 'text-green-600',
@@ -17,9 +22,9 @@ export default function SearchSideBar({ option, chosenService }: Props) {
   }
   return (
     <div className="h-full ring-1 rounded-xl ring-[#7d8084]">
-      {/* Gallery Grid */}
+      {/* GALLERY Grid */}
       <div className="h-2/5 ">
-        <Gallery />
+        <Gallery handleClickSelection={handleClickSelection} />
       </div>
       {/* Text Part */}
       <div className="h-1/5 px-2 pt-2">

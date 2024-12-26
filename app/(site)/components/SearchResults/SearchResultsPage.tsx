@@ -1,12 +1,12 @@
 'use client'
-import MoonWidget from '../components/MoonWidget'
+import MoonWidget from '../../components/MoonWidget'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
-import ResultsComponent from '../components/ResultsComponent'
-import Details from '../components/Details'
+import ResultsComponent from './ResultsComponent'
+import Details from './Details'
 import { useSearchParams } from 'next/navigation'
-import SearchResultBar from '../components/SearchResultBar'
-import SearchResultLogo from './Logos/SearchResultLogo'
+import SearchResultBar from './SearchResultBar'
+import SearchResultLogo from '../Logos/SearchResultLogo'
 
 export default function SearchResultsPage() {
   const [activeLink, setActiveLink] = useState<number>(0) // state for active link
