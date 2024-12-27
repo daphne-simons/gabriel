@@ -1,7 +1,6 @@
 'use client'
 import Link from 'next/link'
 import { useState } from 'react'
-import classNames from 'classnames'
 interface Props {
   id: number
   bgColor: string
@@ -111,14 +110,22 @@ export default function HomeSearchBar(theme: Props) {
           </div>
         </div>
         {/* I'm Feeling Lucky */}
+
         <div className={`pt-6 $ ${!isOpen ? 'opacity-1' : 'opacity-0'}`}>
-          <Link href="/contact">
+          {/* <Link href="/">
             <button
+              
               className={`px-4 py-2 rounded-lg shadow-customSearchLight hover:shadow-customSearchDark ${theme.btnSearchBg}`}
             >
               I&apos;m Feeling Lucky
             </button>
-          </Link>
+          </Link> */}
+          <a
+            href="mailto:daphnejasminesimons@gmail.com?subject=I%27m%20Feeling%20Lucky"
+            className={`px-4 py-2 rounded-lg shadow-customSearchLight hover:shadow-customSearchDark ${theme.btnSearchBg}`}
+          >
+            I&apos;m Feeling Lucky
+          </a>
         </div>
       </>
     )
