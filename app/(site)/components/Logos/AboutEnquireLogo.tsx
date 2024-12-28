@@ -1,4 +1,4 @@
-export default function AboutLogo() {
+export default function AboutEnquireLogo() {
   return (
     <h1 className={`font-gramercy`}>
       <span

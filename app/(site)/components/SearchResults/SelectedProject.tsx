@@ -65,6 +65,7 @@ export default function SelectedProject({ handleClickSelection }: Props) {
           <p className="w-5/6 text-sm text-[#BDC1C5]">Brief Detail.</p>
         </div>
         <div className="flex items-center">
+          {/* Visit Button */}
           <button className="bg-[#8AB4F7] flex flex-row items-center rounded-full text-[#303134] text-sm px-3 py-2">
             <p className="px-2 ">Visit</p>
             <svg

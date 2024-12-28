@@ -4,7 +4,7 @@ import Link from 'next/link'
 
 export default function Footer() {
   return (
-    <div className="text-xs pl-40 pr-20 pt-8 flex flex-col bg-lightGrayText w-full w-[100%]">
+    <div className="text-xs pr-20 pt-8 flex flex-col w-5/6">
       <div className="flex flex-row pb-8">
         <p className="">Follow us</p>
         {/* TODO: find out why this logo is not appearing in the real emails.  */}
@@ -15,7 +15,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="border-[0.8px] border-bottom border-[#E5E7EB] w-[85%]"></div>
-      <div className="pt-8 pb-8">
+      <div className="pt-8 pb-10">
         We acknowledge and pay respect to the Traditional Owners and
         Elders—past, present and emerging—of the lands on which we operate.
       </div>

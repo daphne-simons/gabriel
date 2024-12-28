@@ -1,28 +1,25 @@
 import Link from 'next/link'
 // import Nav from '../components/Nav'
-import AboutLogo from '../components/Logos/AboutLogo'
+import AboutEnquireLogo from '../components/Logos/AboutEnquireLogo'
 import Footer from '../components/Footer'
 
 export default function AboutPage() {
   return (
     <>
-      {/* Nav - custom for AboutPage*/}
+      {/* Nav - custom for AboutPage */}
       <div className="flex flex-row relative gap-4 p-2">
-        <div className="flex justify-between mt-5 px-7 text-sm">
+        <ul className="flex justify-between pt-2 px-5 text-sm">
           <Link href="/">
-            <AboutLogo />
+            <AboutEnquireLogo />
           </Link>
-          {/* TODO: Make underline lower */}
-          <Link
-            href="/about"
-            className="hover:underline px-8 py-4 flex self-center"
-          >
-            About
+          {/* TODO: Make underline lower and blue */}
+          <Link href="/about" className="flex self-center px-8 pt-6 pb-4 ">
+            <li className=" pb-2 text-sm border-b-2 border-[#8AB4F7]">About</li>
           </Link>
-        </div>
+        </ul>
       </div>
-      {/* Rest of About Page content */}
-      <div className="pt-10 pb-14">
+      {/* About Page content */}
+      <div className="pt-10 pb-20 px-20">
         <section className="flex justify-center text-center ">
           <article className="font-roboto text-xl w-2/3">
             Gabriel is a design studio led by{' '}
@@ -36,20 +33,26 @@ export default function AboutPage() {
           </article>
         </section>
 
-        <div className="p-10 pt-20 flex flex-col items-center">
+        <div className="pt-20 flex flex-col items-center">
           <section className="w-5/6 grid grid-cols-2 gap-20 place-content-evenly">
             <article className="font-roboto text-2xl w-2/3">
               <h2>Gabriel</h2>
-              <p className="pt-2 text-base text-googleGray">
+              <p className="py-2 text-base text-googleGray">
                 140–142 McEvoy Street, <br></br>Alexandria, Sydney 2015, AU
               </p>
+              <button className="text-base text-googleButton border border-2-lightGray rounded-md px-6 py-2 mt-5">
+                View Map
+              </button>
             </article>
 
             <article className="font-roboto text-2xl w-2/3">
               <h2>Contact</h2>
-              <p className="pt-2 text-base text-googleGray">
+              <p className="pt-2 pb-8 text-base text-googleGray">
                 more@gabriel.exchange
               </p>
+              <button className="text-base text-googleButton border border-2-lightGray rounded-md px-6 py-2 mt-5">
+                Email Us
+              </button>
             </article>
 
             <article className="font-roboto text-2xl w-2/3">
@@ -88,7 +91,11 @@ export default function AboutPage() {
           </section>
         </div>
       </div>
-      <Footer />
+      <div className="bg-lightGrayText ">
+        <div className="flex flex-col items-center px-20">
+          <Footer />
+        </div>
+      </div>
     </>
   )
 }

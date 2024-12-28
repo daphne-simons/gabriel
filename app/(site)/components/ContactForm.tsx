@@ -91,26 +91,11 @@ const ContactForm = () => {
     if (changedService.length > 1) {
       changedService.shift()
     }
-    // console.log(changedService)
 
     return (
-      <div className="w-full mb-auto pb-20">
-        {/* Header */}
-        <div className="flex flex-col ">
-          <div id="header" className="flex flex-row relative gap-4 p-2">
-            {/* Wrapper logo and search bar */}
-            <div className="flex w-full">
-              {/* Logo */}
-              <div className="pr-8 pl-5 pt-2 flex items-center">
-                <Link href="/">
-                  <AboutLogo />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="w-5/6 mb-auto">
         {/* Enquiry form */}
-        <div className="pt-10 pl-40 flex ">
+        <div className="pt-10 pb-24">
           <div className="font-roboto text-xl w-2/3">
             <h2 className="text-6xl font-base">Hi, how can we help?</h2>
 
