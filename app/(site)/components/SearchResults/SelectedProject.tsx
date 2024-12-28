@@ -5,7 +5,7 @@ interface Props {
 }
 export default function SelectedProject({ handleClickSelection }: Props) {
   return (
-    <div className="h-[600px] rounded-xl text-white bg-[#171717] flex flex-col">
+    <div className="h-full rounded-xl text-white bg-[#171717] flex flex-col">
       <section className="flex flex-row justify-end gap-4 py-4 px-6">
         {/* Left Arrow button */}
         <button className="text-md">
