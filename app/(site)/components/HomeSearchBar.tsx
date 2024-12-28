@@ -109,20 +109,14 @@ export default function HomeSearchBar(theme: Props) {
             ))}
           </div>
         </div>
-        {/* I'm Feeling Lucky */}
-
+        {/* "I'm Feeling Lucky" Button - uses the <a> mailto: functionality to open a user's default email client*/}
         <div className={`pt-6 $ ${!isOpen ? 'opacity-1' : 'opacity-0'}`}>
-          {/* <Link href="/">
-            <button
-              
-              className={`px-4 py-2 rounded-lg shadow-customSearchLight hover:shadow-customSearchDark ${theme.btnSearchBg}`}
-            >
-              I&apos;m Feeling Lucky
-            </button>
-          </Link> */}
           <a
-            href="mailto:daphnejasminesimons@gmail.com?subject=I%27m%20Feeling%20Lucky"
-            className={`px-4 py-2 rounded-lg shadow-customSearchLight hover:shadow-customSearchDark ${theme.btnSearchBg}`}
+            className={`px-4 py-2.5 rounded-lg shadow-customSearchLight hover:shadow-customSearchDark ${theme.btnSearchBg}`}
+            // TODO: change this email address to Ella's official Gabriel Email
+            href="https://mail.google.com/mail/?view=cm&fs=1&to=daphnejasminesimons@gmail.com&su=I'm%20Feeling%20Lucky"
+            target="_blank"
+            rel="noopener noreferrer"
           >
             I&apos;m Feeling Lucky
           </a>
