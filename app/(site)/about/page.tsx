@@ -12,8 +12,7 @@ export default function AboutPage() {
           <Link href="/">
             <AboutEnquireLogo />
           </Link>
-          {/* TODO: Make underline lower and blue */}
-          <Link href="/about" className="flex self-center px-8 pt-6 pb-4 ">
+          <Link href="/about" className="flex self-center px-8 py-6 ">
             <li className=" pb-2 text-sm border-b-2 border-[#8AB4F7]">About</li>
           </Link>
         </ul>
@@ -37,22 +36,27 @@ export default function AboutPage() {
           <section className="w-5/6 grid grid-cols-2 gap-20 place-content-evenly">
             <article className="font-roboto text-2xl w-2/3">
               <h2>Gabriel</h2>
-              <p className="py-2 text-base text-googleGray">
+              <p className="py-2 text-base text-googleGray pb-10 ">
                 140–142 McEvoy Street, <br></br>Alexandria, Sydney 2015, AU
               </p>
-              <button className="text-base text-googleButton border border-2-lightGray rounded-md px-6 py-2 mt-5">
+              <button className="text-base text-googleButton border border-2-lightGray rounded-md px-6 py-2">
                 View Map
               </button>
             </article>
 
             <article className="font-roboto text-2xl w-2/3">
               <h2>Contact</h2>
-              <p className="pt-2 pb-8 text-base text-googleGray">
+              <p className="pt-2 pb-16 text-base text-googleGray">
                 more@gabriel.exchange
               </p>
-              <button className="text-base text-googleButton border border-2-lightGray rounded-md px-6 py-2 mt-5">
+              <a
+                className="text-base text-googleButton border border-2-lightGray rounded-md px-7 py-[10px]" // TODO: change this email address to Ella's official Gabriel Email
+                href="mailto:daphnejasminesimons@gmail.com?subject=General%20Enquiry%20for%20Gabriel"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Email Us
-              </button>
+              </a>
             </article>
 
             <article className="font-roboto text-2xl w-2/3">

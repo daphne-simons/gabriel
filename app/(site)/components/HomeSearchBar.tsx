@@ -114,9 +114,7 @@ export default function HomeSearchBar(theme: Props) {
           <a
             className={`px-4 py-2.5 rounded-lg shadow-customSearchLight hover:shadow-customSearchDark ${theme.btnSearchBg}`}
             // TODO: change this email address to Ella's official Gabriel Email
-            href="https://mail.google.com/mail/?view=cm&fs=1&to=daphnejasminesimons@gmail.com&su=I'm%20Feeling%20Lucky"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="mailto:daphnejasminesimons@gmail.com?subject=I%27m%20Feeling%20Lucky"
           >
             I&apos;m Feeling Lucky
           </a>
