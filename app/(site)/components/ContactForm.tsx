@@ -3,7 +3,6 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
-import AboutLogo from './Logos/AboutLogo'
 
 const ContactForm = () => {
   const searchParams = useSearchParams()
