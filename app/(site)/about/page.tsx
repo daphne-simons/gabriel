@@ -95,7 +95,7 @@ export default function AboutPage() {
           </section>
         </div>
       </div>
-      <div className="bg-lightGrayText ">
+      <div className="bg-lightGrayText bottom-0">
         <div className="flex flex-col items-center px-20">
           <Footer />
         </div>
