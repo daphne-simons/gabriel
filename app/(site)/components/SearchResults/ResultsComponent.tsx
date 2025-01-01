@@ -2,11 +2,15 @@
 import React from 'react'
 import SearchOptionsList from './SearchOptionsList'
 import { useState } from 'react'
+
+interface ResultsComponentProps {
+  chosenService: string
+  chosenGemLevel: string
+}
 export default function ResultsComponent({
   chosenService,
-}: {
-  chosenService: string
-}) {
+  chosenGemLevel,
+}: ResultsComponentProps) {
   const [products, setProducts] = useState({
     services: [
       'an identity',
@@ -29,6 +33,7 @@ export default function ResultsComponent({
         <SearchOptionsList
           options={products.options}
           chosenService={chosenService}
+          chosenGemLevel={chosenGemLevel}
         />
       </div>
     </>

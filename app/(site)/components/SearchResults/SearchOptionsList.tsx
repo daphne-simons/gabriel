@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import AllProjects from './AllProjects'
 import SelectedProject from './SelectedProject'
 
@@ -9,9 +9,14 @@ interface Props {
     cost: string
   }[]
   chosenService: string
+  chosenGemLevel: string
 }
 
-export default function SearchOptionsList({ options, chosenService }: Props) {
+export default function SearchOptionsList({
+  options,
+  chosenService,
+  chosenGemLevel,
+}: Props) {
   // TODO - make data structure in sanity that I can fetch with a query here and map through!
   // This state is for the sideBar component.
   const [option, setOption] = useState({
@@ -19,10 +24,20 @@ export default function SearchOptionsList({ options, chosenService }: Props) {
     level: 'Essential',
     cost: '2000-4000',
   })
+
   // State for toggling between AllProjects and SelectedProject on the side-bar gallery
   // initial state is 0 : shows AllProjects
   const [selection, setSelection] = useState<number>(0)
 
+  // Sync initial gemLevel from props
+  useEffect(() => {
+    if (chosenGemLevel) {
+      const selectedOption = options.find((opt) => opt.level === chosenGemLevel)
+      if (selectedOption) {
+        setOption(selectedOption)
+      }
+    }
+  }, [chosenGemLevel, options])
   // handleClick to go between all or specific work
   const handleClickSelection = (index: number) => {
     setSelection(index)
@@ -88,6 +103,7 @@ export default function SearchOptionsList({ options, chosenService }: Props) {
             <AllProjects
               option={option}
               chosenService={chosenService}
+              chosenGemLevel={chosenGemLevel}
               handleClickSelection={handleClickSelection}
             />
           )}

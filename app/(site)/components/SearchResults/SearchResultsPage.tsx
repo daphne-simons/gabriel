@@ -10,16 +10,28 @@ import SearchResultLogo from '../Logos/SearchResultLogo'
 
 export default function SearchResultsPage() {
   const [activeLink, setActiveLink] = useState<number>(0) // state for active link
-
+  const searchParams = useSearchParams()
   const handleLinkClick = (index: number) => {
     setActiveLink(index)
   }
   const [service, setService] = useState('')
-  const chosenService = useSearchParams().get('service')
+  const [gemLevel, setGemLevel] = useState('')
+
+  const chosenService = searchParams.get('service')
+  const chosenGemLevel = searchParams.get('gemLevel')
 
   useEffect(() => {
-    setService(chosenService || 'What are you looking for?')
-  }, [chosenService])
+    if (chosenService) {
+      setService(chosenService)
+    }
+    if (chosenGemLevel) {
+      setGemLevel(chosenGemLevel)
+    }
+  }, [chosenService, chosenGemLevel])
+
+  // Preserve query parameters
+  const queryString = searchParams.toString()
+  const searchResultsUrl = `/search-results${queryString ? `?${queryString}` : ''}`
 
   return (
     <>
@@ -49,7 +61,7 @@ export default function SearchResultsPage() {
           <div className="flex text-[#F8F9FA]">
             <ul className="flex flex-row ml-40 gap-8">
               <Link
-                href="/search-results"
+                href={searchResultsUrl}
                 onClick={() => handleLinkClick(0)}
                 className={`cursor-pointer ${
                   activeLink === 0
@@ -60,7 +72,7 @@ export default function SearchResultsPage() {
                 <li className="px-4 pb-2 text-sm">All</li>
               </Link>
               <Link
-                href="/search-results"
+                href={searchResultsUrl}
                 onClick={() => handleLinkClick(1)}
                 className={`cursor-pointer ${
                   activeLink === 1
@@ -78,7 +90,10 @@ export default function SearchResultsPage() {
           {activeLink ? (
             <Details />
           ) : (
-            <ResultsComponent chosenService={service} />
+            <ResultsComponent
+              chosenService={service}
+              chosenGemLevel={gemLevel}
+            />
           )}
         </div>
       </div>
