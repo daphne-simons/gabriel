@@ -24,11 +24,11 @@ const ContactPage = () => {
         </div>
         {/* Form and Footer */}
         <div>
-          <main className="flex-1 flex flex-col items-center px-20">
+          <main className="flex-1 flex flex-col items-start px-20 w-full mx-auto">
             <ContactForm />
           </main>
-          <div className="bg-lightGrayText bottom-0">
-            <div className="flex flex-col items-center px-20">
+          <div className="bg-lightGrayText bottom-0 px-20">
+            <div className="flex flex-col items-start">
               <Footer />
             </div>
           </div>
