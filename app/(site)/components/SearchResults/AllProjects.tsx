@@ -23,8 +23,6 @@ export default function AllProjects({
     Emerald: 'text-green-600',
     Ruby: 'text-red-600',
   }
-  console.log('option', option)
-  console.log('chosenService', chosenService)
 
   return (
     <div className="h-full ring-1 rounded-xl ring-[#7d8084]">

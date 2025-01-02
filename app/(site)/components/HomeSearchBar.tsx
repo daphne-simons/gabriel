@@ -23,7 +23,6 @@ export default function HomeSearchBar(theme: Props) {
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
   }
-  console.log('theme in homesearchbar:', theme)
 
   if (theme)
     return (

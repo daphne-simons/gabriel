@@ -14,8 +14,6 @@ import { EmailTemplateProps } from '@/app/(site)/models/models'
 // import gramercyFont from './fonts/ABCGramercyFine-Regular-Trial.woff2'
 
 const AutoReplyEmail = (person: EmailTemplateProps) => {
-  console.log(person)
-
   return (
     <Html>
       <Head />

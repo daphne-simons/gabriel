@@ -9,8 +9,6 @@ export async function POST(req: Request, res: Response) {
   const resend = new Resend(process.env.RESEND_API_KEY)
   try {
     const person = (await req.json()) as EmailTemplateProps
-    console.log('notify ella email', person)
-    // const { firstName, email, chosenService, gem, level, cost } = person
     // Send the email using Resend API
     await resend.emails.send({
       // TODO: This from address will need to change to a verified domain on resend, e.g. 'contact@gabriel.com' or whatever Ella wants to use for the domain.
