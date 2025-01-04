@@ -7,15 +7,24 @@ import Details from './Details'
 import { useSearchParams } from 'next/navigation'
 import SearchResultBar from './SearchResultBar'
 import SearchResultLogo from '../Logos/SearchResultLogo'
+import { Project } from '@/types/project'
+export default function SearchResultsPage({
+  projects,
+}: {
+  projects: Project[]
+}) {
+  // TODO: Prop drill this into the relevant components - render in side gallery
+  console.log('searchResultsPage:', projects)
 
-export default function SearchResultsPage() {
   const [activeLink, setActiveLink] = useState<number>(0) // state for active link
-  const searchParams = useSearchParams()
-  const handleLinkClick = (index: number) => {
-    setActiveLink(index)
-  }
   const [service, setService] = useState('')
   const [gemLevel, setGemLevel] = useState('')
+
+  const searchParams = useSearchParams()
+
+  function handleLinkClick(index: number) {
+    setActiveLink(index)
+  }
 
   const chosenService = searchParams.get('service')
   const chosenGemLevel = searchParams.get('gemLevel')

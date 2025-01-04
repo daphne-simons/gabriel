@@ -2,11 +2,27 @@ import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { revalidatePath } from 'next/cache'
-import { getProjects } from '@/sanity/sanity-utils'
+import { projectsQuery } from '@/sanity/sanity-utils'
+import { sanityFetch } from '@/sanity/config/client-config'
+import { Project } from '@/types/project'
+
+// / import { queryProjects, postQuery } from '@/sanity/queries'
 export default async function Projects() {
-  const projects = await getProjects()
-  // https://github.com/sanity-io/next-sanity?tab=readme-ov-file#cache-revalidation
-  revalidatePath('/')
+  // OLD WITHOUT WEBHOOK
+  // const projects = await getProjects()
+  // // https://github.com/sanity-io/next-sanity?tab=readme-ov-file#cache-revalidation
+  // revalidatePath('/')
+
+  // NEW WITH WEBHOOK
+  // Revalidate document when "post" is changed
+  const projects: Project[] = await sanityFetch({
+    query: projectsQuery,
+    // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
+    tags: ['projects', 'pages'],
+  })
+
+  console.log(projects)
+
   return (
     <>
       <h2 className="mt-24 font-bold text-3xl text-gray-600">My Projects</h2>
