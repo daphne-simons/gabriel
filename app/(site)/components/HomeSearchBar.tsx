@@ -12,6 +12,7 @@ interface Props {
 
 export default function HomeSearchBar(theme: Props) {
   const [isOpen, setIsOpen] = useState(false)
+  // FIX: another unused set function
   const [services, setServices] = useState([
     'an identity',
     'a publication',
