@@ -14,6 +14,7 @@ export default function SearchResultBar({
   }, [chosenService])
   const [activeService, setActiveService] = useState(chosenService)
   const [isOpen, setIsOpen] = useState(false)
+  // FIX: setServices is unused here, a regular variable can be used
   // For mapping the drop down options
   const [services, setServices] = useState([
     'an identity',
