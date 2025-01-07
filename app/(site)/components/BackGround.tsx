@@ -16,14 +16,16 @@ export default function BackGround({
     | undefined
   children: React.ReactNode
 }) {
-  if (theme)
-    return (
-      <>
-        <div
-          className={`${theme.bgColor} fill-current ${theme.textColor} ${theme.btnSearchBg}`}
-        >
-          <div className={`bg-cover ${theme.bgImg}`}>{children}</div>
-        </div>
-      </>
-    )
+  if (!theme) {
+    return null
+  }
+  return (
+    <>
+      <div
+        className={`${theme.bgColor} fill-current ${theme.textColor} ${theme.btnSearchBg}`}
+      >
+        <div className={`bg-cover ${theme.bgImg}`}>{children}</div>
+      </div>
+    </>
+  )
 }

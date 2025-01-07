@@ -27,7 +27,7 @@ const ContactForm = () => {
   }
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
+    // FIX: extract the code below and put it in a separate module
     try {
       const response = await fetch('/api/send', {
         method: 'POST',
@@ -88,6 +88,11 @@ const ContactForm = () => {
     }
   }
 
+  let gemStyle = ''
+  if (gem === 'Sapphire') gemStyle = 'text-googleBlue'
+  else if (gem === 'Emerald') gemStyle = 'text-googleGreen'
+  else if (gem === 'Ruby') gemStyle = 'text-googleRed'
+
   return (
     <div className="w-full mb-auto">
       {/* Enquiry form */}
@@ -123,17 +128,7 @@ const ContactForm = () => {
             </div>
             <p>
               I&apos;d like to learn more about the{' '}
-              <span
-                className={`font-semibold ${
-                  gem === 'Sapphire'
-                    ? 'text-googleBlue'
-                    : gem === 'Emerald'
-                      ? 'text-googleGreen'
-                      : gem === 'Ruby'
-                        ? 'text-googleRed'
-                        : ''
-                }`}
-              >
+              <span className={`font-semibold ${gemStyle}`}>
                 {level.toLowerCase()}
               </span>{' '}
               package, for{' '}
