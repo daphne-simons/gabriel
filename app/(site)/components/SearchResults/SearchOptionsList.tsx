@@ -43,6 +43,11 @@ export default function SearchOptionsList({
     setSelection(index)
   }
 
+  let gemStyle = ''
+  if (option.gem === 'Sapphire') gemStyle = 'bg-blue-600'
+  else if (option.gem === 'Emerald') gemStyle = 'bg-green-600'
+  else if (option.gem === 'Ruby') gemStyle = 'bg-red-600'
+
   return (
     <>
       <div className="pt-6 flex flex-row">
@@ -53,17 +58,7 @@ export default function SearchOptionsList({
               <div id="searchresult">
                 <div className="pt-6">
                   <div className="flex flex-row">
-                    <div
-                      className={`rounded-full w-10 h-10 ${
-                        option.gem === 'Sapphire'
-                          ? 'bg-blue-600'
-                          : option.gem === 'Emerald'
-                            ? 'bg-green-600'
-                            : option.gem === 'Ruby'
-                              ? 'bg-red-600'
-                              : ''
-                      }`}
-                    ></div>
+                    <div className={`rounded-full w-10 h-10 ${gemStyle}`}></div>
                     <div>
                       <h2 className=" pl-2 text-sm  text-[#F8F9FA]">
                         {option.level} Identity
