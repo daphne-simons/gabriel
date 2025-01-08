@@ -1,9 +1,6 @@
-// import { hookSecret } from '@/lib/sanity.api'
 import { revalidateTag } from 'next/cache'
 import { type NextRequest, NextResponse } from 'next/server'
 import { parseBody } from 'next-sanity/webhook'
-
-// const hookSecret = process.env.NEXT_PUBLIC_SANITY_HOOK_SECRET
 
 export async function POST(req: NextRequest) {
   try {

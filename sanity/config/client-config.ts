@@ -1,7 +1,6 @@
 import 'server-only'
 import { createClient, type QueryParams } from 'next-sanity'
 
-// Test project - OLD
 const config = {
   projectId: 'z5623np1',
   dataset: 'production',
