@@ -5,6 +5,7 @@ import SearchResultsPage from '../components/SearchResults/SearchResultsPage'
 // import { getProjects } from '@/sanity/sanity-utils'
 import { projectsQuery } from '@/sanity/sanity-utils'
 import { Project } from '@/types/project'
+import { Suspense } from 'react'
 
 export default async function SearchResults() {
   // OLD WITHOUT WEBHOOK - doesn't update when sanity studio content is changed
@@ -20,5 +21,11 @@ export default async function SearchResults() {
     // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
     tags: ['projects', 'pages'],
   })
-  return <SearchResultsPage projects={projects} />
+  return (
+    <>
+      <Suspense>
+        <SearchResultsPage projects={projects} />
+      </Suspense>
+    </>
+  )
 }
