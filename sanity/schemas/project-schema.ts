@@ -38,6 +38,11 @@ const project = {
       type: 'url',
     },
     {
+      name: 'gem',
+      title: 'Gem',
+      type: 'string',
+    },
+    {
       name: 'content', //
       title: 'Content',
       type: 'array',
