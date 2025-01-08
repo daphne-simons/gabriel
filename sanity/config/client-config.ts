@@ -1,9 +1,5 @@
 import 'server-only'
-import {
-  createClient,
-  type ClientConfig,
-  type QueryParams,
-} from '@sanity/client'
+import { createClient, type QueryParams } from 'next-sanity'
 
 // Test project - OLD
 const config = {
