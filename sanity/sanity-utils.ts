@@ -14,6 +14,7 @@ export const projectsQuery = groq`*[_type == "project"]{
       "slug": slug.current,
       "image": image.asset->url,
       url,
+      gem,
       content
     }`
 
@@ -23,7 +24,8 @@ export const singleProjectQuery = groq`*[_type == "project" && slug.current == $
       name,
       "slug": slug.current,
       "image": image.asset->url,
-      url,  
+      url,
+      gem,  
       content, 
     }`
 
