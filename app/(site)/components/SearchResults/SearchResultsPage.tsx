@@ -102,7 +102,7 @@ export default function SearchResultsPage({
               chosenService={service}
               chosenGemLevel={gemLevel}
               // TODO: handle the change in slected gem logic - show in searchParams.
-              setChosenGemLevel={setGemLevel}
+
               // Prop drill projects into the relevant components - render in side gallery
               projects={projects}
             />
