@@ -2,7 +2,7 @@ import { Project } from '@/types/project'
 import Image from 'next/image'
 
 interface Props {
-  handleClickSelection: (index: number) => void
+  handleClickSelection: (index: string | null) => void
   chosenProjects: Project[]
 }
 export default function Gallery({
@@ -25,19 +25,19 @@ export default function Gallery({
       {/* TODO: map through chosenImages and render just like the HARDCODED GOOGLE STYLE IMG GRID- but dynamic*/}
 
       {/* Map through chosenProjects and dynamically apply grid styles */}
-      {chosenProjects.slice(0, gridStyles.length).map((project, index) => (
+      {chosenProjects.map((project, index) => (
         <div
           key={project._id}
           id={project._id}
-          onClick={() => handleClickSelection(index)}
-          className={`relative overflow-hidden ${gridStyles[index]} `}
+          onClick={() => handleClickSelection(project._id)}
+          className={`relative overflow-hidden ${gridStyles[index % gridStyles.length]} `}
         >
           <Image
             src={project.image}
             alt={project.name}
-            width={0}
-            height={0}
-            className="rounded-lg fill object-cover"
+            fill
+            sizes="100vw"
+            className="object-cover"
           />
         </div>
       ))}

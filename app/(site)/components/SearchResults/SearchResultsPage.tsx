@@ -101,8 +101,6 @@ export default function SearchResultsPage({
             <ResultsComponent
               chosenService={service}
               chosenGemLevel={gemLevel}
-              // TODO: handle the change in slected gem logic - show in searchParams.
-
               // Prop drill projects into the relevant components - render in side gallery
               projects={projects}
             />

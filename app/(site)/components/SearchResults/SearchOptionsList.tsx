@@ -40,7 +40,13 @@ export default function SearchOptionsList({
   ])
   // State for toggling between AllProjects and SelectedProject on the side-bar gallery
   // initial state is 0 : shows AllProjects
-  const [selection, setSelection] = useState<number>(0)
+  const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
+    null
+  )
+
+  const handleClickSelection = (id: string | null) => {
+    setSelectedProjectId(id)
+  }
 
   useEffect(() => {
     console.log('projects', projects)
@@ -51,11 +57,6 @@ export default function SearchOptionsList({
     console.log('projectByGem', projectsByGem)
     setChosenProjects(projectsByGem)
   }, [projects, option.gem])
-
-  // handleClick to go between all or specific work
-  const handleClickSelection = (index: number) => {
-    setSelection(index)
-  }
 
   return (
     <>
@@ -106,14 +107,16 @@ export default function SearchOptionsList({
           ))}
         </div>
         <div className="w-1/2 flex flex-col pr-32 pt-6">
-          {/* Show SELECTED work: */}
-          {/* TODO: prop drill project data in here */}
-          {/* Selected === truthy === 1 */}
-          {selection ? (
-            <SelectedProject handleClickSelection={handleClickSelection} />
+          {/* Show SELECTED project: */}
+          {selectedProjectId ? (
+            <SelectedProject
+              project={projects.find((p) => p._id === selectedProjectId)!}
+              chosenProjects={chosenProjects}
+              updateSelectedProject={(id: string) => setSelectedProjectId(id)}
+              handleClickSelection={() => handleClickSelection(null)}
+            />
           ) : (
-            // Show ALL works:
-            // Selected === falsy === 0
+            // Show ALL projects:
             <AllProjects
               option={option}
               chosenService={chosenService}

@@ -1,4 +1,3 @@
-import Image from 'next/image'
 // Using the moon.css styles
 export default function MoonLoader({ size }: { size: string }) {
   const smallMoon = size === 'smallMoon'

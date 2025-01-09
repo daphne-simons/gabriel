@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Gallery from './Gallery'
 import { Project } from '@/types/project'
+import { NodeType } from 'next-sanity'
 
 interface Props {
   option: {
@@ -10,7 +11,7 @@ interface Props {
   }
   chosenService: string
   chosenProjects: Project[]
-  handleClickSelection: (index: number) => void
+  handleClickSelection: (index: string | null) => void
 }
 export default function AllProjects({
   option,
