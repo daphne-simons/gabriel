@@ -13,9 +13,6 @@ export default function SearchResultsPage({
 }: {
   projects: Project[]
 }) {
-  // TODO: Prop drill this into the relevant components - render in side gallery
-  console.log('searchResultsPage:', projects)
-
   const [activeLink, setActiveLink] = useState<number>(0) // state for active link
   const [service, setService] = useState('')
   const [gemLevel, setGemLevel] = useState('')
@@ -40,6 +37,8 @@ export default function SearchResultsPage({
 
   // Preserve query parameters
   const queryString = searchParams.toString()
+  console.log('queryString', queryString)
+
   const searchResultsUrl = `/search-results${queryString ? `?${queryString}` : ''}`
 
   return (
@@ -102,6 +101,10 @@ export default function SearchResultsPage({
             <ResultsComponent
               chosenService={service}
               chosenGemLevel={gemLevel}
+              // TODO: handle the change in slected gem logic - show in searchParams.
+              setChosenGemLevel={setGemLevel}
+              // Prop drill projects into the relevant components - render in side gallery
+              projects={projects}
             />
           )}
         </div>

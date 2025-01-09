@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import AllProjects from './AllProjects'
 import SelectedProject from './SelectedProject'
+import { Project } from '@/types/project'
 
 interface Props {
   options: {
@@ -9,13 +10,13 @@ interface Props {
     cost: string
   }[]
   chosenService: string
-  chosenGemLevel: string
+  projects: Project[]
 }
 
 export default function SearchOptionsList({
   options,
   chosenService,
-  chosenGemLevel,
+  projects,
 }: Props) {
   // TODO - make data structure in sanity that I can fetch with a query here and map through!
   // This state is for the sideBar component.
@@ -25,19 +26,32 @@ export default function SearchOptionsList({
     cost: '2000-4000',
   })
 
+  const [chosenProjects, setChosenProjects] = useState<Project[]>([
+    {
+      _id: '',
+      _createdAt: new Date(),
+      name: '',
+      slug: '',
+      image: '',
+      url: '',
+      gem: '',
+      content: [],
+    },
+  ])
   // State for toggling between AllProjects and SelectedProject on the side-bar gallery
   // initial state is 0 : shows AllProjects
   const [selection, setSelection] = useState<number>(0)
 
-  // Sync initial gemLevel from props
   useEffect(() => {
-    if (chosenGemLevel) {
-      const selectedOption = options.find((opt) => opt.level === chosenGemLevel)
-      if (selectedOption) {
-        setOption(selectedOption)
-      }
-    }
-  }, [chosenGemLevel, options])
+    console.log('projects', projects)
+    // Logic to filter projects by gem:
+    const projectsByGem = projects.filter((project) => {
+      return project.gem === option.gem
+    })
+    console.log('projectByGem', projectsByGem)
+    setChosenProjects(projectsByGem)
+  }, [projects, option.gem])
+
   // handleClick to go between all or specific work
   const handleClickSelection = (index: number) => {
     setSelection(index)
@@ -103,8 +117,8 @@ export default function SearchOptionsList({
             <AllProjects
               option={option}
               chosenService={chosenService}
-              chosenGemLevel={chosenGemLevel}
               handleClickSelection={handleClickSelection}
+              chosenProjects={chosenProjects}
             />
           )}
         </div>
