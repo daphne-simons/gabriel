@@ -28,7 +28,8 @@
     "react-dom": "^18",
     "react-email": "2.1.4",
     "resend": "^3.2.0",
-    "sanity": "^3.34.0"
+    "sanity": "^3.34.0",
+    "zod": "^3.24.1"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
