@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Gallery from './Gallery'
 import { Project } from '@/types/project'
-import { NodeType } from 'next-sanity'
 
 interface Props {
   option: {
@@ -32,7 +31,6 @@ export default function AllProjects({
     <div className="h-full ring-1 rounded-xl ring-[#7d8084]">
       {/* GALLERY Grid */}
       <div className="h-2/5 ">
-        {/* TODO: prop drill chosenProjects into Gallery */}
         <Gallery
           handleClickSelection={handleClickSelection}
           chosenProjects={chosenProjects}

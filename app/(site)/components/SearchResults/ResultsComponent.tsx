@@ -6,12 +6,10 @@ import { Project } from '@/types/project'
 
 interface ResultsComponentProps {
   chosenService: string
-  chosenGemLevel: string
   projects: Project[]
 }
 export default function ResultsComponent({
   chosenService,
-  chosenGemLevel,
   projects,
 }: ResultsComponentProps) {
   const [products, setProducts] = useState({

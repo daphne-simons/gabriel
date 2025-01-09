@@ -49,7 +49,6 @@ export default function SearchOptionsList({
   }
 
   useEffect(() => {
-    console.log('projects', projects)
     // Logic to filter projects by gem:
     const projectsByGem = projects.filter((project) => {
       return project.gem === option.gem
@@ -58,6 +57,14 @@ export default function SearchOptionsList({
     setChosenProjects(projectsByGem)
   }, [projects, option.gem])
 
+  const handleGemClick = (gemOption: {
+    gem: string
+    level: string
+    cost: string
+  }) => {
+    setOption(gemOption)
+    handleClickSelection(null)
+  }
   return (
     <>
       <div className="pt-6 flex flex-row">
@@ -90,7 +97,7 @@ export default function SearchOptionsList({
                       </div>
                     </div>
                   </div>
-                  <button onClick={() => setOption(option)}>
+                  <button onClick={() => handleGemClick(option)}>
                     <h2 className={`pt-2 text-xl font-medium text-[#8AB4F7]`}>
                       {option.gem}
                     </h2>

@@ -65,7 +65,7 @@ export default function SearchResultsPage({
               </div>
             </div>
           </div>
-          {/* Second Nav bar - All Pricing Terms */}
+          {/* Second Nav bar - All and Details */}
           <div className="flex text-[#F8F9FA]">
             <ul className="flex flex-row ml-40 gap-8">
               <Link
@@ -98,12 +98,7 @@ export default function SearchResultsPage({
           {activeLink ? (
             <Details />
           ) : (
-            <ResultsComponent
-              chosenService={service}
-              chosenGemLevel={gemLevel}
-              // Prop drill projects into the relevant components - render in side gallery
-              projects={projects}
-            />
+            <ResultsComponent chosenService={service} projects={projects} />
           )}
         </div>
       </div>

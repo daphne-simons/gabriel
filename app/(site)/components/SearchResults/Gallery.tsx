@@ -22,9 +22,7 @@ export default function Gallery({
       id="gallery-grid"
       className="w-full h-full grid grid-cols-8 grid-rows-4 gap-1"
     >
-      {/* TODO: map through chosenImages and render just like the HARDCODED GOOGLE STYLE IMG GRID- but dynamic*/}
-
-      {/* Map through chosenProjects and dynamically apply grid styles */}
+      {/* Map through gem related chosenProjects and dynamically apply grid styles */}
       {chosenProjects.map((project, index) => (
         <div
           key={project._id}
