@@ -12,6 +12,9 @@ export default function ResultsComponent({
   chosenService,
   projects,
 }: ResultsComponentProps) {
+  /* FIX: setProducts is unused here
+   * Maybe this could be a regular variable?
+   */
   const [products, setProducts] = useState({
     services: [
       'an identity',
