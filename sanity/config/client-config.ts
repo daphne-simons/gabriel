@@ -5,7 +5,9 @@ const config = {
   projectId: 'z5623np1',
   dataset: 'production',
   apiVersion: '2024-03-16', // todays date (USA format)
-  useCdn: false, // gives more up to date changes - no default cache
+  // useCdn: false, // gives more up to date changes - no default cache
+  // set CDN to live API in development mode
+  useCdn: process.env.NODE_ENV === 'development' ? true : false,
   // https://github.com/sanity-io/next-sanity?tab=readme-ov-file#should-usecdn-be-true-or-false
 }
 
@@ -25,7 +27,8 @@ export async function sanityFetch<QueryResponse>({
   tags: string[]
 }): Promise<QueryResponse> {
   return client.fetch<QueryResponse>(query, qParams, {
-    cache: 'force-cache',
+    // disable cache in development
+    cache: process.env.NODE_ENV === 'development' ? 'no-store' : 'force-cache',
     next: { tags },
   })
 }

@@ -19,7 +19,7 @@ export default async function SearchResults() {
   const projects: Project[] = await sanityFetch({
     query: projectsQuery,
     // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
-    tags: ['projects', 'pages'],
+    tags: ['project'],
   })
   return (
     <>
