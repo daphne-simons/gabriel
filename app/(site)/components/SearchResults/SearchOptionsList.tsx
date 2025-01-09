@@ -18,8 +18,6 @@ export default function SearchOptionsList({
   chosenService,
   projects,
 }: Props) {
-  // TODO - make data structure in sanity that I can fetch with a query here and map through!
-  // This state is for the sideBar component.
   const [option, setOption] = useState({
     gem: 'Sapphire',
     level: 'Essential',
@@ -39,7 +37,7 @@ export default function SearchOptionsList({
     },
   ])
   // State for toggling between AllProjects and SelectedProject on the side-bar gallery
-  // initial state is 0 : shows AllProjects
+  // null shows all, a specific id will show a specific project
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
     null
   )
@@ -81,7 +79,18 @@ export default function SearchOptionsList({
               <div id="searchresult">
                 <div className="pt-6">
                   <div className="flex flex-row">
-                    <div className={`rounded-full w-10 h-10 ${gemStyle}`}></div>
+                    <div
+                      onClick={() => handleGemClick(option)}
+                      className={`rounded-full w-10 h-10 ${
+                        option.gem === 'Sapphire'
+                          ? 'bg-blue-600'
+                          : option.gem === 'Emerald'
+                            ? 'bg-green-600'
+                            : option.gem === 'Ruby'
+                              ? 'bg-red-600'
+                              : ''
+                      }`}
+                    ></div>
                     <div>
                       <h2 className=" pl-2 text-sm  text-[#F8F9FA]">
                         {option.level} Identity

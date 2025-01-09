@@ -12,10 +12,7 @@ export default function ResultsComponent({
   chosenService,
   projects,
 }: ResultsComponentProps) {
-  /* FIX: setProducts is unused here
-   * Maybe this could be a regular variable?
-   */
-  const [products, setProducts] = useState({
+  const products = {
     services: [
       'an identity',
       'a publication',
@@ -29,7 +26,7 @@ export default function ResultsComponent({
       { gem: 'Emerald', level: 'Comprehensive', cost: '4000-6000' },
       { gem: 'Ruby', level: 'Premium', cost: '6000-10000' },
     ],
-  })
+  }
   return (
     <>
       {/* Options List and Side bar with Gallery, info, links*/}
