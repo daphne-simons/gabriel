@@ -7,5 +7,6 @@ export type Project = {
   slug: string
   image: string
   url: string
+  gem: string
   content: PortableTextBlock[] // This is how Sanity stores 'rich' content.
 }
