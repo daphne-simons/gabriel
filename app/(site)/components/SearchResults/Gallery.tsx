@@ -35,7 +35,7 @@ export default function Gallery({
             alt={project.name}
             fill
             sizes="100vw"
-            className="object-cover"
+            className="object-cover hover:scale-125 transition duration-500 ease-in-out"
           />
         </div>
       ))}
