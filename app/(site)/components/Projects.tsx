@@ -21,8 +21,6 @@ export default async function Projects() {
     tags: ['projects', 'pages'],
   })
 
-  console.log(projects)
-
   return (
     <>
       <h2 className="mt-24 font-bold text-3xl text-gray-600">My Projects</h2>

@@ -25,8 +25,6 @@ export default function AllProjects({
     Ruby: 'text-red-600',
   }
 
-  console.log('chosenProjects', chosenProjects)
-
   return (
     <div className="h-full ring-1 rounded-xl ring-[#7d8084]">
       {/* GALLERY Grid */}

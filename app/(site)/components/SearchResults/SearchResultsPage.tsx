@@ -37,7 +37,6 @@ export default function SearchResultsPage({
 
   // Preserve query parameters
   const queryString = searchParams.toString()
-  console.log('queryString', queryString)
 
   const searchResultsUrl = `/search-results${queryString ? `?${queryString}` : ''}`
 
