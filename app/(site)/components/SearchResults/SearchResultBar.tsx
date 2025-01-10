@@ -1,31 +1,44 @@
 'use client'
 import React, { useEffect } from 'react'
-import Link from 'next/link'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 export default function SearchResultBar({
   chosenService,
 }: {
   chosenService: string
 }) {
-  // This useEffect will trigger if the chosenService changes, and will set the activeService to the chosenService
+  const router = useRouter()
+
   useEffect(() => {
     setActiveService(chosenService)
   }, [chosenService])
+
   const [activeService, setActiveService] = useState(chosenService)
   const [isOpen, setIsOpen] = useState(false)
-  // FIX: setServices is unused here, a regular variable can be used
-  // For mapping the drop down options
-  const [services, setServices] = useState([
+
+  const services = [
     'an identity',
     'a publication',
     'ephemera',
     'a website',
     'a design subscription',
     'something else',
-  ])
+  ]
+
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
+  }
+
+  // console.log('services', services)
+  // console.log('activeService', activeService)
+
+  const handleServiceClick = (service: string) => {
+    setActiveService(service)
+    setIsOpen(false) // Close dropdown after selection
+
+    // Update the search parameters in the URL
+    router.push(`/search-results?service=${encodeURIComponent(service)}`)
   }
   return (
     <div
@@ -40,7 +53,7 @@ export default function SearchResultBar({
       >
         <h2 className="absolute top-[12px]">
           <span className="font-thin ">I want </span>
-          <span className="font-bold">{activeService}</span>
+          <span className="font-bold">{activeService || '...'}</span>
         </h2>
       </div>
       <span className="h-6 w-6 top-[15px] pt-4 left-4 absolute">
@@ -54,13 +67,12 @@ export default function SearchResultBar({
         </svg>
       </span>
       {/* Dropdown Menu */}
-      {services.map((service, index) => (
+      {isOpen && (
         <div
           id="dropdown"
           className={`absolute z-10 pl-8 py-1 pb-2 text-[#F8F9FA]  w-full rounded-[25px] flex flex-col gap-2 bg-[#303134] top-5 drop-shadow-lg ${
             isOpen ? 'block' : 'hidden'
           }`}
-          key={index}
         >
           {/* Landing Option*/}
           <div className="flex flex-row relative rounded-full">
@@ -78,10 +90,8 @@ export default function SearchResultBar({
               What are you looking for?
             </li>
           </div>
-          <div className="translate-x-4 -translate-y-2.5 border-b w-[90%] h-1 border-gray-400"></div>
-          {/* Options - Map through services state */}
-          <>
-            <div className="flex flex-row relative ">
+          {services.map((service, index) => (
+            <div className="flex flex-row relative" key={index}>
               <span className="h-6 w-6 -ml-4 mt-2.5 absolute">
                 <svg
                   focusable="false"
@@ -92,19 +102,17 @@ export default function SearchResultBar({
                   <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
                 </svg>
               </span>
-              <Link
-                onClick={() => setActiveService(service)}
-                href={`/search-results?service=${service}`}
+              <li
+                onClick={() => handleServiceClick(service)}
+                className="block px-4 py-2"
               >
-                <li className="block px-4 py-2">
-                  <span className="font-thin">I want </span>
-                  <span className="font-bold">{service}</span>
-                </li>
-              </Link>
+                <span className="font-thin">I want </span>
+                <span className="font-bold">{service}</span>
+              </li>
             </div>
-          </>
+          ))}
         </div>
-      ))}
+      )}
     </div>
   )
 }

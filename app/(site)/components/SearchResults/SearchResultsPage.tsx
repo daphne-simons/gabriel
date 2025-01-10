@@ -15,7 +15,6 @@ export default function SearchResultsPage({
 }) {
   const [activeLink, setActiveLink] = useState<number>(0) // state for active link
   const [service, setService] = useState('')
-  const [gemLevel, setGemLevel] = useState('')
 
   const searchParams = useSearchParams()
 
@@ -24,16 +23,12 @@ export default function SearchResultsPage({
   }
 
   const chosenService = searchParams.get('service')
-  const chosenGemLevel = searchParams.get('gemLevel')
 
   useEffect(() => {
     if (chosenService) {
       setService(chosenService)
     }
-    if (chosenGemLevel) {
-      setGemLevel(chosenGemLevel)
-    }
-  }, [chosenService, chosenGemLevel])
+  }, [chosenService])
 
   // Preserve query parameters
   const queryString = searchParams.toString()
