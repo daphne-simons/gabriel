@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { sendEmailEnquiry } from '@/app/utilFunctions/emailLogic'
+import { sendEmailEnquiry } from '../utils/emailProvider'
 
 const ContactForm = () => {
   const [name, setName] = useState('')

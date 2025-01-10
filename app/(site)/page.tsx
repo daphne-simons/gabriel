@@ -8,7 +8,7 @@ import MoonWidget from './components/MoonWidget'
 import HomeLogo from './components/Logos/HomeLogo'
 import { useQuery } from '@tanstack/react-query'
 import getMoon from '@/query/utils/getMoonData'
-import { calculateBgColor } from '@/functions/util-functions'
+import { calculateBgColor } from '../(site)/utils/moon-utils'
 import MoonLoader from './components/MoonLoader'
 
 export default function Home() {
