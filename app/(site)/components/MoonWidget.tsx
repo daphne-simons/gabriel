@@ -140,7 +140,7 @@ export default function MoonWidget({ size }: { size: string }) {
               alt={phase.phase}
               width={30}
               height={30}
-              className=""
+              className="rounded-full filter drop-shadow-[0_0_5px_#fefee0]"
             />
           </Link>
         </div>

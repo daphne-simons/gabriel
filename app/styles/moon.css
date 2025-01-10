@@ -2,7 +2,7 @@
 
 /* Variables */
 :root {
-  --c0: #f7f7c8;
+  --c0: #cdcdcd;
   --c1: #1d1d1d;
   --d: 2em;
   --medD: 8em;
@@ -55,13 +55,14 @@
   /* size of width, height and bottom change */
   height: 2em;
   width: 2em;
-  bottom: 32px;
+  bottom: 28px;
   position: relative;
   border-radius: 50%;
-  box-shadow: 0 0 20px #fefee0;
+  box-shadow: 0 0 10px #fefee0;
+  /* background-image: url('/moon-imgs/full.png'); */
   background-image: url('/moon-texture.jpeg');
   background-size: cover;
-  opacity: 0.1;
+  opacity: 0.2;
 }
 
 /* Keyframes */

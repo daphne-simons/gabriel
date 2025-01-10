@@ -2,7 +2,7 @@
 export default function MoonLoader({ size }: { size: string }) {
   if (size === 'smallMoon')
     return (
-      <div className="h-2 -mt-7">
+      <div className="h-2 -mt-5">
         <div className="small-moon-container">
           <div className="small-moon-spin"></div>
           <section className="small-moon-texture"></section>
