@@ -12,15 +12,15 @@ interface Props {
 
 export default function HomeSearchBar(theme: Props) {
   const [isOpen, setIsOpen] = useState(false)
-  // FIX: another unused set function
-  const [services, setServices] = useState([
+
+  const services = [
     'an identity',
     'a publication',
     'ephemera',
     'a website',
     'a design subscription',
     'something else',
-  ])
+  ]
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
   }
@@ -109,7 +109,7 @@ export default function HomeSearchBar(theme: Props) {
             ))}
           </div>
         </div>
-        {/* "I'm Feeling Lucky" Button - uses the <a> mailto: functionality to open a user's default email client*/}
+        {/* "I'm Feeling Lucky"  uses the <a> mailto: functionality to open a user's default email client*/}
         <div className={`pt-6 $ ${!isOpen ? 'opacity-1' : 'opacity-0'}`}>
           <a
             className={`px-4 py-2.5 rounded-lg shadow-customSearchLight hover:shadow-customSearchDark ${theme.btnSearchBg}`}

@@ -58,17 +58,8 @@ export default function MoonWidget({ size }: { size: string }) {
     return <div>Sorry There was an Error</div>
   }
   if (moonData) {
-    //  Gets the dynamic svg data from the moonData api query:
-    const moonPhaseSVG = moonData.phase[new Date().getDate()].svg
-
-    // FIX: it seems that the for loop below does nothing
-    // List out all moonPhases from api:
-    for (let key in moonData.phase) {
-      if (moonData.phase.hasOwnProperty(key)) {
-      }
-    }
     const moonPhases = moonData.phase
-    // remove duplicate names
+    // removes duplicate names
     const phaseNamesSet = new Set()
     for (let key in moonPhases) {
       if (moonPhases.hasOwnProperty(key)) {
