@@ -30,7 +30,6 @@ export default function SearchResultsPage({
 
   const chosenService = searchParams.get('service')
 
-  useEffect(() => {})
   useEffect(() => {
     if (chosenService) {
       setService(chosenService)
@@ -43,7 +42,7 @@ export default function SearchResultsPage({
         {/* Header */}
         <div className="h-auto flex flex-col border-b border-[#7d8084] ">
           <div id="header" className="flex flex-row relative gap-4 p-2">
-            {/* Wrapper logo and search bar */}
+            {/* Wrapper for logo and search bar */}
             <div className="flex w-full">
               {/* Logo */}
               <div className="pr-8 pl-5 pt-2 flex items-center">
@@ -54,7 +53,6 @@ export default function SearchResultsPage({
               <div className="flex flex-row w-full justify-between">
                 {/* Searchbar */}
                 <SearchResultBar chosenService={service} />
-
                 <div className="mr-8 flex items-center text-[#F8F9FA] text-sm font-roboto">
                   <MoonWidget size="smallMoon" />
                 </div>
