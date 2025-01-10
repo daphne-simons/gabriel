@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import AllProjects from './AllProjects'
 import SelectedProject from './SelectedProject'
 import { Project } from '@/types/project'
-
+import { useSearchParams, usePathname, useRouter } from 'next/navigation'
 interface Props {
   options: {
     gem: string
@@ -18,12 +18,16 @@ export default function SearchOptionsList({
   chosenService,
   projects,
 }: Props) {
+  // HOOKS
+  const searchParams = useSearchParams()
+  const path = usePathname()
+  const router = useRouter()
   const [option, setOption] = useState({
     gem: 'Sapphire',
     level: 'Essential',
     cost: '2000-4000',
   })
-
+  // STATES
   const [chosenProjects, setChosenProjects] = useState<Project[]>([
     {
       _id: '',
@@ -41,19 +45,49 @@ export default function SearchOptionsList({
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
     null
   )
-
-  const handleClickSelection = (id: string | null) => {
-    setSelectedProjectId(id)
-  }
-
+  // USE EFFECTS
+  // Filter projects by gem
   useEffect(() => {
-    // Logic to filter projects by gem:
     const projectsByGem = projects.filter((project) => {
       return project.gem === option.gem
     })
-    console.log('projectByGem', projectsByGem)
     setChosenProjects(projectsByGem)
   }, [projects, option.gem])
+
+  // Syncs up the gem query from the URL with the gem option state
+  useEffect(() => {
+    const gemParam = searchParams.get('gem')
+    if (gemParam) {
+      setOption((prev) => ({ ...prev, gem: gemParam }))
+    }
+  }, [searchParams])
+
+  // Resets the gem to default 'Sapphire' when chosenService changes
+  useEffect(() => {
+    setOption((prev) => ({
+      ...prev,
+      gem: 'Sapphire', // Default gem
+    }))
+    // Optionally clear the gem query from the URL if needed
+    const params = new URLSearchParams(searchParams.toString())
+    params.delete('gem')
+    router.push(`${path}?${params.toString()}`)
+  }, [chosenService])
+
+  // Get a new searchParams string by merging the current
+  // searchParams with a provided key/value pair
+  const createQueryString = useCallback(
+    (name: string, value: string) => {
+      const params = new URLSearchParams(searchParams.toString())
+      params.set(name, value)
+
+      return params.toString()
+    },
+    [searchParams]
+  )
+  const handleClickSelection = (id: string | null) => {
+    setSelectedProjectId(id)
+  }
 
   const handleGemClick = (gemOption: {
     gem: string
@@ -62,12 +96,12 @@ export default function SearchOptionsList({
   }) => {
     setOption(gemOption)
     handleClickSelection(null)
-  }
 
-  let gemStyle = ''
-  if (option.gem === 'Sapphire') gemStyle = 'bg-blue-600'
-  else if (option.gem === 'Emerald') gemStyle = 'bg-green-600'
-  else if (option.gem === 'Ruby') gemStyle = 'bg-red-600'
+    const queryString = createQueryString('gem', gemOption.gem)
+
+    // Update the URL with the new query string
+    router.push(`${path}?${queryString}`)
+  }
 
   return (
     <>

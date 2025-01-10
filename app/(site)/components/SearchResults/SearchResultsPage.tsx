@@ -18,22 +18,24 @@ export default function SearchResultsPage({
 
   const searchParams = useSearchParams()
 
+  // Preserve query parameters
+  const queryString = searchParams.toString()
+  console.log(queryString)
+
+  const searchResultsUrl = `/search-results${queryString ? `?${queryString}` : ''}`
+
   function handleLinkClick(index: number) {
     setActiveLink(index)
   }
 
   const chosenService = searchParams.get('service')
 
+  useEffect(() => {})
   useEffect(() => {
     if (chosenService) {
       setService(chosenService)
     }
   }, [chosenService])
-
-  // Preserve query parameters
-  const queryString = searchParams.toString()
-
-  const searchResultsUrl = `/search-results${queryString ? `?${queryString}` : ''}`
 
   return (
     <>
