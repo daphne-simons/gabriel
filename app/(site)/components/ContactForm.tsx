@@ -1,9 +1,8 @@
 'use client'
 
-import Link from 'next/link'
 import { useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
-import { sendEmailEnquiry } from '../utils/emailProvider'
+import { fetchSendAPI } from '../api-utils/apiClient'
 
 const ContactForm = () => {
   const [name, setName] = useState('')
@@ -30,7 +29,7 @@ const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
-      await sendEmailEnquiry({
+      await fetchSendAPI({
         name,
         email,
         chosenService,

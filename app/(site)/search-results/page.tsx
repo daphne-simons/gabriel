@@ -4,7 +4,7 @@ import SearchResultsPage from '../components/SearchResults/SearchResultsPage'
 // Sanity stuff for getProjects:
 // import { getProjects } from '@/sanity/sanity-utils'
 import { projectsQuery } from '@/sanity/sanity-utils'
-import { Project } from '@/types/project'
+import { Project } from '@/sanity/models/project'
 import { Suspense } from 'react'
 
 export default async function SearchResults() {

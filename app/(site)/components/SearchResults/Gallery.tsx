@@ -1,4 +1,4 @@
-import { Project } from '@/types/project'
+import { Project } from '@/sanity/models/project'
 import Image from 'next/image'
 
 interface Props {

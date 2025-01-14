@@ -2,7 +2,7 @@
 import React from 'react'
 import SearchOptionsList from './SearchOptionsList'
 import { useState } from 'react'
-import { Project } from '@/types/project'
+import { Project } from '@/sanity/models/project'
 
 interface ResultsComponentProps {
   chosenService: string

@@ -1,4 +1,4 @@
-import { Project } from '@/types/project'
+import { Project } from '@/sanity/models/project'
 import Image from 'next/image'
 import { PortableText } from 'next-sanity'
 import Link from 'next/link'

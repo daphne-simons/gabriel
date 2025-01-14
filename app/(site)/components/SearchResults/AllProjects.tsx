@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Gallery from './Gallery'
-import { Project } from '@/types/project'
+import { Project } from '@/sanity/models/project'
 
 interface Props {
   option: {

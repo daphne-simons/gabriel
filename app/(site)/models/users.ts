@@ -8,3 +8,5 @@ export const UserEmailQuery = z.object({
   level: z.string(),
   cost: z.string(),
 })
+
+export type UserQuery = z.infer<typeof UserEmailQuery>

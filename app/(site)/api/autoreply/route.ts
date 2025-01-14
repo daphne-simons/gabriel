@@ -1,43 +1,38 @@
-// EMAIL THAT IS SENT TO THE USER (PERSON MAKING ENQUIRY)
 // pages/api/autoreply/route.ts
 
-import { Resend } from 'resend'
-import AutoReply from '../../../../emails/AutoReply'
-import { EmailTemplateProps } from '../../models/models'
+// ROLE: Email that is sent to the user from Gabriel
 
-export async function POST(req: Request, res: Response) {
+import { NextRequest, NextResponse } from 'next/server'
+import { z } from 'zod'
+import { UserEmailQuery, UserQuery } from '../../models/users'
+import { autoReplyProvider } from '../../utils/resend-utils'
+
+export async function POST(req: NextRequest) {
   // TODO: Create rate limit so that users can't spam us.
 
-  const resend = new Resend(process.env.RESEND_API_KEY)
   try {
-    const person = (await req.json()) as EmailTemplateProps
+    const person = (await req.json()) as UserQuery
+    // Parse input request with zod:
+    const data = UserEmailQuery.parse(person)
 
-    // Send the email using Resend API
-    await resend.emails.send({
-      // TODO: This from address will need to change to a verified domain on resend, e.g. 'contact@gabriel.com' or whatever Ella wants to use for the domain.
-      from: 'Acme <onboarding@resend.dev>',
-      // TODO: this is the receiver address, replace with dynamic person.email OR multiple addresses, can send 50 max in the array)
-      // use this one for testing success of delivery: 'delivered@resend.dev'
-      to: ['daphnejasminesimons@gmail.com'],
-      bcc: ['delivered@resend.dev'],
-      subject: `Auto-Reply to ${person.name}!`,
-      react: AutoReply(person),
-
-      // TODO: put Gabriel's email address here. For the user to 'reply_to'
-      // reply_to: 'emailforgabriel',
-    })
-    return new Response(JSON.stringify(person), {
-      status: 200,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
-  } catch (error) {
-    return new Response(JSON.stringify(error), {
-      status: 500,
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    })
+    // Send the email using relevant Resend Provider
+    await autoReplyProvider(data)
+    return NextResponse.json(
+      { message: 'Auto-reply sent successfully', data },
+      { status: 200 }
+    )
+  } catch (error: any) {
+    if (error instanceof z.ZodError) {
+      // Return validation errors
+      return NextResponse.json(
+        { message: 'Validation error', errors: error.errors },
+        { status: 400 }
+      )
+    }
+    // Handle unexpected errors
+    return NextResponse.json(
+      { message: 'Something went wrong', error: error.message },
+      { status: 500 }
+    )
   }
 }

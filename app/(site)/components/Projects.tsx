@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { revalidatePath } from 'next/cache'
 import { projectsQuery } from '@/sanity/sanity-utils'
 import { sanityFetch } from '@/sanity/config/client-config'
-import { Project } from '@/types/project'
+import { Project } from '@/sanity/models/project'
 
 // / import { queryProjects, postQuery } from '@/sanity/queries'
 export default async function Projects() {

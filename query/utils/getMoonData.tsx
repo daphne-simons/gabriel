@@ -1,4 +1,4 @@
-import { MoonApiResponse, MoonConfig } from '@/app/(site)/models/models'
+import { MoonApiResponse, MoonConfig } from '@/app/(site)/models/moon'
 
 async function loadMoonPhases(obj: MoonConfig) {
   const gets = []

@@ -1,6 +1,6 @@
 //  File that contains GROQ db functions
-import { Project } from '@/types/project'
-import { Page } from '@/types/page'
+import { Project } from '@/sanity/models/project'
+import { Page } from '@/sanity/models/page'
 import { createClient, groq } from 'next-sanity'
 import clientConfig from './config/client-config'
 
