@@ -39,7 +39,7 @@ export default function AboutPage() {
               <p className="py-2 text-base text-googleGray pb-10 ">
                 140–142 McEvoy Street, <br></br>Alexandria, Sydney 2015, AU
               </p>
-              <button className="text-base text-googleButton border border-2-lightGray rounded-md px-6 py-2">
+              <button className="text-base text-googleBlue border border-2-lightGray hover:text-googleDarkBlue hover:border-googleBlue rounded-md px-6 py-2">
                 View Map
               </button>
             </article>
@@ -50,7 +50,8 @@ export default function AboutPage() {
                 more@gabriel.exchange
               </p>
               <a
-                className="text-base text-googleButton border border-2-lightGray rounded-md px-7 py-[10px]" // TODO: change this email address to Ella's official Gabriel Email
+                className="text-base text-googleBlue hover:text-googleDarkBlue border border-2-lightGray hover:border-googleBlue rounded-md px-7 py-[10px]"
+                // TODO: change this email address to Ella's official Gabriel Email
                 href="mailto:daphnejasminesimons@gmail.com?subject=General%20Enquiry%20for%20Gabriel"
                 target="_blank"
                 rel="noopener noreferrer"
