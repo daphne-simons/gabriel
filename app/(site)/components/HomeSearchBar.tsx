@@ -8,6 +8,7 @@ interface Props {
   textColor: string
   outlineColor: string
   btnSearchBg: string
+  hoverSearchBg: string
 }
 
 export default function HomeSearchBar(theme: Props) {

@@ -12,6 +12,7 @@ export default function BackGround({
         textColor: string
         outlineColor: string
         btnSearchBg: string
+        hoverSearchBg: string
       }
     | undefined
   children: React.ReactNode
