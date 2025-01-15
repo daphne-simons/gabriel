@@ -29,7 +29,7 @@ export default function HomeSearchBar(theme: Props) {
     return (
       <>
         <div
-          className={`relative flex flex-col justify-start rounded-full pl-14 pr-14 py-2.5 ${theme.btnSearchBg} sm:w-1/3 m:w-1/3 md:w-1/2 lg:w-2/5 xl:w-1/3
+          className={`relative flex flex-col justify-start rounded-full pl-14 pr-14 py-2.5 ${theme.btnSearchBg} ${theme.hoverSearchBg} sm:w-1/3 m:w-1/3 md:w-1/2 lg:w-2/5 xl:w-1/3
             ${
               isOpen
                 ? `shadow-none hover:none`

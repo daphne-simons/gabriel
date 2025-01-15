@@ -51,9 +51,9 @@ export default function Home() {
       moonData.phase[new Date().getDate()].lighting.toFixed(0)
     )
     // To test dynamic moon theme:
-    // const theme = calculateBgColor(lightValue)
+    const theme = calculateBgColor(lightValue)
     // To test hard coded Full Moon Styling:
-    const theme = calculateBgColor(90)
+    // const theme = calculateBgColor(90)
 
     if (theme)
       return (
