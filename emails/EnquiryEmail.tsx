@@ -1,4 +1,4 @@
-import { EmailTemplateProps } from '@/app/(site)/models/models'
+import { UserQuery } from '@/app/(site)/models/users'
 import {
   Body,
   Container,
@@ -11,7 +11,7 @@ import {
   Heading,
 } from '@react-email/components'
 
-const EnquiryEmail = (person: EmailTemplateProps) => {
+const EnquiryEmail = (person: UserQuery) => {
   return (
     <Html>
       <Head />
@@ -31,10 +31,7 @@ const EnquiryEmail = (person: EmailTemplateProps) => {
             <Row>
               <Column>🔵</Column>
               <Column>
-                <Text>
-                  Level / Gem:
-                  {person.gem}
-                </Text>
+                <Text>Level / Gem: {person.gem}</Text>
               </Column>
             </Row>
             <Row>

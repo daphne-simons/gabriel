@@ -10,10 +10,10 @@ import {
 } from '@react-email/components'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faInstagram } from '@fortawesome/free-brands-svg-icons'
-import { EmailTemplateProps } from '@/app/(site)/models/models'
+import { UserQuery } from '@/app/(site)/models/users'
 // import gramercyFont from './fonts/ABCGramercyFine-Regular-Trial.woff2'
 
-const AutoReplyEmail = (person: EmailTemplateProps) => {
+const AutoReplyEmail = (person: UserQuery) => {
   return (
     <Html>
       <Head />
