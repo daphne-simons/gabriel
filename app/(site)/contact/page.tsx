@@ -1,5 +1,4 @@
 'use client'
-import { Suspense } from 'react'
 import ContactForm from '../components/ContactForm'
 import Footer from '../components/Footer'
 import AboutEnquireLogo from '../components/Logos/AboutEnquireLogo'
@@ -7,34 +6,27 @@ import Link from 'next/link'
 
 const ContactPage = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
-      <div className="flex flex-col min-h-screen">
-        {/* Enquiry Header */}
-        <div className="flex flex-col">
-          <div id="header" className="flex flex-row relative gap-4 p-2">
-            <div className="flex ">
-              {/* Contact Logo */}
-              <div className="pr-8 pl-5 pt-2 flex items-center">
-                <Link href="/">
-                  <AboutEnquireLogo />
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-        {/* Form and Footer */}
-        <div>
-          <main className="flex-1 flex flex-col items-start pl-36 w-full mx-auto">
-            <ContactForm />
-          </main>
-          <div className="bg-lightGrayText bottom-0 pl-36">
-            <div className="flex flex-col items-start">
-              <Footer />
-            </div>
-          </div>
+    <>
+      {/* Enquiry Header */}
+      <div id="header" className="flex flex-row relative gap-4 p-2">
+        {/* Contact Logo */}
+        <div className="pr-8 pl-5 pt-2 flex items-center">
+          <Link href="/">
+            <AboutEnquireLogo />
+          </Link>
         </div>
       </div>
-    </Suspense>
+      {/* Enquiry page content / form */}
+      <div className="flex flex-col items-start pl-36 pb-24 w-full mx-auto">
+        <ContactForm />
+      </div>
+      {/* Footer */}
+      <div className="pl-36 bg-googlelightGrayFooter bottom-0 w-full">
+        <div className="flex flex-col items-start">
+          <Footer />
+        </div>
+      </div>
+    </>
   )
 }
 

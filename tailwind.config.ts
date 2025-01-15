@@ -119,7 +119,7 @@ const config: Config = {
         googleDarkBlue: '#0048A8',
         googleMidGray: '#5F6368',
         googleLightGray: '#E5E7EB',
-        googlelightGrayText: '#F8F9FA',
+        googlelightGrayFooter: '#F8F9FA',
         googleLightGrayStroke: '#E5E7EB',
         googleDarkGrayText: '#202124',
       },

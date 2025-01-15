@@ -1,12 +1,11 @@
 import Link from 'next/link'
-// import Nav from '../components/Nav'
 import AboutEnquireLogo from '../components/Logos/AboutEnquireLogo'
 import Footer from '../components/Footer'
 
 export default function AboutPage() {
   return (
     <>
-      {/* Nav - custom for AboutPage */}
+      {/* Nav for AboutPage */}
       <div className="flex flex-row relative gap-4 p-2">
         <ul className="flex justify-between pt-2 px-5 text-sm">
           <Link href="/">
@@ -18,7 +17,7 @@ export default function AboutPage() {
         </ul>
       </div>
       {/* About Page content */}
-      <div className="pt-10 pb-20 px-20">
+      <main className="pt-10 pb-24 px-20">
         <section className="flex justify-center text-center ">
           <article className="font-roboto text-xl w-2/3">
             Gabriel is a design studio led by{' '}
@@ -95,8 +94,9 @@ export default function AboutPage() {
             </article>
           </section>
         </div>
-      </div>
-      <div className="bg-lightGrayText bottom-0">
+      </main>
+      {/* Footer */}
+      <div className="bg-googlelightGrayFooter bottom-0 w-full">
         <div className="flex flex-col items-center px-20">
           <Footer />
         </div>
