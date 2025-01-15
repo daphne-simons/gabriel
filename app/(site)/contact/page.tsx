@@ -1,4 +1,5 @@
 'use client'
+import { Suspense } from 'react'
 import ContactForm from '../components/ContactForm'
 import Footer from '../components/Footer'
 import AboutEnquireLogo from '../components/Logos/AboutEnquireLogo'
@@ -6,7 +7,7 @@ import Link from 'next/link'
 
 const ContactPage = () => {
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       {/* Enquiry Header */}
       <div id="header" className="flex flex-row relative gap-4 p-2">
         {/* Contact Logo */}
@@ -26,7 +27,7 @@ const ContactPage = () => {
           <Footer />
         </div>
       </div>
-    </>
+    </Suspense>
   )
 }
 
