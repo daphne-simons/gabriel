@@ -30,9 +30,6 @@ export default function SearchResultBar({
     setIsOpen(!isOpen)
   }
 
-  // console.log('services', services)
-  // console.log('activeService', activeService)
-
   const handleServiceClick = (service: string) => {
     setActiveService(service)
     setIsOpen(false) // Close dropdown after selection
@@ -47,7 +44,7 @@ export default function SearchResultBar({
       className={`flex flex-row relative w-[50%] `}
     >
       <div
-        className={`mt-5 p-5 w-full h-[46px] pl-12 text-[#F8F9FA] placeholder-[#F8F9FA] text-base bg-[#303134] rounded-full drop-shadow-lg ${
+        className={`mt-5 p-5 w-full h-[46px] pl-12 text-[#F8F9FA] placeholder-[#F8F9FA] text-base bg-[#3d3d3d] hover:bg-[#505050] rounded-full drop-shadow-lg ${
           isOpen ? 'drop-shadow-2xl hidden' : 'drop-shadow-lg'
         }`}
       >
