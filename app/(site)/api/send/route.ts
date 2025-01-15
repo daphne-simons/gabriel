@@ -7,9 +7,9 @@ import { z } from 'zod'
 import { UserEmailQuery, UserQuery } from '../../models/users'
 import { enquiryProvider } from '../../utils/resend-utils'
 
+// api/send
 export async function POST(req: NextRequest) {
-  // TODO: Create rate limit so that users can't spam us.
-
+  // Triggers rate limiting middleware so that users can't spam.
   try {
     // Parse input request with zod:
     const person = (await req.json()) as UserQuery
@@ -23,13 +23,13 @@ export async function POST(req: NextRequest) {
     )
   } catch (error: any) {
     if (error instanceof z.ZodError) {
-      // Return validation errors
+      // Handle validation errors
       return NextResponse.json(
         { message: 'Validation error', errors: error.errors },
         { status: 400 }
       )
     }
-    // Handle unexpected errors
+    // Handle other errors
     return NextResponse.json(
       { message: 'Something went wrong', error: error.message },
       { status: 500 }
