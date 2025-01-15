@@ -109,9 +109,11 @@ const config: Config = {
         googleBlue: '#1C73E8',
         googleHoverBlue: '#0052C1',
         googleDarkBlue: '#0048A8',
-        googleGray: '#5F6368',
+        googleMidGray: '#5F6368',
         googleLightGray: '#E5E7EB',
         googlelightGrayText: '#F8F9FA',
+        googleLightGrayStroke: '#E5E7EB',
+        googleDarkGrayText: '#202124',
       },
       spacing: {
         d: '8em',

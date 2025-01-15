@@ -36,7 +36,7 @@ export default function AboutPage() {
           <section className="w-5/6 grid grid-cols-2 gap-20 place-content-evenly">
             <article className="font-roboto text-2xl w-2/3">
               <h2>Gabriel</h2>
-              <p className="py-2 text-base text-googleGray pb-10 ">
+              <p className="py-2 text-base text-googleMidGray pb-10 ">
                 140–142 McEvoy Street, <br></br>Alexandria, Sydney 2015, AU
               </p>
               <button className="text-base text-googleBlue border border-2-lightGray hover:text-googleDarkBlue hover:border-googleBlue rounded-md px-6 py-2">
@@ -46,7 +46,7 @@ export default function AboutPage() {
 
             <article className="font-roboto text-2xl w-2/3">
               <h2>Contact</h2>
-              <p className="pt-2 pb-16 text-base text-googleGray">
+              <p className="pt-2 pb-16 text-base text-googleMidGray">
                 more@gabriel.exchange
               </p>
               <a
@@ -62,7 +62,7 @@ export default function AboutPage() {
 
             <article className="font-roboto text-2xl w-2/3">
               <h2>Team</h2>
-              <p className="pt-2 text-base text-googleGray">
+              <p className="pt-2 text-base text-googleMidGray">
                 Ella Sutherland, Creative Director <br></br>
                 Daphne Simons, Add title
               </p>
@@ -70,7 +70,7 @@ export default function AboutPage() {
 
             <article className="font-roboto text-2xl w-2/3">
               Consultants{' '}
-              <p className="pt-2 text-base text-googleGray">
+              <p className="pt-2 text-base text-googleMidGray">
                 Add name, add name, add name, add name, add name, add name
               </p>
             </article>
@@ -79,7 +79,7 @@ export default function AboutPage() {
             <article className="w-11/12 text-2xl font-normal font-roboto">
               Past Clients and Collaborators
             </article>
-            <article className="w-11/12 pt-5 text-lg font-roboto text-googleGray">
+            <article className="w-11/12 pt-5 text-lg font-roboto text-googleMidGray">
               Agatha Gothe-Snape, Artspace Aotearoa, Artspace Sydney, Biennale
               of Sydney, Bree Richards, Brian Fuata, Brooke Stamp, CoCA Centre
               of Contemporary Art, Christchurch Art Gallery, Diana Baker Smith,
