@@ -38,9 +38,16 @@ const project = {
       type: 'url',
     },
     {
-      name: 'gem',
-      title: 'Gem',
-      type: 'string',
+      name: 'tier',
+      title: 'Tier',
+      type: 'reference',
+      to: [{ type: 'tier' }],
+    },
+    {
+      name: 'category',
+      type: 'reference',
+      title: 'Category',
+      to: [{ type: 'category' }],
     },
     {
       name: 'description', //
