@@ -31,13 +31,12 @@ export default function SearchOptionsList({
   const [chosenProjects, setChosenProjects] = useState<Project[]>([
     {
       _id: '',
-      _createdAt: new Date(),
       name: '',
-      slug: '',
       image: '',
       url: '',
       gem: '',
-      content: [],
+      category: '',
+      description: [],
     },
   ])
   // State for toggling between AllProjects and SelectedProject on the side-bar gallery

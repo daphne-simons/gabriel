@@ -5,6 +5,7 @@ import SearchResultsPage from '../components/SearchResults/SearchResultsPage'
 // import { getProjects } from '@/sanity/sanity-utils'
 import { projectsQuery } from '@/sanity/sanity-utils'
 import { Project } from '@/sanity/models/project'
+// import { Project } from '@/sanity.types'
 import { Suspense } from 'react'
 
 export default async function SearchResults() {
@@ -20,6 +21,9 @@ export default async function SearchResults() {
     // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
     tags: ['project'],
   })
+
+  console.log({ projects })
+
   return (
     <>
       <Suspense>

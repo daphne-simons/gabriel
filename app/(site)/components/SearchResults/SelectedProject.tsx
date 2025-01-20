@@ -94,7 +94,7 @@ export default function SelectedProject({
           </h2>
           <p className="w-5/6 text-sm text-[#BDC1C5]">
             {/* Project Description: */}
-            <PortableText value={project.content} />
+            <PortableText value={project.description} />
           </p>
         </div>
         <div className="flex items-center">
