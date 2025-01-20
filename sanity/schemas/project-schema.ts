@@ -43,8 +43,8 @@ const project = {
       type: 'string',
     },
     {
-      name: 'content', //
-      title: 'Content',
+      name: 'description', //
+      title: 'Description',
       type: 'array',
       of: [
         {
