@@ -1,32 +1,28 @@
-//  File that contains GROQ db functions
-import { Project } from '@/sanity/models/project'
-import { Page } from '@/sanity/models/page'
-import { createClient, groq } from 'next-sanity'
-import clientConfig from './config/client-config'
+//  File that contains GROQ query functions for Sanity Content Lake
+import { groq } from 'next-sanity'
 
 // NEW VERSION WITH SANITY FETCH WEBHOOK:
 // Refer to this documentation:
 // https://victoreke.com/blog/sanity-webhooks-and-on-demand-revalidation-in-nextjs#step-4-configure-revalidatetag-in-sanity-client
+
 export const projectsQuery = groq`*[_type == "project"]{
       _id,
-      _createdAt,
       name,
-      "slug": slug.current,
-      "image": image.asset->url,
+      "image": image.asset->url, 
       url,
-      gem,
-      content
+      "gem": tier->gem,
+      "category": category->name,
+      description,
     }`
 
 export const singleProjectQuery = groq`*[_type == "project" && slug.current == $slug][0]{ 
       _id,
-      _createdAt,
       name,
-      "slug": slug.current,
-      "image": image.asset->url,
+      "image": image.asset->url, 
       url,
-      gem,  
-      content, 
+      "gem": tier->gem,
+      "category": category->name,
+      description,
     }`
 
 // OLD VERSIONS WITHOUT SANITY FETCH WEBHOOK:
