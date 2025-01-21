@@ -8,13 +8,13 @@ interface Props {
     level: string
     cost: string
   }
-  chosenService: string
+  chosenCategory: string | null
   chosenProjects: Project[]
   handleClickSelection: (index: string | null) => void
 }
 export default function AllProjects({
   option,
-  chosenService,
+  chosenCategory,
   chosenProjects,
   handleClickSelection,
 }: Props) {
@@ -51,7 +51,7 @@ export default function AllProjects({
           href={{
             pathname: '/contact',
             query: {
-              service: encodeURIComponent(chosenService), // Encode service string
+              category: encodeURIComponent(chosenCategory), // Encode category string
               gem: option.gem,
               level: option.level,
               cost: option.cost,

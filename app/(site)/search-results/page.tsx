@@ -1,33 +1,36 @@
-// import Projects from '../components/Projects'
 import { sanityFetch } from '@/sanity/config/client-config'
 import SearchResultsPage from '../components/SearchResults/SearchResultsPage'
-// Sanity stuff for getProjects:
-// import { getProjects } from '@/sanity/sanity-utils'
-import { projectsQuery } from '@/sanity/sanity-utils'
-import { Project } from '@/sanity/models/project'
-// import { Project } from '@/sanity.types'
+import { categoriesQuery, projectsQuery } from '@/sanity/sanity-utils'
+import { Category, Project } from '@/sanity/models/project'
 import { Suspense } from 'react'
 
 export default async function SearchResults() {
-  // OLD WITHOUT WEBHOOK - doesn't update when sanity studio content is changed
-  // const projects = await getProjects()
-
-  // NEW WITH WEBHOOK: refer to this documentation:
+  // Sanity query with WEBHOOK: refer to this documentation:
   // https://victoreke.com/blog/sanity-webhooks-and-on-demand-revalidation-in-nextjs#step-4-configure-revalidatetag-in-sanity-client
-
-  // Revalidate document when "project" is changed
+  // Revalidates document when "project" is changed
   const projects: Project[] = await sanityFetch({
     query: projectsQuery,
-    // You can add multiple tags that matches with your document _id: ['post', 'about', ...]
+    // You can add multiple tags that matches with your document _id: ['project', 'post', etc]
     tags: ['project'],
   })
 
   console.log({ projects })
 
+  // TODO: Query Catgories and prop drill
+  const categories: Category[] = await sanityFetch({
+    query: categoriesQuery,
+    // You can add multiple tags that matches with your document _id: ['project', 'post', etc]
+    tags: ['category'],
+  })
+
+  console.log({ categories })
+
+  // TODO: Query Services and prop drill
+
   return (
     <>
       <Suspense>
-        <SearchResultsPage projects={projects} />
+        <SearchResultsPage projects={projects} categories={categories} />
       </Suspense>
     </>
   )

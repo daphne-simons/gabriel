@@ -9,13 +9,13 @@ interface Props {
     level: string
     cost: string
   }[]
-  chosenService: string
+  chosenCategory: string | null
   projects: Project[]
 }
 
 export default function SearchOptionsList({
   options,
-  chosenService,
+  chosenCategory,
   projects,
 }: Props) {
   // HOOKS
@@ -61,7 +61,7 @@ export default function SearchOptionsList({
     }
   }, [searchParams])
 
-  // Resets the gem to default 'Sapphire' when chosenService changes
+  // Resets the gem to default 'Sapphire' when chosenCategory changes
   useEffect(() => {
     setOption((prev) => ({
       ...prev,
@@ -71,10 +71,13 @@ export default function SearchOptionsList({
     const params = new URLSearchParams(searchParams.toString())
     params.delete('gem')
     router.push(`${path}?${params.toString()}`)
-  }, [chosenService])
+  }, [chosenCategory])
+  // TODO/ FIX: this useEffect dependency Arr is currently breaking
+  // the deployment.  Need to find a way to have this work with the
+  // dynamic data coming from sanity, and without using a potentially
+  // buggy useEffect
 
-  // Get a new searchParams string by merging the current
-  // searchParams with a provided key/value pair
+  // Get a new searchParams string by merging the current searchParams with a provided key/value pair
   const createQueryString = useCallback(
     (name: string, value: string) => {
       const params = new URLSearchParams(searchParams.toString())
@@ -95,9 +98,7 @@ export default function SearchOptionsList({
   }) => {
     setOption(gemOption)
     handleClickSelection(null)
-
     const queryString = createQueryString('gem', gemOption.gem)
-
     // Update the URL with the new query string
     router.push(`${path}?${queryString}`)
   }
@@ -105,7 +106,7 @@ export default function SearchOptionsList({
   return (
     <>
       <div className="pt-6 flex flex-row">
-        {/* LEFT SIDE BAR - SERVICES INFO  */}
+        {/* LEFT SIDE BAR - CATEGORIES INFO  */}
         <div className="flex flex-col w-2/3">
           {options.map((option) => (
             <div key={option.gem} className="">
@@ -164,7 +165,7 @@ export default function SearchOptionsList({
             // Show ALL projects:
             <AllProjects
               option={option}
-              chosenService={chosenService}
+              chosenCategory={chosenCategory}
               handleClickSelection={handleClickSelection}
               chosenProjects={chosenProjects}
             />

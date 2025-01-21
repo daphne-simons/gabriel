@@ -9,3 +9,9 @@ export type Project = {
   category: string
   description: PortableTextBlock[] // This is how Sanity stores 'rich' content.
 }
+
+export type Category = {
+  _id: string
+  name: string
+  details: PortableTextBlock[] // This is how Sanity stores 'rich' content.
+}

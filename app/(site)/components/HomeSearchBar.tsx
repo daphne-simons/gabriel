@@ -1,4 +1,5 @@
 'use client'
+import { Category } from '@/sanity/models/project'
 import Link from 'next/link'
 import { useState } from 'react'
 interface Props {
@@ -11,17 +12,15 @@ interface Props {
   hoverSearchBg: string
 }
 
-export default function HomeSearchBar(theme: Props) {
+export default function HomeSearchBar({
+  theme,
+  categories,
+}: {
+  theme: Props
+  categories: Category[]
+}) {
   const [isOpen, setIsOpen] = useState(false)
 
-  const services = [
-    'an identity',
-    'a publication',
-    'ephemera',
-    'a website',
-    'a design subscription',
-    'something else',
-  ]
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
   }
@@ -84,9 +83,9 @@ export default function HomeSearchBar(theme: Props) {
               </span>
               <p className="px-5 py-2">What are you looking for?</p>
             </div>
-            {/* Options - Map through services state */}
-            {services.map((service, index) => (
-              <div key={index} className=" ">
+            {/* Options - Map through categories state */}
+            {categories.map((category) => (
+              <div key={category._id} className=" ">
                 <div className="flex flex-row relative ">
                   <span className="h-6 w-6 -ml-[24px] mt-[8px] absolute">
                     <svg
@@ -97,10 +96,12 @@ export default function HomeSearchBar(theme: Props) {
                       <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
                     </svg>
                   </span>
-                  <Link href={`/search-results?service=${service}`}>
+                  <Link href={`/search-results?category=${category.name}`}>
                     <li className="block px-5 py-2">
                       I want{' '}
-                      <span className="font-roboto font-bold">{service}</span>
+                      <span className="font-roboto font-bold">
+                        {category.name}
+                      </span>
                     </li>
                   </Link>
                 </div>

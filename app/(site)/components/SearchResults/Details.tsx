@@ -1,21 +1,28 @@
-export default function Details() {
+import { Category } from '@/sanity/models/project'
+import { PortableText } from 'next-sanity'
+
+export default async function Details({
+  categories,
+  chosenCategory,
+}: {
+  categories: Category[]
+  chosenCategory: string | null
+}) {
+  const category = categories.find(
+    (category) => category.name === chosenCategory
+  )
+
+  if (!category) {
+    return null
+  }
+
   return (
     <div className="pt-2 w-1/3">
       <h1 className="text-xl text-[#8AB4F7] py-4">
-        Additional details if need
+        Additional details about {category.name}
       </h1>
       <p className="text-[#BDC1C5]">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor deserunt
-        fugiat nostrum accusantium ex culpa, inventore beatae voluptatem
-        consequatur in eveniet sequi pariatur nemo natus placeat aliquid,
-        doloremque, dignissimos sed!
-      </p>
-      <br></br>
-      <p className="text-[#BDC1C5]">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor deserunt
-        fugiat nostrum accusantium ex culpa, inventore beatae voluptatem
-        consequatur in eveniet sequi pariatur nemo natus placeat aliquid,
-        doloremque, dignissimos sed!
+        <PortableText value={category.details} />
       </p>
     </div>
   )

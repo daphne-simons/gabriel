@@ -11,8 +11,8 @@ const ContactForm = () => {
   const searchParams = useSearchParams()
   const router = useRouter()
   // url info:
-  const chosenService = decodeURIComponent(
-    searchParams.get('service') || 'a service'
+  const chosenCategory = decodeURIComponent(
+    searchParams.get('category') || 'a category'
   )
   const gem = decodeURIComponent(searchParams.get('gem') || 'Sapphire')
   const level = decodeURIComponent(searchParams.get('level') || 'Essential')
@@ -32,7 +32,7 @@ const ContactForm = () => {
       await fetchSendAPI({
         name,
         email,
-        chosenService,
+        chosenCategory,
         gem,
         level,
         cost,
@@ -94,7 +94,7 @@ const ContactForm = () => {
               </span>{' '}
               package, for{' '}
               <span className="font-semibold text-googleGreen">
-                {chosenService}
+                {chosenCategory.toLowerCase()}
               </span>
               , <br />
               could you send me some information?

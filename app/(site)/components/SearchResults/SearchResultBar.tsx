@@ -2,40 +2,33 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import { Category } from '@/sanity/models/project'
 
 export default function SearchResultBar({
-  chosenService,
+  categories,
+  chosenCategory,
 }: {
-  chosenService: string
+  categories: Category[]
+  chosenCategory: string | null
 }) {
   const router = useRouter()
 
   useEffect(() => {
-    setActiveService(chosenService)
-  }, [chosenService])
+    setActiveCategory(chosenCategory)
+  }, [chosenCategory])
 
-  const [activeService, setActiveService] = useState(chosenService)
+  const [activeCategory, setActiveCategory] = useState(chosenCategory)
   const [isOpen, setIsOpen] = useState(false)
-
-  const services = [
-    'an identity',
-    'a publication',
-    'ephemera',
-    'a website',
-    'a design subscription',
-    'something else',
-  ]
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
   }
 
-  const handleServiceClick = (service: string) => {
-    setActiveService(service)
+  const handleCategoryClick = (category: string) => {
+    setActiveCategory(category)
     setIsOpen(false) // Close dropdown after selection
-
     // Update the search parameters in the URL
-    router.push(`/search-results?service=${encodeURIComponent(service)}`)
+    router.push(`/search-results?category=${encodeURIComponent(category)}`)
   }
   return (
     <div
@@ -50,7 +43,7 @@ export default function SearchResultBar({
       >
         <h2 className="absolute top-[12px]">
           <span className="font-thin ">I want </span>
-          <span className="font-bold">{activeService || '...'}</span>
+          <span className="font-bold">{activeCategory || '...'}</span>
         </h2>
       </div>
       <span className="h-6 w-6 top-[15px] pt-4 left-4 absolute">
@@ -87,7 +80,7 @@ export default function SearchResultBar({
               What are you looking for?
             </li>
           </div>
-          {services.map((service, index) => (
+          {categories.map((category, index) => (
             <div className="flex flex-row relative" key={index}>
               <span className="h-6 w-6 -ml-4 mt-2.5 absolute">
                 <svg
@@ -100,11 +93,11 @@ export default function SearchResultBar({
                 </svg>
               </span>
               <li
-                onClick={() => handleServiceClick(service)}
+                onClick={() => handleCategoryClick(category.name)}
                 className="block px-4 py-2"
               >
                 <span className="font-thin">I want </span>
-                <span className="font-bold">{service}</span>
+                <span className="font-bold">{category.name}</span>
               </li>
             </div>
           ))}

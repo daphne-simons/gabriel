@@ -1,20 +1,21 @@
 'use client'
 import MoonWidget from '../../components/MoonWidget'
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import ResultsComponent from './ResultsComponent'
 import Details from './Details'
 import { useSearchParams } from 'next/navigation'
 import SearchResultBar from './SearchResultBar'
 import SearchResultLogo from '../Logos/SearchResultLogo'
-import { Project } from '@/sanity/models/project'
+import { Category, Project } from '@/sanity/models/project'
 export default function SearchResultsPage({
   projects,
+  categories,
 }: {
   projects: Project[]
+  categories: Category[]
 }) {
   const [activeLink, setActiveLink] = useState<number>(0) // state for active link
-  const [service, setService] = useState('')
 
   const searchParams = useSearchParams()
 
@@ -28,21 +29,14 @@ export default function SearchResultsPage({
     setActiveLink(index)
   }
 
-  const chosenService = searchParams.get('service')
-
-  useEffect(() => {
-    if (chosenService) {
-      setService(chosenService)
-    }
-  }, [chosenService])
+  const chosenCategory = searchParams.get('category')
 
   return (
     <>
       <div className="bg-[#202124] h-screen w-full">
-        {/* Header */}
         <div className="h-auto flex flex-col border-b border-[#7d8084] ">
           <div id="header" className="flex flex-row relative gap-4 p-2">
-            {/* Wrapper for logo and search bar */}
+            {/* Logo & SearchBar*/}
             <div className="flex w-full">
               {/* Logo */}
               <div className="pr-8 pl-5 pt-2 flex items-center">
@@ -52,14 +46,17 @@ export default function SearchResultsPage({
               </div>
               <div className="flex flex-row w-full justify-between">
                 {/* Searchbar */}
-                <SearchResultBar chosenService={service} />
+                <SearchResultBar
+                  categories={categories}
+                  chosenCategory={chosenCategory}
+                />
                 <div className="mr-8 flex items-center text-[#F8F9FA] text-sm font-roboto">
                   <MoonWidget size="smallMoon" />
                 </div>
               </div>
             </div>
           </div>
-          {/* Second Nav bar - All and Details */}
+          {/* 2nd Nav - All and Details*/}
           <div className="flex text-[#F8F9FA]">
             <ul className="flex flex-row ml-40 gap-8">
               <Link
@@ -87,12 +84,15 @@ export default function SearchResultsPage({
             </ul>
           </div>
         </div>
-        {/* Body */}
+        {/* Tiers and Details*/}
         <div className="flex flex-row pl-40">
           {activeLink ? (
-            <Details />
+            <Details categories={categories} chosenCategory={chosenCategory} />
           ) : (
-            <ResultsComponent chosenService={service} projects={projects} />
+            <ResultsComponent
+              chosenCategory={chosenCategory}
+              projects={projects}
+            />
           )}
         </div>
       </div>
