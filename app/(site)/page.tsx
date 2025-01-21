@@ -1,7 +1,7 @@
 import { Suspense } from 'react'
 import HomePage from './components/Home/HomePage'
 import { categoriesQuery } from '@/sanity/sanity-utils'
-import { Category } from '@/sanity/models/project'
+import { Category } from '@/sanity/models/sanity-client-models'
 import { sanityFetch } from '@/sanity/config/client-config'
 
 export default async function Home() {

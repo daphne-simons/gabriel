@@ -15,3 +15,10 @@ export type Category = {
   name: string
   details: PortableTextBlock[] // This is how Sanity stores 'rich' content.
 }
+
+export type Tier = {
+  _id: string
+  gem: string
+  level: string
+  cost: string
+}

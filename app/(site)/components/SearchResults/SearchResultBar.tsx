@@ -2,7 +2,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
-import { Category } from '@/sanity/models/project'
+import { Category } from '@/sanity/models/sanity-client-models'
 
 export default function SearchResultBar({
   categories,

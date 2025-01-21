@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import SearchOptionsList from './SearchOptionsList'
-import { Project } from '@/sanity/models/project'
+import { Project } from '@/sanity/models/sanity-client-models'
 
 interface ResultsComponentProps {
   chosenCategory: string | null

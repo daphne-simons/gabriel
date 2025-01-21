@@ -1,5 +1,5 @@
 'use client'
-import { Category } from '@/sanity/models/project'
+import { Category } from '@/sanity/models/sanity-client-models'
 import Link from 'next/link'
 import { useState } from 'react'
 interface Props {

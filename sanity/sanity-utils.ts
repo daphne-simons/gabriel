@@ -1,7 +1,7 @@
 //  File that contains GROQ query functions for Sanity Content Lake
 import { groq } from 'next-sanity'
 
-// NEW VERSION WITH SANITY FETCH WEBHOOK:
+// groq queries that work with the SANITY FETCH WEBHOOK:
 // Refer to this documentation:
 // https://victoreke.com/blog/sanity-webhooks-and-on-demand-revalidation-in-nextjs#step-4-configure-revalidatetag-in-sanity-client
 

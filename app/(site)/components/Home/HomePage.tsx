@@ -10,7 +10,7 @@ import MoonLoader from '../MoonLoader'
 import getMoon from '@/query/utils/getMoonData'
 import { useQuery } from '@tanstack/react-query'
 import { calculateBgColor } from '@/app/(site)/utils/moon-utils'
-import { Category } from '@/sanity/models/project'
+import { Category } from '@/sanity/models/sanity-client-models'
 
 export default function HomePage({ categories }: { categories: Category[] }) {
   // Variable Font changes logic:

@@ -7,7 +7,7 @@ import Details from './Details'
 import { useSearchParams } from 'next/navigation'
 import SearchResultBar from './SearchResultBar'
 import SearchResultLogo from '../Logos/SearchResultLogo'
-import { Category, Project } from '@/sanity/models/project'
+import { Category, Project } from '@/sanity/models/sanity-client-models'
 export default function SearchResultsPage({
   projects,
   categories,

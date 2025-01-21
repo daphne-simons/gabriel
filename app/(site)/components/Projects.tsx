@@ -1,19 +1,12 @@
 import React from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
-import { revalidatePath } from 'next/cache'
 import { projectsQuery } from '@/sanity/sanity-utils'
 import { sanityFetch } from '@/sanity/config/client-config'
-import { Project } from '@/sanity/models/project'
+import { Project } from '@/sanity/models/sanity-client-models'
 
-// / import { queryProjects, postQuery } from '@/sanity/queries'
 export default async function Projects() {
-  // OLD WITHOUT WEBHOOK
-  // const projects = await getProjects()
-  // // https://github.com/sanity-io/next-sanity?tab=readme-ov-file#cache-revalidation
-  // revalidatePath('/')
-
-  // NEW WITH WEBHOOK
+  // fetching projects data with WEBHOOK
   // Revalidate document when "post" is changed
   const projects: Project[] = await sanityFetch({
     query: projectsQuery,
@@ -27,7 +20,7 @@ export default async function Projects() {
       <div className="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project) => (
           <Link
-            href={`projects/${project.slug}`}
+            href={`projects`}
             key={project._id}
             className="border-2 border-gray-500 rounded-lg p-1 hover:scale-105 hover:border-blue-500 transition"
           >

@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import AllProjects from './AllProjects'
 import SelectedProject from './SelectedProject'
-import { Project } from '@/sanity/models/project'
+import { Project } from '@/sanity/models/sanity-client-models'
 import { useSearchParams, usePathname, useRouter } from 'next/navigation'
 interface Props {
   options: {
