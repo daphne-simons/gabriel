@@ -50,7 +50,7 @@ const project = {
       to: [{ type: 'category' }],
     },
     {
-      name: 'description', //
+      name: 'description',
       title: 'Description',
       type: 'array',
       of: [
