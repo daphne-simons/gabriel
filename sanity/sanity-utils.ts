@@ -30,3 +30,10 @@ export const categoriesQuery = groq`*[_type == "category"]{
       name,
       details,
     }`
+
+export const tiersQuery = groq`*[_type == "tier"]{
+      _id,
+      gem,
+      level,
+      cost,
+    }`
