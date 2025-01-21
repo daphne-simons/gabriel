@@ -18,6 +18,12 @@ const tier = {
       title: 'Cost',
       type: 'string',
     },
+    {
+      name: 'details',
+      title: 'Details',
+      type: 'array',
+      of: [{ type: 'block' }],
+    },
   ],
 }
 

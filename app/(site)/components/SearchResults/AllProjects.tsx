@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import Gallery from './Gallery'
 import { Project, Tier } from '@/sanity/models/sanity-client-models'
-
+import { PortableText } from 'next-sanity'
 interface Props {
   option: Tier
   chosenCategory: string | null
@@ -37,10 +37,7 @@ export default function AllProjects({
       </div>
       <div className="px-2 pt-2 h-2/5 border-t  border-[#7d8084]">
         <p className=" text-[#BDC1C5] text-base">
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Incidunt,
-          veritatis tempora eum eos a dolore exercitationem assumenda et
-          officiis commodi explicabo beatae voluptas sint quo eveniet omnis
-          eligendi accusantium hic.
+          <PortableText value={option.details} />
         </p>
         {/* Dynamically updates Query Parameters - cleaner query building */}
         <Link

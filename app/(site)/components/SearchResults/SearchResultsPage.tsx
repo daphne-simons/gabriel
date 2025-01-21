@@ -27,6 +27,10 @@ export default function SearchResultsPage({
 
   const chosenCategory = searchParams.get('category')
 
+  const decodedCategory = chosenCategory
+    ? decodeURIComponent(chosenCategory)
+    : null
+
   function handleLinkClick(index: number) {
     setActiveLink(index)
   }
@@ -48,7 +52,7 @@ export default function SearchResultsPage({
                 {/* Searchbar */}
                 <SearchResultBar
                   categories={categories}
-                  chosenCategory={chosenCategory}
+                  chosenCategory={decodedCategory}
                 />
                 <div className="mr-8 flex items-center text-[#F8F9FA] text-sm font-roboto">
                   <MoonWidget size="smallMoon" />
@@ -88,10 +92,10 @@ export default function SearchResultsPage({
         <div className="flex flex-row pl-40">
           {activeLink ? (
             // TODO: fix bug where page does full refresh when selecting Details.
-            <Details categories={categories} chosenCategory={chosenCategory} />
+            <Details categories={categories} chosenCategory={decodedCategory} />
           ) : (
             <ResultsComponent
-              chosenCategory={chosenCategory}
+              chosenCategory={decodedCategory}
               projects={projects}
               tiers={tiers}
             />

@@ -14,16 +14,18 @@ export default function SearchOptionsList({
   chosenCategory,
   projects,
 }: Props) {
-  // HOOKS
+  // --- HOOKS:
   const searchParams = useSearchParams()
   const path = usePathname()
   const router = useRouter()
-  const [option, setOption] = useState({
-    gem: 'Sapphire',
-    level: 'Essential',
-    cost: '2000-4000',
+  // --- STATES:
+  const [option, setOption] = useState<Tier>({
+    _id: '',
+    gem: '',
+    level: '',
+    cost: '',
+    details: [],
   })
-  // STATES
   const [chosenProjects, setChosenProjects] = useState<Project[]>([
     {
       _id: '',
@@ -40,7 +42,13 @@ export default function SearchOptionsList({
   const [selectedProjectId, setSelectedProjectId] = useState<string | null>(
     null
   )
-  // USE EFFECTS
+  // --- URL PARAMS:
+
+  const tierParam = searchParams.get('tier')
+  const categoryParam = searchParams.get('category')
+
+  // --- USE EFFECTS:
+
   // Filter projects by gem
   useEffect(() => {
     const projectsByGem = projects.filter((project) => {
@@ -48,30 +56,6 @@ export default function SearchOptionsList({
     })
     setChosenProjects(projectsByGem)
   }, [projects, option.gem])
-
-  // Syncs up the gem query from the URL with the gem option state
-  useEffect(() => {
-    const gemParam = searchParams.get('gem')
-    if (gemParam) {
-      setOption((prev) => ({ ...prev, gem: gemParam }))
-    }
-  }, [searchParams])
-
-  // Resets the gem to default 'Sapphire' when chosenCategory changes
-  useEffect(() => {
-    setOption((prev) => ({
-      ...prev,
-      gem: 'Sapphire', // Default gem
-    }))
-    // Optionally clear the gem query from the URL if needed
-    const params = new URLSearchParams(searchParams.toString())
-    params.delete('gem')
-    router.push(`${path}?${params.toString()}`)
-  }, [chosenCategory])
-  // TODO/ FIX: this useEffect dependency Arr is currently breaking
-  // the deployment.  Need to find a way to have this work with the
-  // dynamic data coming from sanity, and without using a potentially
-  // buggy useEffect
 
   // Get a new searchParams string by merging the current searchParams with a provided key/value pair
   const createQueryString = useCallback(
@@ -83,6 +67,25 @@ export default function SearchOptionsList({
     },
     [searchParams]
   )
+  // Update the URL with the new query string, if no tier, make default Sapphire
+  useEffect(() => {
+    console.log('tierParam', tierParam)
+    console.log('categoryParam', categoryParam)
+    if (tierParam === null) {
+      const sapphire = tiers.find((tier) => tier.gem === 'Sapphire')
+      if (sapphire) {
+        setOption(sapphire)
+        const queryString = createQueryString('tier', sapphire.gem)
+        // Update the URL with the new query string
+        router.push(`${path}?${queryString}`)
+      } else {
+        return
+      }
+    }
+    // TODO: research cleaner ways to write router stuff in a useEffect without breaking my linter.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [categoryParam, tierParam]) // when either of these change, it runs the useEffect.
+
   const handleClickSelection = (id: string | null) => {
     setSelectedProjectId(id)
   }
@@ -90,7 +93,7 @@ export default function SearchOptionsList({
   const handleGemClick = (tier: Tier) => {
     setOption(tier)
     handleClickSelection(null)
-    const queryString = createQueryString('gem', tier.gem)
+    const queryString = createQueryString('tier', tier.gem)
     // Update the URL with the new query string
     router.push(`${path}?${queryString}`)
   }

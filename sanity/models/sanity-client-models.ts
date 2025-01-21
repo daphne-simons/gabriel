@@ -21,4 +21,5 @@ export type Tier = {
   gem: string
   level: string
   cost: string
+  details: PortableTextBlock[]
 }
