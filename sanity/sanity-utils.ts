@@ -31,7 +31,7 @@ export const categoriesQuery = groq`*[_type == "category"]{
       details,
     }`
 
-export const tiersQuery = groq`*[_type == "tier"]{
+export const tiersQuery = groq`*[_type == "tier" ] | order(_createdAt asc) {
       _id,
       gem,
       level,
