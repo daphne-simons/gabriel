@@ -1,13 +1,9 @@
 import Link from 'next/link'
 import Gallery from './Gallery'
-import { Project } from '@/sanity/models/sanity-client-models'
+import { Project, Tier } from '@/sanity/models/sanity-client-models'
 
 interface Props {
-  option: {
-    gem: string
-    level: string
-    cost: string
-  }
+  option: Tier
   chosenCategory: string | null
   chosenProjects: Project[]
   handleClickSelection: (index: string | null) => void
@@ -51,7 +47,8 @@ export default function AllProjects({
           href={{
             pathname: '/contact',
             query: {
-              category: encodeURIComponent(chosenCategory), // Encode category string
+              // TODO: fix this chosenCategory bug
+              category: encodeURIComponent(chosenCategory ?? ''), // Encode category string, returns empty string if chosenCategory is null
               gem: option.gem,
               level: option.level,
               cost: option.cost,

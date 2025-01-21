@@ -1,28 +1,26 @@
 'use client'
 import React from 'react'
 import SearchOptionsList from './SearchOptionsList'
-import { Project } from '@/sanity/models/sanity-client-models'
+import { Project, Tier } from '@/sanity/models/sanity-client-models'
 
 interface ResultsComponentProps {
   chosenCategory: string | null
   projects: Project[]
+  tiers: Tier[]
 }
 export default function ResultsComponent({
   chosenCategory,
   projects,
+  tiers,
 }: ResultsComponentProps) {
-  const options = [
-    { gem: 'Sapphire', level: 'Essential', cost: '2000-4000' },
-    { gem: 'Emerald', level: 'Comprehensive', cost: '4000-6000' },
-    { gem: 'Ruby', level: 'Premium', cost: '6000-10000' },
-  ]
+  console.log('results comp', tiers)
 
   return (
     <>
       {/* Options List and Side bar with Gallery, info, links*/}
       <div>
         <SearchOptionsList
-          options={options}
+          tiers={tiers}
           chosenCategory={chosenCategory}
           projects={projects}
         />

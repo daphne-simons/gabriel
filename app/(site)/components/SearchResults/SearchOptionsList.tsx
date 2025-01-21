@@ -1,20 +1,16 @@
 import { useCallback, useEffect, useState } from 'react'
 import AllProjects from './AllProjects'
 import SelectedProject from './SelectedProject'
-import { Project } from '@/sanity/models/sanity-client-models'
+import { Project, Tier } from '@/sanity/models/sanity-client-models'
 import { useSearchParams, usePathname, useRouter } from 'next/navigation'
 interface Props {
-  options: {
-    gem: string
-    level: string
-    cost: string
-  }[]
+  tiers: Tier[]
   chosenCategory: string | null
   projects: Project[]
 }
 
 export default function SearchOptionsList({
-  options,
+  tiers,
   chosenCategory,
   projects,
 }: Props) {
@@ -91,14 +87,10 @@ export default function SearchOptionsList({
     setSelectedProjectId(id)
   }
 
-  const handleGemClick = (gemOption: {
-    gem: string
-    level: string
-    cost: string
-  }) => {
-    setOption(gemOption)
+  const handleGemClick = (tier: Tier) => {
+    setOption(tier)
     handleClickSelection(null)
-    const queryString = createQueryString('gem', gemOption.gem)
+    const queryString = createQueryString('gem', tier.gem)
     // Update the URL with the new query string
     router.push(`${path}?${queryString}`)
   }
@@ -108,37 +100,37 @@ export default function SearchOptionsList({
       <div className="pt-6 flex flex-row">
         {/* LEFT SIDE BAR - CATEGORIES INFO  */}
         <div className="flex flex-col w-2/3">
-          {options.map((option) => (
-            <div key={option.gem} className="">
+          {tiers.map((tier) => (
+            <div key={tier.gem} className="">
               <div id="searchresult">
                 <div className="pt-6">
                   <div className="flex flex-row">
                     <div
-                      onClick={() => handleGemClick(option)}
+                      onClick={() => handleGemClick(tier)}
                       className={`rounded-full w-10 h-10 ${
-                        option.gem === 'Sapphire'
+                        tier.gem === 'Sapphire'
                           ? 'bg-blue-600'
-                          : option.gem === 'Emerald'
+                          : tier.gem === 'Emerald'
                             ? 'bg-green-600'
-                            : option.gem === 'Ruby'
+                            : tier.gem === 'Ruby'
                               ? 'bg-red-600'
                               : ''
                       }`}
                     ></div>
                     <div>
                       <h2 className=" pl-2 text-sm  text-[#F8F9FA]">
-                        {option.level} Identity
+                        {tier.level} Identity
                       </h2>
                       <div className="flex flex-row">
                         <a href="#" className="pl-2  text-sm text-[#BDC1C5]">
-                          Cost Guide AUD {option.cost}
+                          Cost Guide AUD {tier.cost}
                         </a>
                       </div>
                     </div>
                   </div>
-                  <button onClick={() => handleGemClick(option)}>
+                  <button onClick={() => handleGemClick(tier)}>
                     <h2 className={`pt-2 text-xl font-medium text-[#8AB4F7]`}>
-                      {option.gem}
+                      {tier.gem}
                     </h2>
                   </button>
                   <p className="w-5/6 text-base text-[#BDC1C5]">
