@@ -1,7 +1,11 @@
 import { sanityFetch } from '@/sanity/config/client-config'
 import SearchResultsPage from '../components/SearchResults/SearchResultsPage'
-import { categoriesQuery, projectsQuery } from '@/sanity/sanity-utils'
-import { Category, Project } from '@/sanity/models/sanity-client-models'
+import {
+  categoriesQuery,
+  projectsQuery,
+  tiersQuery,
+} from '@/sanity/sanity-utils'
+import { Category, Project, Tier } from '@/sanity/models/sanity-client-models'
 import { Suspense } from 'react'
 
 export default async function SearchResults() {
@@ -21,12 +25,21 @@ export default async function SearchResults() {
     tags: ['category'],
   })
 
-  // TODO: Query Services and prop drill
+  // Sanity Query Tiers - prop drill into client components
+  const tiers: Tier[] = await sanityFetch({
+    query: tiersQuery,
+    // You can add multiple tags that matches with your document _id: ['project', 'post', etc]
+    tags: ['tier'],
+  })
 
   return (
     <>
       <Suspense>
-        <SearchResultsPage projects={projects} categories={categories} />
+        <SearchResultsPage
+          projects={projects}
+          categories={categories}
+          tiers={tiers}
+        />
       </Suspense>
     </>
   )
