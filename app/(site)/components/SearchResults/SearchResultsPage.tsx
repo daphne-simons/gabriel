@@ -7,13 +7,15 @@ import Details from './Details'
 import { useSearchParams } from 'next/navigation'
 import SearchResultBar from './SearchResultBar'
 import SearchResultLogo from '../Logos/SearchResultLogo'
-import { Category, Project } from '@/sanity/models/sanity-client-models'
+import { Category, Project, Tier } from '@/sanity/models/sanity-client-models'
 export default function SearchResultsPage({
   projects,
   categories,
+  tiers,
 }: {
   projects: Project[]
   categories: Category[]
+  tiers: Tier[]
 }) {
   const [activeLink, setActiveLink] = useState<number>(0) // state for active link
 
@@ -21,15 +23,13 @@ export default function SearchResultsPage({
 
   // Preserve query parameters
   const queryString = searchParams.toString()
-  console.log(queryString)
-
   const searchResultsUrl = `/search-results${queryString ? `?${queryString}` : ''}`
+
+  const chosenCategory = searchParams.get('category')
 
   function handleLinkClick(index: number) {
     setActiveLink(index)
   }
-
-  const chosenCategory = searchParams.get('category')
 
   return (
     <>
@@ -87,11 +87,13 @@ export default function SearchResultsPage({
         {/* Tiers and Details*/}
         <div className="flex flex-row pl-40">
           {activeLink ? (
+            // TODO: fix bug where page does full refresh when selecting Details.
             <Details categories={categories} chosenCategory={chosenCategory} />
           ) : (
             <ResultsComponent
               chosenCategory={chosenCategory}
               projects={projects}
+              tiers={tiers}
             />
           )}
         </div>
