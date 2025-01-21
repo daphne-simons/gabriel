@@ -5,18 +5,17 @@ const config = {
   projectId: 'z5623np1',
   dataset: 'production',
   apiVersion: '2024-03-16', // todays date (USA format)
-  // useCdn: false, // gives more up to date changes - no default cache
-  // set CDN to live API in development mode
-  useCdn: process.env.NODE_ENV === 'development' ? true : false,
+  useCdn: process.env.NODE_ENV === 'development' ? true : false, // set CDN to live API in development mode
   // https://github.com/sanity-io/next-sanity?tab=readme-ov-file#should-usecdn-be-true-or-false
 }
 
 const client = createClient(config)
 
-// NEW VERSION WITH SANITY FETCH WEBHOOK:
+// SANITY FETCH WEBHOOK:
 // Refer to this documentation:
 // https://victoreke.com/blog/sanity-webhooks-and-on-demand-revalidation-in-nextjs#step-4-configure-revalidatetag-in-sanity-client
-// sanityFetch EXPLAINER: This async function acts as a wrapper function that exports client.fetch with the revalidateTag specified inside next. Instead of exporting the client, the sanityFetch() function will be used to query the datasets.
+// sanityFetch EXPLAINER:
+// This async function acts as a wrapper function that exports client.fetch with the revalidateTag specified inside next. Instead of exporting the client, the sanityFetch() function will be used to query the datasets.
 export async function sanityFetch<QueryResponse>({
   query,
   qParams = {},
