@@ -75,8 +75,7 @@ export default function SelectedProject({
         </button>
       </section>
       <section className="flex bg-black h-full">
-        <div className="w-full h-full relative ">
-          {/* TODO: Make this img dynamic and filtered. If user clicks arrow, show the next project */}
+        <div className="w-full relative ">
           <Image
             src={project.image}
             className="object-contain"
@@ -102,7 +101,7 @@ export default function SelectedProject({
           {project.url ? (
             <Link href={project.url}>
               <button className="bg-[#8AB4F7] flex flex-row items-center rounded-full text-[#303134] text-sm px-3 py-2">
-                <p className="px-2 ">Visit</p>
+                <p className="px-2">Visit</p>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   height="16px"

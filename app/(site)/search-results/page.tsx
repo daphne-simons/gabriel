@@ -33,14 +33,12 @@ export default async function SearchResults() {
   })
 
   return (
-    <>
-      <Suspense>
-        <SearchResultsPage
-          projects={projects}
-          categories={categories}
-          tiers={tiers}
-        />
-      </Suspense>
-    </>
+    <Suspense>
+      <SearchResultsPage
+        projects={projects}
+        categories={categories}
+        tiers={tiers}
+      />
+    </Suspense>
   )
 }
