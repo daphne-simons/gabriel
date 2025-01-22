@@ -99,20 +99,22 @@ export default function SelectedProject({
         </div>
         <div className="flex items-center">
           {/* Project External URL: */}
-          <Link href={project.url}>
-            <button className="bg-[#8AB4F7] flex flex-row items-center rounded-full text-[#303134] text-sm px-3 py-2">
-              <p className="px-2 ">Visit</p>
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="16px"
-                viewBox="0 -960 960 960"
-                width="16px"
-                fill="#303134"
-              >
-                <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
-              </svg>
-            </button>
-          </Link>
+          {project.url ? (
+            <Link href={project.url}>
+              <button className="bg-[#8AB4F7] flex flex-row items-center rounded-full text-[#303134] text-sm px-3 py-2">
+                <p className="px-2 ">Visit</p>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="16px"
+                  viewBox="0 -960 960 960"
+                  width="16px"
+                  fill="#303134"
+                >
+                  <path d="m321-80-71-71 329-329-329-329 71-71 400 400L321-80Z" />
+                </svg>
+              </button>
+            </Link>
+          ) : null}
         </div>
       </section>
     </div>
