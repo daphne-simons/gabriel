@@ -61,7 +61,7 @@ const AutoReplyEmail = (person: UserQuery) => {
               </span>{' '}
               package, */}
               {/* DYNAMIC */}
-              <span style={{ color: '#34A853' }}>{person.chosenService}</span>,
+              <span style={{ color: '#34A853' }}>{person.chosenCategory}</span>,
               <br />
               we’ll be in touch shortly.
               <br />
