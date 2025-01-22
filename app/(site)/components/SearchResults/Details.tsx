@@ -1,4 +1,4 @@
-import { Category } from '@/sanity/models/project'
+import { Category } from '@/sanity/models/sanity-client-models'
 import { PortableText } from 'next-sanity'
 
 export default async function Details({

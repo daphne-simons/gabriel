@@ -82,7 +82,8 @@ export default function SearchOptionsList({
         return
       }
     }
-    // TODO: research cleaner ways to write router stuff in a useEffect without breaking my linter.
+    // push.router creates potential ESLint errors, here are the docs and the appropriate ways to handle these errors:
+    // https://nextjs.org/docs/pages/api-reference/functions/use-router#potential-eslint-errors
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryParam, tierParam]) // when either of these change, it runs the useEffect.
 
