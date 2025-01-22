@@ -25,7 +25,7 @@ const EnquiryEmail = (person: UserQuery) => {
             <Row>
               <Column>🟡</Column>
               <Column>
-                <Text>Service: {person.chosenService}</Text>
+                <Text>Service: {person.chosenCategory}</Text>
               </Column>
             </Row>
             <Row>
