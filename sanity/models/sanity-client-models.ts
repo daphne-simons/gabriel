@@ -1,5 +1,10 @@
 import { PortableTextBlock } from 'next-sanity'
 
+export type Slug = {
+  _type: 'slug'
+  current?: string
+  source?: string
+}
 export type Project = {
   _id: string
   name: string
@@ -22,4 +27,11 @@ export type Tier = {
   level: string
   cost: string
   details: PortableTextBlock[]
+}
+
+export type Page = {
+  _id: string
+  title: string
+  slug?: Slug
+  content: PortableTextBlock[]
 }
