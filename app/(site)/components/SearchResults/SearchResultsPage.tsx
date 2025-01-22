@@ -74,11 +74,7 @@ export default function SearchResultsPage({
                 </button>
 
                 <button
-                  onClick={(e) => {
-                    console.log('Details button clicked')
-                    e.preventDefault() // Let's try preventing default behavior
-                    setActiveView('details')
-                  }}
+                  onClick={() => setActiveView('details')}
                   className={`cursor-pointer ${
                     activeView === 'details'
                       ? 'text-[#8AB4F7] border-b-2 border-[#8AB4F7]'
