@@ -3,6 +3,7 @@ import AllProjects from './AllProjects'
 import SelectedProject from './SelectedProject'
 import { Project, Tier } from '@/sanity/models/sanity-client-models'
 import { useSearchParams, usePathname, useRouter } from 'next/navigation'
+import { PortableText } from 'next-sanity'
 interface Props {
   tiers: Tier[]
   chosenCategory: string | null
@@ -69,8 +70,6 @@ export default function SearchOptionsList({
   )
   // Update the URL with the new query string, if no tier, make default Sapphire
   useEffect(() => {
-    console.log('tierParam', tierParam)
-    console.log('categoryParam', categoryParam)
     if (tierParam === null) {
       const sapphire = tiers.find((tier) => tier.gem === 'Sapphire')
       if (sapphire) {
@@ -87,6 +86,11 @@ export default function SearchOptionsList({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [categoryParam, tierParam]) // when either of these change, it runs the useEffect.
 
+  // Set the option to Sapphire by default on page load.
+  useEffect(() => {
+    setOption(tiers[0])
+  }, [])
+
   const handleClickSelection = (id: string | null) => {
     setSelectedProjectId(id)
   }
@@ -101,72 +105,67 @@ export default function SearchOptionsList({
 
   return (
     <>
-      <div className="pt-6 flex flex-row">
-        {/* LEFT SIDE BAR - CATEGORIES INFO  */}
-        <div className="flex flex-col w-2/3">
-          {tiers.map((tier) => (
-            <div key={tier.gem} className="">
-              <div id="searchresult">
-                <div className="pt-6">
-                  <div className="flex flex-row">
-                    <div
-                      onClick={() => handleGemClick(tier)}
-                      className={`rounded-full w-10 h-10 ${
-                        tier.gem === 'Sapphire'
-                          ? 'bg-blue-600'
-                          : tier.gem === 'Emerald'
-                            ? 'bg-green-600'
-                            : tier.gem === 'Ruby'
-                              ? 'bg-red-600'
-                              : ''
-                      }`}
-                    ></div>
-                    <div>
-                      <h2 className=" pl-2 text-sm  text-[#F8F9FA]">
-                        {tier.level} Identity
-                      </h2>
-                      <div className="flex flex-row">
-                        <a href="#" className="pl-2  text-sm text-[#BDC1C5]">
-                          Cost Guide AUD {tier.cost}
-                        </a>
-                      </div>
+      {/* LEFT SIDE BAR - CATEGORIES INFO  */}
+      <div className="flex flex-col w-full">
+        {tiers.map((tier) => (
+          <div key={tier.gem} className="">
+            <div id="searchresult">
+              <div className="pt-6">
+                <div className="flex flex-row">
+                  <div
+                    onClick={() => handleGemClick(tier)}
+                    className={`rounded-full w-10 h-10 ${
+                      tier.gem === 'Sapphire'
+                        ? 'bg-blue-600'
+                        : tier.gem === 'Emerald'
+                          ? 'bg-green-600'
+                          : tier.gem === 'Ruby'
+                            ? 'bg-red-600'
+                            : ''
+                    }`}
+                  ></div>
+                  <div>
+                    <h2 className=" pl-2 text-sm  text-[#F8F9FA]">
+                      {tier.level} Identity
+                    </h2>
+                    <div className="flex flex-row">
+                      <a href="#" className="pl-2  text-sm text-[#BDC1C5]">
+                        Cost Guide AUD {tier.cost}
+                      </a>
                     </div>
                   </div>
-                  <button onClick={() => handleGemClick(tier)}>
-                    <h2 className={`pt-2 text-xl font-medium text-[#8AB4F7]`}>
-                      {tier.gem}
-                    </h2>
-                  </button>
-                  <p className="w-5/6 text-base text-[#BDC1C5]">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Vero quos iure quia veritatis obcaecati, consequuntur cumque
-                    consequatur similique alias vel animi beatae modi itaque
-                    officiis quisquam quasi autem voluptatum. Officiis.
-                  </p>
+                </div>
+                <button onClick={() => handleGemClick(tier)}>
+                  <h2 className={`pt-2 text-xl font-medium text-[#8AB4F7]`}>
+                    {tier.gem}
+                  </h2>
+                </button>
+                <div className="w-5/6 text-base text-[#BDC1C5]">
+                  <PortableText value={tier.details} />
                 </div>
               </div>
             </div>
-          ))}
-        </div>
-        <div className="w-1/2 flex flex-col pr-32 pt-6">
-          {/* Show SELECTED project: */}
-          {selectedProjectId ? (
-            <SelectedProject
-              project={projects.find((p) => p._id === selectedProjectId)!}
-              chosenProjects={chosenProjects}
-              updateSelectedProject={(id: string) => setSelectedProjectId(id)}
-              handleClickSelection={() => handleClickSelection(null)}
-            />
-          ) : (
-            // Show ALL projects:
-            <AllProjects
-              option={option}
-              chosenCategory={chosenCategory}
-              handleClickSelection={handleClickSelection}
-              chosenProjects={chosenProjects}
-            />
-          )}
-        </div>
+          </div>
+        ))}
+      </div>
+      <div className="w-full flex flex-col pr-32 pt-6">
+        {/* Show SELECTED project: */}
+        {selectedProjectId ? (
+          <SelectedProject
+            project={projects.find((p) => p._id === selectedProjectId)!}
+            chosenProjects={chosenProjects}
+            updateSelectedProject={(id: string) => setSelectedProjectId(id)}
+            handleClickSelection={() => handleClickSelection(null)}
+          />
+        ) : (
+          // Show ALL projects:
+          <AllProjects
+            option={option}
+            chosenCategory={chosenCategory}
+            handleClickSelection={handleClickSelection}
+            chosenProjects={chosenProjects}
+          />
+        )}
       </div>
     </>
   )

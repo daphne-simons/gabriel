@@ -7,15 +7,18 @@ import { Category } from '@/sanity/models/sanity-client-models'
 export default function SearchResultBar({
   categories,
   chosenCategory,
+  setActiveView,
 }: {
   categories: Category[]
   chosenCategory: string | null
+  setActiveView: React.Dispatch<React.SetStateAction<View>>
 }) {
   const router = useRouter()
 
   useEffect(() => {
     setActiveCategory(chosenCategory)
-  }, [chosenCategory])
+    setActiveView('all')
+  }, [chosenCategory, setActiveView])
 
   const [activeCategory, setActiveCategory] = useState(chosenCategory)
   const [isOpen, setIsOpen] = useState(false)

@@ -13,18 +13,16 @@ export default function ResultsComponent({
   projects,
   tiers,
 }: ResultsComponentProps) {
-  console.log('results comp', tiers)
-
   return (
     <>
       {/* Options List and Side bar with Gallery, info, links*/}
-      <div>
+      <>
         <SearchOptionsList
           tiers={tiers}
           chosenCategory={chosenCategory}
           projects={projects}
         />
-      </div>
+      </>
     </>
   )
 }

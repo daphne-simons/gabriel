@@ -22,20 +22,20 @@ export default function AllProjects({
   }
 
   return (
-    <div className="h-full ring-1 rounded-xl ring-[#7d8084]">
+    <div className="h-full w-full  ring-1 rounded-xl ring-[#7d8084]">
       {/* GALLERY Grid */}
-      <div className="h-2/5 ">
+      <div className="h-1/2 ">
         <Gallery
           handleClickSelection={handleClickSelection}
           chosenProjects={chosenProjects}
         />
       </div>
       {/* Text Part */}
-      <div className="h-1/5 px-2 pt-2">
+      <div className="h-1/4 px-2 pt-2">
         <h1 className={`${headingColor[option.gem]} text-3xl`}>{option.gem}</h1>
         <p className="pt-2 text-[#BDC1C5] text-sm">{option.level}</p>
       </div>
-      <div className="px-2 pt-2 h-2/5 border-t  border-[#7d8084]">
+      <div className="px-2 pt-2 h-1/4 border-t  border-[#7d8084]">
         <p className=" text-[#BDC1C5] text-base">
           <PortableText value={option.details} />
         </p>

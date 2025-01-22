@@ -36,4 +36,5 @@ export const tiersQuery = groq`*[_type == "tier" ] | order(_createdAt asc) {
       gem,
       level,
       cost,
+      details,
     }`
