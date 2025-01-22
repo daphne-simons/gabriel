@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { Category } from '@/sanity/models/sanity-client-models'
+import { View } from './SearchResultsPage'
 
 export default function SearchResultBar({
   categories,

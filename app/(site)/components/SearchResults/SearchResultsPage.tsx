@@ -9,7 +9,7 @@ import SearchResultBar from './SearchResultBar'
 import SearchResultLogo from '../Logos/SearchResultLogo'
 import { Category, Project, Tier } from '@/sanity/models/sanity-client-models'
 
-type View = 'all' | 'details'
+export type View = 'all' | 'details'
 export default function SearchResultsPage({
   projects,
   categories,
