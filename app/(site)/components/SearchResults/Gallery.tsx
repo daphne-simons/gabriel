@@ -20,7 +20,7 @@ export default function Gallery({
   return (
     <div
       id="gallery-grid"
-      className="w-full h-full grid grid-cols-8 grid-rows-4 gap-1"
+      className="w-full h-full grid grid-cols-8 grid-rows-4 gap-[1px]"
     >
       {/* Map through gem related chosenProjects and dynamically apply grid styles */}
       {chosenProjects.map((project, index) => (
