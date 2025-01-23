@@ -25,7 +25,7 @@ export default async function SearchResults() {
     tags: ['category'],
   })
 
-  // Sanity Query Tiers - prop drill into client components
+  // Sanity Query for Tiers - prop drill into client components
   const tiers: Tier[] = await sanityFetch({
     query: tiersQuery,
     // You can add multiple tags that matches with your document _id: ['project', 'post', etc]

@@ -40,7 +40,7 @@ export default function AllProjects({
         </div>
         {/* Bottom Text Part */}
         <div className="flex flex-col items-stretch border-t border-[#7d8084]">
-          <p className=" text-[#BDC1C5] text-base py-2">
+          <p className=" text-[#BDC1C5] text-sm py-2">
             <PortableText value={option.details} />
           </p>
           {/* Dynamically updates Query Parameters - cleaner query building */}
@@ -56,7 +56,7 @@ export default function AllProjects({
               },
             }}
           >
-            <button className="bg-[#8AB4F7] flex flex-row items-center rounded-full text-[#303134] text-sm px-3 py-2">
+            <button className=" bg-[#535560] hover:bg-[#5e606c] align-middle rounded-full text-googleLightGray text-base px-3 py-2 w-1/2">
               <h3 className="px-2">Enquire</h3>
             </button>
           </Link>
