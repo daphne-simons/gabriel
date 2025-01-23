@@ -61,7 +61,7 @@ export default function SearchResultsPage({
           </div>
           {/* 2nd Nav - All and Details*/}
           <div className="flex text-[#F8F9FA]">
-            <ul className="flex flex-row ml-40 gap-8">
+            <ul className="flex flex-row xl:ml-40 lg:ml-40 md:ml-28 gap-8">
               <button
                 onClick={() => setActiveView('all')}
                 className={`cursor-pointer ${
@@ -86,9 +86,13 @@ export default function SearchResultsPage({
             </ul>
           </div>
         </div>
-        {/* Tiers and Details*/}
-        <div className="flex flex-row pl-40">
+        {/* MAIN PAGE CONTENT: Tiers and Details*/}
+        <div
+          className="flex flex-col xl:flex-row xl:pl-40 lg:flex-row lg:pl-40 md:pl-28 md:pr-24  bg-[#202124] h-screen pb-6
+        "
+        >
           {activeView === 'all' ? (
+            // TODO: When it is medium screen and smaller, hide the tier info, replace with roundish buttons Dune styles  */}
             <ResultsComponent
               chosenCategory={decodedCategory}
               projects={projects}

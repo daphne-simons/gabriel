@@ -110,11 +110,17 @@ const config: Config = {
         c0: '#e2e2bf',
         c1: '#1d1d1d',
         googleRed: '#EA4335',
+        // RGB hover -  opacity:
+        googleRedHover: 'rgb(234, 67, 53, 65%)',
         googleOrange: '#E37400',
         googleLightRed: '#F86F78',
         googleGreen: '#34A853',
+        // RGB hover -  opacity:
+        googleGreenHover: 'rgb(52, 168, 83, 65%)',
         googleNeonGreen: '#24FF00',
         googleBlue: '#1C73E8',
+        // RGB hover -  opacity:
+        googleBlueHover: 'rgb(28, 115, 232, 65%)',
         googleHoverBlue: '#0052C1',
         googleDarkBlue: '#0048A8',
         googleMidGray: '#5F6368',

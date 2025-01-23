@@ -38,7 +38,7 @@ export default function SearchResultBar({
     <div
       onClick={toggleDropdown}
       id="search-area"
-      className={`flex flex-row relative w-[50%] `}
+      className={`flex flex-row relative md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%]`}
     >
       <div
         className={`mt-5 p-5 w-full h-[46px] pl-12 text-[#F8F9FA] placeholder-[#F8F9FA] text-base bg-[#3d3d3d] hover:bg-[#505050] rounded-full drop-shadow-lg ${

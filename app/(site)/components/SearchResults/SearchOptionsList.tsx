@@ -20,6 +20,13 @@ export default function SearchOptionsList({
   const path = usePathname()
   const router = useRouter()
   // --- STATES:
+
+  const bgColorHover: { [key: string]: string } = {
+    Sapphire: 'hover:bg-googleBlue',
+    Emerald: 'hover:bg-googleGreen',
+    Ruby: 'hover:bg-googleRed',
+  }
+
   const [option, setOption] = useState<Tier>({
     _id: '',
     gem: '',
@@ -105,8 +112,9 @@ export default function SearchOptionsList({
 
   return (
     <>
-      {/* LEFT SIDE BAR - CATEGORIES INFO  */}
-      <div className="flex flex-col w-full">
+      {/* LEFT SIDE BAR - TIERS INFO  */}
+      {/* Large Screens Tiers Info: */}
+      <div className="flex flex-col max-lg:hidden lg:w-4/6 xl:w-full 2xl:w-full">
         {tiers.map((tier) => (
           <div key={tier.gem} className="">
             <div id="searchresult">
@@ -116,11 +124,11 @@ export default function SearchOptionsList({
                     onClick={() => handleGemClick(tier)}
                     className={`rounded-full w-10 h-10 ${
                       tier.gem === 'Sapphire'
-                        ? 'bg-blue-600'
+                        ? 'bg-googleBlue'
                         : tier.gem === 'Emerald'
-                          ? 'bg-green-600'
+                          ? 'bg-googleGreen'
                           : tier.gem === 'Ruby'
-                            ? 'bg-red-600'
+                            ? 'bg-googleRed'
                             : ''
                     }`}
                   ></div>
@@ -148,8 +156,37 @@ export default function SearchOptionsList({
           </div>
         ))}
       </div>
-      <div className="w-full flex flex-col pr-32 pt-6">
-        {/* Show SELECTED project: */}
+      {/* Medium and Smaller Tiers Buttons */}
+      <div className="pt-6 pb-2 flex justify-start gap-4 lg:hidden xl:hidden w-full">
+        {tiers.map((tier) => (
+          <button
+            key={tier.gem}
+            onClick={() => handleGemClick(tier)}
+            className={`text-center w-28 h-10 rounded-3xl text-googleLightGray ${bgColorHover[tier.gem]} ${
+              option.gem === tier.gem
+                ? tier.gem === 'Sapphire'
+                  ? 'bg-googleBlue '
+                  : tier.gem === 'Emerald'
+                    ? 'bg-googleGreen'
+                    : tier.gem === 'Ruby'
+                      ? 'bg-googleRed'
+                      : ''
+                : tier.gem === 'Sapphire'
+                  ? 'bg-googleBlueHover'
+                  : tier.gem === 'Emerald'
+                    ? 'bg-googleGreenHover'
+                    : tier.gem === 'Ruby'
+                      ? 'bg-googleRedHover'
+                      : ''
+            }`}
+          >
+            {tier.gem}
+          </button>
+        ))}
+      </div>
+      {/* RIGHT SIDE - PROJECTS GALLERY  */}
+      <div className="flex flex-col md:h-[75%] lg:pr-24 lg:w-5/6 lg:h-[75%] xl:w-full xl:h-[75%] xl:pr-32 pt-6">
+        {/* SELECTED project: */}
         {selectedProjectId ? (
           <SelectedProject
             project={projects.find((p) => p._id === selectedProjectId)!}
@@ -158,7 +195,7 @@ export default function SearchOptionsList({
             handleClickSelection={() => handleClickSelection(null)}
           />
         ) : (
-          // Show ALL projects:
+          // ALL projects:
           <AllProjects
             option={option}
             chosenCategory={chosenCategory}
