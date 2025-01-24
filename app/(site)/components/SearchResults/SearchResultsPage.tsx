@@ -2,12 +2,12 @@
 import MoonWidget from '../../components/MoonWidget'
 import Link from 'next/link'
 import { useState } from 'react'
-import ResultsComponent from './ResultsComponent'
 import Details from './Details'
 import { useSearchParams } from 'next/navigation'
 import SearchResultBar from './SearchResultBar'
 import SearchResultLogo from '../Logos/SearchResultLogo'
 import { Category, Project, Tier } from '@/sanity/models/sanity-client-models'
+import SearchOptionsList from './SearchOptionsList'
 
 export type View = 'all' | 'details'
 export default function SearchResultsPage({
@@ -93,7 +93,7 @@ export default function SearchResultsPage({
         >
           {activeView === 'all' ? (
             // TODO: When it is medium screen and smaller, hide the tier info, replace with roundish buttons Dune styles  */}
-            <ResultsComponent
+            <SearchOptionsList
               chosenCategory={decodedCategory}
               projects={projects}
               tiers={tiers}
