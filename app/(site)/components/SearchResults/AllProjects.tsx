@@ -32,14 +32,14 @@ export default function AllProjects({
       </div>
       <div className="h-1/2 w-full py-2 ">
         {/* Top Text Part */}
-        <div className="xl:h-1/2 lg:h-[40%] md:h-[45%] px-2 pb-2 flex flex-col justify-around">
+        <div className="max-md:h-[40%] md:h-[45%] lg:h-[40%] xl:h-1/2  px-2 pb-2 flex flex-col justify-around">
           <h1 className={`${headingColor[option.gem]} text-3xl `}>
             {option.gem}
           </h1>
           <p className="text-[#BDC1C5] text-sm ">{option.level}</p>
         </div>
         {/* Bottom Text Part */}
-        <div className="xl:h-1/2 lg:h-[60%] md:h-[55%] px-2 pt-2 flex flex-col justify-around border-t border-[#7d8084]">
+        <div className="max-md:h-[60%] md:h-[55%] lg:h-[60%] xl:h-1/2 px-2 pt-2 flex flex-col justify-around border-t border-[#7d8084]">
           <div>
             <p className=" text-[#BDC1C5] text-sm">
               <PortableText value={option.details} />

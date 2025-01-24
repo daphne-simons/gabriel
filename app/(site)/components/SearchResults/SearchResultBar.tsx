@@ -38,19 +38,19 @@ export default function SearchResultBar({
     <div
       onClick={toggleDropdown}
       id="search-area"
-      className={`flex flex-row relative md:w-[70%] lg:w-[60%] xl:w-[50%] 2xl:w-[40%]`}
+      className={`flex flex-row relative md:w-[90%] lg:w-[65%] xl:w-[60%] 2xl:w-[50%]`}
     >
       <div
-        className={`mt-5 p-5 w-full h-[46px] pl-12 text-[#F8F9FA] placeholder-[#F8F9FA] text-base bg-[#3d3d3d] hover:bg-[#505050] rounded-full drop-shadow-lg ${
-          isOpen ? 'drop-shadow-2xl hidden' : 'drop-shadow-lg'
+        className={`max-md:mt-2 max-md:mb-4 mt-5 p-5 w-full h-[46px] pl-12 text-[#F8F9FA] placeholder-[#F8F9FA] text-base bg-[#3d3d3d] hover:bg-[#505050] rounded-full drop-shadow-lg ${
+          isOpen ? 'drop-shadow-2xl opacity-0' : 'drop-shadow-lg'
         }`}
       >
-        <h2 className="absolute top-[12px]">
+        <h2 className="absolute max-md:top-[12px] top-[12px]">
           <span className="font-thin ">I want </span>
           <span className="font-bold">{activeCategory || '...'}</span>
         </h2>
       </div>
-      <span className="h-6 w-6 top-[15px] pt-4 left-4 absolute">
+      <span className="h-6 w-6 max-md:top-[3px] top-[15px] pt-4 left-4 absolute">
         <svg
           focusable="false"
           fill="#9aa0a6"
@@ -64,7 +64,7 @@ export default function SearchResultBar({
       {isOpen && (
         <div
           id="dropdown"
-          className={`absolute z-10 pl-8 py-1 pb-2 text-[#F8F9FA]  w-full rounded-[25px] flex flex-col gap-2 bg-[#303134] top-5 drop-shadow-lg ${
+          className={`absolute flex flex-col w-full max-md:top-2 z-10 pl-8 py-1 pb-2 text-[#F8F9FA] rounded-[25px] gap-2 bg-[#303134] top-5 drop-shadow-lg ${
             isOpen ? 'block' : 'hidden'
           }`}
         >

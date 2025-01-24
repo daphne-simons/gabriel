@@ -36,32 +36,30 @@ export default function SearchResultsPage({
     return (
       <div className=" bg-[#202124] h-screen">
         {/* Top Nav and Search Bar */}
-        <div className="flex flex-col border-b border-[#7d8084] ">
-          <div id="header" className="flex flex-row relative gap-4 p-2">
-            {/* Logo & SearchBar*/}
-            <div className="flex w-full">
-              {/* Logo */}
-              <div className="pr-8 pl-5 pt-2 flex items-center">
-                <Link href="/">
-                  <SearchResultLogo />
-                </Link>
-              </div>
-              <div className="flex flex-row w-full justify-between">
-                {/* Searchbar */}
-                <SearchResultBar
-                  setActiveView={setActiveView}
-                  categories={categories}
-                  chosenCategory={decodedCategory}
-                />
-                <div className="mr-8 flex items-center text-[#F8F9FA] text-sm font-roboto">
-                  <MoonWidget size="smallMoon" />
-                </div>
-              </div>
+        <div className="flex flex-col relative border-b border-[#7d8084] ">
+          <div
+            id="header"
+            className="flex max-md:flex-wrap max-md:gap-0 gap-4 p-2"
+          >
+            <div className="pr-8 pl-5 pt-2 items-center order-1">
+              <Link href="/">
+                <SearchResultLogo />
+              </Link>
+            </div>
+            <div className="pr-20 pt-2 flex items-center order-3 max-md:order-2  text-[#F8F9FA] text-sm font-roboto max-md:hidden">
+              <MoonWidget size="smallMoon" />
+            </div>
+            <div className="max-md:order-3 max-md:w-[90%] max-md:ml-4 md:w-full order-2 ">
+              <SearchResultBar
+                setActiveView={setActiveView}
+                categories={categories}
+                chosenCategory={decodedCategory}
+              />
             </div>
           </div>
           {/* 2nd Nav - All and Details*/}
           <div className="flex text-[#F8F9FA]">
-            <ul className="flex flex-row xl:ml-40 lg:ml-40 md:ml-28 gap-8">
+            <ul className="flex flex-row max-md:ml-6 md:ml-28 lg:ml-40 xl:ml-40 gap-8">
               <button
                 onClick={() => setActiveView('all')}
                 className={`cursor-pointer ${
@@ -88,7 +86,7 @@ export default function SearchResultsPage({
         </div>
         {/* MAIN PAGE CONTENT: Tiers and Details*/}
         <div
-          className="flex flex-col xl:flex-row xl:pl-40 lg:flex-row lg:pl-40 md:pl-28 md:pr-24  bg-[#202124] h-screen pb-6
+          className="flex flex-col max-md:px-6 md:pl-28 md:pr-24 lg:flex-row lg:pl-40 xl:flex-row xl:pl-40  bg-[#202124] h-screen pb-6
         "
         >
           {activeView === 'all' ? (
