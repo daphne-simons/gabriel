@@ -57,14 +57,16 @@ const ContactForm = () => {
   return (
     <div className="w-full mb-auto">
       {/* Enquiry form */}
-      <div className="pt-10 pb-24 flex flex-col">
-        <div className="font-roboto text-xl w-2/3">
-          <h2 className="text-6xl font-base">Hi, how can we help?</h2>
+      <div className="pt-14 pb-24 flex flex-col  lg:pb-10">
+        <div className="font-roboto text-xl  max-md:w-full md:w-[80%] lg:w-[75%] xl:w-[60%]">
+          <h2 className="font-base max-md:text-4xl md:text-5xl lg:text-6xl">
+            Hi, how can we help?
+          </h2>
 
           {/* Form */}
           <form className="flex flex-col" onSubmit={handleSubmit}>
-            <div className="flex flex-row pb-6 pt-32">
-              <div className="pr-4 w-1/3">
+            <div className="flex flex-row max-md:flex-col max-md:py-16 pb-6 pt-32 md:pt-24 gap-4">
+              <div className="w-1/3 max-md:w-full md:w-[90%] lg:w-[60%]">
                 <input
                   aria-label="name"
                   className="p-2 outline outline-googleLightGray rounded text-sm w-full"
@@ -75,7 +77,7 @@ const ContactForm = () => {
                   placeholder="My name is"
                 />
               </div>
-              <div className="pl-4 w-1/3">
+              <div className="w-1/3 max-lg:w-full lg:w-[70%]">
                 <input
                   aria-label="email"
                   className="p-2 outline outline-googleLightGray rounded text-sm w-full"
@@ -87,7 +89,7 @@ const ContactForm = () => {
                 />
               </div>
             </div>
-            <p>
+            <p className="md:w-[85%]  pt-4">
               I&apos;d like to learn more about the{' '}
               <span className={`font-semibold ${gemStyle}`}>
                 {level.toLowerCase()}
@@ -96,11 +98,10 @@ const ContactForm = () => {
               <span className="font-semibold text-googleGreen">
                 {chosenCategory.toLowerCase()}
               </span>
-              , <br />
-              could you send me some information?
+              , could you send me some information?
             </p>
 
-            <div className="flex flex-row pt-20">
+            <div className="flex flex-row pt-16 max-md:pt-16 md:pt-18 lg:pt-20">
               <div className="">
                 <button
                   className="px-12 py-3 bg-googleBlue rounded text-white text-sm"

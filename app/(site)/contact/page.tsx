@@ -11,19 +11,19 @@ const ContactPage = () => {
       {/* Enquiry Header */}
       <div id="header" className="flex flex-row relative gap-4 p-2">
         {/* Contact Logo */}
-        <div className="pr-8 pl-5 pt-2 flex items-center">
+        <div className="px-6 flex items-center">
           <Link href="/">
             <AboutEnquireLogo />
           </Link>
         </div>
       </div>
       {/* Enquiry page content / form */}
-      <div className="flex flex-col items-start pl-36 pb-24 w-full mx-auto">
+      <div className="flex flex-col items-start w-full mx-auto max-md:px-10 md:pl-28 md:pb-6 lg:pl-30 lg:pb-20">
         <ContactForm />
       </div>
       {/* Footer */}
-      <div className="pl-36 bg-googlelightGrayFooter bottom-0 w-full">
-        <div className="flex flex-col items-start">
+      <div className=" bg-googlelightGrayFooter bottom-0 w-full ">
+        <div className="flex flex-col items-start md:pl-10 lg:pl-12">
           <Footer />
         </div>
       </div>
