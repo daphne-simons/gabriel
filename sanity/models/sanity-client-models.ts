@@ -29,9 +29,21 @@ export type Tier = {
   details: PortableTextBlock[]
 }
 
-export type Page = {
+export type EnquiryPage = {
   _id: string
   title: string
   slug?: Slug
   content: PortableTextBlock[]
+}
+
+export type AboutPageModel = {
+  _id: string
+  title: string
+  slug?: Slug
+  description: PortableTextBlock[]
+  address: PortableTextBlock[]
+  contact: PortableTextBlock[]
+  team: PortableTextBlock[]
+  consultants: PortableTextBlock[]
+  clients_collaborators: PortableTextBlock[]
 }

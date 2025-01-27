@@ -41,12 +41,24 @@ export default function SearchResultsPage({
             id="header"
             className="flex max-md:flex-wrap max-md:gap-0 gap-4 p-2"
           >
-            <div className="pr-8 pl-5 pt-2 items-center order-1">
+            {/* SMALL devices - Logo and Moon Widget*/}
+            <div className="flex flex-row w-full justify-between md:hidden lg:hidden xl:hidden 2xl:hidden">
+              <div className="pr-8 pl-5 pt-2 items-center order-1">
+                <Link href="/">
+                  <SearchResultLogo />
+                </Link>
+              </div>
+              <div className="pt-2 px-5 flex order-2 items-center text-[#F8F9FA] text-sm md:hidden lg:hidden xl:hidden 2xl:hidden">
+                <MoonWidget size="smallMoon" />
+              </div>
+            </div>
+            {/* MEDIUM TO LARGE devices - Logo and Moon Widget*/}
+            <div className="max-md:hidden pr-8 pl-5 pt-2 items-center">
               <Link href="/">
                 <SearchResultLogo />
               </Link>
             </div>
-            <div className="pr-20 pt-2 flex items-center order-3 max-md:order-2  text-[#F8F9FA] text-sm font-roboto max-md:hidden">
+            <div className="pr-20 pt-2 flex items-center order-3 max-md:order-2  text-[#F8F9FA] text-sm max-md:hidden">
               <MoonWidget size="smallMoon" />
             </div>
             <div className="max-md:order-3 max-md:w-[90%] max-md:ml-4 md:w-full order-2 ">
@@ -90,7 +102,6 @@ export default function SearchResultsPage({
         "
         >
           {activeView === 'all' ? (
-            // TODO: When it is medium screen and smaller, hide the tier info, replace with roundish buttons Dune styles  */}
             <SearchOptionsList
               chosenCategory={decodedCategory}
               projects={projects}

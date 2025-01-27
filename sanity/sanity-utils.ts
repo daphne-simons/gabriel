@@ -38,3 +38,15 @@ export const tiersQuery = groq`*[_type == "tier" ] | order(_createdAt asc) {
       cost,
       details,
     }`
+
+export const AboutPageQuery = groq`*[_type == "about-page"]{
+      _id,
+      title,
+      slug,
+      description,
+      address,
+      contact,
+      team,
+      consultants,
+      clients_collaborators,
+    }`

@@ -121,7 +121,10 @@ export default function MoonWidget({ size }: { size: string }) {
     if (phase) {
       return (
         <div className="">
-          <Link href="/moon" className="gap-6 flex flex-row items-center">
+          <Link
+            href="/moon"
+            className="max-md:gap-3 gap-6 flex flex-row items-center"
+          >
             <h2>{phase.phase}</h2>
             <Image
               src={phaseImagePath}

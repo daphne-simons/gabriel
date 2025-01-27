@@ -57,13 +57,15 @@ export default function SearchOptionsList({
 
   // --- USE EFFECTS:
 
-  // Filter projects by gem
+  // Filter projects by Tier(gem) and Category
   useEffect(() => {
-    const projectsByGem = projects.filter((project) => {
-      return project.gem === option.gem
+    const projectsByGemAndCategory = projects.filter((project) => {
+      if (project.gem === option.gem && project.category === chosenCategory) {
+        return project
+      }
     })
-    setChosenProjects(projectsByGem)
-  }, [projects, option.gem])
+    setChosenProjects(projectsByGemAndCategory)
+  }, [projects, option.gem, chosenCategory])
 
   // Get a new searchParams string by merging the current searchParams with a provided key/value pair
   const createQueryString = useCallback(
@@ -113,7 +115,7 @@ export default function SearchOptionsList({
   return (
     <>
       {/* LEFT SIDE BAR - TIERS INFO  */}
-      {/* Large Screens Tiers Info: */}
+      {/* LARGE Devices - Tiers Info: */}
       <div className="flex flex-col max-lg:hidden lg:w-4/6 xl:w-full 2xl:w-full">
         {tiers.map((tier) => (
           <div key={tier.gem} className="">
@@ -156,7 +158,7 @@ export default function SearchOptionsList({
           </div>
         ))}
       </div>
-      {/* Medium and Smaller Tiers Buttons */}
+      {/* SMALL & MEDIUM Devices - Tiers Buttons */}
       <div className="pt-6 pb-2 flex justify-start gap-4 lg:hidden xl:hidden w-full">
         {tiers.map((tier) => (
           <button

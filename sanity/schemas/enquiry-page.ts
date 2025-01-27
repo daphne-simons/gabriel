@@ -1,6 +1,6 @@
-const page = {
-  name: 'page',
-  title: 'Pages',
+const enquiryPage = {
+  name: 'about-page',
+  title: 'About Page',
   type: 'document',
   fields: [
     {
@@ -26,4 +26,4 @@ const page = {
   ],
 }
 
-export default page
+export default enquiryPage
