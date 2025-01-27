@@ -33,42 +33,43 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
 
   return (
     <>
-      <div className="flex flex-row relative gap-4 p-2">
-        <ul className="flex justify-between pt-2 px-5 text-sm">
-          <Link href="/">
-            <AboutEnquireLogo />
-          </Link>
-          <Link href="/about" className="flex self-center px-8 py-6 ">
-            <li className=" pb-2 text-sm border-b-2 border-[#8AB4F7]">About</li>
-          </Link>
-        </ul>
-      </div>
-      <main className="pt-10 pb-24 px-20">
+      {/* <div className="w-full flex flex-row relative "> */}
+      <ul className="w-full flex max-md:justify-between gap-4 p-2 pt-2 px-5 text-sm">
+        <Link href="/" className="pl-2">
+          <AboutEnquireLogo />
+        </Link>
+        <Link href="/about" className="px-8 py-6 ">
+          <li className="pb-2 text-sm border-b-2 border-[#8AB4F7]">About</li>
+        </Link>
+      </ul>
+      {/* </div> */}
+      <main className="pt-10 pb-24 px-20 max-md:px-4 ">
         {/* Description */}
         <section className="flex justify-center text-center ">
-          <article className="font-roboto text-xl w-2/3 ">
+          <article className="font-roboto text-xl max-md:text-[20px] max-md:w-[80%] md:w-[85%] lg:w-[75%] xl:w-[50%] xl:text-2xl">
             <PortableText value={data.description} components={components} />
           </article>
         </section>
-        <div className="pt-20 flex flex-col items-center">
-          <section className="w-5/6 grid grid-cols-2 gap-20 place-content-evenly">
-            <article className="font-roboto text-2xl w-2/3">
+        <div className="pt-20 max-md:pt-16 flex flex-col items-center">
+          <section className="w-5/6 grid grid-cols-2 grid-rows-3 max-md:grid-cols-1 max-md:grid-rows-4 max-md:gap-8 md:gap-4 place-content-evenly">
+            <article className="w-2/3 md:w-[90%] font-roboto text-2xl ">
               <h2>Gabriel</h2>
-              <div className="py-2 text-base text-googleMidGray pb-10 ">
+              <div className="py-2 text-base max-md:pb-8 text-googleMidGray ">
                 <PortableText value={data.address} />
               </div>
-              <button className="text-base text-googleBlue border border-2-lightGray hover:text-googleDarkBlue hover:border-googleBlue rounded-md px-6 py-2">
+              {/* SMALL - BUTTON 1 */}
+              <button className="w-32 h-10 flex items-center justify-center text-base text-googleBlue border border-2-lightGray hover:text-googleDarkBlue hover:border-googleBlue rounded-md px-6 py-2 md:hidden lg:hidden xl:hidden 2xl:hidden">
                 View Map
               </button>
             </article>
-
-            <article className="font-roboto text-2xl w-2/3">
+            <article className="w-2/3 md:w-[90%] max-md:pt-8 font-roboto text-2xl ">
               <h2>Contact</h2>
-              <div className="pt-2 pb-16 text-base text-googleMidGray">
+              <div className="pt-2 pb-16 text-base max-md:pb-8  text-googleMidGray">
                 <PortableText value={data.contact} />
               </div>
+              {/* SMALL - BUTTON 2 */}
               <a
-                className="text-base text-googleBlue hover:text-googleDarkBlue border border-2-lightGray hover:border-googleBlue rounded-md px-7 py-[10px]"
+                className="w-32 h-10 flex items-center justify-center text-base  text-googleBlue hover:text-googleDarkBlue border border-2-lightGray hover:border-googleBlue rounded-md md:hidden lg:hidden xl:hidden 2xl:hidden"
                 // TODO: change this email address to Ella's official Gabriel Email
                 href="mailto:daphnejasminesimons@gmail.com?subject=General%20Enquiry%20for%20Gabriel"
                 target="_blank"
@@ -77,26 +78,40 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
                 Email Us
               </a>
             </article>
+            {/* MED -> LARGE Button 1 */}
+            <button className="w-32 h-10 flex items-center justify-center text-base text-googleBlue border border-2-lightGray hover:text-googleDarkBlue hover:border-googleBlue rounded-md px-6 py-2 max-md:hidden">
+              View Map
+            </button>
+            {/* MED -> LARGE Button 2 */}
+            <a
+              className="w-32 h-10 flex items-center justify-center text-base  text-googleBlue hover:text-googleDarkBlue border border-2-lightGray hover:border-googleBlue rounded-md max-md:hidden"
+              // TODO: change this email address to Ella's official Gabriel Email
+              href="mailto:daphnejasminesimons@gmail.com?subject=General%20Enquiry%20for%20Gabriel"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Email Us
+            </a>
 
-            <article className="font-roboto text-2xl w-2/3">
+            <article className="w-2/3 md:w-[90%] max-md:flex max-md:flex-col  max-md:justify-center font-roboto text-2xl">
               <h2>Team</h2>
               <div className="pt-2 text-base text-googleMidGray">
                 <PortableText value={data.team} />
               </div>
             </article>
 
-            <article className="font-roboto text-2xl w-2/3">
+            <article className="w-2/3 md:w-[90%] max-md:flex max-md:flex-col  max-md:justify-start font-roboto text-2xl">
               Consultants
               <div className="pt-2 text-base text-googleMidGray">
                 <PortableText value={data.consultants} />
               </div>
             </article>
           </section>
-          <section className="w-5/6 pt-20">
+          <section className="w-5/6 pt-20 max-md:pt-0">
             <article className="w-11/12 text-2xl font-normal font-roboto">
               Past Clients and Collaborators
             </article>
-            <article className="w-11/12 pt-5 text-lg font-roboto text-googleMidGray">
+            <article className="w-11/12 max-md:w-full max-md:text-sm md:text-base pt-5 text-lg font-roboto text-googleMidGray">
               <PortableText value={data.clients_collaborators} />
             </article>
           </section>
@@ -104,7 +119,7 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
       </main>
       {/* Footer */}
       <div className="bg-googlelightGrayFooter bottom-0 w-full">
-        <div className="flex flex-col items-center px-20">
+        <div className="flex flex-col items-center">
           <Footer />
         </div>
       </div>
