@@ -1,11 +1,11 @@
 'use client'
 import { Suspense } from 'react'
-import ContactForm from '../components/ContactForm'
+import EnquiryForm from '../components/EnquiryForm'
 import Footer from '../components/Footer'
 import AboutEnquireLogo from '../components/Logos/AboutEnquireLogo'
 import Link from 'next/link'
 
-const ContactPage = () => {
+const EnquiryPage = () => {
   return (
     <Suspense fallback={<div>Loading...</div>}>
       {/* Enquiry Header */}
@@ -19,7 +19,7 @@ const ContactPage = () => {
       </div>
       {/* Enquiry page content / form */}
       <div className="flex flex-col items-start w-full mx-auto max-md:px-10 md:pl-28 md:pb-6 lg:pl-30 lg:pb-20">
-        <ContactForm />
+        <EnquiryForm />
       </div>
       {/* Footer */}
       <div className=" bg-googlelightGrayFooter bottom-0 w-full ">
@@ -31,4 +31,4 @@ const ContactPage = () => {
   )
 }
 
-export default ContactPage
+export default EnquiryPage

@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { fetchSendAPI } from '../api-utils/apiClient'
 
-const ContactForm = () => {
+const EnquiryForm = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
 
@@ -118,4 +118,4 @@ const ContactForm = () => {
   )
 }
 
-export default ContactForm
+export default EnquiryForm
