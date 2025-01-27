@@ -50,7 +50,7 @@ export default function AllProjects({
           <div className="bg-[#535560] hover:bg-[#5e606c] rounded-full w-1/2">
             <Link
               href={{
-                pathname: '/contact',
+                pathname: '/enquiry',
                 query: {
                   category: encodeURIComponent(chosenCategory ?? ''), // Encode category string, returns empty string if chosenCategory is null
                   gem: option.gem,
