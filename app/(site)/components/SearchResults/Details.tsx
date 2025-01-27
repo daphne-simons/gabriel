@@ -7,7 +7,7 @@ export default function Details({
   chosenCategory: Category
 }) {
   return (
-    <div className="pt-2 w-1/3">
+    <div className="pt-2 w-1/3 max-md:w-full">
       <h1 className="text-xl text-[#8AB4F7] py-4">
         Additional details about {chosenCategory.name}
       </h1>
