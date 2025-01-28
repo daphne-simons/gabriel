@@ -15,6 +15,8 @@ import { Category } from '@/sanity/models/sanity-client-models'
 export default function HomePage({ categories }: { categories: Category[] }) {
   // Variable Font changes logic:
   const [fontSettings, setFontSettings] = useState({ wght: 200, opsz: 72 })
+  const [isOpen, setIsOpen] = useState(false)
+
   const updateText = (e: React.MouseEvent<HTMLDivElement>) => {
     const multiplierWidth = e.clientX / window.innerWidth
     const multiplierOpsz = e.clientY / window.innerHeight
@@ -57,11 +59,15 @@ export default function HomePage({ categories }: { categories: Category[] }) {
     // To test hard coded Full Moon Styling:
     // const theme = calculateBgColor(90)
 
+    const closeDropDown = () => {
+      if (isOpen === false) return
+      else setIsOpen(!isOpen)
+    }
     if (theme)
       return (
         <Suspense fallback={<div>Loading...</div>}>
           {/* This is listening to the mousemoves on the whole page, to update the Variable fontSettings in the HomeLogo */}
-          <div onMouseMove={updateText}>
+          <div onMouseMove={updateText} onClick={closeDropDown}>
             {/* Background wrapper to dynamically change theme according to Moon Phase. */}
             <BackGround theme={theme}>
               <div className="flex flex-col justify-between h-screen">
@@ -78,7 +84,12 @@ export default function HomePage({ categories }: { categories: Category[] }) {
                   <HomeLogo fontSettings={fontSettings} />
                   {/* Div for Search Input  && */}
                   {/* Feeling Lucky/ Contact Button */}
-                  <HomeSearchBar categories={categories} theme={theme} />
+                  <HomeSearchBar
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    categories={categories}
+                    theme={theme}
+                  />
                 </div>
                 <div></div>
               </div>

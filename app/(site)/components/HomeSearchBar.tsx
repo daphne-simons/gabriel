@@ -15,12 +15,14 @@ interface Props {
 export default function HomeSearchBar({
   theme,
   categories,
+  isOpen,
+  setIsOpen,
 }: {
   theme: Props
   categories: Category[]
+  isOpen: boolean
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) {
-  const [isOpen, setIsOpen] = useState(false)
-
   const toggleDropdown = () => {
     setIsOpen(!isOpen)
   }
@@ -97,7 +99,6 @@ export default function HomeSearchBar({
                     </svg>
                   </span>
                   <Link
-                    // href={`/search-results?category=${category.name}`}
                     href={{
                       pathname: '/search-results',
                       query: {
