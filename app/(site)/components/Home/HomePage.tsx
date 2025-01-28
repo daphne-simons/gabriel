@@ -57,7 +57,7 @@ export default function HomePage({ categories }: { categories: Category[] }) {
     // To test dynamic moon theme:
     const theme = calculateBgColor(lightValue)
     // To test hard coded Full Moon Styling:
-    // const theme = calculateBgColor(90)
+    // const theme = calculateBgColor(50)
 
     const closeDropDown = () => {
       if (isOpen === false) return
@@ -79,7 +79,7 @@ export default function HomePage({ categories }: { categories: Category[] }) {
                   <MoonWidget size={'smallMoon'} />
                 </div>
                 {/* Middle section  */}
-                <div className="relative middle flex flex-col justify-evenly items-center h-[30%] -top-44">
+                <div className="relative middle flex flex-col justify-evenly items-center h-[30%] -top-44 max-md:-top-20">
                   {/* Heading */}
                   <HomeLogo fontSettings={fontSettings} />
                   {/* Div for Search Input  && */}
