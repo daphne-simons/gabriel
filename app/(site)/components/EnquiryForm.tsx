@@ -104,7 +104,7 @@ const EnquiryForm = () => {
             <div className="flex flex-row pt-16 max-md:pt-16 md:pt-18 lg:pt-20">
               <div className="">
                 <button
-                  className="px-12 py-3 bg-googleBlue rounded text-white text-sm"
+                  className="px-12 py-3 bg-googleBlue hover:bg-googleHoverBlue rounded text-white text-base"
                   type="submit"
                 >
                   Send

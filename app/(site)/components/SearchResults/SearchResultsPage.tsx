@@ -34,40 +34,40 @@ export default function SearchResultsPage({
     ) as Category
 
     return (
-      <div className=" bg-[#202124] h-screen">
+      <div className=" bg-[#202124] h-screen relative">
         {/* Top Nav and Search Bar */}
-        <div className="flex flex-col relative border-b border-[#7d8084] ">
+        <div className="flex flex-col relative border-b border-[#7d8084]">
           <div
             id="header"
-            className="flex max-md:flex-wrap max-md:gap-0 gap-4 p-2"
+            className="flex max-md:flex-wrap max-md:gap-0 gap-6 py-6 px-7 h-24 max-md:h-40 max-md:px-5 justify-between"
           >
             {/* SMALL devices - Logo and Moon Widget*/}
-            <div className="flex flex-row w-full justify-between md:hidden lg:hidden xl:hidden 2xl:hidden">
-              <div className="pr-8 pl-5 pt-2 items-center order-1">
+            <div className="flex flex-row w-full md:hidden lg:hidden xl:hidden 2xl:hidden justify-between">
+              <div className="items-center order-1">
                 <Link href="/">
                   <SearchResultLogo />
                 </Link>
               </div>
-              <div className="pt-2 px-5 flex order-2 items-center text-[#F8F9FA] text-sm md:hidden lg:hidden xl:hidden 2xl:hidden">
+              <div className="order-2  text-[#F8F9FA] text-sm md:hidden lg:hidden xl:hidden 2xl:hidden ">
                 <MoonWidget size="smallMoon" />
               </div>
             </div>
             {/* MEDIUM TO LARGE devices - Logo and Moon Widget*/}
-            <div className="max-md:hidden pr-8 pl-5 pt-2 items-center">
+            <div className="max-md:hidden">
               <Link href="/">
                 <SearchResultLogo />
               </Link>
             </div>
-            <div className="pr-20 pt-2 flex items-center order-3 max-md:order-2  text-[#F8F9FA] text-sm max-md:hidden">
+            {/* Spacer Div - non functional */}
+            <div className="max-lg:hidden lg:w-4 xl:w-52 order-3 2xl:w-[900px]"></div>
+            <div className="order-4  text-[#F8F9FA] max-md:hidden self-center">
               <MoonWidget size="smallMoon" />
             </div>
-            <div className="max-md:order-3 max-md:w-[90%] max-md:ml-4 md:w-full order-2 ">
-              <SearchResultBar
-                setActiveView={setActiveView}
-                categories={categories}
-                chosenCategory={decodedCategory}
-              />
-            </div>
+            <SearchResultBar
+              setActiveView={setActiveView}
+              categories={categories}
+              chosenCategory={decodedCategory}
+            />
           </div>
           {/* 2nd Nav - All and Details*/}
           <div className="flex text-[#F8F9FA]">

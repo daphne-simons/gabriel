@@ -70,7 +70,7 @@ export default function HomePage({ categories }: { categories: Category[] }) {
                   <Link href="/about" className="flex gap-8 hover:underline">
                     About
                   </Link>
-                  <MoonWidget size={'medMoon'} />
+                  <MoonWidget size={'smallMoon'} />
                 </div>
                 {/* Middle section  */}
                 <div className="relative middle flex flex-col justify-evenly items-center h-[30%] -top-44">

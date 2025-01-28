@@ -37,12 +37,11 @@ export default function SearchResultBar({
   return (
     <div
       onClick={toggleDropdown}
-      id="search-area"
-      className={`flex flex-row relative md:w-[90%] lg:w-[65%] xl:w-[60%] 2xl:w-[50%]`}
+      className="relative w-full md:w-[60%] lg:w-[65%] xl:w-[60%] 2xl:w-[50%] max-md:ml-0 max-md:order-3 order-2"
     >
       <div
-        className={`max-md:mt-2 max-md:mb-4 mt-5 p-5 w-full h-[46px] pl-12 text-[#F8F9FA] placeholder-[#F8F9FA] text-base bg-[#3d3d3d] hover:bg-[#505050] rounded-full drop-shadow-lg ${
-          isOpen ? 'drop-shadow-2xl opacity-0' : 'drop-shadow-lg'
+        className={`max-md:mt-6 max-md:mb-4 h-[46px] pl-12 text-[#F8F9FA] placeholder-[#F8F9FA] text-base bg-[#3d3d3d] hover:bg-[#505050] rounded-full drop-shadow-lg flex flex-row w-full ${
+          isOpen ? 'drop-shadow-2xl hidden' : 'drop-shadow-lg block'
         }`}
       >
         <h2 className="absolute max-md:top-[12px] top-[12px]">
@@ -50,7 +49,11 @@ export default function SearchResultBar({
           <span className="font-bold">{activeCategory || '...'}</span>
         </h2>
       </div>
-      <span className="h-6 w-6 max-md:top-[3px] top-[15px] pt-4 left-4 absolute">
+      <span
+        className={`h-6 w-6 max-md:top-[20px] -top-[4px] pt-4 left-4 absolute ${
+          isOpen ? 'opacity-0' : ''
+        }`}
+      >
         <svg
           focusable="false"
           fill="#9aa0a6"
@@ -64,13 +67,13 @@ export default function SearchResultBar({
       {isOpen && (
         <div
           id="dropdown"
-          className={`absolute flex flex-col w-full max-md:top-2 z-10 pl-8 py-1 pb-2 text-[#F8F9FA] rounded-[25px] gap-2 bg-[#303134] top-5 drop-shadow-lg ${
+          className={`absolute w-full flex flex-col z-10 pl-8 max-md:-top-[14px] py-1 pb-2 text-[#F8F9FA] rounded-[25px] gap-2 bg-[#303134] drop-shadow-lg ${
             isOpen ? 'block' : 'hidden'
           }`}
         >
           {/* Landing Option*/}
           <div className="flex flex-row relative rounded-full">
-            <span className="h-6 w-6 top-[12px] -mt-[5px] -ml-4  absolute">
+            <span className="h-6 w-6 top-[13px] -mt-[5px] -ml-4 absolute">
               <svg
                 focusable="false"
                 fill="#9aa0a6"

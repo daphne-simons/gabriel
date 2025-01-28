@@ -122,8 +122,9 @@ export default function MoonWidget({ size }: { size: string }) {
       return (
         <div className="">
           <Link
+            // TODO: does this widget link to anything?
             href="/moon"
-            className="max-md:gap-3 gap-6 flex flex-row items-center"
+            className="max-lg:gap-3 gap-6 flex flex-row items-center justify-center"
           >
             <h2>{phase.phase}</h2>
             <Image
