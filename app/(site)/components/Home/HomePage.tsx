@@ -59,10 +59,12 @@ export default function HomePage({ categories }: { categories: Category[] }) {
     // To test hard coded Full Moon Styling:
     // const theme = calculateBgColor(50)
 
+    // closes dropdown when clicking elsewhere on page
     const closeDropDown = () => {
       if (isOpen === false) return
       else setIsOpen(!isOpen)
     }
+
     if (theme)
       return (
         <Suspense fallback={<div>Loading...</div>}>

@@ -9,10 +9,14 @@ export default function SearchResultBar({
   categories,
   chosenCategory,
   setActiveView,
+  isOpen,
+  setIsOpen,
 }: {
   categories: Category[]
   chosenCategory: string | null
   setActiveView: React.Dispatch<React.SetStateAction<View>>
+  isOpen: boolean
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
 }) {
   const router = useRouter()
 
@@ -22,7 +26,6 @@ export default function SearchResultBar({
   }, [chosenCategory, setActiveView])
 
   const [activeCategory, setActiveCategory] = useState(chosenCategory)
-  const [isOpen, setIsOpen] = useState(false)
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen)

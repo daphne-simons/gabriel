@@ -20,11 +20,16 @@ export default function SearchResultsPage({
   tiers: Tier[]
 }) {
   const [activeView, setActiveView] = useState<View>('all')
+  const [isOpen, setIsOpen] = useState(false)
 
   // Search query parameters
   const searchParams = useSearchParams()
   const chosenCategory = searchParams.get('category')
 
+  function closeDropDown() {
+    if (isOpen === false) return
+    else setIsOpen(!isOpen)
+  }
   if (categories) {
     const decodedCategory = chosenCategory
       ? decodeURIComponent(chosenCategory)
@@ -34,7 +39,7 @@ export default function SearchResultsPage({
     ) as Category
 
     return (
-      <div className=" bg-[#202124] h-screen relative">
+      <div onClick={closeDropDown} className=" bg-[#202124] h-screen relative">
         {/* Top Nav and Search Bar */}
         <div className="flex flex-col relative border-b border-[#7d8084]">
           <div
@@ -64,6 +69,8 @@ export default function SearchResultsPage({
               <MoonWidget size="smallMoon" />
             </div>
             <SearchResultBar
+              isOpen={isOpen}
+              setIsOpen={setIsOpen}
               setActiveView={setActiveView}
               categories={categories}
               chosenCategory={decodedCategory}
