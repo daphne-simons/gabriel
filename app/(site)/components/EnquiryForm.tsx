@@ -3,11 +3,12 @@
 import { useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { fetchSendAPI } from '../api-utils/apiClient'
+import { DotLottieReact } from '@lottiefiles/dotlottie-react'
 
 const EnquiryForm = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-
+  const [sending, setSending] = useState(false)
   const searchParams = useSearchParams()
   const router = useRouter()
   // url info:
@@ -29,6 +30,7 @@ const EnquiryForm = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     try {
+      setSending(true)
       await fetchSendAPI({
         name,
         email,
@@ -38,9 +40,10 @@ const EnquiryForm = () => {
         cost,
       })
       //  If successful:
+      setSending(false)
       // TODO: Redirect to '/contact/success'
-      router.push('/')
       console.log('Email sent successfully!')
+      router.push('/')
     } catch (error) {
       // If failed:
       // TODO: redirect to '/error-page'
@@ -101,15 +104,30 @@ const EnquiryForm = () => {
               , could you send me some information?
             </p>
 
-            <div className="flex flex-row pt-16 max-md:pt-16 md:pt-18 lg:pt-20">
-              <div className="">
-                <button
-                  className="px-12 py-3 bg-googleBlue hover:bg-googleHoverBlue rounded text-white text-base"
-                  type="submit"
-                >
-                  Send
-                </button>
-              </div>
+            <div className="flex flex-row ">
+              {!sending ? (
+                <div className="pt-16 max-md:pt-16 md:pt-18 lg:pt-20">
+                  <button
+                    className="px-12 py-3 bg-googleBlue hover:bg-googleHoverBlue rounded text-white text-base"
+                    type="submit"
+                  >
+                    Send
+                  </button>
+                </div>
+              ) : (
+                <div className="pt-10 pl-6">
+                  <DotLottieReact
+                    src="https://lottie.host/73583bcb-fac6-4aa1-913f-9518c765befe/fwBf8JZpdp.lottie"
+                    loop
+                    autoplay
+                    style={{
+                      width: '85px',
+                      height: '85px',
+                      justifyContent: 'center',
+                    }}
+                  />
+                </div>
+              )}
             </div>
           </form>
         </div>
