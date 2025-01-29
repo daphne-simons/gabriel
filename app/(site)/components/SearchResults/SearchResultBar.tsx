@@ -40,7 +40,7 @@ export default function SearchResultBar({
   return (
     <div
       onClick={toggleDropdown}
-      className="relative w-full md:w-[60%] lg:w-[65%] xl:w-[60%] 2xl:w-[50%] max-md:ml-0 max-md:order-3 order-2"
+      className="relative md:w-[60%] lg:w-[65%] xl:w-[60%] 2xl:w-[50%] max-md:ml-0 max-md:w-full max-md:order-3 order-2"
     >
       <div
         className={`max-md:mt-6 max-md:mb-4 h-[46px] pl-12 text-[#F8F9FA] placeholder-[#F8F9FA] text-base bg-[#3d3d3d] hover:bg-[#505050] rounded-full drop-shadow-lg flex flex-row w-full ${

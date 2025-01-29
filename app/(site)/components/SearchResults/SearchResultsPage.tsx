@@ -47,7 +47,7 @@ export default function SearchResultsPage({
             className="flex max-md:flex-wrap max-md:gap-0 gap-6 py-6 px-7 h-24 max-md:h-40 max-md:px-5 justify-between"
           >
             {/* SMALL devices - Logo and Moon Widget*/}
-            <div className="flex flex-row w-full md:hidden lg:hidden xl:hidden 2xl:hidden justify-between">
+            <div className="flex flex-row w-full h-[36px] md:hidden lg:hidden xl:hidden 2xl:hidden justify-between">
               <div className="items-center order-1">
                 <Link href="/">
                   <SearchResultLogo />

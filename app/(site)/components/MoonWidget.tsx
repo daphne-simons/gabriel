@@ -120,21 +120,24 @@ export default function MoonWidget({ size }: { size: string }) {
 
     if (phase) {
       return (
-        <div className="">
-          <Link
-            href="/"
-            className="max-lg:gap-3 gap-6 flex flex-row items-center justify-center"
-          >
-            <h2>{phase.phase}</h2>
-            <Image
-              src={phaseImagePath}
-              alt={phase.phase}
-              width={30}
-              height={30}
-              className="rounded-full filter drop-shadow-[0_0_5px_#fefee0]"
-            />
-          </Link>
-        </div>
+        <>
+          {/* <MoonLoader size={size} /> */}
+          <div className="">
+            <Link
+              href="/"
+              className="max-lg:gap-3 gap-6 flex flex-row items-center justify-center"
+            >
+              <h2 className="w-[90px] text-center">{phase.phase}</h2>
+              <Image
+                src={phaseImagePath}
+                alt={phase.phase}
+                width={30}
+                height={30}
+                className="rounded-full filter drop-shadow-[0_0_5px_#fefee0]"
+              />
+            </Link>
+          </div>
+        </>
       )
     }
   }

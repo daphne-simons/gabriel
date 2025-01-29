@@ -4,7 +4,7 @@
 :root {
   --c0: #cdcdcd;
   --c1: #1d1d1d;
-  --d: 2em;
+  --smallDiameter: 28px;
   --medD: 8em;
   --bigD: 16em;
   --t: 1s;
@@ -15,7 +15,7 @@
 .small-moon-container {
   display: grid;
   /* size of grid template changes */
-  grid-template: var(--d) / var(--d);
+  grid-template: var(--smallDiameter) / var(--smallDiameter);
   place-content: center;
   margin: 0;
 }
@@ -53,8 +53,8 @@
 }
 .small-moon-texture {
   /* size of width, height and bottom change */
-  height: 2em;
-  width: 2em;
+  height: 28px;
+  width: 28px;
   bottom: 28px;
   position: relative;
   border-radius: 50%;

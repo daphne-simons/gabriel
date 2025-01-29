@@ -2,12 +2,19 @@
 export default function MoonLoader({ size }: { size: string }) {
   if (size === 'smallMoon')
     return (
-      <div className="h-2 -mt-5">
-        <div className="small-moon-container">
-          <div className="small-moon-spin"></div>
-          <section className="small-moon-texture"></section>
+      <>
+        <div className="max-lg:gap-3 gap-6 flex flex-row items-center justify-center">
+          <h2 className="w-[90px] max-md:w-[80px] max-md:-mt-[28px] text-center text-googleMidGray">
+            Moon Phase
+          </h2>
+          <div className="mt-[28px] mr-[1px] max-md:mt-[1.5px] max-md:mr-[1px]">
+            <div className="small-moon-container">
+              <div className="small-moon-spin"></div>
+              <section className="small-moon-texture"></section>
+            </div>
+          </div>
         </div>
-      </div>
+      </>
     )
   if (size === 'medMoon')
     return (
