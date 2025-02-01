@@ -31,7 +31,7 @@ export default function BackGround({
       {/* NEW - ROCK SAMPLE BG */}
       <div>
         <div className={`fill-current ${theme.textColor} ${theme.btnSearchBg}`}>
-          <div className={`bg-cover bg-rock-2`}>{children}</div>
+          <div className={`bg-cover bg-rock-2 animate-focus`}>{children}</div>
         </div>
       </div>
     </>

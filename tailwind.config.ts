@@ -103,8 +103,19 @@ const config: Config = {
         roty: {
           '0%': { transform: 'rotateY(calc(var(--i) * 0.5turn))' },
         },
+        focus: {
+          '0%': { filter: 'blur(0px)' },
+          '15%': { filter: 'blur(5px)' },
+          '30%': { filter: 'blur(2px)' },
+          '40%': { filter: 'blur(0px)' },
+          '45%': { filter: 'blur(4px)' },
+          '60%': { filter: 'blur(1px)' },
+          '75%': { filter: 'blur(3px)' },
+          '100%': { filter: 'blur(0px)' },
+        },
       },
       animation: {
+        focus: 'focus 8s cubic-bezier(0.4, 0, 0.2, 1) infinite',
         'font-weight': 'font-weight-animation 5s infinite',
       },
       colors: {
