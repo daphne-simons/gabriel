@@ -121,7 +121,6 @@ export default function MoonWidget({ size }: { size: string }) {
     if (phase) {
       return (
         <>
-          {/* <MoonLoader size={size} /> */}
           <div className="">
             <Link
               href="/"
