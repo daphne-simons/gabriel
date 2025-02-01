@@ -1,5 +1,5 @@
 import { Project } from '@/sanity/models/sanity-client-models'
-import Image from 'next/image'
+import DynamicBlur from '../DynamicBlur'
 
 interface Props {
   handleClickSelection: (index: string | null) => void
@@ -17,6 +17,7 @@ export default function Gallery({
     'col-span-2 row-span-2',
     'col-span-2 row-span-2',
   ]
+
   return (
     <div
       id="gallery-grid"
@@ -30,13 +31,7 @@ export default function Gallery({
           onClick={() => handleClickSelection(project._id)}
           className={`relative overflow-hidden ${gridStyles[index % gridStyles.length]} `}
         >
-          <Image
-            src={project.image}
-            alt={project.name}
-            fill
-            sizes="100vw"
-            className="object-cover hover:scale-125 transition duration-500 ease-in-out"
-          />
+          <DynamicBlur projectData={project} />
         </div>
       ))}
     </div>

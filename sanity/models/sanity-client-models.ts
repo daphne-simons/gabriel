@@ -8,7 +8,9 @@ export type Slug = {
 export type Project = {
   _id: string
   name: string
-  image: string
+  imageUrl: string
+  altText: string
+  blurData: string
   url: string
   gem: string
   category: string

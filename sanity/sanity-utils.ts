@@ -8,7 +8,9 @@ import { groq } from 'next-sanity'
 export const projectsQuery = groq`*[_type == "project"]{
       _id,
       name,
-      "image": image.asset->url, 
+      "imageUrl": image.asset->url, 
+      "altText": image.altText,
+      "blurData": image.asset->metadata.lqip,
       url,
       "gem": tier->gem,
       "category": category->name,
