@@ -76,6 +76,7 @@ const config: Config = {
         hoverSearchWaning: 'var(--moon-hover-search-bg-waning)',
       },
       backgroundImage: {
+        'rock-2': "url('/rock-2.jpg')",
         'moon-bg': "url('/moon-bg.png')",
         'moon-bg-80': "url('/moon-bg-80.png')",
         'moon-bg-60': "url('/moon-bg-60.png')",

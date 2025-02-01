@@ -22,10 +22,17 @@ export default function BackGround({
   }
   return (
     <>
-      <div
+      {/* OLD DYNAMIC MOON BG COLOR and BG IMG */}
+      {/* <div
         className={`${theme.bgColor} fill-current ${theme.textColor} ${theme.btnSearchBg}`}
       >
         <div className={`bg-cover ${theme.bgImg}`}>{children}</div>
+      </div> */}
+      {/* NEW - ROCK SAMPLE BG */}
+      <div>
+        <div className={`fill-current ${theme.textColor} ${theme.btnSearchBg}`}>
+          <div className={`bg-cover bg-rock-2`}>{children}</div>
+        </div>
       </div>
     </>
   )
