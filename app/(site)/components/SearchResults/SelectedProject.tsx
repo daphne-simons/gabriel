@@ -77,11 +77,14 @@ export default function SelectedProject({
       <section className="flex bg-black h-full">
         <div className="w-full relative ">
           <Image
-            src={project.image}
+            src={project.imageUrl}
             className="object-contain"
             alt="book"
             fill
             sizes="100vw"
+            quality={100}
+            placeholder="blur"
+            blurDataURL={project.blurData}
           />
         </div>
       </section>
