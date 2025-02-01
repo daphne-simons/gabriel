@@ -38,7 +38,9 @@ export default function SearchOptionsList({
     {
       _id: '',
       name: '',
-      image: '',
+      imageUrl: '',
+      altText: '',
+      blurData: '',
       url: '',
       gem: '',
       category: '',
