@@ -29,10 +29,11 @@ export default function BackGround({
         <div className={`bg-cover ${theme.bgImg}`}>{children}</div>
       </div> */}
       {/* NEW - ROCK SAMPLE BG */}
-      <div>
-        <div className={`fill-current ${theme.textColor} ${theme.btnSearchBg}`}>
-          <div className={`bg-cover bg-rock-2 animate-focus`}>{children}</div>
-        </div>
+      <div className="relative">
+        <div
+          className={`absolute bg-cover bg-rock-2 animate-focus w-full h-screen`}
+        ></div>
+        <div className="relative">{children}</div>
       </div>
     </>
   )

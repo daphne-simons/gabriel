@@ -73,7 +73,9 @@ export default function HomePage({ categories }: { categories: Category[] }) {
             {/* Background wrapper to dynamically change theme according to Moon Phase. */}
             <BackGround theme={theme}>
               {/* TODO: make everything here totally sharp! not inheret blur effect from BackGround */}
-              <div className={`flex flex-col justify-between h-screen`}>
+              <div
+                className={`flex flex-col justify-between h-screen fill-current ${theme.textColor} z-20`}
+              >
                 {/* Nav */}
                 <div className="flex justify-between mt-5 px-7 text-sm">
                   <Link href="/about" className="flex gap-8 hover:underline">
