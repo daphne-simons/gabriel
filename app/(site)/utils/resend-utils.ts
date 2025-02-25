@@ -13,7 +13,7 @@ export async function enquiryProvider(person: UserQuery) {
       from: 'Acme <onboarding@resend.dev>',
       // TODO: this is the receiver address (or addresses, can send 50 max in the array)
       // use this one for testing success of delivery: 'delivered@resend.dev'
-      to: ['daphnejasminesimons@gmail.com'],
+      to: ['daphnejasminesimons@gmail.com', 'ellasutherland@me.com'],
       bcc: ['delivered@resend.dev'],
       subject: `Enquiry from ${person.name}!`,
       react: EnquiryEmail(person),
@@ -33,7 +33,7 @@ export async function autoReplyProvider(person: UserQuery) {
       from: 'Acme <onboarding@resend.dev>',
       // TODO: this is the receiver address, replace with dynamic person.email OR multiple addresses, can send 50 max in the array)
       // use this one for testing success of delivery: 'delivered@resend.dev'
-      to: ['daphnejasminesimons@gmail.com'],
+      to: ['daphnejasminesimons@gmail.com', 'ellasutherland@me.com'],
       bcc: ['delivered@resend.dev'],
       subject: `Auto-Reply to ${person.name}!`,
       react: AutoReply(person),
