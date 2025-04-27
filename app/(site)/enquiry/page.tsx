@@ -17,7 +17,7 @@ const EnquiryPage = () => {
               <AboutEnquireLogo />
             </Link>
             <Link href="/about" className="px-8 py-6 ">
-              <li className="pb-2 text-sm border-b-2 border-[#8AB4F7]">About</li>
+              <li className="pb-2 text-sm border-[#ffffff] hover:border-[#8AB4F7] border-b-2">About</li>
             </Link>
           </ul>
         </div>
