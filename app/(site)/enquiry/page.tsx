@@ -12,9 +12,14 @@ const EnquiryPage = () => {
       <div id="header" className="flex flex-row relative gap-4 p-2">
         {/* Contact Logo */}
         <div className="px-6 flex items-center">
-          <Link href="/">
-            <AboutEnquireLogo />
-          </Link>
+          <ul className="w-full flex max-md:justify-between gap-4 p-2 pt-2 px-5 text-sm">
+            <Link href="/">
+              <AboutEnquireLogo />
+            </Link>
+            <Link href="/about" className="px-8 py-6 ">
+              <li className="pb-2 text-sm border-b-2 border-[#8AB4F7]">About</li>
+            </Link>
+          </ul>
         </div>
       </div>
       {/* Enquiry page content / form */}

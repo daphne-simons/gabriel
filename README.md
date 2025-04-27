@@ -2,6 +2,20 @@
 
 ## A portfolio website for Designer, Ella Sutherland. 
 
+### Key Scripts: 
+
+`npm run dev` - runs the app in development mode.
+
+`npm run build` - builds the app for production.
+
+`npm run start` - starts the app in production mode.
+
+`npm run storybook` - runs the storybook in development mode.
+
+`npm run build-storybook` - builds the storybook for production.
+
+`npm run test` - runs the tests in development mode.
+
 ### How to run in development: 
 
 - To run the app, use the normal `localhost port:3000`
@@ -18,6 +32,6 @@
 - for UI / Visual component tests: `npm run storybook` 
 - for Integration and unit tests: `npm run test` 
 
-Extras/ mysteries: 
+### Extras/ mysteries: 
 
 - Resend logins? 
