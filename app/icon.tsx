@@ -133,7 +133,7 @@ export default function Icon() {
             justifyContent: 'center',
             color: 'white',
           }}
-        > A
+        > G
 
           {/* // <Image
         //   src={phaseImagePath}
