@@ -8,15 +8,10 @@ export const metadata: Metadata = {
   icons: {
     icon: [
       {
-        media: '(prefers-color-scheme: light)',
-        url: '/moon-imgs/first-q.png',
-        href: '/moon-imgs/first-q.png',
+        url: '/moon-imgs/full.png',
+        href: '/moon-imgs/full.png',
       },
-      // {
-      //   media: '(prefers-color-scheme: dark)',
-      //   url: '/images/icon.png',
-      //   href: '/images/icon-dark.png',
-      // },
+
     ],
   },
 }
