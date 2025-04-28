@@ -2,6 +2,7 @@ import getMoon from '@/query/utils/getMoonData'
 import { useQuery } from '@tanstack/react-query'
 import { ImageResponse } from 'next/og'
 import Image from 'next/image'
+import firstQuarterMoon from '../public/moon-imgs/first-q.png'
 
 // Image metadata
 export const size = {
@@ -116,39 +117,54 @@ export default function Icon() {
   // console.log('moon lightning number', moonLighting);
 
   const phase = getMoonImgByLighting(50)
-  const phaseImagePath = `/moon-imgs/${phase?.img}.png`
+  const phaseImagePath = `../public/moon-imgs/${phase?.img}.png`
 
   if (phase) {
     return new ImageResponse(
       (
         // ImageResponse JSX element
-        <div
-          style={{
-            fontSize: 24,
-            background: 'black',
-            width: '100%',
-            height: '100%',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'white',
-          }}
-        > G
-
-          {/* // <Image
-        //   src={phaseImagePath}
+        //  NORMAL HTML DIV
+        // <div
+        //   style={{
+        //     fontSize: 24,
+        //     background: 'black',
+        //     width: '100%',
+        //     height: '100%',
+        //     display: 'flex',
+        //     alignItems: 'center',
+        //     justifyContent: 'center',
+        //     color: 'white',
+        //   }}
+        // > G
+        // </div >
+        // NEXT Image COMPONENT
+        // <img
+        //   // src={phaseImagePath}
+        //   src={firstQuarterMoon.src}
         //   alt={phase.phase}
         //   width={30}
         //   height={30}
-        //   className="rounded-full filter drop-shadow-[0_0_5px_#fefee0]"
-        // /> */}
-        </div >
+        // // className="rounded-full filter drop-shadow-[0_0_5px_#fefee0]"
+        // />
+        <svg width="32" height="32" viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+          {/* SVG content based on moon phase */}
+          {/* {phase?.img === 'full' && ( */}
+          <circle cx="16" cy="16" r="14" fill="#FEFEE0" />
+          {/* )}
+          {phase?.img === 'first-q' && ( */}
+          {/* <> */}
+          <circle cx="16" cy="16" r="14" fill="#000000" stroke="#FEFEE0" strokeWidth="1" />
+          <path d="M16,2 A14,14 0 0 1 16,30 A14,14 0 0 0 16,2" fill="#FEFEE0" />
+          {/* </> */}
+          {/* )} */}
+          {/* Add similar SVG paths for other moon phases */}
+        </svg>
       ),
       // ImageResponse options
       {
         // For convenience, we can re-use the exported icons size metadata
         // config to also set the ImageResponse's width and height.
-        ...size,
+        // ...size,
       }
     )
   }
