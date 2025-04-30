@@ -53,8 +53,8 @@ export default function SearchResultsPage({
                   <SearchResultLogo />
                 </Link>
               </div>
-              <div className="order-2  text-[#F8F9FA] text-sm md:hidden lg:hidden xl:hidden 2xl:hidden ">
-                <MoonWidget size="smallMoon" />
+              <div className="order-2 text-[#F8F9FA] text-sm md:hidden lg:hidden xl:hidden 2xl:hidden pt-2 ">
+                <MoonWidget size={"smallMoon"} />
               </div>
             </div>
             {/* MEDIUM TO LARGE devices - Logo and Moon Widget*/}
@@ -63,9 +63,7 @@ export default function SearchResultsPage({
                 <SearchResultLogo />
               </Link>
             </div>
-            {/* Spacer Div - non functional */}
-            <div className="max-lg:hidden lg:w-4 xl:w-52 order-3 2xl:w-[900px]"></div>
-            <div className="order-4  text-[#F8F9FA] max-md:hidden self-center">
+            <div className="order-4 text-base text-[#F8F9FA] max-md:hidden pt-2">
               <MoonWidget size="smallMoon" />
             </div>
             <SearchResultBar
@@ -81,22 +79,20 @@ export default function SearchResultsPage({
             <ul className="flex flex-row max-md:ml-6 md:ml-28 lg:ml-40 xl:ml-40 gap-8">
               <button
                 onClick={() => setActiveView('all')}
-                className={`cursor-pointer ${
-                  activeView === 'all'
-                    ? 'text-[#8AB4F7] text-sm border-b-2 border-[#8AB4F7]'
-                    : ''
-                }`}
+                className={`cursor-pointer ${activeView === 'all'
+                  ? 'text-[#8AB4F7] text-sm border-b-2 border-[#8AB4F7]'
+                  : ''
+                  }`}
               >
                 <li className="px-4 pb-2 text-sm">All</li>
               </button>
 
               <button
                 onClick={() => setActiveView('details')}
-                className={`cursor-pointer ${
-                  activeView === 'details'
-                    ? 'text-[#8AB4F7] border-b-2 border-[#8AB4F7]'
-                    : ''
-                }`}
+                className={`cursor-pointer ${activeView === 'details'
+                  ? 'text-[#8AB4F7] border-b-2 border-[#8AB4F7]'
+                  : ''
+                  }`}
               >
                 <li className="px-4 pb-2 text-sm">Details</li>
               </button>
