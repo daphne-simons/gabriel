@@ -60,79 +60,75 @@ const EnquiryForm = () => {
   return (
     <div className="w-full mb-auto">
       {/* Enquiry form */}
-      <div className="pt-14 pb-24 flex flex-col  lg:pb-10">
-        <div className="font-roboto text-xl  max-md:w-full md:w-[80%] lg:w-[75%] xl:w-[60%]">
-          <h2 className="font-base max-md:text-4xl md:text-5xl lg:text-6xl">
-            Hi, how can we help?
-          </h2>
+      <h2 className="font-base max-md:text-4xl md:text-[40px] lg:text-[56px]">
+        Hi, how can we help?
+      </h2>
 
-          {/* Form */}
-          <form className="flex flex-col" onSubmit={handleSubmit}>
-            <div className="flex flex-row max-md:flex-col max-md:py-16 pb-6 pt-32 md:pt-24 gap-4">
-              <div className="w-1/3 max-md:w-full md:w-[90%] lg:w-[60%]">
-                <input
-                  aria-label="name"
-                  className="p-2 outline outline-googleLightGray rounded text-sm w-full"
-                  name="name"
-                  type="text"
-                  value={name}
-                  onChange={handleChange}
-                  placeholder="My name is"
-                />
-              </div>
-              <div className="w-1/3 max-lg:w-full lg:w-[70%]">
-                <input
-                  aria-label="email"
-                  className="p-2 outline outline-googleLightGray rounded text-sm w-full"
-                  name="email"
-                  type="email"
-                  value={email}
-                  onChange={handleChange}
-                  placeholder="My email address is"
-                />
-              </div>
-            </div>
-            <p className="md:w-[85%]  pt-4">
-              I&apos;d like to learn more about the{' '}
-              <span className={`font-semibold ${gemStyle}`}>
-                {level.toLowerCase()}
-              </span>{' '}
-              package, for{' '}
-              <span className="font-semibold text-googleGreen">
-                {chosenCategory.toLowerCase()}
-              </span>
-              , could you send me some information?
-            </p>
-
-            <div className="flex flex-row ">
-              {!sending ? (
-                <div className="pt-16 max-md:pt-16 md:pt-18 lg:pt-20">
-                  <button
-                    className="px-12 py-3 bg-googleBlue hover:bg-googleHoverBlue rounded text-white text-base"
-                    type="submit"
-                  >
-                    Send
-                  </button>
-                </div>
-              ) : (
-                <div className="pt-10 pl-6">
-                  <DotLottieReact
-                    src="https://lottie.host/73583bcb-fac6-4aa1-913f-9518c765befe/fwBf8JZpdp.lottie"
-                    loop
-                    autoplay
-                    style={{
-                      width: '85px',
-                      height: '85px',
-                      justifyContent: 'center',
-                    }}
-                  />
-                </div>
-              )}
-            </div>
-          </form>
+      {/* Form */}
+      <form className="flex flex-col" onSubmit={handleSubmit}>
+        <div className="flex flex-row max-md:flex-col max-md:py-16 pb-6 pt-32 md:pt-24 gap-4">
+          <div className="w-1/3 max-md:w-full md:w-[90%] lg:w-[60%]">
+            <input
+              aria-label="name"
+              className="p-2 outline outline-googleLightGray rounded text-sm w-full"
+              name="name"
+              type="text"
+              value={name}
+              onChange={handleChange}
+              placeholder="My name is"
+            />
+          </div>
+          <div className="w-1/3 max-lg:w-full lg:w-[70%]">
+            <input
+              aria-label="email"
+              className="p-2 outline outline-googleLightGray rounded text-sm w-full"
+              name="email"
+              type="email"
+              value={email}
+              onChange={handleChange}
+              placeholder="My email address is"
+            />
+          </div>
         </div>
-      </div>
-    </div>
+        <p className="pt-4">
+          I&apos;d like to learn more about the{' '}
+          <span className={`font-semibold ${gemStyle}`}>
+            {level.toLowerCase()}
+          </span>{' '}
+          package, for{' '}
+          <span className="font-semibold text-googleGreen">
+            {chosenCategory.toLowerCase()}
+          </span>
+          , could you send me some information?
+        </p>
+
+        <div className="flex flex-row ">
+          {!sending ? (
+            <div className="pt-16 max-md:pt-16 md:pt-18 lg:pt-20">
+              <button
+                className="px-12 py-3 bg-googleBlue hover:bg-googleHoverBlue rounded text-white text-base"
+                type="submit"
+              >
+                Send
+              </button>
+            </div>
+          ) : (
+            <div className="pt-10 pl-6">
+              <DotLottieReact
+                src="https://lottie.host/73583bcb-fac6-4aa1-913f-9518c765befe/fwBf8JZpdp.lottie"
+                loop
+                autoplay
+                style={{
+                  width: '85px',
+                  height: '85px',
+                  justifyContent: 'center',
+                }}
+              />
+            </div>
+          )}
+        </div>
+      </form>
+    </div >
   )
 }
 
