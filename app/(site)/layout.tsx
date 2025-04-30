@@ -5,15 +5,15 @@ import ReactQueryProvider from '@/query/providers/ReactQueryProvider'
 export const metadata: Metadata = {
   title: 'Gabriel',
   description: '',
-  // icons: {
-  //   icon: [
-  //     {
-  //       url: '/moon-imgs/full.png',
-  //       href: '/moon-imgs/full.png',
-  //     },
+  icons: {
+    icon: [
+      {
+        url: '/moon-imgs/full.png',
+        href: '/moon-imgs/full.png',
+      },
 
-  //   ],
-  // },
+    ],
+  },
 }
 
 export default async function RootLayout({
