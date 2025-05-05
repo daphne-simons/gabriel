@@ -1,7 +1,10 @@
+import { Suspense } from 'react'
 import EnquiryPage from '../components/Enquiry/EnquiryPage'
 
 export default function Enquiry() {
   return (
-    < EnquiryPage />
+    <Suspense>
+      <EnquiryPage />
+    </Suspense>
   )
 }
