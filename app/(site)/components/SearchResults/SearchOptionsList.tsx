@@ -118,7 +118,7 @@ export default function SearchOptionsList({
     <>
       {/* LEFT SIDE BAR - TIERS INFO  */}
       {/* LARGE Devices - Tiers Info: */}
-      <div className="flex flex-col max-lg:hidden lg:w-4/6 xl:w-full 2xl:w-full">
+      <div className="flex flex-col max-lg:hidden lg:w-5/6 xl:w-full 2xl:w-full">
         {tiers.map((tier) => (
           <div key={tier.gem} className="">
             <div id="searchresult">
@@ -126,15 +126,14 @@ export default function SearchOptionsList({
                 <div className="flex flex-row">
                   <div
                     onClick={() => handleGemClick(tier)}
-                    className={`rounded-full w-10 h-10 ${
-                      tier.gem === 'Sapphire'
-                        ? 'bg-googleBlue'
-                        : tier.gem === 'Emerald'
-                          ? 'bg-googleGreen'
-                          : tier.gem === 'Ruby'
-                            ? 'bg-googleRed'
-                            : ''
-                    }`}
+                    className={`rounded-full w-10 h-10 ${tier.gem === 'Sapphire'
+                      ? 'bg-googleBlue'
+                      : tier.gem === 'Emerald'
+                        ? 'bg-googleGreen'
+                        : tier.gem === 'Ruby'
+                          ? 'bg-googleRed'
+                          : ''
+                      }`}
                   ></div>
                   <div>
                     <h2 className=" pl-2 text-sm  text-[#F8F9FA]">
@@ -166,30 +165,29 @@ export default function SearchOptionsList({
           <button
             key={tier.gem}
             onClick={() => handleGemClick(tier)}
-            className={`text-center w-28 h-10 rounded-3xl text-googleLightGray ${bgColorHover[tier.gem]} ${
-              option.gem === tier.gem
-                ? tier.gem === 'Sapphire'
-                  ? 'bg-googleBlue '
-                  : tier.gem === 'Emerald'
-                    ? 'bg-googleGreen'
-                    : tier.gem === 'Ruby'
-                      ? 'bg-googleRed'
-                      : ''
-                : tier.gem === 'Sapphire'
-                  ? 'bg-googleBlueHover'
-                  : tier.gem === 'Emerald'
-                    ? 'bg-googleGreenHover'
-                    : tier.gem === 'Ruby'
-                      ? 'bg-googleRedHover'
-                      : ''
-            }`}
+            className={`text-center w-28 h-10 rounded-3xl text-googleLightGray ${bgColorHover[tier.gem]} ${option.gem === tier.gem
+              ? tier.gem === 'Sapphire'
+                ? 'bg-googleBlue '
+                : tier.gem === 'Emerald'
+                  ? 'bg-googleGreen'
+                  : tier.gem === 'Ruby'
+                    ? 'bg-googleRed'
+                    : ''
+              : tier.gem === 'Sapphire'
+                ? 'bg-googleBlueHover'
+                : tier.gem === 'Emerald'
+                  ? 'bg-googleGreenHover'
+                  : tier.gem === 'Ruby'
+                    ? 'bg-googleRedHover'
+                    : ''
+              }`}
           >
             {tier.gem}
           </button>
         ))}
       </div>
       {/* RIGHT SIDE - PROJECTS GALLERY  */}
-      <div className="flex flex-col max-md:h-[80%] md:h-[65%] lg:pr-24 lg:w-5/6 lg:h-[70%] xl:w-full xl:h-[70%] xl:pr-32 pt-6">
+      <div className="flex flex-col max-md:h-[80%] md:h-[65%] lg:pl-2 lg:w-5/6 lg:h-[70%] xl:w-full xl:h-[70%] xl:px-24 pt-6">
         {/* SELECTED project: */}
         {selectedProjectId ? (
           <SelectedProject

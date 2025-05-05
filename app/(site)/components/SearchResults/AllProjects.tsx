@@ -36,12 +36,12 @@ export default function AllProjects({
           <h1 className={`${headingColor[option.gem]} text-3xl `}>
             {option.gem}
           </h1>
-          <p className="text-[#BDC1C5] text-sm ">{option.level}</p>
+          <p className="text-[#BDC1C5] text-sm lg:text-lg xl:text-lg">{option.level}</p>
         </div>
         {/* Bottom Text Part */}
         <div className="max-md:h-[60%] md:h-[55%] lg:h-[60%] xl:h-1/2 px-2 pt-2 flex flex-col justify-around border-t border-[#7d8084]">
           <div>
-            <p className=" text-[#BDC1C5] text-sm">
+            <p className=" text-[#BDC1C5] text-sm xl:text-base">
               <PortableText value={option.details} />
             </p>
           </div>

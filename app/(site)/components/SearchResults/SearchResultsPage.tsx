@@ -44,11 +44,11 @@ export default function SearchResultsPage({
         <div className="flex flex-col relative border-b border-[#7d8084]">
           <div
             id="header"
-            className="flex max-md:flex-wrap max-md:gap-0 gap-6 py-6 px-7 h-24 max-md:h-40 max-md:px-5 justify-between"
+            className="flex max-md:flex-wrap max-md:gap-0 gap-8 py-6 px-7 h-24 max-md:h-40 max-md:px-5"
           >
             {/* SMALL devices - Logo and Moon Widget*/}
             <div className="flex flex-row w-full h-[36px] md:hidden lg:hidden xl:hidden 2xl:hidden justify-between">
-              <div className="items-center order-1">
+              <div className="items-center order-1 sm:text-xl">
                 <Link href="/">
                   <SearchResultLogo />
                 </Link>
@@ -58,13 +58,11 @@ export default function SearchResultsPage({
               </div>
             </div>
             {/* MEDIUM TO LARGE devices - Logo and Moon Widget*/}
+
             <div className="max-md:hidden">
               <Link href="/">
                 <SearchResultLogo />
               </Link>
-            </div>
-            <div className="order-4 text-base text-[#F8F9FA] max-md:hidden pt-2">
-              <MoonWidget size="smallMoon" />
             </div>
             <SearchResultBar
               isOpen={isOpen}
@@ -73,6 +71,12 @@ export default function SearchResultsPage({
               categories={categories}
               chosenCategory={decodedCategory}
             />
+            <div className="max-lg:hidden xl:w-28 order-3"></div>
+            <div className="flex justify-end order-4 w-full md:w-1/3 ">
+              <div className="text-base text-[#F8F9FA] max-md:hidden pt-2 ">
+                <MoonWidget size="smallMoon" />
+              </div>
+            </div>
           </div>
           {/* 2nd Nav - All and Details*/}
           <div className="flex text-[#F8F9FA]">
@@ -101,8 +105,7 @@ export default function SearchResultsPage({
         </div>
         {/* MAIN PAGE CONTENT: Tiers and Details*/}
         <div
-          className="flex flex-col max-md:px-6 md:pl-28 md:pr-24 lg:flex-row lg:pl-40 xl:flex-row xl:pl-40  bg-[#202124] h-screen pb-6
-        "
+          className="flex flex-col max-md:px-6 md:pl-28 md:pr-24 lg:flex-row lg:pl-40 xl:flex-row xl:pl-40 xl:gap-8 bg-[#202124] h-screen pb-6"
         >
           {activeView === 'all' ? (
             <SearchOptionsList
@@ -114,7 +117,7 @@ export default function SearchResultsPage({
             <Details chosenCategory={fullCategory} />
           )}
         </div>
-      </div>
+      </div >
     )
   }
 }
