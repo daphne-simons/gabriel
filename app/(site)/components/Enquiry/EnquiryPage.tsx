@@ -18,11 +18,10 @@ export default function EnquiryPage() {
           </Link>
         </ul>
         {/* Enquiry page content / form */}
-        <div className="flex flex-col items-center justify-center">
-          <div className="max-md:px-12 max-md:py-10 md:pb-10 md:px-36 md:pt-16 pb-2 xl:px-2">
-            <EnquiryForm />
-          </div>
+        <div className="max-md:pb-12 max-md:px-12 max-md:py-10 md:pb-16 md:px-32 md:pt-16 lg:px-36 lg:pb-24 xl:px-44 ">
+          <EnquiryForm />
         </div>
+
         {/* Footer */}
         <div className=" bg-googlelightGrayFooter bottom-0 w-full mt-auto">
           <div className="flex flex-col items-center">

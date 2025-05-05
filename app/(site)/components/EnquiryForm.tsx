@@ -58,14 +58,14 @@ const EnquiryForm = () => {
   else if (gem === 'Ruby') gemStyle = 'text-googleRed'
 
   return (
-    <div className="w-full mb-auto">
+    <div className="flex flex-col xl:w-[55%] mb-auto">
       {/* Enquiry form */}
       <h2 className="font-base max-md:text-4xl md:text-[40px] lg:text-[56px]">
         Hi, how can we help?
       </h2>
 
       {/* Form */}
-      <form className="flex flex-col" onSubmit={handleSubmit}>
+      <form className="" onSubmit={handleSubmit}>
         <div className="flex flex-row max-md:flex-col max-md:py-16 pb-6 pt-32 md:pt-24 gap-4">
           <div className="w-1/3 max-md:w-full md:w-[90%] lg:w-[60%]">
             <input
