@@ -61,26 +61,40 @@ export default function MoonWidget({ size }: { size: string }) {
     phase => moonLighting >= phase.min && moonLighting <= phase.max
   ) || MOON_PHASES[0] // Default to new moon if no match found
 
+  // Size calculations
+  const imgSize = size === 'small' ? 20 : 30
   // Path to the moon phase image
-  const phaseImagePath = `/moon-imgs/${currentPhase.img}.png`
+  const pngMoonPath = `/moon-imgs/${currentPhase.img}.png`
+  // const pngMoonPath = `/moon-imgs/full-1.png`
+  // Use SVG version for all moons
+  // const svgMoonPath = `/moon-imgs/full-1.svg`
 
   return (
-    <div className="">
+    <div>
       <Link
         href="/"
-        className="max-lg:gap-3 gap-6 flex flex-row items-center justify-center"
+        className="sm:pt-2 md:pt-0 lg:pt-0 xl:pt-0 max-lg:gap-3 gap-6 flex flex-row items-center justify-center"
         aria-label={`Current moon phase: ${currentPhase.name}`}
       >
         <h2 className="text-center">{currentPhase.name}</h2>
-        <Image
-          src={phaseImagePath}
-          alt={currentPhase.name}
-          width={size === 'small' ? 20 : 30}
-          height={size === 'small' ? 20 : 30}
-          className="rounded-full filter drop-shadow-[0_0_5px_#fefee0]"
-          priority // Load moon image with priority
-        />
-      </Link>
-    </div>
+        {/*moon container */}
+        <div
+          className="small-moon-widget"
+          style={{
+            width: `${imgSize}px`,
+            height: `${imgSize}px`,
+
+          }}
+        >
+          <Image
+            src={pngMoonPath}
+            alt={currentPhase.name}
+            fill
+            priority
+          />
+        </div>
+
+      </Link >
+    </div >
   )
 }

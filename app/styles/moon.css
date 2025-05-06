@@ -10,8 +10,19 @@
   --t: 1s;
 }
 
+/* Small Widget:  */
+.small-moon-widget {
+  height: 28px;
+  width: 28px;
+  box-shadow: 0 0 8px #fefee084;
+  overflow: hidden;
+  background-size: cover;
+  position: relative;
+  border-radius: 100%;
+  
+}
+
 /* Small-Loader: */
-/* Styles */
 .small-moon-container {
   display: grid;
   /* size of grid template changes */

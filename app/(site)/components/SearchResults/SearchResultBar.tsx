@@ -40,13 +40,14 @@ export default function SearchResultBar({
   return (
     <div
       onClick={toggleDropdown}
-      className="relative w-full lg:w-full xl:w-[45%] 2xl:w-[60%] max-md:ml-0 max-md:w-full max-md:order-3 order-2"
+      className="z-20 relative w-full md:w-full lg:w-full xl:w-[45%] 2xl:w-[60%] max-md:ml-0 max-md:w-full max-md:order-3 order-2"
     >
+      {/* Closed search bar */}
       <div
-        className={`max-md:mt-6 max-md:mb-4 h-[46px] pl-12 text-[#F8F9FA] placeholder-[#F8F9FA] text-base bg-[#3d3d3d] hover:bg-[#505050] rounded-full drop-shadow-lg flex flex-row w-full ${isOpen ? 'drop-shadow-2xl hidden' : 'drop-shadow-lg block'
+        className={`max-md:mt-6 max-md:mb-4 h-[46px] pl-12 text-[#F8F9FA] placeholder-[#F8F9FA] text-base bg-[#3d3d3d] hover:bg-[#505050] rounded-full drop-shadow-lg flex flex-row items-center w-full ${isOpen ? 'drop-shadow-2xl hidden' : 'drop-shadow-lg block'
           }`}
       >
-        <h2 className="absolute max-md:top-[12px] top-[12px]">
+        <h2 className="">
           <span className="font-thin ">I want </span>
           <span className="font-bold">{activeCategory || '...'}</span>
         </h2>
@@ -64,11 +65,11 @@ export default function SearchResultBar({
           <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
         </svg>
       </span>
-      {/* Dropdown Menu */}
+      {/* Open searchbar */}
       {isOpen && (
         <div
           id="dropdown"
-          className={`absolute w-full flex flex-col z-10 pl-8 max-md:-top-[14px] py-1 pb-2 text-[#F8F9FA] rounded-[25px] gap-2 bg-[#303134] drop-shadow-lg ${isOpen ? 'block' : 'hidden'
+          className={`w-full flex flex-col pl-8 max-md:mt-6 py-1 pb-2 text-[#F8F9FA] rounded-[25px] gap-2 bg-[#303134] drop-shadow-lg ${isOpen ? 'block' : 'hidden'
             }`}
         >
           {/* Landing Option*/}

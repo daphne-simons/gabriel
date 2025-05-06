@@ -22,7 +22,7 @@ export default function AllProjects({
   }
 
   return (
-    <div className="h-full ring-1 rounded-xl ring-[#7d8084]">
+    <div className=" h-full ring-1 rounded-xl ring-[#7d8084]">
       {/* GALLERY Grid */}
       <div className="h-1/2">
         <Gallery

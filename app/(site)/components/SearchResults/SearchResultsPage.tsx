@@ -53,12 +53,11 @@ export default function SearchResultsPage({
                   <SearchResultLogo />
                 </Link>
               </div>
-              <div className="order-2 text-[#F8F9FA] text-sm md:hidden lg:hidden xl:hidden 2xl:hidden pt-2 ">
+              <div className="order-2 text-[#F8F9FA] text-sm md:hidden lg:hidden xl:hidden 2xl:hidden">
                 <MoonWidget size={"smallMoon"} />
               </div>
             </div>
             {/* MEDIUM TO LARGE devices - Logo and Moon Widget*/}
-
             <div className="max-md:hidden">
               <Link href="/">
                 <SearchResultLogo />
@@ -72,8 +71,8 @@ export default function SearchResultsPage({
               chosenCategory={decodedCategory}
             />
             <div className="max-lg:hidden xl:w-28 order-3"></div>
-            <div className="flex justify-end order-4 w-full md:w-1/3 ">
-              <div className="text-base text-[#F8F9FA] max-md:hidden pt-2 ">
+            <div className="flex justify-end items-center order-4 w-1/2">
+              <div className="md:text-sm lg:text-base xl:text-base 2xl:text-base text-[#F8F9FA] max-md:hidden">
                 <MoonWidget size="smallMoon" />
               </div>
             </div>
