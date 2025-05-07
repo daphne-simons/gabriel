@@ -53,7 +53,7 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
           </section>
           <div className="pt-20 max-md:pt-16 flex flex-col items-center">
             <section className="w-5/6 grid grid-cols-2 grid-rows-3 max-md:grid-cols-1 max-md:grid-rows-4 max-md:gap-8 md:gap-4 place-content-evenly">
-              <article className="w-2/3 md:w-[90%] font-roboto text-2xl ">
+              <article className="sm:w-full md:w-[90%] font-roboto text-2xl ">
                 <h2>Gabriel</h2>
                 <div className="py-2 text-base max-md:pb-8 text-googleMidGray ">
                   <PortableText value={data.address} />
@@ -63,7 +63,7 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
                   View Map
                 </button>
               </article>
-              <article className="w-2/3 md:w-[90%] max-md:pt-8 font-roboto text-2xl ">
+              <article className="sm:w-full md:w-[90%] max-md:pt-8 font-roboto text-2xl ">
                 <h2>Contact</h2>
                 <div className="pt-2 pb-16 text-base max-md:pb-8  text-googleMidGray">
                   <PortableText value={data.contact} />
@@ -94,21 +94,21 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
                 Email Us
               </a>
 
-              <article className="w-2/3 md:w-[90%] max-md:flex max-md:flex-col  max-md:justify-center font-roboto text-2xl">
+              <article className="sm:w-full md:w-[90%] max-md:flex max-md:flex-col  max-md:justify-center font-roboto text-2xl">
                 <h2>Team</h2>
                 <div className="pt-2 text-base text-googleMidGray">
                   <PortableText value={data.team} />
                 </div>
               </article>
 
-              <article className="w-2/3 md:w-[90%] max-md:flex max-md:flex-col  max-md:justify-start font-roboto text-2xl">
+              <article className="sm:w-full md:w-[90%] max-md:flex max-md:flex-col  max-md:justify-start font-roboto text-2xl">
                 Consultants
                 <div className="pt-2 text-base text-googleMidGray">
                   <PortableText value={data.consultants} />
                 </div>
               </article>
             </section>
-            <section className="w-5/6 pt-20 max-md:pt-0">
+            <section className="sm:w-full md:w-5/6 pt-20 max-md:pt-0">
               <article className="w-11/12 text-2xl font-normal font-roboto">
                 Past Clients and Collaborators
               </article>
@@ -119,7 +119,7 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
           </div>
         </main>
         {/* Footer */}
-        <div className="bg-googlelightGrayFooter bottom-0 w-full">
+        <div className="bg-googlelightGrayFooter bottom-0 w-full mt-auto">
           <div className="flex flex-col items-center">
             <Footer />
           </div>
