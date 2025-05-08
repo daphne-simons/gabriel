@@ -30,19 +30,16 @@ export default function HomePage({ categories }: { categories: Category[] }) {
   const {
     data: moonData,
     isLoading,
+    isPending,
     isError,
   } = useQuery({
     queryKey: ['moon'],
     queryFn: () => getMoon(),
   })
 
-  if (isLoading) {
+  if (isLoading || isPending) {
     return (
-      <>
-        <div className="bg-gray-900 h-screen flex items-center justify-center z-0">
-          <MoonLoader size="medMoon" />
-        </div>
-      </>
+      <MoonLoader size="medMoon" />
     )
   }
 
