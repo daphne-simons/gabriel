@@ -52,7 +52,7 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
             </article>
           </section>
           <div className="pt-20 max-md:pt-16 flex flex-col items-center">
-            <section className="w-5/6 grid grid-cols-2 grid-rows-3 max-md:grid-cols-1 max-md:grid-rows-4 max-md:gap-8 md:gap-4 place-content-evenly">
+            <section className="w-5/6 grid grid-cols-2 grid-rows-3 max-md:grid-cols-1 max-md:grid-rows-4 max-md:gap-6 md:gap-4 place-content-evenly">
               <article className="sm:w-full md:w-[90%] font-roboto text-2xl ">
                 <h2>Gabriel</h2>
                 <div className="py-2 text-base max-md:pb-8 text-googleMidGray ">
@@ -107,25 +107,25 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
                   <PortableText value={data.consultants} />
                 </div>
               </article>
-            </section>
-            <section className="sm:w-full md:w-5/6 pt-20 max-md:pt-0">
-              <article className="w-11/12 text-2xl font-normal font-roboto">
+
+              {/* <section className="sm:w-full md:w-5/6 pt-20 max-md:pt-0"> */}
+              <article className="sm:w-full md:w-[90%] max-md:flex max-md:flex-col  max-md:justify-start font-roboto text-2xl">
                 Past Clients and Collaborators
               </article>
-              <article className="w-11/12 max-md:w-full max-md:text-sm md:text-base pt-5 text-lg font-roboto text-googleMidGray">
+              <article className="pt-2 text-base text-googleMidGray">
                 <PortableText value={data.clients_collaborators} />
               </article>
             </section>
           </div>
-        </main>
+        </main >
         {/* Footer */}
-        <div className="bg-googlelightGrayFooter bottom-0 w-full mt-auto">
+        < div className="bg-googlelightGrayFooter bottom-0 w-full mt-auto" >
           <div className="flex flex-col items-center">
             <Footer />
           </div>
-        </div>
+        </div >
 
-      </div>
+      </div >
     </>
   )
 }
