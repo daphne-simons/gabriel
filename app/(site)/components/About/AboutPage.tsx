@@ -45,12 +45,13 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
         </ul>
         {/* BODY */}
         <main className="pt-10 pb-24 px-20 max-md:px-4 ">
-          {/* Description */}
+          {/* Gabriel Description */}
           <section className="flex justify-center text-center ">
             <article className="font-roboto text-xl max-md:text-[20px] max-md:w-[80%] md:w-[85%] lg:w-[75%] xl:w-[50%] xl:text-2xl">
               <PortableText value={data.description} components={components} />
             </article>
           </section>
+          {/* Blocks/ Buttons of info */}
           <div className="pt-20 max-md:pt-16 flex flex-col items-center">
             <section className="w-5/6 grid grid-cols-2 grid-rows-3 max-md:grid-cols-1 max-md:grid-rows-4 max-md:gap-6 md:gap-4 place-content-evenly">
               <article className="sm:w-full md:w-[90%] font-roboto text-2xl ">
@@ -93,39 +94,39 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
               >
                 Email Us
               </a>
-
               <article className="sm:w-full md:w-[90%] max-md:flex max-md:flex-col  max-md:justify-center font-roboto text-2xl">
                 <h2>Team</h2>
                 <div className="pt-2 text-base text-googleMidGray">
                   <PortableText value={data.team} />
                 </div>
               </article>
-
               <article className="sm:w-full md:w-[90%] max-md:flex max-md:flex-col  max-md:justify-start font-roboto text-2xl">
                 Consultants
                 <div className="pt-2 text-base text-googleMidGray">
                   <PortableText value={data.consultants} />
                 </div>
               </article>
-
-              {/* <section className="sm:w-full md:w-5/6 pt-20 max-md:pt-0"> */}
-              <article className="sm:w-full md:w-[90%] max-md:flex max-md:flex-col  max-md:justify-start font-roboto text-2xl">
-                Past Clients and Collaborators
-              </article>
-              <article className="pt-2 text-base text-googleMidGray">
-                <PortableText value={data.clients_collaborators} />
-              </article>
             </section>
+            {/* Seperate styling to switch between mob and laptops */}
+            <div className="flex flex-col items-center">
+              <section className="w-5/6 pt-20 max-md:pt-0">
+                <article className="w-11/12 text-2xl font-normal font-roboto">
+                  Past Clients and Collaborators
+                </article>
+                <article className="max-md:w-full max-md:text-sm md:text-base pt-5 text-lg font-roboto text-googleMidGray">
+                  <PortableText value={data.clients_collaborators} />
+                </article>
+              </section>
+            </div>
           </div>
-        </main >
+        </main>
         {/* Footer */}
-        < div className="bg-googlelightGrayFooter bottom-0 w-full mt-auto" >
+        <div className="bg-googlelightGrayFooter bottom-0 w-full mt-auto">
           <div className="flex flex-col items-center">
             <Footer />
           </div>
-        </div >
-
-      </div >
+        </div>
+      </div>
     </>
   )
 }
