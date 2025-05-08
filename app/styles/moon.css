@@ -4,10 +4,12 @@
 :root {
   --c0: #cdcdcd;
   --c1: #1d1d1d;
+  --big0: rgba(221, 221, 221, 0);
+  --big1: #000000;
   --smallDiameter: 28px;
   --medD: 8em;
   --bigD: 16em;
-  --t: 1s;
+  --t: 1.5s;
 }
 
 /* Small Widget:  */
@@ -89,7 +91,6 @@
 }
 
 /* Med-Loader: */
-/* Styles */
 
 .med-moon-container {
   display: grid;
@@ -144,7 +145,6 @@
 }
 
 /* Big-Loader: */
-/* Styles */
 
 .big-moon-container {
   display: grid;
@@ -152,6 +152,8 @@
   grid-template: var(--bigD) / var(--bigD);
   place-content: center;
   margin: 0;
+  position: relative;
+  
 }
 
 .big-moon-spin,
@@ -161,17 +163,19 @@
   background: linear-gradient(
     90deg,
     var(--c0) calc(var(--i, 0.5) * 100%),
-    var(--c1) 0
+    var(--big1) 0
   );
-  -webkit-filter: blur(0.2px);
+  /* -webkit-filter: blur(0.2px);
   -moz-filter: blur(0.2px);
   -o-filter: blur(0.2px);
-  -ms-filter: blur(0.2px);
-  filter: blur(0.2px);
+  -ms-filter: blur(0.2px); */
+  filter: blur(1.5px);
+ 
 }
 .big-moon-spin {
   display: grid;
   animation: flip calc(2 * var(--t)) steps(1) infinite;
+  box-shadow: 0 0 40px #fefee0;
 }
 .big-moon-spin::before,
 .big-moon-spin::after {
@@ -184,16 +188,4 @@
 }
 .big-moon-spin::after {
   --i: 1;
-}
-.big-moon-texture {
-  /* size of width, height and bottom change */
-  width: 256px;
-  height: 256px;
-  bottom: 256px;
-  position: relative;
-  border-radius: 50%;
-  box-shadow: 0 0 20px #fefee0;
-  background-image: url('/moon-texture.jpeg');
-  background-size: cover;
-  opacity: 0.1;
 }
