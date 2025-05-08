@@ -39,7 +39,7 @@ export default function HomePage({ categories }: { categories: Category[] }) {
   if (isLoading) {
     return (
       <>
-        <div className="bg-gray-800 h-screen flex items-center justify-center z-0">
+        <div className="bg-gray-900 h-screen flex items-center justify-center z-0">
           <MoonLoader size="medMoon" />
         </div>
       </>

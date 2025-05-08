@@ -14,9 +14,9 @@ export default async function Home() {
 
   return (
     <>
-      <Suspense>
+      <Suspense >
         <HomePage categories={categories} />
-      </Suspense>
+      </Suspense >
     </>
   )
 }

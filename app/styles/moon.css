@@ -1,4 +1,4 @@
-/* MOON LOADER STYLES */
+/* MOON STYLES */
 
 /* Variables */
 :root {
@@ -12,7 +12,7 @@
   --t: 1.5s;
 }
 
-/* Small Widget:  */
+/* WIDGET:  */
 .small-moon-widget {
   height: 28px;
   width: 28px;
@@ -24,7 +24,7 @@
   
 }
 
-/* Small-Loader: */
+/* SMALL-LOADER: */
 .small-moon-container {
   display: grid;
   /* size of grid template changes */
@@ -46,7 +46,7 @@
   -moz-filter: blur(0.2px);
   -o-filter: blur(0.2px);
   -ms-filter: blur(0.2px);
-  filter: blur(0.2px);
+  filter: blur(0.5px);
 }
 .small-moon-spin {
   display: grid;
@@ -72,10 +72,9 @@
   position: relative;
   border-radius: 50%;
   box-shadow: 0 0 10px #fefee0;
-  /* background-image: url('/moon-imgs/full.png'); */
-  background-image: url('/moon-texture.jpeg');
+  background-image: url('/moon-imgs/full.png');
   background-size: cover;
-  opacity: 0.2;
+  opacity: 0.5;
 }
 
 /* Keyframes */
@@ -90,7 +89,7 @@
   }
 }
 
-/* Med-Loader: */
+/* MED-LOADER: */
 
 .med-moon-container {
   display: grid;
@@ -113,7 +112,7 @@
   -moz-filter: blur(0.2px);
   -o-filter: blur(0.2px);
   -ms-filter: blur(0.2px);
-  filter: blur(0.2px);
+  filter: blur(0.5px);
 }
 .med-moon-spin {
   display: grid;
@@ -138,13 +137,13 @@
   bottom: 128px;
   position: relative;
   border-radius: 50%;
-  box-shadow: 0 0 20px #fefee0;
-  background-image: url('/moon-texture.jpeg');
+  box-shadow: 0 0 40px #fefee0;
+  background-image: url('/moon-imgs/full.png');
   background-size: cover;
-  opacity: 0.1;
+  opacity: 0.5;
 }
 
-/* Big-Loader: */
+/* BIG LOADER: */
 
 .big-moon-container {
   display: grid;
@@ -165,17 +164,16 @@
     var(--c0) calc(var(--i, 0.5) * 100%),
     var(--big1) 0
   );
-  /* -webkit-filter: blur(0.2px);
+  -webkit-filter: blur(0.2px);
   -moz-filter: blur(0.2px);
   -o-filter: blur(0.2px);
-  -ms-filter: blur(0.2px); */
-  filter: blur(1.5px);
+  -ms-filter: blur(0.2px);
+  filter: blur(0.7px);
  
 }
 .big-moon-spin {
   display: grid;
   animation: flip calc(2 * var(--t)) steps(1) infinite;
-  box-shadow: 0 0 40px #fefee0;
 }
 .big-moon-spin::before,
 .big-moon-spin::after {
@@ -188,4 +186,16 @@
 }
 .big-moon-spin::after {
   --i: 1;
+}
+
+.big-moon-texture {
+  width: 256px;
+  height: 258px;
+  bottom: 257px;
+  position: relative;
+  border-radius: 50%;
+  box-shadow: 0px 0px 80px #fefee0;
+  background-image: url('/moon-imgs/full.png');
+  background-size: cover;
+  opacity: 0.5;
 }
