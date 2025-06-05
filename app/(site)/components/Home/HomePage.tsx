@@ -61,6 +61,8 @@ export default function HomePage({ categories }: { categories: Category[] }) {
       if (isOpen === false) return
       else setIsOpen(!isOpen)
     }
+    console.log(categories);
+    console.log(theme);
 
     if (theme)
       return (

@@ -29,7 +29,6 @@ type Story = StoryObj<BackGroundProps>
 
 // Simple test theme
 const testTheme = {
-
   id: 1,
   bgColor: 'bg-blue-500',
   bgImg: 'bg-gradient-to-r from-blue-400 to-purple-500',
