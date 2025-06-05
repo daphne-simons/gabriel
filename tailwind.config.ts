@@ -76,10 +76,14 @@ const config: Config = {
         hoverSearchWaning: 'var(--moon-hover-search-bg-waning)',
       },
       backgroundImage: {
-        'rock-2': "url('/rock-2.jpg')",
-        'moon-bg': "url('/moon-bg.png')",
-        'moon-bg-80': "url('/moon-bg-80.png')",
-        'moon-bg-60': "url('/moon-bg-60.png')",
+        'new-moon': "url('/rock-slices/new-moon.jpg')",
+        'waxing': "url('/rock-slices/waxing.jpg')",
+        'first-quarter': "url('/rock-slices/first-quarter.jpg')",
+        'waxing-gibbous': "url('/rock-slices/waxing-gibbous.jpg')",
+        'full-moon': "url('/rock-slices/full-moon.jpg')",
+        'waning-gibbous': "url('/rock-slices/waning-gibbous.jpg')",
+        'last-quarter': "url('/rock-slices/last-quarter.jpg')",
+        'waning': "url('/rock-slices/waning.jpg')",
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',

@@ -5,16 +5,16 @@ export default function BackGround({
   children,
 }: {
   theme:
-    | {
-        id: number
-        bgColor: string
-        bgImg: string
-        textColor: string
-        outlineColor: string
-        btnSearchBg: string
-        hoverSearchBg: string
-      }
-    | undefined
+  | {
+    id: number
+    bgColor: string
+    bgImg: string
+    textColor: string
+    outlineColor: string
+    btnSearchBg: string
+    hoverSearchBg: string
+  }
+  | undefined
   children: React.ReactNode
 }) {
   if (!theme) {
@@ -31,7 +31,7 @@ export default function BackGround({
       {/* NEW - ROCK SAMPLE BG */}
       <div className="relative">
         <div
-          className={`absolute bg-cover bg-rock-2 animate-focus w-full h-screen`}
+          className={`absolute bg-cover ${theme.bgImg} animate-focus w-full h-screen`}
         ></div>
         <div className="relative">{children}</div>
       </div>

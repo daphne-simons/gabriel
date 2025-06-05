@@ -4,7 +4,7 @@ export function calculateBgColor(lighting: number) {
     return {
       id: 1,
       bgColor: 'bg-skin-newMoon',
-      bgImg: 'bg-moon-bg',
+      bgImg: 'bg-new-moon',
       textColor: 'text-skin-newMoon',
       outlineColor: 'hover:outline outline-skin-newMoon outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchNewMoon',
@@ -15,7 +15,7 @@ export function calculateBgColor(lighting: number) {
     return {
       id: 2,
       bgColor: 'bg-skin-waxing',
-      bgImg: 'bg-moon-bg-80',
+      bgImg: 'bg-waxing',
       textColor: 'text-skin-waxing',
       outlineColor: 'hover:outline outline-skin-waxing outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchWaxing',
@@ -26,7 +26,7 @@ export function calculateBgColor(lighting: number) {
     return {
       id: 3,
       bgColor: 'bg-skin-firstQuarter',
-      bgImg: 'bg-moon-bg-60',
+      bgImg: 'bg-first-quarter',
       textColor: 'text-skin-firstQuarter',
       outlineColor: 'hover:outline outline-skin-firstQuarter outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchFirstQuarter',
@@ -37,7 +37,7 @@ export function calculateBgColor(lighting: number) {
     return {
       id: 4,
       bgColor: 'bg-skin-waxingGibbous',
-      bgImg: 'bg-moon-bg-60',
+      bgImg: 'bg-waxing-gibbous',
       textColor: 'text-skin-waxingGibbous',
       outlineColor: 'hover:outline outline-skin-waxingGibbous outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchWaxingGibbous',
@@ -48,7 +48,7 @@ export function calculateBgColor(lighting: number) {
     return {
       id: 5,
       bgColor: 'bg-skin-fullMoon',
-      bgImg: 'bg-moon-bg-60',
+      bgImg: 'bg-full-moon',
       textColor: 'text-skin-fullMoon',
       outlineColor: 'hover:outline outline-skin-fullMoon outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchFullMoon',
@@ -59,7 +59,7 @@ export function calculateBgColor(lighting: number) {
     return {
       id: 6,
       bgColor: 'bg-skin-waningGibbous',
-      bgImg: 'bg-moon-bg-60',
+      bgImg: 'bg-waning-gibbous',
       textColor: 'text-skin-waningGibbous',
       outlineColor: 'hover:outline outline-skin-waningGibbous outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchWaningGibbous',
@@ -70,7 +70,7 @@ export function calculateBgColor(lighting: number) {
     return {
       id: 7,
       bgColor: 'bg-skin-lastQuarter',
-      bgImg: 'bg-moon-bg-60',
+      bgImg: 'bg-last-quarter',
       textColor: 'text-skin-lastQuarter',
       outlineColor: 'hover:outline outline-skin-lastQuarter outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchLastQuarter',
@@ -81,7 +81,7 @@ export function calculateBgColor(lighting: number) {
     return {
       id: 8,
       bgColor: 'bg-skin-waning',
-      bgImg: 'bg-moon-bg-80',
+      bgImg: 'bg-waning',
       textColor: 'text-skin-waning',
       outlineColor: 'hover:outline outline-skin-waning outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchWaning',

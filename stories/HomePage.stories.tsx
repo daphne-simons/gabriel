@@ -3,7 +3,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import HomePage from '../app/(site)/components/Home/HomePage'; // Adjust the import path as needed
 
 // Mock category data
-const mockCategories = [
+const MOCK_CATEGORIES = [
   {
     details: [{}],
     name: "a design subscription",
@@ -31,81 +31,81 @@ const mockCategories = [
   }
 ];
 
-// Mock moon phase themes
-const moonPhaseThemes = {
-  newMoon: {
-    bgColor: "bg-skin-newMoon",
-    bgImg: "bg-moon-bg-0",
-    btnSearchBg: "bg-btnSearchNewMoon",
-    hoverSearchBg: "hover:bg-hoverSearchNewMoon",
-    id: 0,
-    outlineColor: "hover:outline outline-skin-newMoon outline-[0.5px]",
-    textColor: "text-skin-newMoon"
-  },
-  waxingCrescent: {
-    bgColor: "bg-skin-waxingCrescent",
-    bgImg: "bg-moon-bg-25",
-    btnSearchBg: "bg-btnSearchWaxingCrescent",
-    hoverSearchBg: "hover:bg-hoverSearchWaxingCrescent",
-    id: 1,
-    outlineColor: "hover:outline outline-skin-waxingCrescent outline-[0.5px]",
-    textColor: "text-skin-waxingCrescent"
-  },
-  firstQuarter: {
-    bgColor: "bg-skin-firstQuarter",
-    bgImg: "bg-moon-bg-50",
-    btnSearchBg: "bg-btnSearchFirstQuarter",
-    hoverSearchBg: "hover:bg-hoverSearchFirstQuarter",
-    id: 2,
-    outlineColor: "hover:outline outline-skin-firstQuarter outline-[0.5px]",
-    textColor: "text-skin-firstQuarter"
-  },
-  waxingGibbous: {
-    bgColor: "bg-skin-waxingGibbous",
-    bgImg: "bg-moon-bg-75",
-    btnSearchBg: "bg-btnSearchWaxingGibbous",
-    hoverSearchBg: "hover:bg-hoverSearchWaxingGibbous",
-    id: 3,
-    outlineColor: "hover:outline outline-skin-waxingGibbous outline-[0.5px]",
-    textColor: "text-skin-waxingGibbous"
-  },
-  fullMoon: {
-    bgColor: "bg-skin-fullMoon",
-    bgImg: "bg-moon-bg-100",
-    btnSearchBg: "bg-btnSearchFullMoon",
-    hoverSearchBg: "hover:bg-hoverSearchFullMoon",
-    id: 4,
-    outlineColor: "hover:outline outline-skin-fullMoon outline-[0.5px]",
-    textColor: "text-skin-fullMoon"
-  },
-  waningGibbous: {
-    bgColor: "bg-skin-waningGibbous",
-    bgImg: "bg-moon-bg-75",
-    btnSearchBg: "bg-btnSearchWaningGibbous",
-    hoverSearchBg: "hover:bg-hoverSearchWaningGibbous",
-    id: 5,
-    outlineColor: "hover:outline outline-skin-waningGibbous outline-[0.5px]",
-    textColor: "text-skin-waningGibbous"
-  },
-  lastQuarter: {
-    bgColor: "bg-skin-lastQuarter",
-    bgImg: "bg-moon-bg-50",
-    btnSearchBg: "bg-btnSearchLastQuarter",
-    hoverSearchBg: "hover:bg-hoverSearchLastQuarter",
-    id: 6,
-    outlineColor: "hover:outline outline-skin-lastQuarter outline-[0.5px]",
-    textColor: "text-skin-lastQuarter"
-  },
-  waningCrescent: {
-    bgColor: "bg-skin-waningCrescent",
-    bgImg: "bg-moon-bg-25",
-    btnSearchBg: "bg-btnSearchWaningCrescent",
-    hoverSearchBg: "hover:bg-hoverSearchWaningCrescent",
-    id: 7,
-    outlineColor: "hover:outline outline-skin-waningCrescent outline-[0.5px]",
-    textColor: "text-skin-waningCrescent"
-  }
-};
+// // Mock moon phase themes
+// const moonPhaseThemes = {
+//   newMoon: {
+//     bgColor: "bg-skin-newMoon",
+//     bgImg: "bg-new",
+//     btnSearchBg: "bg-btnSearchNewMoon",
+//     hoverSearchBg: "hover:bg-hoverSearchNewMoon",
+//     id: 0,
+//     outlineColor: "hover:outline outline-skin-newMoon outline-[0.5px]",
+//     textColor: "text-skin-newMoon"
+//   },
+//   waxingCrescent: {
+//     bgColor: "bg-skin-waxing",
+//     bgImg: "bg-moon-bg-25",
+//     btnSearchBg: "bg-btnSearchWaxingCrescent",
+//     hoverSearchBg: "hover:bg-hoverSearchWaxingCrescent",
+//     id: 1,
+//     outlineColor: "hover:outline outline-skin-waxingCrescent outline-[0.5px]",
+//     textColor: "text-skin-waxingCrescent"
+//   },
+//   firstQuarter: {
+//     bgColor: "bg-skin-firstQuarter",
+//     bgImg: "bg-moon-bg-50",
+//     btnSearchBg: "bg-btnSearchFirstQuarter",
+//     hoverSearchBg: "hover:bg-hoverSearchFirstQuarter",
+//     id: 2,
+//     outlineColor: "hover:outline outline-skin-firstQuarter outline-[0.5px]",
+//     textColor: "text-skin-firstQuarter"
+//   },
+//   waxingGibbous: {
+//     bgColor: "bg-skin-waxingGibbous",
+//     bgImg: "bg-moon-bg-75",
+//     btnSearchBg: "bg-btnSearchWaxingGibbous",
+//     hoverSearchBg: "hover:bg-hoverSearchWaxingGibbous",
+//     id: 3,
+//     outlineColor: "hover:outline outline-skin-waxingGibbous outline-[0.5px]",
+//     textColor: "text-skin-waxingGibbous"
+//   },
+//   fullMoon: {
+//     bgColor: "bg-skin-fullMoon",
+//     bgImg: "bg-moon-bg-100",
+//     btnSearchBg: "bg-btnSearchFullMoon",
+//     hoverSearchBg: "hover:bg-hoverSearchFullMoon",
+//     id: 4,
+//     outlineColor: "hover:outline outline-skin-fullMoon outline-[0.5px]",
+//     textColor: "text-skin-fullMoon"
+//   },
+//   waningGibbous: {
+//     bgColor: "bg-skin-waningGibbous",
+//     bgImg: "bg-moon-bg-75",
+//     btnSearchBg: "bg-btnSearchWaningGibbous",
+//     hoverSearchBg: "hover:bg-hoverSearchWaningGibbous",
+//     id: 5,
+//     outlineColor: "hover:outline outline-skin-waningGibbous outline-[0.5px]",
+//     textColor: "text-skin-waningGibbous"
+//   },
+//   lastQuarter: {
+//     bgColor: "bg-skin-lastQuarter",
+//     bgImg: "bg-moon-bg-50",
+//     btnSearchBg: "bg-btnSearchLastQuarter",
+//     hoverSearchBg: "hover:bg-hoverSearchLastQuarter",
+//     id: 6,
+//     outlineColor: "hover:outline outline-skin-lastQuarter outline-[0.5px]",
+//     textColor: "text-skin-lastQuarter"
+//   },
+//   waningCrescent: {
+//     bgColor: "bg-skin-waning",
+//     bgImg: "bg-moon-bg-25",
+//     btnSearchBg: "bg-btnSearchWaningCrescent",
+//     hoverSearchBg: "hover:bg-hoverSearchWaningCrescent",
+//     id: 7,
+//     outlineColor: "hover:outline outline-skin-waningCrescent outline-[0.5px]",
+//     textColor: "text-skin-waningCrescent"
+//   }
+// };
 
 // Mock moon data generator
 const createMockMoonData = (lightingValue: number) => ({
@@ -114,9 +114,9 @@ const createMockMoonData = (lightingValue: number) => ({
   }))
 });
 
-// Create a mock for the getMoon function
-const mockGetMoon = (lightingValue: number) =>
-  Promise.resolve(createMockMoonData(lightingValue));
+// // Create a mock for the getMoon function
+// const mockGetMoon = (lightingValue: number) =>
+//   Promise.resolve(createMockMoonData(lightingValue));
 
 // Create a simplified component wrapper that provides mock data
 const HomePageWithMockData = ({ categories, mockLightingValue }: { categories: any[], mockLightingValue: number }) => {
@@ -171,7 +171,7 @@ type Story = StoryObj<typeof meta>;
 
 export const NewMoon: Story = {
   args: {
-    categories: mockCategories,
+    categories: MOCK_CATEGORIES,
     mockLightingValue: 0,
   },
   parameters: {
@@ -185,7 +185,7 @@ export const NewMoon: Story = {
 
 export const WaxingCrescent: Story = {
   args: {
-    categories: mockCategories,
+    categories: MOCK_CATEGORIES,
     mockLightingValue: 25,
   },
   parameters: {
@@ -199,7 +199,7 @@ export const WaxingCrescent: Story = {
 
 export const FirstQuarter: Story = {
   args: {
-    categories: mockCategories,
+    categories: MOCK_CATEGORIES,
     mockLightingValue: 50,
   },
   parameters: {
@@ -213,7 +213,7 @@ export const FirstQuarter: Story = {
 
 export const WaxingGibbous: Story = {
   args: {
-    categories: mockCategories,
+    categories: MOCK_CATEGORIES,
     mockLightingValue: 75,
   },
   parameters: {
@@ -227,7 +227,7 @@ export const WaxingGibbous: Story = {
 
 export const FullMoon: Story = {
   args: {
-    categories: mockCategories,
+    categories: MOCK_CATEGORIES,
     mockLightingValue: 100,
   },
   parameters: {
@@ -241,7 +241,7 @@ export const FullMoon: Story = {
 
 export const WaningGibbous: Story = {
   args: {
-    categories: mockCategories,
+    categories: MOCK_CATEGORIES,
     mockLightingValue: 75,
   },
   parameters: {
@@ -255,7 +255,7 @@ export const WaningGibbous: Story = {
 
 export const LastQuarter: Story = {
   args: {
-    categories: mockCategories,
+    categories: MOCK_CATEGORIES,
     mockLightingValue: 50,
   },
   parameters: {
@@ -269,7 +269,7 @@ export const LastQuarter: Story = {
 
 export const WaningCrescent: Story = {
   args: {
-    categories: mockCategories,
+    categories: MOCK_CATEGORIES,
     mockLightingValue: 25,
   },
   parameters: {
@@ -283,7 +283,7 @@ export const WaningCrescent: Story = {
 
 export const Interactive: Story = {
   args: {
-    categories: mockCategories,
+    categories: MOCK_CATEGORIES,
     mockLightingValue: 50,
   },
   parameters: {
