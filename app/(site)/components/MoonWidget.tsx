@@ -61,13 +61,13 @@ export default function MoonWidget({ size }: { size: string }) {
     phase => moonLighting >= phase.min && moonLighting <= phase.max
   ) || MOON_PHASES[0] // Default to new moon if no match found
 
-  // Size calculations
-  const imgSize = size === 'small' ? 20 : 30
+  // Size calculations - Fixed the size logic!
+  const imgSize = (size === 'small' || size === 'smallMoon') ? 30 :
+    size === 'medMoon' ? 50 :
+      80 // default/large size
+
   // Path to the moon phase image
   const pngMoonPath = `/moon-imgs/${currentPhase.img}.png`
-  // const pngMoonPath = `/moon-imgs/full-1.png`
-  // Use SVG version for all moons
-  // const svgMoonPath = `/moon-imgs/full-1.svg`
 
   return (
     <div>
@@ -79,11 +79,10 @@ export default function MoonWidget({ size }: { size: string }) {
         <h2 className="text-center">{currentPhase.name}</h2>
         {/*moon container */}
         <div
-          className="small-moon-widget"
+          className="small-moon-widget relative"
           style={{
             width: `${imgSize}px`,
             height: `${imgSize}px`,
-
           }}
         >
           <Image
@@ -93,8 +92,7 @@ export default function MoonWidget({ size }: { size: string }) {
             priority
           />
         </div>
-
-      </Link >
-    </div >
+      </Link>
+    </div>
   )
 }

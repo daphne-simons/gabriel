@@ -118,40 +118,35 @@ const createMockMoonData = (lightingValue: number) => ({
 const mockGetMoon = (lightingValue: number) =>
   Promise.resolve(createMockMoonData(lightingValue));
 
-// Create a decorator to provide QueryClient and mock the getMoon function
-const QueryClientDecorator = (Story: any, context: any) => {
+// Create a simplified component wrapper that provides mock data
+const HomePageWithMockData = ({ categories, mockLightingValue }: { categories: any[], mockLightingValue: number }) => {
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
         retry: false,
+        staleTime: Infinity, // Prevent refetching
       },
     },
   });
 
-  // Mock the getMoon function based on the story's lighting value
-  const lightingValue = context.args.mockLightingValue || 50;
-
-  // Override the useQuery hook behavior
-  jest.mock('@tanstack/react-query', () => ({
-    ...jest.requireActual('@tanstack/react-query'),
-    useQuery: () => ({
-      data: createMockMoonData(lightingValue),
-      isLoading: false,
-      isPending: false,
-      isError: false,
-    }),
-  }));
+  // Pre-populate the query cache with mock data
+  queryClient.setQueryData(['moon'], createMockMoonData(mockLightingValue));
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Story />
+      <HomePage categories={categories} />
     </QueryClientProvider>
   );
 };
 
-const meta: Meta<typeof HomePage> = {
+// Simple decorator to provide QueryClient context
+const QueryClientDecorator = (Story: any) => {
+  return <Story />;
+};
+
+const meta: Meta<typeof HomePageWithMockData> = {
   title: 'Pages/HomePage',
-  component: HomePage,
+  component: HomePageWithMockData,
   parameters: {
     layout: 'fullscreen',
     viewport: {
