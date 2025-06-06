@@ -3,7 +3,7 @@
 import { Suspense, useState } from 'react'
 import Link from 'next/link'
 import BackGround from '../BackGround'
-import HomeSearchBar from '../HomeSearchBar'
+import HomeSearchBar from '../Home/HomeSearchBar'
 import MoonWidget from '../MoonWidget'
 import HomeLogo from '../Logos/HomeLogo'
 import MoonLoader from '../MoonLoader'
@@ -85,7 +85,7 @@ export default function HomePage({ categories }: { categories: Category[] }) {
                 {/* Middle section  */}
                 <div className="relative middle flex flex-col justify-evenly items-center h-[30%] -top-44 max-md:-top-20">
                   {/* Heading */}
-                  <HomeLogo fontSettings={fontSettings} />
+                  <HomeLogo fontSettings={fontSettings} logoColor={theme.logoColor} />
                   {/* Div for Search Input  && */}
                   {/* Feeling Lucky/ Contact Button */}
                   <HomeSearchBar

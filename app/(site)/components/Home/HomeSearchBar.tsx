@@ -31,11 +31,10 @@ export default function HomeSearchBar({
     return (
       <>
         <div
-          className={`relative flex flex-col justify-start rounded-full pl-14 pr-14 py-2.5 ${theme.btnSearchBg} ${theme.hoverSearchBg} sm:w-1/3 m:w-1/3 md:w-1/2 lg:w-2/5 xl:w-1/3
-            ${
-              isOpen
-                ? `shadow-none hover:none`
-                : `shadow-customSearchLight hover:shadow-customSearchDark`
+          className={`relative flex flex-col justify-start rounded-full pl-14 pr-14 py-2.5 bg-btnSearchFullMoon hover:bg-hoverSearchFullMoon sm:w-1/3 m:w-1/3 md:w-1/2 lg:w-2/5 xl:w-1/3
+            ${isOpen
+              ? `shadow-none hover:none`
+              : `shadow-customSearchLight hover:shadow-customSearchDark`
             }`}
           onClick={toggleDropdown}
         >
@@ -46,8 +45,8 @@ export default function HomeSearchBar({
               <span
                 className={
                   !isOpen
-                    ? 'block h-6 w-6 -ml-[40px] mb-[5px] absolute'
-                    : 'h-6 w-6 -ml-[40px] mb-[5px] absolute opacity-0'
+                    ? 'block h-6 w-6 -ml-[40px] mb-[5px] absolute text-googleMidGray'
+                    : 'h-6 w-6 -ml-[40px] mb-[5px] absolute opacity-0 '
                 }
               >
                 <svg
@@ -60,21 +59,21 @@ export default function HomeSearchBar({
               </span>
             </div>
             {/* Search input */}
-            <p className={!isOpen ? 'block pl-1' : 'opacity-0 pl-1'}>
+            <p className={!isOpen ? 'block pl-1 text-googleMidGray' : 'opacity-0 pl-1'}>
               What are you looking for?
             </p>
           </div>
           {/* Dropdown Menu */}
           <div
             id="dropdown"
-            className={`${theme.btnSearchBg} absolute z-10 pl-10 rounded-[22px] p-custom pb-2 left-1/2 -translate-x-1/2 -translate-y-2.5 flex flex-col w-full ${
+            className={`bg-btnSearchFullMoon absolute z-10 pl-10 rounded-[22px] p-custom pb-2 left-1/2 -translate-x-1/2 -translate-y-2.5 flex flex-col w-full ${
               // CHANGE the BG to be dynamic
               isOpen ? 'block shadow-customSearchDark' : 'hidden'
-            }`}
+              }`}
           >
             {/* Landing Option*/}
             <div className="flex flex-row relative rounded-full gap-1.5">
-              <span className="h-6 w-6 -ml-[24px] mt-[8px] absolute">
+              <span className="h-6 w-6 -ml-[24px] mt-[8px] absolute text-googleMidGray">
                 <svg
                   focusable="false"
                   xmlns="http://www.w3.org/2000/svg"
@@ -83,11 +82,11 @@ export default function HomeSearchBar({
                   <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"></path>
                 </svg>
               </span>
-              <p className="px-5 py-2">What are you looking for?</p>
+              <p className="px-5 py-2 text-googleMidGray">What are you looking for?</p>
             </div>
             {/* Options - Map through categories state */}
             {categories.map((category) => (
-              <div key={category._id} className="flex flex-row relative ">
+              <div key={category._id} className="flex flex-row relative text-googleBlack">
                 <Link
                   href={{
                     pathname: '/search-results',
@@ -96,7 +95,7 @@ export default function HomeSearchBar({
                     },
                   }}
                 >
-                  <span className={`h-6 w-6 -ml-[24px] mt-[8px] absolute`}>
+                  <span className={`h-6 w-6 -ml-[24px] mt-[8px] absolute text-googleMidGray`}>
                     <svg
                       className="fill-current"
                       focusable="false"
@@ -118,9 +117,9 @@ export default function HomeSearchBar({
           </div>
         </div>
         {/* "I'm Feeling Lucky"  uses the <a> mailto: functionality to open a user's default email client*/}
-        <div className={`pt-6 $ ${!isOpen ? 'opacity-1' : 'opacity-0'}`}>
+        <div className={`pt-6 $ ${!isOpen ? 'opacity-1' : 'opacity-0'} text-googleMidGray`}>
           <a
-            className={`px-4 py-2.5 rounded-lg shadow-customSearchLight hover:shadow-customSearchDark ${theme.outlineColor} ${theme.btnSearchBg}`}
+            className={`px-4 py-2.5 rounded-lg shadow-customSearchLight hover:shadow-customSearchDark hover:outline outline-skin-fullMoon outline-[0.5px] bg-btnSearchFullMoon`}
             // TODO: change this email address to Ella's official Gabriel Email
             href="mailto:daphnejasminesimons@gmail.com?subject=I%27m%20Feeling%20Lucky"
           >

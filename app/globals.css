@@ -122,6 +122,10 @@ body {
     --moon-bg-img-last-quarter: url('/moon-bg.png');
     --moon-bg-img-waning: url('/moon-bg.png');
     /* Background Color  */
+    --phase-pink: #ECBAB1;
+    --phase-gray: #BBBBBB;
+    --phase-yellow: #FFDD9C;
+    --phase-orange: #FF6C2F;
     --moon-bg-color-new-moon: #3d3d3d;
     --moon-bg-color-waxing: #8a8a8a;
     --moon-bg-color-first-quarter: #bcbcbc;

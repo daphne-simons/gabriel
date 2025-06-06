@@ -5,10 +5,11 @@ export function calculateBgColor(lighting: number) {
       id: 1,
       bgColor: 'bg-skin-newMoon',
       bgImg: 'bg-new-moon',
-      textColor: 'text-skin-newMoon',
+      textColor: 'text-phasePink',
       outlineColor: 'hover:outline outline-skin-newMoon outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchNewMoon',
       hoverSearchBg: 'hover:bg-hoverSearchNewMoon',
+      logoColor: 'bg-phasePink',
     }
   } else if (lighting >= 6 && lighting <= 42) {
     // WAXING
@@ -16,10 +17,11 @@ export function calculateBgColor(lighting: number) {
       id: 2,
       bgColor: 'bg-skin-waxing',
       bgImg: 'bg-waxing',
-      textColor: 'text-skin-waxing',
+      textColor: 'text-phaseGray',
       outlineColor: 'hover:outline outline-skin-waxing outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchWaxing',
       hoverSearchBg: 'hover:bg-hoverSearchWaxing',
+      logoColor: 'bg-phaseGray',
     }
   } else if (lighting >= 43 && lighting <= 60) {
     // FIRST QUARTER
@@ -27,10 +29,11 @@ export function calculateBgColor(lighting: number) {
       id: 3,
       bgColor: 'bg-skin-firstQuarter',
       bgImg: 'bg-first-quarter',
-      textColor: 'text-skin-firstQuarter',
+      textColor: 'text-phaseYellow',
       outlineColor: 'hover:outline outline-skin-firstQuarter outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchFirstQuarter',
       hoverSearchBg: 'hover:bg-hoverSearchFirstQuarter',
+      logoColor: 'bg-phaseYellow',
     }
   } else if (lighting >= 61 && lighting <= 75) {
     // WAXING GIBBOUS
@@ -38,10 +41,11 @@ export function calculateBgColor(lighting: number) {
       id: 4,
       bgColor: 'bg-skin-waxingGibbous',
       bgImg: 'bg-waxing-gibbous',
-      textColor: 'text-skin-waxingGibbous',
+      textColor: 'text-phaseOrange',
       outlineColor: 'hover:outline outline-skin-waxingGibbous outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchWaxingGibbous',
       hoverSearchBg: 'hover:bg-hoverSearchWaxingGibbous',
+      logoColor: 'bg-phaseOrange',
     }
   } else if (lighting >= 76 && lighting <= 95) {
     // FULL MOON
@@ -49,10 +53,11 @@ export function calculateBgColor(lighting: number) {
       id: 5,
       bgColor: 'bg-skin-fullMoon',
       bgImg: 'bg-full-moon',
-      textColor: 'text-skin-fullMoon',
+      textColor: 'text-phaseGray',
       outlineColor: 'hover:outline outline-skin-fullMoon outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchFullMoon',
       hoverSearchBg: 'hover:bg-hoverSearchFullMoon',
+      logoColor: 'bg-phaseGray',
     }
   } else if (lighting >= 96 && lighting <= 105) {
     // WANING GIBBOUS
@@ -60,10 +65,11 @@ export function calculateBgColor(lighting: number) {
       id: 6,
       bgColor: 'bg-skin-waningGibbous',
       bgImg: 'bg-waning-gibbous',
-      textColor: 'text-skin-waningGibbous',
+      textColor: 'text-phaseOrange',
       outlineColor: 'hover:outline outline-skin-waningGibbous outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchWaningGibbous',
       hoverSearchBg: 'hover:bg-hoverSearchWaningGibbous',
+      logoColor: 'bg-phaseOrange',
     }
   } else if (lighting >= 66 && lighting <= 75) {
     // LAST QUARTER
@@ -71,10 +77,11 @@ export function calculateBgColor(lighting: number) {
       id: 7,
       bgColor: 'bg-skin-lastQuarter',
       bgImg: 'bg-last-quarter',
-      textColor: 'text-skin-lastQuarter',
+      textColor: 'text-phasePink',
       outlineColor: 'hover:outline outline-skin-lastQuarter outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchLastQuarter',
       hoverSearchBg: 'hover:bg-hoverSearchLastQuarter',
+      logoColor: 'bg-phasePink',
     }
   } else if (lighting >= 44 && lighting < 66) {
     // WANING
@@ -82,10 +89,11 @@ export function calculateBgColor(lighting: number) {
       id: 8,
       bgColor: 'bg-skin-waning',
       bgImg: 'bg-waning',
-      textColor: 'text-skin-waning',
+      textColor: 'text-phaseYellow',
       outlineColor: 'hover:outline outline-skin-waning outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchWaning',
       hoverSearchBg: 'hover:bg-hoverSearchWaning',
+      logoColor: 'bg-phaseYellow',
     }
   }
 }

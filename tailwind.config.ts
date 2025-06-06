@@ -46,6 +46,12 @@ const config: Config = {
         0.5: '0.5px',
       },
       backgroundColor: {
+        // Moon Pase Colours
+        phasePink: 'var(--phase-pink)',
+        phaseGray: 'var(--phase-gray)',
+        phaseYellow: 'var(--phase-yellow)',
+        phaseOrange: 'var(--phase-orange)',
+        // skins
         skin: {
           newMoon: 'var(--moon-bg-color-new-moon)',
           waxing: 'var(--moon-bg-color-waxing)',
@@ -144,6 +150,13 @@ const config: Config = {
         googlelightGrayFooter: '#F8F9FA',
         googleLightGrayStroke: '#E5E7EB',
         googleDarkGrayText: '#202124',
+        googleBlack: '#010101',
+        // PHASE COLORS
+        phasePink: '#ECBAB1',
+        phaseGray: '#BBBBBB',
+        phaseYellow: '#FFDD9C',
+        phaseOrange: '#FF6C2F',
+
       },
       spacing: {
         d: '8em',
