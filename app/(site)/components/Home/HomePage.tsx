@@ -37,7 +37,7 @@ export default function HomePage({ categories }: { categories: Category[] }) {
   }
 
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense >
       {/* This is listening to the mousemoves on the whole page, to update the Variable fontSettings in the HomeLogo */}
       <div onMouseMove={updateText} onClick={closeDropDown}>
         {/* Background wrapper to dynamically change theme according to Moon Phase. */}

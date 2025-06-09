@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import React from 'react';
-import HomePage from '../app/(site)/components/Home/HomePage';
+import './homepage.css'
 import { MOON_PHASES } from '../app/(site)/utils/moon-utils';
 import BackGround from '@/app/(site)/components/BackGround';
 import Link from 'next/link';
