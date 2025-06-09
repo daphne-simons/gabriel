@@ -54,14 +54,14 @@ export default function HomePage({ categories }: { categories: Category[] }) {
     // To test dynamic moon theme:
     const theme = calculateBgColor(lightValue)
     // To test hard coded Full Moon Styling:
-    // const theme = calculateBgColor(50)
+    // const theme = calculateBgColor(10)
 
     // closes dropdown when clicking elsewhere on page
     const closeDropDown = () => {
       if (isOpen === false) return
       else setIsOpen(!isOpen)
     }
-    console.log(categories);
+    // console.log(categories);
     console.log(theme);
 
     if (theme)

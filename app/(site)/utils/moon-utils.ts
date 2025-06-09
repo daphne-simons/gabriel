@@ -1,11 +1,13 @@
 export function calculateBgColor(lighting: number) {
+  console.log('lighting', lighting);
+
   if (lighting >= 0 && lighting <= 5) {
     // NEW MOON
     return {
       id: 1,
       bgColor: 'bg-skin-newMoon',
       bgImg: 'bg-new-moon',
-      textColor: 'text-phasePink',
+      textColor: 'text-googleLightGray',
       outlineColor: 'hover:outline outline-skin-newMoon outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchNewMoon',
       hoverSearchBg: 'hover:bg-hoverSearchNewMoon',
@@ -17,7 +19,7 @@ export function calculateBgColor(lighting: number) {
       id: 2,
       bgColor: 'bg-skin-waxing',
       bgImg: 'bg-waxing',
-      textColor: 'text-phaseGray',
+      textColor: 'text-googleLightGray',
       outlineColor: 'hover:outline outline-skin-waxing outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchWaxing',
       hoverSearchBg: 'hover:bg-hoverSearchWaxing',
@@ -29,67 +31,67 @@ export function calculateBgColor(lighting: number) {
       id: 3,
       bgColor: 'bg-skin-firstQuarter',
       bgImg: 'bg-first-quarter',
-      textColor: 'text-phaseYellow',
+      textColor: 'text-googleLightGray',
       outlineColor: 'hover:outline outline-skin-firstQuarter outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchFirstQuarter',
       hoverSearchBg: 'hover:bg-hoverSearchFirstQuarter',
       logoColor: 'bg-phaseYellow',
     }
-  } else if (lighting >= 61 && lighting <= 75) {
+  } else if (lighting >= 61 && lighting <= 95) {
     // WAXING GIBBOUS
     return {
       id: 4,
       bgColor: 'bg-skin-waxingGibbous',
       bgImg: 'bg-waxing-gibbous',
-      textColor: 'text-phaseOrange',
+      textColor: 'text-googleLightGray',
       outlineColor: 'hover:outline outline-skin-waxingGibbous outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchWaxingGibbous',
       hoverSearchBg: 'hover:bg-hoverSearchWaxingGibbous',
       logoColor: 'bg-phaseOrange',
     }
-  } else if (lighting >= 76 && lighting <= 95) {
+  } else if (lighting >= 96 && lighting <= 105) {
     // FULL MOON
     return {
       id: 5,
       bgColor: 'bg-skin-fullMoon',
       bgImg: 'bg-full-moon',
-      textColor: 'text-phaseGray',
+      textColor: 'text-googleLightGray',
       outlineColor: 'hover:outline outline-skin-fullMoon outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchFullMoon',
       hoverSearchBg: 'hover:bg-hoverSearchFullMoon',
       logoColor: 'bg-phaseGray',
     }
-  } else if (lighting >= 96 && lighting <= 105) {
+  } else if (lighting >= 66 && lighting <= 95) {
     // WANING GIBBOUS
     return {
       id: 6,
       bgColor: 'bg-skin-waningGibbous',
       bgImg: 'bg-waning-gibbous',
-      textColor: 'text-phaseOrange',
+      textColor: 'text-googleDarkGrayText',
       outlineColor: 'hover:outline outline-skin-waningGibbous outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchWaningGibbous',
       hoverSearchBg: 'hover:bg-hoverSearchWaningGibbous',
       logoColor: 'bg-phaseOrange',
     }
-  } else if (lighting >= 66 && lighting <= 75) {
+  } else if (lighting >= 44 && lighting <= 65) {
     // LAST QUARTER
     return {
       id: 7,
       bgColor: 'bg-skin-lastQuarter',
       bgImg: 'bg-last-quarter',
-      textColor: 'text-phasePink',
+      textColor: 'text-googleLightGray',
       outlineColor: 'hover:outline outline-skin-lastQuarter outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchLastQuarter',
       hoverSearchBg: 'hover:bg-hoverSearchLastQuarter',
       logoColor: 'bg-phasePink',
     }
-  } else if (lighting >= 44 && lighting < 66) {
+  } else if (lighting >= 5 && lighting < 43) {
     // WANING
     return {
       id: 8,
       bgColor: 'bg-skin-waning',
       bgImg: 'bg-waning',
-      textColor: 'text-phaseYellow',
+      textColor: 'text-googleLightGray',
       outlineColor: 'hover:outline outline-skin-waning outline-[0.5px]',
       btnSearchBg: 'bg-btnSearchWaning',
       hoverSearchBg: 'hover:bg-hoverSearchWaning',

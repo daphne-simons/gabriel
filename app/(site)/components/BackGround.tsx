@@ -33,7 +33,7 @@ export default function BackGround({
         <div
           className={`absolute bg-cover ${theme.bgImg} animate-focus w-full h-screen`}
         ></div>
-        <div className="relative">{children}</div>
+        <div className={`relative ${theme.textColor}`}>{children}</div>
       </div>
     </>
   )

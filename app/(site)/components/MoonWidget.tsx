@@ -61,6 +61,7 @@ export default function MoonWidget({ size }: { size: string }) {
     phase => moonLighting >= phase.min && moonLighting <= phase.max
   ) || MOON_PHASES[0] // Default to new moon if no match found
 
+
   // Size calculations - Fixed the size logic!
   const imgSize = (size === 'small' || size === 'smallMoon') ? 30 :
     size === 'medMoon' ? 50 :
@@ -68,6 +69,8 @@ export default function MoonWidget({ size }: { size: string }) {
 
   // Path to the moon phase image
   const pngMoonPath = `/moon-imgs/${currentPhase.img}.png`
+
+  console.log('moonData', moonData);
 
   return (
     <div>
