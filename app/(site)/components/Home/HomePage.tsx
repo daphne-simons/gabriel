@@ -6,10 +6,7 @@ import BackGround from '../BackGround'
 import HomeSearchBar from '../Home/HomeSearchBar'
 import MoonWidget from '../MoonWidget'
 import HomeLogo from '../Logos/HomeLogo'
-import MoonLoader from '../MoonLoader'
-import getMoon from '@/query/utils/getMoonData'
-import { useQuery } from '@tanstack/react-query'
-import { calculateBgColor } from '@/app/(site)/utils/moon-utils'
+import { calculateBgColor, getMoonPhaseForWidget } from '@/app/(site)/utils/moon-utils' // Your new moon utils
 import { Category } from '@/sanity/models/sanity-client-models'
 
 export default function HomePage({ categories }: { categories: Category[] }) {
@@ -26,80 +23,53 @@ export default function HomePage({ categories }: { categories: Category[] }) {
     setFontSettings({ wght: randomWeight, opsz: randomOpsz })
   }
 
-  // getMoon() data from query utils:
-  const {
-    data: moonData,
-    isLoading,
-    isPending,
-    isError,
-  } = useQuery({
-    queryKey: ['moon'],
-    queryFn: () => getMoon(),
-  })
+  // Calculate moon theme directly - no API needed!
+  const theme = calculateBgColor() // Uses current date by default
+  const phase = getMoonPhaseForWidget()
+  // Optional: log current moon info for debugging
+  console.log('Current moon theme:', theme)
+  console.log('Current moon phase:', phase)
 
-  if (isLoading || isPending) {
-    return (
-      <MoonLoader size="medMoon" />
-    )
+  // closes dropdown when clicking elsewhere on page
+  const closeDropDown = () => {
+    if (isOpen === false) return
+    else setIsOpen(!isOpen)
   }
 
-  if (isError) {
-    return <div>Sorry There was an Error</div>
-  }
-  // For generating dynamic themes for Moon:
-  if (moonData) {
-    const lightValue = Number(
-      moonData.phase[new Date().getDate()].lighting.toFixed(0)
-    )
-    // To test dynamic moon theme:
-    const theme = calculateBgColor(lightValue)
-    // To test hard coded Full Moon Styling:
-    // const theme = calculateBgColor(10)
-
-    // closes dropdown when clicking elsewhere on page
-    const closeDropDown = () => {
-      if (isOpen === false) return
-      else setIsOpen(!isOpen)
-    }
-    // console.log(categories);
-    console.log(theme);
-
-    if (theme)
-      return (
-        <Suspense fallback={<div>Loading...</div>}>
-          {/* This is listening to the mousemoves on the whole page, to update the Variable fontSettings in the HomeLogo */}
-          <div onMouseMove={updateText} onClick={closeDropDown}>
-            {/* Background wrapper to dynamically change theme according to Moon Phase. */}
-            <BackGround theme={theme}>
-              {/* TODO: make everything here totally sharp! not inheret blur effect from BackGround */}
-              <div
-                className={`flex flex-col justify-between h-screen fill-current ${theme.textColor} z-20`}
-              >
-                {/* Nav */}
-                <div className="flex justify-between mt-5 px-7 text-sm">
-                  <Link href="/about" className="flex gap-8 hover:underline">
-                    About
-                  </Link>
-                  <MoonWidget size={'smallMoon'} />
-                </div>
-                {/* Middle section  */}
-                <div className="relative middle flex flex-col justify-evenly items-center h-[30%] -top-44 max-md:-top-20">
-                  {/* Heading */}
-                  <HomeLogo fontSettings={fontSettings} logoColor={theme.logoColor} />
-                  {/* Div for Search Input  && */}
-                  {/* Feeling Lucky/ Contact Button */}
-                  <HomeSearchBar
-                    isOpen={isOpen}
-                    setIsOpen={setIsOpen}
-                    categories={categories}
-                    theme={theme}
-                  />
-                </div>
-                <div></div>
-              </div>
-            </BackGround>
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      {/* This is listening to the mousemoves on the whole page, to update the Variable fontSettings in the HomeLogo */}
+      <div onMouseMove={updateText} onClick={closeDropDown}>
+        {/* Background wrapper to dynamically change theme according to Moon Phase. */}
+        <BackGround theme={theme}>
+          {/* TODO: make everything here totally sharp! not inheret blur effect from BackGround */}
+          <div
+            className={`flex flex-col justify-between h-screen fill-current ${theme.textColor} z-20`}
+          >
+            {/* Nav */}
+            <div className="flex justify-between mt-5 px-7 text-sm">
+              <Link href="/about" className="flex gap-8 hover:underline">
+                About
+              </Link>
+              <MoonWidget size={'smallMoon'} phase={phase} />
+            </div>
+            {/* Middle section  */}
+            <div className="relative middle flex flex-col justify-evenly items-center h-[30%] -top-44 max-md:-top-20">
+              {/* Heading */}
+              <HomeLogo fontSettings={fontSettings} logoColor={theme.logoColor} />
+              {/* Div for Search Input  && */}
+              {/* Feeling Lucky/ Contact Button */}
+              <HomeSearchBar
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                categories={categories}
+                theme={theme}
+              />
+            </div>
+            <div></div>
           </div>
-        </Suspense>
-      )
-  }
+        </BackGround>
+      </div>
+    </Suspense>
+  )
 }

@@ -6,7 +6,6 @@ export default function BackGround({
 }: {
   theme:
   | {
-    id: number
     bgColor: string
     bgImg: string
     textColor: string

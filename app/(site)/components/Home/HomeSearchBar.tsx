@@ -3,7 +3,6 @@ import { Category } from '@/sanity/models/sanity-client-models'
 import Link from 'next/link'
 import { useState } from 'react'
 interface Props {
-  id: number
   bgColor: string
   bgImg: string
   textColor: string

@@ -1,0 +1,75 @@
+{
+  "phases": [
+    {
+      "name": "New Moon",
+      "lighting_range": [
+        0.0,
+        0.05
+      ]
+    },
+    {
+      "name": "Waxing Crescent",
+      "lighting_range": [
+        0.05,
+        0.45
+      ]
+    },
+    {
+      "name": "First Quarter",
+      "lighting_range": [
+        0.45,
+        0.55
+      ]
+    },
+    {
+      "name": "Waxing Gibbous",
+      "lighting_range": [
+        0.55,
+        0.95
+      ]
+    },
+    {
+      "name": "Full Moon",
+      "lighting_range": [
+        0.95,
+        1.0
+      ]
+    },
+    {
+      "name": "Waning Gibbous",
+      "lighting_range": [
+        0.55,
+        0.95
+      ]
+    },
+    {
+      "name": "Last Quarter",
+      "lighting_range": [
+        0.45,
+        0.55
+      ]
+    },
+    {
+      "name": "Waning Crescent",
+      "lighting_range": [
+        0.05,
+        0.45
+      ]
+    }
+  ],
+  "algorithm": {
+    "lunar_cycle_days": 29.53058867,
+    "known_new_moon": {
+      "date": "2000-01-06",
+      "julian_day": 2451549.5
+    },
+    "calculate_phase": {
+      "step1": "Convert target date to Julian day number",
+      "step2": "days_since_new_moon = (julian_day - known_new_moon_julian) % lunar_cycle_days",
+      "step3": "phase_fraction = days_since_new_moon / lunar_cycle_days",
+      "step4": "lighting_level = (1 - cos(phase_fraction * 2 * π)) / 2",
+      "step5": "Find phase by matching lighting_level to ranges above"
+    },
+    "javascript_implementation": "function getMoonPhase(date) { const knownNewMoon = new Date('2000-01-06').getTime(); const lunarCycle = 29.53058867 * 24 * 60 * 60 * 1000; const daysSince = ((date.getTime() - knownNewMoon) / (24 * 60 * 60 * 1000)) % 29.53058867; const phaseFraction = daysSince / 29.53058867; const lightingLevel = (1 - Math.cos(phaseFraction * 2 * Math.PI)) / 2; return { lighting_level: Math.round(lightingLevel * 100) / 100, phase_name: getPhaseByLighting(lightingLevel) }; }"
+  }
+}
