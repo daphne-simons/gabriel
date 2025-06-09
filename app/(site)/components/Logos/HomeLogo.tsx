@@ -13,7 +13,7 @@ export default function HomeLogo({ fontSettings, logoColor }: Props) {
     <div className="pb-8 sm:px-8">
       <h1 ref={textRef} className={`font-gramercy`}>
         <span
-          className={`absolute mx-auto flex border blur ${logoColor} bg-red-600 bg-clip-text text-[4rem] sm:text-[3.5rem] md:text-[5rem] lg:text-[5.5rem]  box-content text-transparent text-center select-none`}
+          className={`absolute mx-auto flex blur-lg ${logoColor} bg-clip-text text-[4rem] sm:text-[3.5rem] md:text-[5rem] lg:text-[5.5rem]  box-content text-transparent text-center select-none`}
         >
           Gabriel
         </span>
@@ -27,6 +27,6 @@ export default function HomeLogo({ fontSettings, logoColor }: Props) {
           Gabriel
         </span>
       </h1>
-    </div>
+    </div >
   )
 }
