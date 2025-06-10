@@ -23,12 +23,9 @@ export default function HomePage({ categories }: { categories: Category[] }) {
     setFontSettings({ wght: randomWeight, opsz: randomOpsz })
   }
 
-  // Calculate moon theme directly - no API needed!
+  // Calculate moon theme directly from JSON file - no API needed!
   const theme = calculateBgColor() // Uses current date by default
   const phase = getMoonPhaseForWidget()
-  // Optional: log current moon info for debugging
-  console.log('Current moon theme:', theme)
-  console.log('Current moon phase:', phase)
 
   // closes dropdown when clicking elsewhere on page
   const closeDropDown = () => {
