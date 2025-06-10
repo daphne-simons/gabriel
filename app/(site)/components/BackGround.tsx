@@ -13,7 +13,7 @@ export default function BackGround({
     btnSearchBg: string
     hoverSearchBg: string
     logoColor: string
-  }
+  },
   children: React.ReactNode
 }) {
 
