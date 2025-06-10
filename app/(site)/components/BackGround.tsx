@@ -14,12 +14,9 @@ export default function BackGround({
     hoverSearchBg: string
     logoColor: string
   }
-  | undefined
   children: React.ReactNode
 }) {
-  if (!theme) {
-    return null
-  }
+
   return (
     <>
       {/* Rock slice BG with blur/focus animation */}
