@@ -6,7 +6,7 @@ import BackGround from '../BackGround'
 import HomeSearchBar from '../Home/HomeSearchBar'
 import MoonWidget from '../MoonWidget'
 import HomeLogo from '../Logos/HomeLogo'
-import { calculateBgColor, getMoonPhaseForWidget } from '@/app/(site)/utils/moon-utils' // Your new moon utils
+import { calculateBgColor, getMoonPhaseForWidget } from '@/app/(site)/utils/moon-utils'
 import { Category } from '@/sanity/models/sanity-client-models'
 
 export default function HomePage({ categories }: { categories: Category[] }) {
@@ -39,7 +39,6 @@ export default function HomePage({ categories }: { categories: Category[] }) {
       <div onMouseMove={updateText} onClick={closeDropDown}>
         {/* Background wrapper to dynamically change theme according to Moon Phase. */}
         <BackGround theme={theme}>
-          {/* TODO: make everything here totally sharp! not inheret blur effect from BackGround */}
           <div
             className={`flex flex-col justify-between h-screen fill-current ${theme.textColor} z-20`}
           >
@@ -54,8 +53,7 @@ export default function HomePage({ categories }: { categories: Category[] }) {
             <div className="relative middle flex flex-col justify-evenly items-center h-[30%] -top-44 max-md:-top-20">
               {/* Heading */}
               <HomeLogo fontSettings={fontSettings} logoColor={theme.logoColor} />
-              {/* Div for Search Input  && */}
-              {/* Feeling Lucky/ Contact Button */}
+              {/* Search Input  && Feeling Lucky Button */}
               <HomeSearchBar
                 isOpen={isOpen}
                 setIsOpen={setIsOpen}
