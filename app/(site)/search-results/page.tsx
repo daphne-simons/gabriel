@@ -7,6 +7,7 @@ import {
 } from '@/sanity/sanity-utils'
 import { Category, Project, Tier } from '@/sanity/models/sanity-client-models'
 import { Suspense } from 'react'
+import { calculateBgColor, getMoonPhaseForWidget } from '../utils/moon-utils'
 
 export default async function SearchResults() {
   // Sanity query with WEBHOOK: refer to this documentation:
@@ -32,12 +33,18 @@ export default async function SearchResults() {
     tags: ['tier'],
   })
 
+  const theme = calculateBgColor() // Uses current date by default
+
+  const phase = getMoonPhaseForWidget()
+
   return (
     <Suspense>
       <SearchResultsPage
         projects={projects}
         categories={categories}
         tiers={tiers}
+        phase={phase}
+        theme={theme}
       />
     </Suspense>
   )

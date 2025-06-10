@@ -14,10 +14,14 @@ export default function SearchResultsPage({
   projects,
   categories,
   tiers,
+  phase,
+  theme
 }: {
   projects: Project[]
   categories: Category[]
   tiers: Tier[]
+  phase: { name: string, img: string }
+  theme: { bgColor: string, textColor: string, outlineColor: string, btnSearchBg: string, hoverSearchBg: string, logoColor: string }
 }) {
   const [activeView, setActiveView] = useState<View>('all')
   const [isOpen, setIsOpen] = useState(false)
@@ -50,17 +54,17 @@ export default function SearchResultsPage({
             <div className="flex flex-row w-full h-[36px] md:hidden lg:hidden xl:hidden 2xl:hidden justify-between">
               <div className="items-center order-1 sm:text-xl">
                 <Link href="/">
-                  <SearchResultLogo />
+                  <SearchResultLogo logoColor={theme.logoColor} />
                 </Link>
               </div>
               <div className="order-2 text-[#F8F9FA] text-sm md:hidden lg:hidden xl:hidden 2xl:hidden">
-                <MoonWidget size={"smallMoon"} />
+                <MoonWidget size={"smallMoon"} phase={phase} />
               </div>
             </div>
             {/* MEDIUM TO LARGE devices - Logo and Moon Widget*/}
             <div className="max-md:hidden">
               <Link href="/">
-                <SearchResultLogo />
+                <SearchResultLogo logoColor={theme.logoColor} />
               </Link>
             </div>
             <SearchResultBar
@@ -72,8 +76,8 @@ export default function SearchResultsPage({
             />
             <div className="max-lg:hidden xl:w-28 order-3"></div>
             <div className="flex justify-end items-center order-4 w-1/2">
-              <div className="md:text-sm lg:text-base xl:text-base 2xl:text-base text-[#F8F9FA] max-md:hidden">
-                <MoonWidget size="smallMoon" />
+              <div className="md:text-sm lg:text-sm xl:text-sm 2xl:text-base text-googleLightGray max-md:hidden">
+                <MoonWidget size="smallMoon" phase={phase} />
               </div>
             </div>
           </div>
