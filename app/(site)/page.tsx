@@ -5,6 +5,8 @@ import { Category } from '@/sanity/models/sanity-client-models'
 import { sanityFetch } from '@/sanity/config/client-config'
 
 export default async function Home() {
+
+  await new Promise((resolve) => setTimeout(resolve, 5000))
   // Query Catgories and prop drill into HomePage client component
   const categories: Category[] = await sanityFetch({
     query: categoriesQuery,
