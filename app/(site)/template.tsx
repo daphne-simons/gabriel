@@ -1,16 +1,24 @@
 'use client'
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 
 export default function Template({
   children,
 }: {
   children: React.ReactNode
 }) {
-  const [isLoading, setIsLoading] = useState(true)
+  const pathname = usePathname()
+  const isHomePage = pathname === '/'
+
+  const [isLoading, setIsLoading] = useState(isHomePage)
+  // const [isLoading, setIsLoading] = useState(true)
   const [showZoom, setShowZoom] = useState(false)
 
   useEffect(() => {
+
+    // Only run loading animation on home page
+    if (!isHomePage) return
     // Start zoom animation after 3.5 seconds - 
     // change to 1 second for trial
     const zoomTimer = setTimeout(() => {
@@ -62,23 +70,8 @@ export default function Template({
           </motion.div>
         )}
       </AnimatePresence>
-
-      <motion.div
-        key="content"
-        initial={{ scale: 0.9, filter: "blur(10px)" }}
-        animate={{
-          opacity: isLoading ? 0 : 1,
-          scale: isLoading ? 1 : 1,
-          filter: isLoading ? "blur(10px)" : "blur(0px)"
-        }}
-        transition={{
-          duration: 2,
-          ease: "easeInOut",
-          // delay: showZoom ? 0.2 : 0
-        }}
-      >
-        {children}
-      </motion.div>
+      {/* The App content, e.g. HomePage for '/' route*/}
+      {children}
     </>
   )
 }
