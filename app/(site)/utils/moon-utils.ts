@@ -22,7 +22,7 @@ const MOON_PHASES = {
   NEW_MOON: {
     id: 1,
     name: 'New Moon',
-    img: '/moon-imgs/new.png',
+    img: '/moon-imgs/new.webp',
     lightingRange: [0, 3] as [number, number],
     bgTheme: {
       bgColor: 'bg-skin-newMoon',
@@ -37,7 +37,7 @@ const MOON_PHASES = {
   WAXING_CRESCENT: {
     id: 2,
     name: 'Waxing Crescent',
-    img: '/moon-imgs/waxing.png',
+    img: '/moon-imgs/waxing.webp',
     lightingRange: [4, 48] as [number, number],
     bgTheme: {
       bgColor: 'bg-skin-waxing',
@@ -52,7 +52,7 @@ const MOON_PHASES = {
   FIRST_QUARTER: {
     id: 3,
     name: 'First Quarter',
-    img: '/moon-imgs/first-q.png',
+    img: '/moon-imgs/first-q.webp',
     lightingRange: [49, 52] as [number, number],
     bgTheme: {
       bgColor: 'bg-skin-firstQuarter',
@@ -67,7 +67,7 @@ const MOON_PHASES = {
   WAXING_GIBBOUS: {
     id: 4,
     name: 'Waxing Gibbous',
-    img: '/moon-imgs/waxing-g.png',
+    img: '/moon-imgs/waxing-g.webp',
     lightingRange: [53, 97] as [number, number],
     bgTheme: {
       bgColor: 'bg-skin-waxingGibbous',
@@ -82,7 +82,7 @@ const MOON_PHASES = {
   FULL_MOON: {
     id: 5,
     name: 'Full Moon',
-    img: '/moon-imgs/full.png',
+    img: '/moon-imgs/full.webp',
     lightingRange: [98, 100] as [number, number],
     bgTheme: {
       bgColor: 'bg-skin-fullMoon',
@@ -97,7 +97,7 @@ const MOON_PHASES = {
   WANING_GIBBOUS: {
     id: 6,
     name: 'Waning Gibbous',
-    img: '/moon-imgs/waning-g.png',
+    img: '/moon-imgs/waning-g.webp',
     lightingRange: [53, 97] as [number, number],
     bgTheme: {
       bgColor: 'bg-skin-waningGibbous',
@@ -112,7 +112,7 @@ const MOON_PHASES = {
   LAST_QUARTER: {
     id: 7,
     name: 'Last Quarter',
-    img: '/moon-imgs/last-q.png',
+    img: '/moon-imgs/last-q.webp',
     lightingRange: [49, 52] as [number, number],
     bgTheme: {
       bgColor: 'bg-skin-lastQuarter',
@@ -127,7 +127,7 @@ const MOON_PHASES = {
   WANING_CRESCENT: {
     id: 8,
     name: 'Waning Crescent',
-    img: '/moon-imgs/waning.png',
+    img: '/moon-imgs/waning.webp',
     lightingRange: [4, 48] as [number, number],
     bgTheme: {
       bgColor: 'bg-skin-waning',

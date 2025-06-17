@@ -43,7 +43,7 @@ export async function generateMetadata(): Promise<Metadata> {
   }
 
   // Dynamic favicon path based on current moon phase
-  const faviconPath = `/moon-imgs/${currentPhaseImg}.png`;
+  const faviconPath = `/moon-imgs/${currentPhaseImg}.webp`;
 
   return {
     title: `Gabriel`,
