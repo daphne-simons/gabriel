@@ -64,12 +64,16 @@
 .small-moon-spin::after {
   --i: 1;
 }
+
 .small-moon-texture {
   /* size of width, height and bottom change */
   height: 28px;
   width: 28px;
-  bottom: 28px;
-  position: relative;
+  /* REMOVED: bottom: 28px; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
   box-shadow: 0 0 10px #fefee0;
   background-image: url('/moon-imgs/full.webp');
@@ -131,11 +135,14 @@
   --i: 1;
 }
 .med-moon-texture {
-  /* size of width, height and bottom change */
+  /* FIXED: Centered the texture */
   width: 129px;
   height: 129px;
-  bottom: 128px;
-  position: relative;
+  /* REMOVED: bottom: 128px; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
   box-shadow: 0 0 40px #fefee0;
   background-image: url('/moon-imgs/full.webp');
@@ -191,8 +198,11 @@
 .big-moon-texture {
   width: 256px;
   height: 258px;
-  bottom: 257px;
-  position: relative;
+  /* REMOVED: bottom: 257px; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   border-radius: 50%;
   box-shadow: 0px 0px 80px #fefee0;
   background-image: url('/moon-imgs/full.webp');
