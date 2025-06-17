@@ -209,3 +209,28 @@
   background-size: cover;
   opacity: 0.5;
 }
+
+/* TABLET AND UP (768px+) - BIG LOADER STYLES: */
+@media (min-width: 768px) {
+  .med-moon-container {
+    grid-template: var(--bigD) / var(--bigD);
+    position: relative;
+  }
+
+  .med-moon-spin,
+  .med-moon-spin::before,
+  .med-moon-spin::after {
+    background: linear-gradient(
+      90deg,
+      var(--c0) calc(var(--i, 0.5) * 100%),
+      var(--big1) 0
+    );
+    filter: blur(0.7px);
+  }
+
+  .med-moon-texture {
+    width: 256px;
+    height: 258px;
+    box-shadow: 0px 0px 80px #fefee0;
+  }
+}

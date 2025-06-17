@@ -61,9 +61,9 @@ export default function Template({
                 <div className="dots-2 dots"></div>
                 <div className="dots-3 dots"></div>
                 <div className="h-screen flex justify-center items-center">
-                  <div className={`sm:med-moon-container md:med-moon-container lg:big-moon-container xl:big-moon-container`}>
-                    <div className={`sm:med-moon-spin md:med-moon-spin lg:big-moon-spin xl:big-moon-spin`}></div>
-                    <section className={`sm:med-moon-texture md:med-moon-texture lg:big-moon-texture xl:big-moon-texture`}></section>
+                  <div className="med-moon-container">
+                    <div className="med-moon-spin"></div>
+                    <section className="med-moon-texture"></section>
                   </div>
                 </div>
               </div>
