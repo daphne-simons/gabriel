@@ -61,16 +61,16 @@ export default function Template({
                 <div className="dots-2 dots"></div>
                 <div className="dots-3 dots"></div>
                 <div className="h-screen flex justify-center items-center">
-                  <div className="big-moon-container">
-                    <div className="big-moon-spin"></div>
-                    <section className="big-moon-texture"></section>
+                  <div className={`sm:med-moon-container md:med-moon-container lg:big-moon-container xl:big-moon-container`}>
+                    <div className={`sm:med-moon-spin md:med-moon-spin lg:big-moon-spin xl:big-moon-spin`}></div>
+                    <section className={`sm:med-moon-texture md:med-moon-texture lg:big-moon-texture xl:big-moon-texture`}></section>
                   </div>
                 </div>
               </div>
             </div>
           </motion.div>
         )}
-      </AnimatePresence>
+      </AnimatePresence >
       {/* The App content, e.g. HomePage for '/' route*/}
       {children}
     </>
