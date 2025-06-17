@@ -42,14 +42,15 @@ export default function Template({
         {isLoading && (
           <motion.div
             key="loading"
-            initial={{ scale: 1, opacity: 1 }}
+            initial={{ scale: 1, opacity: 1, rotate: 0 }}
             animate={{
               scale: showZoom ? 5 : 1,
-              // opacity: showZoom ? 1 : 0.9
+              rotate: showZoom ? 15 : 0, // Subtle 15-degree rotation
             }}
             exit={{ opacity: 0 }}
             transition={{
               scale: { duration: 3, ease: "easeInOut" },
+              rotate: { duration: 3, ease: [0.25, 0.1, 0.25, 1] }, // Custom cubic-bezier },
               opacity: { duration: 3, ease: "easeInOut" }
             }}
             className="fixed inset-0 z-50"
@@ -60,9 +61,9 @@ export default function Template({
                 <div className="dots-2 dots"></div>
                 <div className="dots-3 dots"></div>
                 <div className="h-screen flex justify-center items-center">
-                  <div className="med-moon-container">
-                    <div className="med-moon-spin"></div>
-                    <section className="med-moon-texture"></section>
+                  <div className="big-moon-container">
+                    <div className="big-moon-spin"></div>
+                    <section className="big-moon-texture"></section>
                   </div>
                 </div>
               </div>
