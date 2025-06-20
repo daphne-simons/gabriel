@@ -54,6 +54,11 @@ export default function Template({
               opacity: { duration: 3, ease: "easeInOut" }
             }}
             className="fixed inset-0 z-50"
+            style={{
+              transformOrigin: showZoom
+                ? (window.innerWidth < 768 ? 'center 40vh' : 'center center')
+                : 'center center'
+            }}
           >
             <div className="main-bg">
               <div className="bg-wrapper">
@@ -61,9 +66,9 @@ export default function Template({
                 <div className="dots-2 dots"></div>
                 <div className="dots-3 dots"></div>
                 <div className="h-screen flex justify-center items-center">
-                  <div className="med-moon-container">
-                    <div className="med-moon-spin"></div>
-                    <section className="med-moon-texture"></section>
+                  <div className="moon-container">
+                    <div className="moon-spin"></div>
+                    <section className="moon-texture"></section>
                   </div>
                 </div>
               </div>

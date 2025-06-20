@@ -93,19 +93,24 @@
   }
 }
 
-/* MED-LOADER: */
+/* MOON-LOADER: - medium for small devices */
 
-.med-moon-container {
+.moon-container {
   display: grid;
   /* size of grid template changes */
   grid-template: var(--medD) / var(--medD);
   place-content: center;
   margin: 0;
+  /* Mobile: Move moon up by 120px */
+   /* position: relative; */
+  position: relative;
+  /* Mobile: Move moon up by 10% of viewport height */
+  transform: translateY(-10vh);
 }
 
-.med-moon-spin,
-.med-moon-spin::before,
-.med-moon-spin::after {
+.moon-spin,
+.moon-spin::before,
+.moon-spin::after {
   border-radius: 50%;
   background: linear-gradient(
     90deg,
@@ -118,12 +123,12 @@
   -ms-filter: blur(0.2px);
   filter: blur(0.5px);
 }
-.med-moon-spin {
+.moon-spin {
   display: grid;
   animation: flip calc(2 * var(--t)) steps(1) infinite;
 }
-.med-moon-spin::before,
-.med-moon-spin::after {
+.moon-spin::before,
+.moon-spin::after {
   --i: 0;
   grid-area: 1 / 1;
   backface-visibility: hidden;
@@ -131,10 +136,10 @@
   animation: roty var(--t) ease-in-out infinite alternate;
   content: '';
 }
-.med-moon-spin::after {
+.moon-spin::after {
   --i: 1;
 }
-.med-moon-texture {
+.moon-texture {
   /* FIXED: Centered the texture */
   width: 129px;
   height: 129px;
@@ -150,76 +155,17 @@
   opacity: 0.5;
 }
 
-/* BIG LOADER: */
-
-.big-moon-container {
-  display: grid;
-  /* size of grid template changes */
-  grid-template: var(--bigD) / var(--bigD);
-  place-content: center;
-  margin: 0;
-  position: relative;
-  
-}
-
-.big-moon-spin,
-.big-moon-spin::before,
-.big-moon-spin::after {
-  border-radius: 50%;
-  background: linear-gradient(
-    90deg,
-    var(--c0) calc(var(--i, 0.5) * 100%),
-    var(--big1) 0
-  );
-  -webkit-filter: blur(0.2px);
-  -moz-filter: blur(0.2px);
-  -o-filter: blur(0.2px);
-  -ms-filter: blur(0.2px);
-  filter: blur(0.7px);
- 
-}
-.big-moon-spin {
-  display: grid;
-  animation: flip calc(2 * var(--t)) steps(1) infinite;
-}
-.big-moon-spin::before,
-.big-moon-spin::after {
-  --i: 0;
-  grid-area: 1 / 1;
-  backface-visibility: hidden;
-  transform: rotateY(calc((var(--i) + 1) * 0.5turn));
-  animation: roty var(--t) ease-in-out infinite alternate;
-  content: '';
-}
-.big-moon-spin::after {
-  --i: 1;
-}
-
-.big-moon-texture {
-  width: 256px;
-  height: 258px;
-  /* REMOVED: bottom: 257px; */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  border-radius: 50%;
-  box-shadow: 0px 0px 80px #fefee0;
-  background-image: url('/moon-imgs/full.webp');
-  background-size: cover;
-  opacity: 0.5;
-}
-
-/* TABLET AND UP (768px+) - BIG LOADER STYLES: */
+/* MOON LOADER for TABLET AND UP (768px+) - BIG LOADER STYLES: */
 @media (min-width: 768px) {
-  .med-moon-container {
+  .moon-container {
     grid-template: var(--bigD) / var(--bigD);
     position: relative;
+    transform: translateY(-10px);
   }
 
-  .med-moon-spin,
-  .med-moon-spin::before,
-  .med-moon-spin::after {
+  .moon-spin,
+  .moon-spin::before,
+  .moon-spin::after {
     background: linear-gradient(
       90deg,
       var(--c0) calc(var(--i, 0.5) * 100%),
@@ -228,7 +174,7 @@
     filter: blur(0.7px);
   }
 
-  .med-moon-texture {
+  .moon-texture {
     width: 256px;
     height: 258px;
     box-shadow: 0px 0px 80px #fefee0;
