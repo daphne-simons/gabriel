@@ -101,8 +101,6 @@
   grid-template: var(--medD) / var(--medD);
   place-content: center;
   margin: 0;
-  /* Mobile: Move moon up by 120px */
-   /* position: relative; */
   position: relative;
   /* Mobile: Move moon up by 10% of viewport height */
   transform: translateY(-10vh);
