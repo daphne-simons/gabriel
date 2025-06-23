@@ -1,4 +1,4 @@
-// FIXED Moon Phase Logic - Addresses the waxing/waning overlap issue
+// Moon Phase Logic and Helpers
 
 interface BgTheme {
   bgColor: string;
@@ -18,7 +18,7 @@ interface MoonPhase {
   bgTheme: BgTheme;
 }
 
-// Your existing MOON_PHASES object (unchanged)
+// MOON_PHASES for conditional styling in app
 const MOON_PHASES = {
   NEW_MOON: { id: 1, name: 'New Moon', img: '/moon-imgs/new.webp', lightingRange: [0, 3] as [number, number], bgTheme: { bgColor: 'bg-skin-newMoon', bgImg: 'bg-new-moon', textColor: 'text-googleLightGray', outlineColor: 'hover:outline outline-skin-newMoon outline-[0.5px]', btnSearchBg: 'bg-btnSearchNewMoon', hoverSearchBg: 'hover:bg-hoverSearchNewMoon', logoColor: 'bg-phasePink' } },
   WAXING_CRESCENT: { id: 2, name: 'Waxing Crescent', img: '/moon-imgs/waxing.webp', lightingRange: [4, 48] as [number, number], bgTheme: { bgColor: 'bg-skin-waxing', bgImg: 'bg-waxing', textColor: 'text-googleLightGray', outlineColor: 'hover:outline outline-skin-waxing outline-[0.5px]', btnSearchBg: 'bg-btnSearchWaxing', hoverSearchBg: 'hover:bg-hoverSearchWaxing', logoColor: 'bg-phaseGray' } },
@@ -30,9 +30,7 @@ const MOON_PHASES = {
   WANING_CRESCENT: { id: 8, name: 'Waning Crescent', img: '/moon-imgs/waning.webp', lightingRange: [4, 48] as [number, number], bgTheme: { bgColor: 'bg-skin-waning', bgImg: 'bg-waning', textColor: 'text-googleLightGray', outlineColor: 'hover:outline outline-skin-waning outline-[0.5px]', btnSearchBg: 'bg-btnSearchWaning', hoverSearchBg: 'hover:bg-hoverSearchWaning', logoColor: 'bg-phaseYellow' } }
 };
 
-/**
- * FIXED: Calculate moon phase considering both lighting AND cycle position
- */
+// Calculate moon phase considering both lighting AND cycle position
 function calculateMoonPhaseForDateFixed(date: Date): { lighting_level: number; phase_name: string; debug_info: any } {
   // Use UTC to avoid timezone issues
   const utcDate = new Date(date.getUTCFullYear(), date.getUTCMonth(), date.getUTCDate());
@@ -58,6 +56,7 @@ function calculateMoonPhaseForDateFixed(date: Date): { lighting_level: number; p
   // Calculate lighting level using cosine formula
   const lightingLevel = (1 - Math.cos(phaseFraction * 2 * Math.PI)) / 2;
 
+  // Debug info interface
   interface DebugInfo {
     inputDate: string;
     utcDate: string;
@@ -82,7 +81,7 @@ function calculateMoonPhaseForDateFixed(date: Date): { lighting_level: number; p
     determinedPhase: '' // default value
   };
 
-  // FIXED: Determine phase based on BOTH lighting level AND cycle position
+  // Determine phase based on BOTH lighting level AND cycle position
   let phaseName = 'New Moon';
 
   // Special cases first
@@ -113,9 +112,8 @@ function calculateMoonPhaseForDateFixed(date: Date): { lighting_level: number; p
   };
 }
 
-/**
- * Map phase names to your local MOON_PHASES
- */
+// Map phase names to your local MOON_PHASES
+
 function mapPhaseNameToLocal(phaseName: string): MoonPhase {
   const phaseMap: Record<string, MoonPhase> = {
     'New Moon': MOON_PHASES.NEW_MOON,
@@ -131,26 +129,20 @@ function mapPhaseNameToLocal(phaseName: string): MoonPhase {
   return phaseMap[phaseName] || MOON_PHASES.NEW_MOON;
 }
 
-/**
- * FIXED: Main function to calculate moon phase
- */
+// Main function to calculate moon phase
 export function calculateMoonPhase(date?: Date): MoonPhase {
   const targetDate = date || new Date();
   const calculatedPhase = calculateMoonPhaseForDateFixed(targetDate);
   return mapPhaseNameToLocal(calculatedPhase.phase_name);
 }
 
-/**
- * FIXED: Get background theme for any date
- */
+// Get background theme for any date
 export function calculateBgColor(date?: Date): BgTheme {
   const moonPhase = calculateMoonPhase(date);
   return moonPhase.bgTheme;
 }
 
-/**
- * FIXED: Get lighting level for any date
- */
+// Get lighting level for any date
 export function getLightingLevel(date?: Date): number {
   const targetDate = date || new Date();
   const calculatedPhase = calculateMoonPhaseForDateFixed(targetDate);
@@ -161,9 +153,7 @@ export function getMoonPhaseForWidget() {
   const moonPhase = calculateMoonPhase(new Date());
   return { name: moonPhase.name, img: moonPhase.img };
 }
-/**
- * Debug function to test the fix
- */
+// Debug function to test the fix
 export function debugCurrentIssue(): void {
   console.log('🌙 DEBUGGING CURRENT MOON PHASE ISSUE');
   console.log('=====================================');
@@ -195,9 +185,8 @@ export function debugCurrentIssue(): void {
   console.log(`Today: ${todayPhase.name} (${getLightingLevel()}% lit)`);
 }
 
-/**
- * Test function to verify the fix across a lunar cycle
- */
+// Test function to verify the fix across a lunar cycle
+
 export function testLunarCycle(): void {
   console.log('🌙 TESTING COMPLETE LUNAR CYCLE');
   console.log('===============================');
