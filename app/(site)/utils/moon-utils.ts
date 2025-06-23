@@ -19,7 +19,7 @@ interface MoonPhase {
 }
 
 // MOON_PHASES for conditional styling in app
-const MOON_PHASES = {
+export const MOON_PHASES = {
   NEW_MOON: { id: 1, name: 'New Moon', img: '/moon-imgs/new.webp', lightingRange: [0, 3] as [number, number], bgTheme: { bgColor: 'bg-skin-newMoon', bgImg: 'bg-new-moon', textColor: 'text-googleLightGray', outlineColor: 'hover:outline outline-skin-newMoon outline-[0.5px]', btnSearchBg: 'bg-btnSearchNewMoon', hoverSearchBg: 'hover:bg-hoverSearchNewMoon', logoColor: 'bg-phasePink' } },
   WAXING_CRESCENT: { id: 2, name: 'Waxing Crescent', img: '/moon-imgs/waxing.webp', lightingRange: [4, 48] as [number, number], bgTheme: { bgColor: 'bg-skin-waxing', bgImg: 'bg-waxing', textColor: 'text-googleLightGray', outlineColor: 'hover:outline outline-skin-waxing outline-[0.5px]', btnSearchBg: 'bg-btnSearchWaxing', hoverSearchBg: 'hover:bg-hoverSearchWaxing', logoColor: 'bg-phaseGray' } },
   FIRST_QUARTER: { id: 3, name: 'First Quarter', img: '/moon-imgs/first-q.webp', lightingRange: [49, 52] as [number, number], bgTheme: { bgColor: 'bg-skin-firstQuarter', bgImg: 'bg-first-quarter', textColor: 'text-googleLightGray', outlineColor: 'hover:outline outline-skin-firstQuarter outline-[0.5px]', btnSearchBg: 'bg-btnSearchFirstQuarter', hoverSearchBg: 'hover:bg-hoverSearchFirstQuarter', logoColor: 'bg-phaseYellow' } },
