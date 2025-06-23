@@ -58,15 +58,28 @@ function calculateMoonPhaseForDateFixed(date: Date): { lighting_level: number; p
   // Calculate lighting level using cosine formula
   const lightingLevel = (1 - Math.cos(phaseFraction * 2 * Math.PI)) / 2;
 
+  interface DebugInfo {
+    inputDate: string;
+    utcDate: string;
+    diffDays: number;
+    daysSince: number;
+    phaseFraction: number;
+    lightingLevel: number;
+    lightingPercentage: number;
+    isWaxing: boolean;
+    determinedPhase: string;
+  }
   // Debug info
-  const debugInfo = {
+  const debugInfo: DebugInfo = {
     inputDate: date.toISOString(),
     utcDate: utcDate.toISOString(),
     diffDays: diffDays,
     daysSince: daysSince,
     phaseFraction: phaseFraction,
     lightingLevel: lightingLevel,
-    lightingPercentage: Math.round(lightingLevel * 100)
+    lightingPercentage: Math.round(lightingLevel * 100),
+    isWaxing: false, // default value
+    determinedPhase: '' // default value
   };
 
   // FIXED: Determine phase based on BOTH lighting level AND cycle position
