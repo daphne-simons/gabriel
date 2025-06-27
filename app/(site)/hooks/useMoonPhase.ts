@@ -1,0 +1,1 @@
+// For making a custom hook with react query to call moon data once, and share as cache across app
