@@ -1,6 +1,6 @@
 // Moon Phase Logic and Helpers
 
-interface BgTheme {
+export interface BgTheme {
   bgColor: string;
   bgImg: string;
   textColor: string;
@@ -10,7 +10,7 @@ interface BgTheme {
   logoColor: string;
 }
 
-interface MoonPhase {
+export interface MoonPhase {
   id: number;
   name: string;
   img: string;
@@ -153,8 +153,6 @@ export function getLightingLevel(date?: Date): number {
 export function getMoonPhaseForWidget() {
   const moonPhase = calculateMoonPhase(new Date());
   const moonNameAndImg = { name: moonPhase.name, img: moonPhase.img };
-  console.log('widgetFn - moonNameAndImg', moonNameAndImg);
-
   return moonNameAndImg;
 }
 // Debug function to test the fix
