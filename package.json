@@ -50,6 +50,7 @@
     "@storybook/nextjs": "^9.0.4",
     "@storybook/nextjs-vite": "^9.0.4",
     "@storybook/react": "^9.0.5",
+    "@tanstack/react-query-devtools": "^5.81.2",
     "@testing-library/react": "^15.0.7",
     "@types/node": "^20",
     "@types/react": "^18.3.17",
