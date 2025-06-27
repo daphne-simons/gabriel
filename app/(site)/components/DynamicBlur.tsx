@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { Project } from '@/sanity/models/sanity-client-models'
 
 const DynamicBlur = ({ projectData }: { projectData: Project }) => {
-  console.log('dynamic blur, projectData', projectData)
+
   if (!projectData.imageUrl || !projectData.blurData) {
     return null // Or a fallback UI
   }

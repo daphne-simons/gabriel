@@ -7,7 +7,6 @@ interface Props {
 }
 export default function HomeLogo({ fontSettings, logoColor }: Props) {
   const textRef = useRef<HTMLHeadingElement>(null)
-  console.log(logoColor);
 
   return (
     <div className="pb-8 sm:px-8">
