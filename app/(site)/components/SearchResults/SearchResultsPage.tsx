@@ -8,20 +8,22 @@ import SearchResultBar from './SearchResultBar'
 import SearchResultLogo from '../Logos/SearchResultLogo'
 import { Category, Project, Tier } from '@/sanity/models/sanity-client-models'
 import SearchOptionsList from './SearchOptionsList'
+import { calculateBgColor, getMoonPhaseForWidget } from '../../utils/moon-utils'
+
 
 export type View = 'all' | 'details'
 export default function SearchResultsPage({
   projects,
   categories,
   tiers,
-  phase,
-  theme
+  // phase,
+  // theme
 }: {
   projects: Project[]
   categories: Category[]
   tiers: Tier[]
-  phase: { name: string, img: string }
-  theme: { bgColor: string, textColor: string, outlineColor: string, btnSearchBg: string, hoverSearchBg: string, logoColor: string }
+  // phase: { name: string, img: string }
+  // theme: { bgColor: string, textColor: string, outlineColor: string, btnSearchBg: string, hoverSearchBg: string, logoColor: string }
 }) {
   const [activeView, setActiveView] = useState<View>('all')
   const [isOpen, setIsOpen] = useState(false)
@@ -30,6 +32,10 @@ export default function SearchResultsPage({
   const searchParams = useSearchParams()
   const chosenCategory = searchParams.get('category')
 
+  const theme = calculateBgColor() // Uses current date by default
+  console.log('search result theme:', theme);
+  const phase = getMoonPhaseForWidget()
+  console.log('search result phase:', phase);
   function closeDropDown() {
     if (isOpen === false) return
     else setIsOpen(!isOpen)

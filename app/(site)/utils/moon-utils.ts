@@ -18,6 +18,19 @@ interface MoonPhase {
   bgTheme: BgTheme;
 }
 
+// Debug info interface
+interface DebugInfo {
+  inputDate: string;
+  utcDate: string;
+  diffDays: number;
+  daysSince: number;
+  phaseFraction: number;
+  lightingLevel: number;
+  lightingPercentage: number;
+  isWaxing: boolean;
+  determinedPhase: string;
+}
+
 // MOON_PHASES for conditional styling in app
 export const MOON_PHASES = {
   NEW_MOON: { id: 1, name: 'New Moon', img: '/moon-imgs/new.webp', lightingRange: [0, 3] as [number, number], bgTheme: { bgColor: 'bg-skin-newMoon', bgImg: 'bg-new-moon', textColor: 'text-googleLightGray', outlineColor: 'hover:outline outline-skin-newMoon outline-[0.5px]', btnSearchBg: 'bg-btnSearchNewMoon', hoverSearchBg: 'hover:bg-hoverSearchNewMoon', logoColor: 'bg-phasePink' } },
@@ -56,18 +69,6 @@ function calculateMoonPhaseForDateFixed(date: Date): { lighting_level: number; p
   // Calculate lighting level using cosine formula
   const lightingLevel = (1 - Math.cos(phaseFraction * 2 * Math.PI)) / 2;
 
-  // Debug info interface
-  interface DebugInfo {
-    inputDate: string;
-    utcDate: string;
-    diffDays: number;
-    daysSince: number;
-    phaseFraction: number;
-    lightingLevel: number;
-    lightingPercentage: number;
-    isWaxing: boolean;
-    determinedPhase: string;
-  }
   // Debug info
   const debugInfo: DebugInfo = {
     inputDate: date.toISOString(),
@@ -151,76 +152,79 @@ export function getLightingLevel(date?: Date): number {
 
 export function getMoonPhaseForWidget() {
   const moonPhase = calculateMoonPhase(new Date());
-  return { name: moonPhase.name, img: moonPhase.img };
+  const moonNameAndImg = { name: moonPhase.name, img: moonPhase.img };
+  console.log('widgetFn - moonNameAndImg', moonNameAndImg);
+
+  return moonNameAndImg;
 }
 // Debug function to test the fix
-export function debugCurrentIssue(): void {
-  console.log('🌙 DEBUGGING CURRENT MOON PHASE ISSUE');
-  console.log('=====================================');
+// export function debugCurrentIssue(): void {
+//   console.log('🌙 DEBUGGING CURRENT MOON PHASE ISSUE');
+//   console.log('=====================================');
 
-  const testDate = new Date('2025-06-24');
-  console.log('Testing date:', testDate.toDateString());
+//   const testDate = new Date('2025-06-24');
+//   console.log('Testing date:', testDate.toDateString());
 
-  // Test with old logic (simulated)
-  const oldResult = calculateMoonPhaseForDateFixed(testDate);
-  console.log('\n🔍 Detailed calculation:');
-  console.log(oldResult.debug_info);
+// Test with old logic (simulated)
+// const oldResult = calculateMoonPhaseForDateFixed(testDate);
+// console.log('\n🔍 Detailed calculation:');
+// console.log(oldResult.debug_info);
 
-  // Test with fixed logic
-  const newPhase = calculateMoonPhase(testDate);
-  console.log('\n✅ Final result:');
-  console.log(`Phase: ${newPhase.name}`);
-  console.log(`Lighting: ${getLightingLevel(testDate)}%`);
+// // Test with fixed logic
+// const newPhase = calculateMoonPhase(testDate);
+// console.log('\n✅ Final result:');
+// console.log(`Phase: ${newPhase.name}`);
+// console.log(`Lighting: ${getLightingLevel(testDate)}%`);
 
-  // Test consistency across multiple calls
-  console.log('\n🔄 Consistency test (5 calls):');
-  for (let i = 0; i < 5; i++) {
-    const phase = calculateMoonPhase(testDate);
-    console.log(`Call ${i + 1}: ${phase.name}`);
-  }
+// // Test consistency across multiple calls
+// console.log('\n🔄 Consistency test (5 calls):');
+// for (let i = 0; i < 5; i++) {
+//   const phase = calculateMoonPhase(testDate);
+//   console.log(`Call ${i + 1}: ${phase.name}`);
+// }
 
-  // Test today's date
-  console.log('\n📅 Today\'s phase:');
-  const todayPhase = calculateMoonPhase();
-  console.log(`Today: ${todayPhase.name} (${getLightingLevel()}% lit)`);
-}
+// Test today's date
+// console.log('\n📅 Today\'s phase:');
+// const todayPhase = calculateMoonPhase();
+// console.log(`Today: ${todayPhase.name} (${getLightingLevel()}% lit)`);
+// }
 
 // Test function to verify the fix across a lunar cycle
 
-export function testLunarCycle(): void {
-  console.log('🌙 TESTING COMPLETE LUNAR CYCLE');
-  console.log('===============================');
+// export function testLunarCycle(): void {
+//   console.log('🌙 TESTING COMPLETE LUNAR CYCLE');
+//   console.log('===============================');
 
-  const startDate = new Date('2024-03-10'); // Known new moon
-  const phases: Array<{ date: string, phase: string, lighting: number, phaseFraction: number }> = [];
+//   const startDate = new Date('2024-03-10'); // Known new moon
+//   const phases: Array<{ date: string, phase: string, lighting: number, phaseFraction: number }> = [];
 
-  for (let i = 0; i < 30; i++) {
-    const testDate = new Date(startDate);
-    testDate.setDate(testDate.getDate() + i);
+//   for (let i = 0; i < 30; i++) {
+//     const testDate = new Date(startDate);
+//     testDate.setDate(testDate.getDate() + i);
 
-    const result = calculateMoonPhaseForDateFixed(testDate);
-    const phase = mapPhaseNameToLocal(result.phase_name);
+//     const result = calculateMoonPhaseForDateFixed(testDate);
+//     const phase = mapPhaseNameToLocal(result.phase_name);
 
-    phases.push({
-      date: testDate.toDateString(),
-      phase: phase.name,
-      lighting: Math.round(result.lighting_level * 100),
-      phaseFraction: result.debug_info.phaseFraction
-    });
-  }
+//     phases.push({
+//       date: testDate.toDateString(),
+//       phase: phase.name,
+//       lighting: Math.round(result.lighting_level * 100),
+//       phaseFraction: result.debug_info.phaseFraction
+//     });
+//   }
 
-  // Print results
-  phases.forEach((p, i) => {
-    const arrow = i === 0 ? '👉' : '  ';
-    console.log(`${arrow} Day ${i + 1}: ${p.date} - ${p.phase} (${p.lighting}% lit, fraction: ${p.phaseFraction.toFixed(3)})`);
-  });
+//   // Print results
+//   phases.forEach((p, i) => {
+//     const arrow = i === 0 ? '👉' : '  ';
+//     console.log(`${arrow} Day ${i + 1}: ${p.date} - ${p.phase} (${p.lighting}% lit, fraction: ${p.phaseFraction.toFixed(3)})`);
+//   });
 
-  // Verify we see all phases
-  const uniquePhases = [...new Set(phases.map(p => p.phase))];
-  console.log('\n📊 Phases found:', uniquePhases);
-  console.log('✅ Expected 8 phases, found:', uniquePhases.length);
-}
+//   // Verify we see all phases
+//   const uniquePhases = [...new Set(phases.map(p => p.phase))];
+//   console.log('\n📊 Phases found:', uniquePhases);
+//   console.log('✅ Expected 8 phases, found:', uniquePhases.length);
+// }
 
-// Test the fix immediately
-debugCurrentIssue();
-testLunarCycle();
+// // Test the fix immediately
+// debugCurrentIssue();
+// testLunarCycle();
