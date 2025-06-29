@@ -44,7 +44,7 @@ export default function HomePage({ categories }: { categories: Category[] }) {
           >
             {/* Nav */}
             <div className="flex justify-between mt-5 px-7 text-sm">
-              <Link href="/about" className="flex gap-8 hover:underline">
+              <Link href="/about" className="flex gap-8 hover:underline items-center">
                 About
               </Link>
               <MoonWidget size={'smallMoon'} phase={phase} />
