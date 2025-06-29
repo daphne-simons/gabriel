@@ -16,8 +16,8 @@ interface ColorMark {
 }
 
 export default function AboutPage({ data }: { data: AboutPageModel }) {
-  const theme = calculateBgColor() // Uses current date by default
 
+  const theme = calculateBgColor() // Uses current date by default
 
   // Custom components configuration for PortableText
   const components: Partial<PortableTextReactComponents> = {
