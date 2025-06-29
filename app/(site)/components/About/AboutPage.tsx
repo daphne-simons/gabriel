@@ -5,6 +5,7 @@ import { PortableText, PortableTextReactComponents } from 'next-sanity'
 import { PortableTextMarkComponentProps } from '@portabletext/react'
 
 import Footer from '../Footer'
+import { calculateBgColor } from '../../utils/moon-utils'
 
 // Type for Sanity color mark data
 interface ColorMark {
@@ -15,6 +16,9 @@ interface ColorMark {
 }
 
 export default function AboutPage({ data }: { data: AboutPageModel }) {
+  const theme = calculateBgColor() // Uses current date by default
+
+
   // Custom components configuration for PortableText
   const components: Partial<PortableTextReactComponents> = {
     marks: {
@@ -35,11 +39,11 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
     <>
       <div className="flex flex-col min-h-screen">
         {/* About Header */}
-        <ul className="w-full flex max-md:justify-between gap-4 p-2 pt-2 px-5 text-sm">
+        <ul className="w-full flex max-md:justify-between gap-4 p-6 text-sm">
           <Link href="/" className="pl-2">
-            <AboutEnquireLogo />
+            <AboutEnquireLogo logoColor={theme.logoColor} />
           </Link>
-          <Link href="/about" className="px-8 py-6 ">
+          <Link href="/about" className="px-8 pt-2">
             <li className="pb-2 text-sm border-b-2 border-[#8AB4F7]">About</li>
           </Link>
         </ul>
