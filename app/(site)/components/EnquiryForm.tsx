@@ -63,10 +63,10 @@ const EnquiryForm = () => {
       <h2 className="font-base max-md:text-4xl md:text-[40px] lg:text-[56px]">
         Hi, how can we help?
       </h2>
-
       {/* Form */}
       <form className="" onSubmit={handleSubmit}>
-        <div className="text-sm lg:text-base xl:text-base flex flex-row max-md:flex-col max-md:pt-16 max-md:pb-8 pb-6 pt-32 md:pt-24 gap-4 w-full">
+        {/* inputs div */}
+        <div className="text-sm lg:text-base xl:text-base flex flex-row max-md:flex-col max-md:pt-16 max-md:pb-8 pb-6 pt-32 md:pt-20 gap-4 w-full">
           <input
             aria-label="name"
             className="p-2 outline outline-googleLightGray rounded max-md:w-full md:w-[70%] lg:w-[70%] xl:w-full"

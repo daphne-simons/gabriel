@@ -21,9 +21,11 @@ export default function EnquiryPage() {
           </Link>
         </ul>
         {/* Enquiry page content / form */}
-        <div className="max-md:pb-12 max-md:px-12 max-md:py-10 md:pb-16 md:px-32 md:pt-16 lg:px-36 lg:pb-24 xl:px-44 ">
-          <EnquiryForm />
-        </div>
+        <main className="pt-10 pb-24 px-20 max-md:px-4">
+          <div className="flex justify-start max-md:px-8 md:px-[8%] lg:px-[8%] xl:px-[8%]">
+            <EnquiryForm />
+          </div>
+        </main>
 
         {/* Footer */}
         <div className=" bg-googlelightGrayFooter bottom-0 w-full mt-auto">
@@ -31,7 +33,7 @@ export default function EnquiryPage() {
             <Footer />
           </div>
         </div>
-      </div>
+      </div >
     </>
   )
 }
