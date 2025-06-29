@@ -58,7 +58,7 @@ const EnquiryForm = () => {
   else if (gem === 'Ruby') gemStyle = 'text-googleRed'
 
   return (
-    <div className="flex flex-col xl:w-[55%] mb-auto">
+    <div className="flex flex-col md:w-[90%] lg:w-[80%] xl:w-[68%] mb-auto">
       {/* Enquiry form */}
       <h2 className="font-base max-md:text-4xl md:text-[40px] lg:text-[56px]">
         Hi, how can we help?
@@ -66,31 +66,27 @@ const EnquiryForm = () => {
 
       {/* Form */}
       <form className="" onSubmit={handleSubmit}>
-        <div className="flex flex-row max-md:flex-col max-md:py-16 pb-6 pt-32 md:pt-24 gap-4">
-          <div className="w-1/3 max-md:w-full md:w-[90%] lg:w-[60%]">
-            <input
-              aria-label="name"
-              className="p-2 outline outline-googleLightGray rounded text-sm w-full"
-              name="name"
-              type="text"
-              value={name}
-              onChange={handleChange}
-              placeholder="My name is"
-            />
-          </div>
-          <div className="w-1/3 max-lg:w-full lg:w-[70%]">
-            <input
-              aria-label="email"
-              className="p-2 outline outline-googleLightGray rounded text-sm w-full"
-              name="email"
-              type="email"
-              value={email}
-              onChange={handleChange}
-              placeholder="My email address is"
-            />
-          </div>
+        <div className="text-sm lg:text-base xl:text-base flex flex-row max-md:flex-col max-md:pt-16 max-md:pb-8 pb-6 pt-32 md:pt-24 gap-4 w-full">
+          <input
+            aria-label="name"
+            className="p-2 outline outline-googleLightGray rounded max-md:w-full md:w-[70%] lg:w-[70%] xl:w-full"
+            name="name"
+            type="text"
+            value={name}
+            onChange={handleChange}
+            placeholder="My name is"
+          />
+          <input
+            aria-label="email"
+            className="p-2 outline outline-googleLightGray rounded text-sm max-lg:w-full md:w-[80%] lg:w-[80%] xl:w-full"
+            name="email"
+            type="email"
+            value={email}
+            onChange={handleChange}
+            placeholder="My email address is"
+          />
         </div>
-        <p className="pt-4">
+        <p className="pt-4 max-md:text-base md:text-lg lg:text-xl xl:text-xl ">
           I&apos;d like to learn more about the{' '}
           <span className={`font-semibold ${gemStyle}`}>
             {level.toLowerCase()}
@@ -104,7 +100,7 @@ const EnquiryForm = () => {
 
         <div className="flex flex-row ">
           {!sending ? (
-            <div className="pt-16 max-md:pt-16 md:pt-18 lg:pt-20">
+            <div className="pt-16 max-md:pt-12 md:pt-16 lg:pt-20">
               <button
                 className="px-12 py-3 bg-googleBlue hover:bg-googleHoverBlue rounded text-white text-base"
                 type="submit"
