@@ -158,3 +158,22 @@ body {
   }
 
 
+
+  html, body {
+  overscroll-behavior: none;
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Prevent iOS Safari from bouncing */
+body {
+  /* overflow: hidden; */
+  width: 100%;
+  height: 100%;
+}
+
+#__next {
+  overflow-y: auto;
+  height: 100vh;
+  width: 100%;
+}

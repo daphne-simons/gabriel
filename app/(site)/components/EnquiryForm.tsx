@@ -53,6 +53,9 @@ const EnquiryForm = () => {
   }
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    // Prevent double submissions during sending state
+    if (sending) return
     try {
       setSending(true)
       await fetchSendAPI({
@@ -64,13 +67,14 @@ const EnquiryForm = () => {
         cost,
       })
       //  If successful:
-      setSending(false)
+
       // TODO: Redirect to '/contact/success'
       console.log('Email sent successfully!')
       router.push('/')
     } catch (error) {
       // If failed:
       // TODO: redirect to '/error-page'
+      setSending(false)
       router.push('/')
       console.log(error)
     }
@@ -82,7 +86,11 @@ const EnquiryForm = () => {
   else if (gem === 'Ruby') gemStyle = 'text-googleRed'
 
   return (
-    <div className="flex flex-col md:w-[90%] lg:w-[80%] xl:w-[68%] mb-auto">
+    <div className="flex flex-col md:w-[90%] lg:w-[80%] xl:w-[68%] mb-auto"
+      style={{
+        // Ensure form doesn't interfere with parent scroll behavior
+        touchAction: 'manipulation'
+      }}>
       {/* Enquiry form */}
       <h2 className="font-base max-md:text-4xl md:text-[40px] lg:text-[56px]">
         Hi, how can we help?
@@ -99,6 +107,8 @@ const EnquiryForm = () => {
             value={name}
             onChange={handleChange}
             placeholder="My name is"
+            required
+            disabled={sending}
           />
           <input
             aria-label="email"
@@ -108,6 +118,8 @@ const EnquiryForm = () => {
             value={email}
             onChange={handleChange}
             placeholder="My email address is"
+            required
+            disabled={sending}
           />
         </div>
         <p className="pt-4 max-md:text-base md:text-lg lg:text-xl xl:text-xl ">
