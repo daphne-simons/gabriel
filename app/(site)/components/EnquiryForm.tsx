@@ -35,13 +35,6 @@ const EnquiryForm = () => {
     ? decodeURIComponent(searchParams.get('cost') || '2000-4000')
     : '2000-4000'
 
-  // url info:
-  // const chosenCategory = decodeURIComponent(
-  //   searchParams.get('category') || 'a category'
-  // )
-  // const gem = decodeURIComponent(searchParams.get('gem') || 'Sapphire')
-  // const level = decodeURIComponent(searchParams.get('level') || 'Essential')
-  // const cost = decodeURIComponent(searchParams.get('cost') || '2000-4000')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -53,7 +46,6 @@ const EnquiryForm = () => {
   }
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-
     // Prevent double submissions during sending state
     if (sending) return
     try {
@@ -66,13 +58,12 @@ const EnquiryForm = () => {
         level,
         cost,
       })
-      //  If successful:
-
+      //  Successful:
       // TODO: Redirect to '/contact/success'
       console.log('Email sent successfully!')
       router.push('/')
     } catch (error) {
-      // If failed:
+      // Failed:
       // TODO: redirect to '/error-page'
       setSending(false)
       router.push('/')

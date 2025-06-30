@@ -166,20 +166,22 @@ export default function SearchOptionsList({
             key={tier.gem}
             onClick={() => handleGemClick(tier)}
             className={`text-center w-28 h-10 rounded-3xl text-googleLightGray ${bgColorHover[tier.gem]} ${option.gem === tier.gem
-              ? tier.gem === 'Sapphire'
+              ? `font-semibold ${tier.gem === 'Sapphire'
                 ? 'bg-googleBlue '
                 : tier.gem === 'Emerald'
                   ? 'bg-googleGreen'
                   : tier.gem === 'Ruby'
                     ? 'bg-googleRed'
                     : ''
-              : tier.gem === 'Sapphire'
+              }`
+              : `font-normal ${tier.gem === 'Sapphire'
                 ? 'bg-googleBlueHover'
                 : tier.gem === 'Emerald'
                   ? 'bg-googleGreenHover'
                   : tier.gem === 'Ruby'
                     ? 'bg-googleRedHover'
                     : ''
+              }`
               }`}
           >
             {tier.gem}
