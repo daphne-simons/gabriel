@@ -189,7 +189,7 @@ export default function SearchOptionsList({
         ))}
       </div>
       {/* RIGHT SIDE - PROJECTS GALLERY  */}
-      <div className="flex flex-col max-md:h-[80%] md:h-[65%] lg:pl-2 lg:w-5/6 lg:h-[70%] xl:w-full xl:h-[70%] xl:px-24 pt-6">
+      <div className="flex flex-col max-md:h-[70%] md:h-[75%] lg:pl-2 lg:w-5/6 lg:h-[80%] xl:w-full xl:h-[80%] xl:px-24 pt-6">
         {/* SELECTED project: */}
         {selectedProjectId ? (
           <SelectedProject
