@@ -1,13 +1,35 @@
-
+'use client'
 import Footer from '../Footer'
 import AboutEnquireLogo from '../Logos/AboutEnquireLogo'
 import Link from 'next/link'
 import EnquiryForm from '../EnquiryForm'
 import { calculateBgColor } from '../../utils/moon-utils'
+import { useEffect } from 'react'
 
 export default function EnquiryPage() {
   const theme = calculateBgColor() // Uses current date by default
 
+  // Fix scroll behavior on mobile - UPDATED
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      // Remove the problematic scrollRestoration setting
+      // window.history.scrollRestoration = 'manual' // REMOVED
+
+      // Keep overscroll behavior for better mobile experience
+      document.body.style.overscrollBehavior = 'none'
+
+      // Optional: Add touch-action for better mobile scroll control
+      document.body.style.touchAction = 'pan-y'
+    }
+
+    // Cleanup function to restore defaults when component unmounts
+    return () => {
+      if (typeof window !== 'undefined') {
+        document.body.style.overscrollBehavior = ''
+        document.body.style.touchAction = ''
+      }
+    }
+  }, [])
   return (
     <>
       <div className="flex flex-col min-h-screen ">

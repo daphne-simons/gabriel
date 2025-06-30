@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSearchParams, useRouter } from 'next/navigation'
 import { fetchSendAPI } from '../api-utils/apiClient'
 import { DotLottieReact } from '@lottiefiles/dotlottie-react'
@@ -9,15 +9,39 @@ const EnquiryForm = () => {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [sending, setSending] = useState(false)
+  const [isClient, setIsClient] = useState(false)
   const searchParams = useSearchParams()
   const router = useRouter()
+
+  // Ensure client-side rendering for dynamic content
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  // Only access search params on client side to prevent hydration mismatch
+  const chosenCategory = isClient
+    ? decodeURIComponent(searchParams.get('category') || 'a category')
+    : 'a category'
+
+  const gem = isClient
+    ? decodeURIComponent(searchParams.get('gem') || 'Sapphire')
+    : 'Sapphire'
+
+  const level = isClient
+    ? decodeURIComponent(searchParams.get('level') || 'Essential')
+    : 'Essential'
+
+  const cost = isClient
+    ? decodeURIComponent(searchParams.get('cost') || '2000-4000')
+    : '2000-4000'
+
   // url info:
-  const chosenCategory = decodeURIComponent(
-    searchParams.get('category') || 'a category'
-  )
-  const gem = decodeURIComponent(searchParams.get('gem') || 'Sapphire')
-  const level = decodeURIComponent(searchParams.get('level') || 'Essential')
-  const cost = decodeURIComponent(searchParams.get('cost') || '2000-4000')
+  // const chosenCategory = decodeURIComponent(
+  //   searchParams.get('category') || 'a category'
+  // )
+  // const gem = decodeURIComponent(searchParams.get('gem') || 'Sapphire')
+  // const level = decodeURIComponent(searchParams.get('level') || 'Essential')
+  // const cost = decodeURIComponent(searchParams.get('cost') || '2000-4000')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target

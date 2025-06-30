@@ -2,6 +2,9 @@ import type { Metadata } from 'next'
 import '../globals.css'
 import ReactQueryProvider from '@/query/providers/ReactQueryProvider'
 import { getMoonPhaseForWidget } from './utils/moon-utils';
+import ScrollManager from './components/ScrollManager';
+
+
 
 // have to call this fn above the async function
 const moonPhase = getMoonPhaseForWidget()
@@ -25,11 +28,15 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
+
   return (
     <html lang="en">
       <body>
         <ReactQueryProvider>
-          <main>{children}</main>
+          <main>
+            {/* <ScrollManager /> */}
+            {children}
+          </main>
         </ReactQueryProvider>
       </body>
     </html>

@@ -1,7 +1,7 @@
 'use client'
 import MoonWidget from '../../components/MoonWidget'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Details from './Details'
 import { useSearchParams } from 'next/navigation'
 import SearchResultBar from './SearchResultBar'
@@ -10,36 +10,116 @@ import { Category, Project, Tier } from '@/sanity/models/sanity-client-models'
 import SearchOptionsList from './SearchOptionsList'
 import { calculateBgColor, getMoonPhaseForWidget } from '../../utils/moon-utils'
 
-
 export type View = 'all' | 'details'
 export default function SearchResultsPage({
   projects,
   categories,
   tiers,
-  // phase,
-  // theme
 }: {
   projects: Project[]
   categories: Category[]
   tiers: Tier[]
-  // phase: { name: string, img: string }
-  // theme: { bgColor: string, textColor: string, outlineColor: string, btnSearchBg: string, hoverSearchBg: string, logoColor: string }
 }) {
   const [activeView, setActiveView] = useState<View>('all')
   const [isOpen, setIsOpen] = useState(false)
+  const [isClient, setIsClient] = useState(false)
 
-  // Search query parameters
+  // Ref to track if we're currently scrolling
+  const isScrollingRef = useRef(false)
+  const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
+
   const searchParams = useSearchParams()
-  const chosenCategory = searchParams.get('category')
 
-  const theme = calculateBgColor() // Uses current date by default
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
+  const [chosenCategory, setChosenCategory] = useState<string | null>(null)
+
+  useEffect(() => {
+    setChosenCategory(searchParams.get('category'))
+  }, [searchParams])
+
+  const theme = calculateBgColor()
   console.log('search result theme:', theme);
   const phase = getMoonPhaseForWidget()
   console.log('search result phase:', phase);
-  function closeDropDown() {
-    if (isOpen === false) return
-    else setIsOpen(!isOpen)
+
+  // Enhanced closeDropDown function that respects scrolling
+  function closeDropDown(e: React.MouseEvent) {
+    // Don't close if we're currently scrolling
+    if (isScrollingRef.current) return
+
+    // Only close dropdown if clicking on the background element itself
+    if (e.target !== e.currentTarget) return
+
+    // Only proceed if dropdown is actually open
+    if (!isOpen) return
+
+    setIsOpen(false)
   }
+
+  // Handle scroll events to track scrolling state
+  const handleScroll = () => {
+    isScrollingRef.current = true
+
+    // Clear existing timeout
+    if (scrollTimeoutRef.current) {
+      clearTimeout(scrollTimeoutRef.current)
+    }
+
+    // Set scrolling to false after scroll ends
+    scrollTimeoutRef.current = setTimeout(() => {
+      isScrollingRef.current = false
+    }, 150)
+  }
+
+  // Cleanup timeout on unmount
+  useEffect(() => {
+    return () => {
+      if (scrollTimeoutRef.current) {
+        clearTimeout(scrollTimeoutRef.current)
+      }
+    }
+  }, [])
+
+  // Show loading state during hydration to prevent layout shift
+  if (!isClient) {
+    return (
+      <div className="bg-[#202124] h-screen relative">
+        <div className="flex flex-col relative border-b border-[#7d8084]">
+          <div className="flex max-md:flex-wrap max-md:gap-0 gap-8 py-6 px-7 h-24 max-md:h-40 max-md:px-5">
+            <div className="flex flex-row w-full h-[36px] md:hidden lg:hidden xl:hidden 2xl:hidden justify-between">
+              <div className="items-center order-1 sm:text-xl">
+                <div className="w-32 h-8 bg-gray-600 animate-pulse rounded"></div>
+              </div>
+              <div className="order-2 text-[#F8F9FA] text-sm md:hidden lg:hidden xl:hidden 2xl:hidden">
+                <div className="w-16 h-8 bg-gray-600 animate-pulse rounded-full"></div>
+              </div>
+            </div>
+            <div className="max-md:hidden">
+              <div className="w-32 h-8 bg-gray-600 animate-pulse rounded"></div>
+            </div>
+            <div className="flex-1 bg-gray-600 animate-pulse rounded h-10"></div>
+          </div>
+          <div className="flex text-[#F8F9FA]">
+            <ul className="flex flex-row max-md:ml-6 md:ml-28 lg:ml-40 xl:ml-40 gap-8">
+              <div className="w-12 h-6 bg-gray-600 animate-pulse rounded"></div>
+              <div className="w-16 h-6 bg-gray-600 animate-pulse rounded"></div>
+            </ul>
+          </div>
+        </div>
+        <div className="flex flex-col max-md:px-6 md:pl-28 md:pr-24 lg:flex-row lg:pl-40 xl:flex-row xl:pl-40 xl:gap-8 bg-[#202124] h-screen pb-6">
+          <div className="w-full space-y-4 p-4">
+            <div className="h-32 bg-gray-600 animate-pulse rounded"></div>
+            <div className="h-32 bg-gray-600 animate-pulse rounded"></div>
+            <div className="h-32 bg-gray-600 animate-pulse rounded"></div>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   if (categories) {
     const decodedCategory = chosenCategory
       ? decodeURIComponent(chosenCategory)
@@ -49,8 +129,8 @@ export default function SearchResultsPage({
     ) as Category
 
     return (
-      <div onClick={closeDropDown} className=" bg-[#202124] h-screen relative">
-        {/* Top Nav and Search Bar */}
+      <div className="bg-[#202124] h-screen relative">
+        {/* Top Nav and Search Bar - No click handler here */}
         <div className="flex flex-col relative border-b border-[#7d8084]">
           <div
             id="header"
@@ -112,9 +192,32 @@ export default function SearchResultsPage({
             </ul>
           </div>
         </div>
+
+        {/* Backdrop for dropdown - only appears when dropdown is open */}
+        {isOpen && (
+          <div
+            className="fixed inset-0 z-40 bg-transparent"
+            onClick={closeDropDown}
+            style={{ touchAction: 'none' }}
+          />
+        )}
+
         {/* MAIN PAGE CONTENT: Tiers and Details*/}
         <div
-          className="flex flex-col max-md:px-6 md:pl-28 md:pr-24 lg:flex-row lg:pl-40 xl:flex-row xl:pl-40 xl:gap-8 bg-[#202124] h-screen pb-6"
+          className="flex flex-col max-md:px-6 md:pl-28 md:pr-24 lg:flex-row lg:pl-40 xl:flex-row xl:pl-40 xl:gap-8 bg-[#202124] pb-6"
+          onScroll={handleScroll}
+          style={{
+            // Calculate height to avoid issues with h-screen
+            height: 'calc(100vh - 144px)', // Adjust based on your header height
+            overflowY: 'auto',
+            // Ensure proper touch scrolling behavior
+            WebkitOverflowScrolling: 'touch',
+            touchAction: 'pan-y',
+            // Prevent momentum scrolling issues
+            overscrollBehavior: 'contain',
+            // Prevent elastic scroll on iOS
+            position: 'relative'
+          }}
         >
           {activeView === 'all' ? (
             <SearchOptionsList
@@ -126,7 +229,7 @@ export default function SearchResultsPage({
             <Details chosenCategory={fullCategory} />
           )}
         </div>
-      </div >
+      </div>
     )
   }
 }

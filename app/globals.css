@@ -24,7 +24,7 @@ See a production optimized version here: https://charmui.com
 body {
   font-family: Inter, sans-serif;
 }
-
+/* 
 @keyframes jumbo {
   from {
     background-position:
@@ -83,17 +83,17 @@ body {
   background-size: cover;
   background-position: center;
   /* filter: blur(5px); */
-}
+/* } */
 
-.bg-img {
+/* .bg-img {
   background-image: url('/moon-bg.png');
   background-size: cover;
-}
+} */ 
 
 /* MOON SKIN VARIABLES */
-
-@layer base {
-  :root {
+/* 
+@layer base { */
+:root {
     /* Text Colour  */
     --moon-text-new-moon: #e5e7eb;
     --moon-text-waxing: #e5e7eb;
@@ -156,4 +156,5 @@ body {
     --moon-hover-search-bg-last-quarter: #919090;
     --moon-hover-search-bg-waning: #505050;
   }
-}
+
+
