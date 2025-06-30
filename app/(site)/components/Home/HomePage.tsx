@@ -39,17 +39,27 @@ const useVariableFontAnimation = () => {
 
   // Automatic animation for touch devices
   const animateFont = () => {
-    timeRef.current += 0.02
+    timeRef.current += 0.015 // Speed of animation
 
-    const x = (Math.sin(timeRef.current) + Math.sin(timeRef.current * 0.7) * 0.5 + 1) / 2
-    const y = (Math.cos(timeRef.current * 0.8) + Math.cos(timeRef.current * 1.2) * 0.3 + 1) / 2
+    // Use different frequencies to avoid synchronization and plateaus
+    const weightCycle = Math.sin(timeRef.current * 1.3) * 0.6 + Math.sin(timeRef.current * 2.1) * 0.4
+    const opszCycle = Math.cos(timeRef.current * 0.9) * 0.7 + Math.cos(timeRef.current * 1.7) * 0.3
 
-    const weight = x * (1000 - 200) + 200
-    const opsz = y * (72 - 12) + 12
+    // Normalize to 0-1 range with smoother transitions
+    const weightNormalized = (weightCycle + 1) / 2
+    const opszNormalized = (opszCycle + 1) / 2
+
+    // Apply easing function for even smoother transitions
+    const smoothWeight = weightNormalized * weightNormalized * (3 - 2 * weightNormalized) // smoothstep
+    const smoothOpsz = opszNormalized * opszNormalized * (3 - 2 * opszNormalized) // smoothstep
+
+    // Map to font ranges with some padding from extremes to avoid harsh stops
+    const weight = smoothWeight * (950 - 250) + 250 // Slightly narrower range for smoother feel
+    const opsz = smoothOpsz * (65 - 15) + 15
 
     setFontSettings({ wght: weight, opsz: opsz })
 
-    if (animationRef.current) {
+    if (animationRef.current !== null) {
       animationRef.current = requestAnimationFrame(animateFont)
     }
   }
