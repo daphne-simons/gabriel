@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useState } from 'react'
+import { Suspense, useEffect, useRef, useState } from 'react'
 import Link from 'next/link'
 import BackGround from '../BackGround'
 import HomeSearchBar from '../Home/HomeSearchBar'
@@ -9,12 +9,26 @@ import HomeLogo from '../Logos/HomeLogo'
 import { calculateBgColor, getMoonPhaseForWidget } from '@/app/(site)/utils/moon-utils'
 import { Category } from '@/sanity/models/sanity-client-models'
 
-export default function HomePage({ categories }: { categories: Category[] }) {
-  // Variable Font changes logic:
-  const [fontSettings, setFontSettings] = useState({ wght: 200, opsz: 72 })
-  const [isOpen, setIsOpen] = useState(false)
 
+const useVariableFontAnimation = () => {
+  const [fontSettings, setFontSettings] = useState({ wght: 200, opsz: 72 })
+  const [isTouch, setIsTouch] = useState(false)
+  const animationRef = useRef<number | null>(null)
+  const timeRef = useRef(0)
+
+  // Mobile/Touch device detection - moved inside useEffect
+  const isTouchDevice = () => {
+    if (typeof window === 'undefined') return false
+    return (
+      'ontouchstart' in window ||
+      navigator.maxTouchPoints > 0 ||
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)
+    )
+  }
+  // Manual mouse update (your existing logic)
   const updateText = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (isTouch) return // Don't update on touch devices
+
     const multiplierWidth = e.clientX / window.innerWidth
     const multiplierOpsz = e.clientY / window.innerHeight
     const randomWeight = multiplierWidth * (1000 - 200) + 200
@@ -23,11 +37,69 @@ export default function HomePage({ categories }: { categories: Category[] }) {
     setFontSettings({ wght: randomWeight, opsz: randomOpsz })
   }
 
-  // Calculate moon theme directly from JSON file - no API needed!
+  // Automatic animation for touch devices
+  const animateFont = () => {
+    timeRef.current += 0.02
+
+    const x = (Math.sin(timeRef.current) + Math.sin(timeRef.current * 0.7) * 0.5 + 1) / 2
+    const y = (Math.cos(timeRef.current * 0.8) + Math.cos(timeRef.current * 1.2) * 0.3 + 1) / 2
+
+    const weight = x * (1000 - 200) + 200
+    const opsz = y * (72 - 12) + 12
+
+    setFontSettings({ wght: weight, opsz: opsz })
+
+    if (animationRef.current) {
+      animationRef.current = requestAnimationFrame(animateFont)
+    }
+  }
+
+  useEffect(() => {
+    // Detect touch device after component mounts
+    const touchDevice = isTouchDevice()
+    setIsTouch(touchDevice)
+
+    if (touchDevice) {
+      // Start animation for touch devices
+      animationRef.current = requestAnimationFrame(animateFont)
+    }
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+        animationRef.current = null
+      }
+    }
+  }, [])
+
+
+  // Clean up animation on unmount
+  useEffect(() => {
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current)
+        animationRef.current = null
+      }
+    }
+  }, [])
+
+  return {
+    fontSettings,
+    updateText,
+    isTouch
+  }
+}
+
+
+export default function HomePage({ categories }: { categories: Category[] }) {
+
+  const { fontSettings, updateText } = useVariableFontAnimation()
+  const [isOpen, setIsOpen] = useState(false)
+  // Calculates moon theme directly from JSON file - no API needed!
   const theme = calculateBgColor() // Uses current date by default
   const phase = getMoonPhaseForWidget()
 
-  // closes dropdown when clicking elsewhere on page
+  // Closes dropdown when clicking elsewhere on page
   const closeDropDown = () => {
     if (isOpen === false) return
     else setIsOpen(!isOpen)
