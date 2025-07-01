@@ -79,28 +79,40 @@ export default function SearchOptionsList({
     },
     [searchParams]
   )
-  // Update the URL with the new query string, if no tier, make default Sapphire
   useEffect(() => {
-    if (tierParam === null) {
+    console.log('🔄 useEffect running with:', { tierParam, categoryParam, tiersLength: tiers.length })
+
+    if (tiers.length === 0) return // Wait for tiers to load
+
+    if (tierParam) {
+      // If there's a tier in the URL, use that tier
+      console.log('📍 Found tierParam in URL:', tierParam)
+      const tierFromUrl = tiers.find((tier) => tier.gem === tierParam)
+      if (tierFromUrl) {
+        console.log('✅ Setting option from URL:', tierFromUrl.gem)
+        setOption(tierFromUrl)
+      } else {
+        console.log('❌ Tier not found, falling back to Sapphire')
+        // If tier not found, fall back to Sapphire
+        const sapphire = tiers.find((tier) => tier.gem === 'Sapphire')
+        if (sapphire) {
+          setOption(sapphire)
+          const queryString = createQueryString('tier', sapphire.gem)
+          router.push(`${path}?${queryString}`)
+        }
+      }
+    } else {
+      // If no tier in URL, default to Sapphire and update URL
+      console.log('🔵 No tier in URL, defaulting to Sapphire')
       const sapphire = tiers.find((tier) => tier.gem === 'Sapphire')
       if (sapphire) {
         setOption(sapphire)
         const queryString = createQueryString('tier', sapphire.gem)
-        // Update the URL with the new query string
         router.push(`${path}?${queryString}`)
-      } else {
-        return
       }
     }
-    // push.router creates potential ESLint errors, here are the docs and the appropriate ways to handle these errors:
-    // https://nextjs.org/docs/pages/api-reference/functions/use-router#potential-eslint-errors
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [categoryParam, tierParam]) // when either of these change, it runs the useEffect.
+  }, [categoryParam, tierParam, tiers, createQueryString, path, router])
 
-  // Set the option to Sapphire by default on page load.
-  useEffect(() => {
-    setOption(tiers[0])
-  }, [])
 
   const handleClickSelection = (id: string | null) => {
     setSelectedProjectId(id)

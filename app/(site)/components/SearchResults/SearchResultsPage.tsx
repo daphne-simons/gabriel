@@ -23,7 +23,7 @@ export default function SearchResultsPage({
   const [activeView, setActiveView] = useState<View>('all')
   const [isOpen, setIsOpen] = useState(false)
   const [isClient, setIsClient] = useState(false)
-
+  const [chosenCategory, setChosenCategory] = useState<string | null>(null)
   // Ref to track if we're currently scrolling
   const isScrollingRef = useRef(false)
   const scrollTimeoutRef = useRef<NodeJS.Timeout | null>(null)
@@ -34,16 +34,16 @@ export default function SearchResultsPage({
     setIsClient(true)
   }, [])
 
-  const [chosenCategory, setChosenCategory] = useState<string | null>(null)
-
   useEffect(() => {
-    setChosenCategory(searchParams.get('category'))
+    const categoryParam = searchParams.get('category')
+    // Decode the category parameter and store the decoded value
+    const decodedCategory = categoryParam ? decodeURIComponent(categoryParam) : null
+    setChosenCategory(decodedCategory)
   }, [searchParams])
 
+  // Dynamic Moon Theme Functions 
   const theme = calculateBgColor()
-  console.log('search result theme:', theme);
   const phase = getMoonPhaseForWidget()
-  console.log('search result phase:', phase);
 
   // Enhanced closeDropDown function that respects scrolling
   function closeDropDown(e: React.MouseEvent) {
@@ -83,7 +83,7 @@ export default function SearchResultsPage({
     }
   }, [])
 
-  // Show loading state during hydration to prevent layout shift
+  // Show skeleton loading state during hydration to prevent layout shift
   if (!isClient) {
     return (
       <div className="bg-[#202124] h-screen relative">
@@ -121,12 +121,8 @@ export default function SearchResultsPage({
   }
 
   if (categories) {
-    const decodedCategory = chosenCategory
-      ? decodeURIComponent(chosenCategory)
-      : null
-    const fullCategory = categories.find(
-      (category) => category.name === decodedCategory
-    ) as Category
+    // Now chosenCategory is already decoded, so no need to decode again
+    const fullCategory = categories.find((category) => category.name === chosenCategory) as Category
 
     return (
       <div className="bg-[#202124] h-screen relative">
@@ -158,7 +154,7 @@ export default function SearchResultsPage({
               setIsOpen={setIsOpen}
               setActiveView={setActiveView}
               categories={categories}
-              chosenCategory={decodedCategory}
+              chosenCategory={chosenCategory}
             />
             <div className="max-lg:hidden xl:w-28 order-3"></div>
             <div className="flex justify-end items-center order-4 w-1/2">
@@ -196,7 +192,7 @@ export default function SearchResultsPage({
         {/* Backdrop for dropdown - only appears when dropdown is open */}
         {isOpen && (
           <div
-            className="fixed inset-0 z-40 bg-transparent"
+            className="fixed inset-0 z-30 bg-transparent"
             onClick={closeDropDown}
             style={{ touchAction: 'none' }}
           />
@@ -221,7 +217,7 @@ export default function SearchResultsPage({
         >
           {activeView === 'all' ? (
             <SearchOptionsList
-              chosenCategory={decodedCategory}
+              chosenCategory={chosenCategory}
               projects={projects}
               tiers={tiers}
             />
