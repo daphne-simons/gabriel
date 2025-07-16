@@ -119,7 +119,7 @@ const AutoReplyEmail = (person: UserQuery) => {
               Follow us
               {/* TODO: find out why this logo is not appearing in the real emails.  */}
               <span style={{}}>
-                <Link href="https://www.google.com">
+                <Link href="https://www.instagram.com/gabriel_exchange/?utm_source=ig_web_button_share_sheet">
                   <FontAwesomeIcon
                     icon={faInstagram}
                     style={{
