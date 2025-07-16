@@ -9,7 +9,7 @@ export default function Footer() {
         <p className="">Follow us</p>
         {/* TODO: find out why this logo is not appearing in the real emails.  */}
         <div className="pl-4 -mt-[2.5px]">
-          <Link href="https://www.google.com">
+          <Link href="https://www.instagram.com/gabriel_exchange/?utm_source=ig_web_button_share_sheet">
             <FontAwesomeIcon icon={faInstagram} className="w-6 h-6" />{' '}
           </Link>
         </div>
@@ -19,6 +19,6 @@ export default function Footer() {
         We acknowledge and pay respect to the Traditional Owners and
         Elders—past, present and emerging—of the lands on which we operate.
       </div>
-    </div>
+    </div >
   )
 }
