@@ -120,7 +120,7 @@ const AutoReplyEmail = (person: UserQuery) => {
               {/* TODO: find out why this logo is not appearing in the real emails.  */}
               <span style={{}}>
                 <Link href="https://www.instagram.com/gabriel_exchange/?utm_source=ig_web_button_share_sheet">
-                  <FontAwesomeIcon
+                  {/* <FontAwesomeIcon
                     icon={faInstagram}
                     style={{
                       width: '14px',
@@ -128,7 +128,17 @@ const AutoReplyEmail = (person: UserQuery) => {
                       paddingLeft: '12px',
                       color: 'black',
                     }}
-                  />{' '}
+                  />{' '} */}
+                  <img
+                    src="/ig-icon.jpg"
+                    alt="Instagram"
+                    style={{
+                      width: '14px',
+                      height: '14px',
+                      marginBottom: '-2px',
+                      paddingLeft: '12px',
+                    }}
+                  />
                 </Link>
               </span>
               <br />
