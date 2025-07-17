@@ -110,38 +110,27 @@ const AutoReplyEmail = (person: UserQuery) => {
             </Text>
           </Section>
 
-          <Section>
+          <Section style={{ fontSize: '11px', }}>
             <Text
               style={{
-                fontSize: '10px',
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
               }}
             >
               Follow us
               {/* TODO: find out why this logo is not appearing in the real emails.  */}
-              <span style={{}}>
-                <Link href="https://www.instagram.com/gabriel_exchange/?utm_source=ig_web_button_share_sheet">
-                  {/* <FontAwesomeIcon
-                    icon={faInstagram}
-                    style={{
-                      width: '14px',
-                      marginBottom: '-5px',
-                      paddingLeft: '12px',
-                      color: 'black',
-                    }}
-                  />{' '} */}
-                  <img
-                    src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg"
-                    alt="Instagram"
-                    style={{
-                      width: '14px',
-                      height: '14px',
-                      marginBottom: '-2px',
-                      paddingLeft: '12px',
-                    }}
-                  />
-                </Link>
-              </span>
-              <br />
+              <Link href="https://www.instagram.com/gabriel_exchange/?utm_source=ig_web_button_share_sheet" style={{
+              }}>
+                <img width="50" height="50" src="https://img.icons8.com/ios/50/instagram-new--v1.png" alt="instagram-new--v1" style={{
+                  width: '20px',
+                  height: '20px',
+                  paddingLeft: '10px',
+                }} />
+              </Link>
+            </Text>
+            <Text>
               We acknowledge and pay respect to the Traditional Owners and
               Elders—past, present and emerging—of the lands on which we
               operate.
@@ -149,7 +138,7 @@ const AutoReplyEmail = (person: UserQuery) => {
           </Section>
         </Container>
       </Body>
-    </Html>
+    </Html >
   )
 }
 
