@@ -130,7 +130,7 @@ const AutoReplyEmail = (person: UserQuery) => {
                     }}
                   />{' '} */}
                   <img
-                    src="/ig-icon.jpg"
+                    src="https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/instagram.svg"
                     alt="Instagram"
                     style={{
                       width: '14px',
