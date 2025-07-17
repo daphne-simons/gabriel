@@ -35,3 +35,19 @@
 ### Extras/ mysteries: 
 
 - Resend logins? 
+
+### Example .env file structure: 
+
+```js
+
+// Sanity studio for CMS 
+NEXT_PUBLIC_SANITY_HOOK_SECRET=
+
+// email provider 
+RESEND_API_KEY=
+
+// rate limiting middleware 
+UPSTASH_REDIS_REST_URL=
+UPSTASH_REDIS_REST_TOKEN=
+
+```

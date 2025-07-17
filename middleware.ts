@@ -19,9 +19,9 @@ export async function middleware(
   return success
     ? NextResponse.next()
     : // : NextResponse.redirect(new URL('/blocked', request.url)) // Redirect to '/blocked' page
-      NextResponse.json('Too many requests', {
-        status: 429,
-      }) // gives a 429 error
+    NextResponse.json('Too many requests', {
+      status: 429,
+    }) // gives a 429 error
 }
 
 export const config = {
