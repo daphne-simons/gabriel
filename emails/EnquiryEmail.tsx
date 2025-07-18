@@ -6,46 +6,22 @@ import {
   Html,
   Section,
   Text,
-  Row,
-  Column,
-  Heading,
+  // Row,
+  // Column,
+  // Heading,
 } from '@react-email/components'
 
 const EnquiryEmail = (person: UserQuery) => {
   return (
     <Html>
       <Head />
-      <Body style={{ width: '100%' }}>
+      <Body style={{ width: '100%', fontSize: '12px' }}>
         <Container>
           <Section>
-            <Heading>
-              Hi Gabriel, my name is {person.name} and I would like to know more
-              about...{' '}
-            </Heading>
-            <Row>
-              <Column>🟡</Column>
-              <Column>
-                <Text>Service: {person.chosenCategory}</Text>
-              </Column>
-            </Row>
-            <Row>
-              <Column>🔵</Column>
-              <Column>
-                <Text>Level / Gem: {person.gem}</Text>
-              </Column>
-            </Row>
-            <Row>
-              <Column>🟢</Column>
-              <Column>
-                <Text>Cost Estimate: {person.cost}</Text>
-              </Column>
-            </Row>
-            <Row>
-              <Column>🔴</Column>
-              <Column>
-                <Text>Contact me at: {person.email}</Text>
-              </Column>
-            </Row>
+            <Text>Name: {person.name}</Text>
+            <Text>Email: {person.email}</Text>
+            <Text>Selected Category/Service: {person.chosenCategory}</Text>
+            <Text>Tier: {person.gem}</Text>
           </Section>
         </Container>
       </Body>

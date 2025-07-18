@@ -15,7 +15,7 @@ export async function enquiryProvider(person: UserQuery) {
       // use this one for testing success of delivery: 'delivered@resend.dev'
       to: 'daphnejasminesimons@gmail.com',
       bcc: ['delivered@resend.dev'],
-      subject: `Enquiry from ${person.name}!`,
+      subject: `Gabriel enquiry from ${person.name}!`,
       react: EnquiryEmail(person),
       // TODO: put Users email address here. For Ella to 'reply_to'
       reply_to: `${person.email}`,
