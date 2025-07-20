@@ -6,9 +6,6 @@ import {
   Html,
   Section,
   Text,
-  // Row,
-  // Column,
-  // Heading,
 } from '@react-email/components'
 
 const EnquiryEmail = (person: UserQuery) => {
