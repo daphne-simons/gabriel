@@ -64,9 +64,11 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
                   <PortableText value={data.address} />
                 </div>
                 {/* SMALL - BUTTON 1 */}
-                <button className="w-32 h-10 flex items-center justify-center text-base text-googleBlue border border-2-lightGray hover:text-googleDarkBlue hover:border-googleBlue rounded-md px-6 py-2 md:hidden lg:hidden xl:hidden 2xl:hidden">
-                  View Map
-                </button>
+                <Link href="https://maps.app.goo.gl/2rd1gz6KkYwJTWgN9" target="_blank" rel="noopener noreferrer">
+                  <button className="w-32 h-10 flex items-center justify-center text-base text-googleBlue border border-2-lightGray hover:text-googleDarkBlue hover:border-googleBlue rounded-md px-6 py-2 md:hidden lg:hidden xl:hidden 2xl:hidden">
+                    View Map
+                  </button>
+                </Link>
               </article>
               <article className="sm:w-full md:w-[90%] max-md:pt-8 font-roboto text-2xl ">
                 <h2>Contact</h2>
@@ -76,8 +78,7 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
                 {/* SMALL - BUTTON 2 */}
                 <a
                   className="w-32 h-10 flex items-center justify-center text-base  text-googleBlue hover:text-googleDarkBlue border border-2-lightGray hover:border-googleBlue rounded-md md:hidden lg:hidden xl:hidden 2xl:hidden"
-                  // TODO: change this email address to Ella's official Gabriel Email
-                  href="mailto:daphnejasminesimons@gmail.com?subject=General%20Enquiry%20for%20Gabriel"
+                  href="mailto:more@gabriel.exchange?subject=General%20Enquiry%20for%20Gabriel"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -85,14 +86,15 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
                 </a>
               </article>
               {/* MED -> LARGE Button 1 */}
-              <button className="w-32 h-10 flex items-center justify-center text-base text-googleBlue border border-2-lightGray hover:text-googleDarkBlue hover:border-googleBlue rounded-md px-6 py-2 max-md:hidden">
-                View Map
-              </button>
+              <Link href="https://maps.app.goo.gl/2rd1gz6KkYwJTWgN9" target="_blank" rel="noopener noreferrer">
+                <button className="w-32 h-10 flex items-center justify-center text-base text-googleBlue border border-2-lightGray hover:text-googleDarkBlue hover:border-googleBlue rounded-md px-6 py-2 max-md:hidden">
+                  View Map
+                </button>
+              </Link>
               {/* MED -> LARGE Button 2 */}
               <a
                 className="w-32 h-10 flex items-center justify-center text-base  text-googleBlue hover:text-googleDarkBlue border border-2-lightGray hover:border-googleBlue rounded-md max-md:hidden"
-                // TODO: change this email address to Ella's official Gabriel Email
-                href="mailto:daphnejasminesimons@gmail.com?subject=General%20Enquiry%20for%20Gabriel"
+                href="mailto:more@gabriel.exchange?subject=General%20Enquiry%20for%20Gabriel"
                 target="_blank"
                 rel="noopener noreferrer"
               >
