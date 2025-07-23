@@ -12,7 +12,6 @@ export async function middleware(
   request: NextRequest,
   event: NextFetchEvent
 ): Promise<Response | undefined> {
-  console.log('rate-limit middleware')
 
   const ip = request.ip ?? '127.0.0.1'
   const { success } = await ratelimit.limit(ip)

@@ -15,6 +15,24 @@ import {
 import { UserQuery } from '@/app/(site)/models/users'
 
 const AutoReplyEmail = (person: UserQuery) => {
+
+  // Reformat chosenCategory to remove "a" and "an"
+  let reformattedService = ""
+  if (person.chosenCategory === "a design subscription" || person.chosenCategory === "a website" || person.chosenCategory === "a publication") {
+    const splitArr = person.chosenCategory.split(" ")
+    const newString = splitArr.length === 2
+      ?
+      `${splitArr[1]}`
+      :
+      `${splitArr[1]} ${splitArr[2]}`
+
+    reformattedService = newString
+  } else if (person.chosenCategory === "an identity") {
+    const splitArr = person.chosenCategory.split(" ")
+    const newString = `${splitArr[1]}`
+    reformattedService = newString
+  }
+
   return (
     <Html>
       <Head>
@@ -84,7 +102,7 @@ const AutoReplyEmail = (person: UserQuery) => {
               Hi {person.name},
               <br />
               <br />
-              Thanks for your enquiry about the {person.gem} {person.chosenCategory}.
+              Thanks for your enquiry about the {person.level.toLowerCase()} {reformattedService} package.
               <br />
               <br />
               {`We'll be in touch shortly with more information.`}
