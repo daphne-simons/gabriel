@@ -36,6 +36,7 @@ export default function HomeSearchBar({
               : `shadow-customSearchLight hover:shadow-customSearchDark`
             }`}
           onClick={toggleDropdown}
+          data-testid="search-bar"
         >
           {/* Main Search Bar */}
           <div className="flex flex-row relative cursor-pointer ">
@@ -93,6 +94,7 @@ export default function HomeSearchBar({
                       category: encodeURIComponent(category.name ?? ''), // Encode category string, returns empty string if category is null
                     },
                   }}
+                  data-testid="category-link"
                 >
                   <span className={`h-6 w-6 -ml-[24px] mt-[8px] absolute text-googleMidGray`}>
                     <svg

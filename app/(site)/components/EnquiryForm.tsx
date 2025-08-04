@@ -100,6 +100,7 @@ const EnquiryForm = () => {
             placeholder="My name is"
             required
             disabled={sending}
+            data-testid="name-input"
           />
           <input
             aria-label="email"
@@ -111,6 +112,7 @@ const EnquiryForm = () => {
             placeholder="My email address is"
             required
             disabled={sending}
+            data-testid="email-input"
           />
         </div>
         <p className="pt-4 max-md:text-base md:text-lg lg:text-xl xl:text-xl ">
@@ -131,6 +133,7 @@ const EnquiryForm = () => {
               <button
                 className="px-12 py-3 bg-googleBlue hover:bg-googleHoverBlue rounded text-white text-base"
                 type="submit"
+                data-testid="submit-enquiry-button"
               >
                 Send
               </button>

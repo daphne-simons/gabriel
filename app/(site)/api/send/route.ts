@@ -14,6 +14,7 @@ export async function POST(req: NextRequest) {
     // Parse input request with zod:
     const person = (await req.json()) as UserQuery
     const data = UserEmailQuery.parse(person)
+    console.log('email shape:', person);
 
     // Send the email using relevant Resend Provider
     await enquiryProvider(data)

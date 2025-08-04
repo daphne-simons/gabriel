@@ -71,7 +71,8 @@ export default function AllProjects({
                   },
                 }}
               >
-                <h3 className="text-googleLightGray text-base px-5 py-2 text-center">
+                <h3 className="text-googleLightGray text-base px-5 py-2 text-center"
+                  data-testid="enquire-button">
                   Enquire
                 </h3>
               </Link>
