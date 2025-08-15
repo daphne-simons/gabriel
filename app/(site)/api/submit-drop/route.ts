@@ -1,6 +1,6 @@
 // API endpoint to submit contributor drops
 import { NextRequest, NextResponse } from 'next/server';
-import { sanityFetch } from '@/sanity/config/client-config';
+import { ContributorByTokenParams, sanityFetch } from '@/sanity/config/client-config';
 import { contributorByTokenQuery } from '@/sanity/sanity-utils';
 import writeClient from '@/sanity/config/write-client';
 import { Ratelimit } from '@upstash/ratelimit';
@@ -40,7 +40,7 @@ export async function POST(request: NextRequest) {
     const formData = await request.formData();
     const token = formData.get('token') as string;
 
-    if (!token) {
+    if (!token || typeof token !== 'string') {
       return NextResponse.json(
         { error: 'Token is required' },
         { status: 400 }
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
     // Validate token and get contributor
     const contributor: ContributorModel = await sanityFetch({
       query: contributorByTokenQuery,
-      qParams: { token: token },
+      qParams: { token },
       tags: ['contributor']
     });
 

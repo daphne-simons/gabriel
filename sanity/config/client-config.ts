@@ -16,13 +16,18 @@ const client = createClient(config)
 // https://victoreke.com/blog/sanity-webhooks-and-on-demand-revalidation-in-nextjs#step-4-configure-revalidatetag-in-sanity-client
 // sanityFetch EXPLAINER:
 // This async function acts as a wrapper function that exports client.fetch with the revalidateTag specified inside next. Instead of exporting the client, the sanityFetch() function will be used to query the datasets.
+
+// Define the query parameters interface
+export interface ContributorByTokenParams {
+  token: string;
+}
 export async function sanityFetch<QueryResponse>({
   query,
   qParams = {},
   tags,
 }: {
   query: string
-  qParams?: QueryParams
+  qParams?: QueryParams | Record<string, any> // Allow both QueryParams and custom parameter objects
   tags: string[]
 }): Promise<QueryResponse> {
   return client.fetch<QueryResponse>(query, qParams, {
