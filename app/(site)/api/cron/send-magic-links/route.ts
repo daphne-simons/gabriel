@@ -51,12 +51,13 @@ export async function POST(request: NextRequest) {
           })
           .commit();
 
+
         // Send magic link email
         const magicLink = `${process.env.NEXT_PUBLIC_SITE_URL}/drop?token=${magicLinkToken}`;
 
         // TODO: abstract this into a reactEmail template, see autoreply route for example. 
         await resend.emails.send({
-          from: 'Gabriel <no-reply@gabriel.exchange>',
+          from: 'Gabriel <more@gabriel.exchange>',
           to: contributor.email,
           subject: 'Your constellation portal is ready ✨',
           html: `

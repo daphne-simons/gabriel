@@ -6,11 +6,12 @@ import writeClient from '@/sanity/config/write-client';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 import { ContributorModel } from '@/sanity/models/sanity-client-models';
+import { v4 as uuidv4 } from 'uuid';
 
 // Create a rate limiter for submissions
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(3, '1 h'), // 3 submissions per hour per IP
+  limiter: Ratelimit.slidingWindow(10, '1 h'), // 3 submissions per hour per IP
   analytics: true,
 });
 
@@ -104,31 +105,24 @@ export async function POST(request: NextRequest) {
 
     // Upload files to Sanity and create submission documents
     const uploadedAssets = await Promise.all(
-      files.map(async (file, index) => {
+      files.map(async (file) => {
         // Convert File to Buffer
         const buffer = Buffer.from(await file.arrayBuffer());
 
-        // Upload to Sanity
-        const asset = await writeClient.assets.upload(
-          file.type.startsWith('image/') ? 'image' : 'file',
-          buffer,
-          {
-            filename: file.name,
-            title: captions[index] || file.name,
-            description: credits[index] || undefined,
-          }
-        );
+        // Upload as image if it's an image, otherwise as file
+        const assetType = file.type.startsWith('image/') ? 'image' : 'file';
+        const asset = await writeClient.assets.upload(assetType, buffer, {
+          filename: file.name,
+        });
 
+        // Create the proper asset structure for Sanity
         return {
+          _key: uuidv4(), // Generate unique key for array item
+          _type: assetType, // 'image' or 'file'
           asset: {
             _type: 'reference',
             _ref: asset._id
-          },
-          caption: captions[index] || '',
-          credit: credits[index] || '',
-          altText: altTexts[index] || '',
-          mimeType: file.type,
-          fileSize: file.size
+          }
         };
       })
     );
@@ -141,15 +135,16 @@ export async function POST(request: NextRequest) {
         _ref: contributor._id
       },
       assets: uploadedAssets,
-      submittedAt: new Date().toISOString(),
-      status: 'pending' // You might want moderation
+      caption: captions.filter(c => c).join('\n'), // Combine all captions
+      createdAt: new Date().toISOString(),
+      status: 'pending'
     });
 
-    // Clear the magic link token to prevent reuse (optional)
-    await writeClient
-      .patch(contributor._id)
-      .unset(['magicLinkToken', 'magicLinkExpires'])
-      .commit();
+    // // Clear the magic link token to prevent reuse (optional)
+    // await writeClient
+    //   .patch(contributor._id)
+    //   .unset(['magicLinkToken', 'magicLinkExpires'])
+    //   .commit();
 
     return NextResponse.json({
       success: true,

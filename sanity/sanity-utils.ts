@@ -54,15 +54,15 @@ export const AboutPageQuery = groq`*[_type == "about-page"]{
     }`
 
 // Query for getting all active contributors for cron job
-export const activeContributorsQuery = groq`*[_type == "contributor" && !disabled] {
+export const activeContributorsQuery = groq`*[_type == "contributor" && active == true] {
   _id,
   name,
   email,
-  lastNudgedDate
+  lastNudgedAt
 }`
 
 // Query for validating magic link token
-export const contributorByTokenQuery = groq`*[_type == "contributor" && magicLinkToken == $token: string && !disabled][0] {
+export const contributorByTokenQuery = groq`*[_type == "contributor" && magicLinkToken == $token && active == true][0] {
   _id,
   name,
   email,
@@ -74,18 +74,33 @@ export const allContributorsQuery = groq`*[_type == "contributor"] | order(_crea
   _id,
   name,
   email,
-  bio,
   "avatar": avatar.asset->url,
-  lastNudgedDate,
+  lastNudgedAt,
   _createdAt,
-  disabled
+  active
 }`
 
 // Query for getting submissions with contributor details
-export const submissionsQuery = groq`*[_type == "submission"] | order(submittedAt desc) {
+export const submissionsQuery = groq`*[_type == "submission"] | order(createdAt desc) {
   _id,
-  submittedAt,
-  status,
+  createdAt,
+  caption,
+  "contributor": contributor-> {
+    name,
+    email
+  },
+  assets[] {
+    "url": asset->url,
+    "filename": asset->originalFilename,
+    "mimeType": asset->mimeType
+  }
+}`
+
+// Query for getting single submission
+export const singleSubmissionQuery = groq`*[_type == "submission" && _id == $id][0] {
+  _id,
+  createdAt,
+  caption,
   "contributor": contributor-> {
     name,
     email
@@ -94,29 +109,6 @@ export const submissionsQuery = groq`*[_type == "submission"] | order(submittedA
     "url": asset->url,
     "filename": asset->originalFilename,
     "mimeType": asset->mimeType,
-    caption,
-    credit,
-    altText
-  }
-}`
-
-// Query for getting single submission
-export const singleSubmissionQuery = groq`*[_type == "submission" && _id == $id][0] {
-  _id,
-  submittedAt,
-  status,
-  "contributor": contributor-> {
-    name,
-    email,
-    bio
-  },
-  assets[] {
-    "url": asset->url,
-    "filename": asset->originalFilename,
-    "mimeType": asset->mimeType,
-    "fileSize": asset->size,
-    caption,
-    credit,
-    altText
+    "fileSize": asset->size
   }
 }`

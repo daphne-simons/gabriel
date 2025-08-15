@@ -2,7 +2,7 @@
 const contributor =
 {
   name: 'contributor',
-  title: 'Contributor',
+  title: 'Contributors',
   type: 'document',
   fields: [
     {
@@ -16,6 +16,10 @@ const contributor =
     {
       name: 'magicLinkToken',
       type: 'string'
+    },
+    {
+      name: 'magicLinkExpires',
+      type: 'datetime'
     },
     {
       name: 'active',
@@ -32,11 +36,10 @@ const contributor =
     }
   ]
 }
-// Submission
-const submission =
-{
+// Submission schema with custom preview titles
+const submission = {
   name: 'submission',
-  title: 'Submission',
+  title: 'Submissions',
   type: 'document',
   fields: [
     {
@@ -47,17 +50,62 @@ const submission =
     {
       name: 'assets',
       type: 'array',
-      of: [{ type: 'image' }]
+      of: [
+        {
+          type: 'file',
+          title: 'File Upload'
+        },
+        {
+          type: 'image',
+          title: 'Image Upload'
+        }
+      ]
     },
     {
       name: 'caption',
-      type: 'string'
+      type: 'text'
     },
     {
       name: 'createdAt',
-      type: 'datetime', initialValue: () => new Date().toISOString()
+      type: 'datetime',
+      initialValue: () => new Date().toISOString()
+    },
+    {
+      name: 'status',
+      type: 'string',
+      options: {
+        list: [
+          { title: 'Pending', value: 'pending' },
+          { title: 'Approved', value: 'approved' },
+          { title: 'Rejected', value: 'rejected' }
+        ]
+      },
+      initialValue: 'pending'
     }
-  ]
+  ],
+  preview: {
+    select: {
+      contributorName: 'contributor.name',
+      status: 'status',
+      createdAt: 'createdAt',
+      assetCount: 'assets',
+      firstAsset: 'assets.0.asset' // Get first asset for thumbnail
+    },
+    prepare(selection) {
+      const { contributorName, status, createdAt, firstAsset } = selection;
+      const date = new Date(createdAt).toLocaleDateString('en-US', {
+        month: 'short',
+        day: 'numeric',
+        year: 'numeric'
+      });
+
+      return {
+        title: `${contributorName || 'Unknown'} - ${date}`,
+        subtitle: `${status}`,
+        media: firstAsset // Use the first uploaded asset as thumbnail, or remove this line entirely
+      };
+    }
+  }
 }
 
 export { contributor, submission }
