@@ -10,6 +10,7 @@ const nextConfig = {
       },
     ],
   },
+  moduleDirectories: ['node_modules'],
   webpack: (config) => {
     // Add a rule for handling font files
     config.module.rules.push({
