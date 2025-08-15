@@ -3,7 +3,8 @@ import project from './project-schema'
 import aboutPage from './about-page-schema'
 import category from './category-schema'
 import tier from './tier-schema'
+import { contributor, submission } from './consultants-schema'
 
-const schemas = [project, aboutPage, category, tier]
+const schemas = [project, aboutPage, category, tier, contributor, submission]
 
 export default schemas

@@ -49,3 +49,65 @@ export type AboutPageModel = {
   consultants: PortableTextBlock[]
   clients_collaborators: PortableTextBlock[]
 }
+
+// CONTRIBUTOR SCHEMA TYPES: 
+
+// Base Sanity types
+interface SanityReference {
+  _type: 'reference';
+  _ref: string;
+}
+
+interface SanityImage {
+  _type: 'image';
+  asset: {
+    _ref: string;
+    _type: 'reference';
+  };
+  hotspot?: {
+    x: number;
+    y: number;
+    height: number;
+    width: number;
+  };
+  crop?: {
+    top: number;
+    bottom: number;
+    left: number;
+    right: number;
+  };
+}
+
+interface SanityDocument {
+  _id: string;
+  _type: string;
+  _createdAt: string;
+  _updatedAt: string;
+  _rev: string;
+}
+
+// CONTRIBUTOR SCHEMA: 
+export interface ContributorModel extends SanityDocument {
+  _type: 'contributor';
+  name: string;
+  email: string;
+  magicLinkToken: string;
+  active: boolean;
+  lastNudgedAt?: string; // ISO date string, optional since it might not be set initially
+  avatar?: SanityImage; // Optional image field
+}
+
+// SUBMISSION SCHEMA:
+export interface SubmissionModel extends SanityDocument {
+  _type: 'submission';
+  contributor: SanityReference; // References a contributor
+  assets: SanityImage[];
+  caption: string;
+  createdAt: string; // ISO date string
+}
+
+// SUBMISSION with Contributor SCHEMA:
+// For use with Sanity's GROQ queries, you might want a populated version
+export interface SubmissionWithContributor extends Omit<SubmissionModel, 'contributor'> {
+  contributor: ContributorModel;
+}
