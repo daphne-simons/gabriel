@@ -7,11 +7,12 @@ import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
 import { ContributorModel } from '@/sanity/models/sanity-client-models';
 import { v4 as uuidv4 } from 'uuid';
+import { Buffer } from 'buffer';
 
 // Create a rate limiter for submissions
 const ratelimit = new Ratelimit({
   redis: Redis.fromEnv(),
-  limiter: Ratelimit.slidingWindow(10, '1 h'), // 3 submissions per hour per IP
+  limiter: Ratelimit.slidingWindow(5, '1 h'), // 5 submissions per hour per IP
   analytics: true,
 });
 
@@ -160,9 +161,3 @@ export async function POST(request: NextRequest) {
     );
   }
 }
-
-export const config = {
-  api: {
-    bodyParser: false, // Disable default body parser for file uploads
-  },
-};
