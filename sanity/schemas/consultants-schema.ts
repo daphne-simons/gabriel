@@ -91,7 +91,12 @@ const submission = {
       assetCount: 'assets',
       firstAsset: 'assets.0.asset' // Get first asset for thumbnail
     },
-    prepare(selection) {
+    prepare(selection: {
+      contributorName: string;
+      status: string;
+      createdAt: string;
+      firstAsset: any; // or a more specific type if you know what it is
+    }) {
       const { contributorName, status, createdAt, firstAsset } = selection;
       const date = new Date(createdAt).toLocaleDateString('en-US', {
         month: 'short',
