@@ -1,55 +1,66 @@
-// Contributor
-const contributor =
-{
+import { defineType, defineField } from 'sanity'
+
+// Contributor schema
+const contributor = defineType({
   name: 'contributor',
   title: 'Contributors',
   type: 'document',
   fields: [
-    {
+    defineField({
       name: 'name',
-      type: 'string'
-    },
-    {
+      type: 'string',
+      title: 'Name'
+    }),
+    defineField({
       name: 'email',
-      type: 'string'
-    },
-    {
+      type: 'string',
+      title: 'Email'
+    }),
+    defineField({
       name: 'magicLinkToken',
-      type: 'string'
-    },
-    {
+      type: 'string',
+      title: 'Magic Link Token'
+    }),
+    defineField({
       name: 'magicLinkExpires',
-      type: 'datetime'
-    },
-    {
+      type: 'datetime',
+      title: 'Magic Link Expires'
+    }),
+    defineField({
       name: 'active',
       type: 'boolean',
+      title: 'Active',
       initialValue: true
-    },
-    {
+    }),
+    defineField({
       name: 'lastNudgedAt',
-      type: 'datetime'
-    },
-    {
+      type: 'datetime',
+      title: 'Last Nudged At'
+    }),
+    defineField({
       name: 'avatar',
-      type: 'image'
-    }
+      type: 'image',
+      title: 'Avatar'
+    })
   ]
-}
-// Submission schema with custom preview titles
-const submission = {
+})
+
+// Submission schema with properly typed preview
+const submission = defineType({
   name: 'submission',
   title: 'Submissions',
   type: 'document',
   fields: [
-    {
+    defineField({
       name: 'contributor',
       type: 'reference',
+      title: 'Contributor',
       to: [{ type: 'contributor' }]
-    },
-    {
+    }),
+    defineField({
       name: 'assets',
       type: 'array',
+      title: 'Assets',
       of: [
         {
           type: 'file',
@@ -60,19 +71,22 @@ const submission = {
           title: 'Image Upload'
         }
       ]
-    },
-    {
+    }),
+    defineField({
       name: 'caption',
-      type: 'text'
-    },
-    {
+      type: 'text',
+      title: 'Caption'
+    }),
+    defineField({
       name: 'createdAt',
       type: 'datetime',
+      title: 'Created At',
       initialValue: () => new Date().toISOString()
-    },
-    {
+    }),
+    defineField({
       name: 'status',
       type: 'string',
+      title: 'Status',
       options: {
         list: [
           { title: 'Pending', value: 'pending' },
@@ -81,7 +95,7 @@ const submission = {
         ]
       },
       initialValue: 'pending'
-    }
+    })
   ],
   preview: {
     select: {
@@ -89,28 +103,30 @@ const submission = {
       status: 'status',
       createdAt: 'createdAt',
       assetCount: 'assets',
-      firstAsset: 'assets.0.asset' // Get first asset for thumbnail
+      firstAsset: 'assets.0.asset'
     },
-    prepare(selection: {
-      contributorName: string;
-      status: string;
-      createdAt: string;
-      firstAsset: any; // or a more specific type if you know what it is
-    }) {
-      const { contributorName, status, createdAt, firstAsset } = selection;
-      const date = new Date(createdAt).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric'
-      });
+    prepare(selection) {
+      const { contributorName, status, createdAt, firstAsset } = selection
+
+      let date = 'No date'
+      if (createdAt) {
+        date = new Date(createdAt).toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric'
+        })
+      }
 
       return {
         title: `${contributorName || 'Unknown'} - ${date}`,
-        subtitle: `${status}`,
-        media: firstAsset // Use the first uploaded asset as thumbnail, or remove this line entirely
-      };
+        subtitle: `${status || 'No status'}`,
+        media: firstAsset
+      }
     }
   }
-}
+})
 
 export { contributor, submission }
+
+// Default export for schemas array
+// export default [contributor, submission]

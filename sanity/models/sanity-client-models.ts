@@ -78,6 +78,14 @@ interface SanityImage {
   };
 }
 
+interface SanityFile {
+  _type: 'file';
+  asset: {
+    _ref: string;
+    _type: 'reference';
+  };
+}
+
 interface SanityDocument {
   _id: string;
   _type: string;
@@ -92,9 +100,9 @@ export interface ContributorModel extends SanityDocument {
   name: string;
   email: string;
   magicLinkToken: string;
-  magicLinkExpires?: string;
+  magicLinkExpires?: string; // ISO date string, optional
   active: boolean;
-  lastNudgedAt?: string; // ISO date string, optional since it might not be set initially
+  lastNudgedAt?: string; // ISO date string, optional
   avatar?: SanityImage; // Optional image field
 }
 
@@ -102,9 +110,10 @@ export interface ContributorModel extends SanityDocument {
 export interface SubmissionModel extends SanityDocument {
   _type: 'submission';
   contributor: SanityReference; // References a contributor
-  assets: SanityImage[];
+  assets: (SanityImage | SanityFile)[]; // Array of files OR images
   caption: string;
   createdAt: string; // ISO date string
+  status: 'pending' | 'approved' | 'rejected'; // Added status field from schema
 }
 
 // SUBMISSION with Contributor SCHEMA:
