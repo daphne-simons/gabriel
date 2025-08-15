@@ -92,6 +92,7 @@ export interface ContributorModel extends SanityDocument {
   name: string;
   email: string;
   magicLinkToken: string;
+  magicLinkExpires?: string;
   active: boolean;
   lastNudgedAt?: string; // ISO date string, optional since it might not be set initially
   avatar?: SanityImage; // Optional image field
