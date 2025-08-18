@@ -13,7 +13,7 @@ export default function ConstellationLines({ particles }: { particles: Array<{ n
 
     const lines = []
     const maxConnections = 2 // Maximum connections per particle
-    const maxDistance = 150 // Maximum distance to connect particles
+    const maxDistance = 160 // Maximum distance to connect particles
 
     for (let i = 0; i < particles.length; i++) {
       const currentParticle = particles[i]
