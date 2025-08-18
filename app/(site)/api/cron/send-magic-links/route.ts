@@ -9,16 +9,14 @@ import crypto from 'crypto';
 import { ContributorModel } from '@/sanity/models/sanity-client-models';
 
 const resend = new Resend(process.env.RESEND_API_KEY);
-
-export async function POST(request: NextRequest) {
+// NOTE: Vercel only works with GET requests
+export async function GET(request: NextRequest) {
   // Verify this is actually coming from Vercel Cron
   const authHeader = request.headers.get('authorization');
   if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-
   try {
-
     // Get all active contributors
     const contributors: ContributorModel[] = await sanityFetch({
       query: activeContributorsQuery,
