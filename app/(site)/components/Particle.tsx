@@ -1,19 +1,23 @@
+'use client'
 import { useFrame } from '@react-three/fiber'
 import React, { useRef } from 'react'
+import * as THREE from 'three';
 
-const Particle = ({ children }) => {
-  const particle = useRef(null)
-
-  const widthRadius = 100
-  const heightRadius = 100
-
-  useFrame(({ clock }) => {
-    const timer = clock.getElapsedTime()
-    particle.current.position.x = Math.sin(timer) * widthRadius
-  }
-  )
-
-  return <mesh ref={particle}>{children}</mesh>
+interface ParticleProps {
+  position: [number, number, number],
+  children: React.ReactNode
 }
+export default function Particle({ position, children }: ParticleProps) {
 
-export default Particle
+  const meshRef = useRef<THREE.Mesh>(null)
+  // Gentle twinkling animation
+  useFrame((state) => {
+    if (meshRef.current) {
+      const time = state.clock.getElapsedTime()
+      const twinkle = 0.7 + Math.sin(time * 2 + position[0] * 0.1) * 0.3
+      meshRef.current.scale.setScalar(twinkle)
+    }
+  })
+
+  return <mesh ref={meshRef} position={position}>{children}</mesh>
+}
