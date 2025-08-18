@@ -2,8 +2,9 @@
 import { Canvas } from '@react-three/fiber'
 import { useEffect, useMemo, useState } from 'react'
 import { AdditiveBlending } from 'three'
-import Particle from '../components/Particle'
-import ConstellationLines from '../components/ConstellationLines'
+import ConstellationLines from '../components/constellation/ConstellationLines'
+import Particle from '../components/constellation/Particle'
+import BackgroundStars from '../components/constellation/BackgroundStars'
 
 export default function MoonPage() {
   const [particles, setParticles] = useState<Array<{ username: string; position: [number, number, number] }>>([])
@@ -96,6 +97,12 @@ export default function MoonPage() {
         dpr={[1, 2]}
         camera={{ fov: 75, position: [0, 0, 300] }}
       >
+        {/* Background stars with slower moving speed */}
+        <BackgroundStars
+          count={3000}
+          size={0.9}
+          rotationSpeed={{ x: 0.00005, y: 0.0001 }}
+        />
         {/* Lines connecting stars */}
         <ConstellationLines particles={particles} />
         {/* Subtle ambient lighting to enhance the glow */}
