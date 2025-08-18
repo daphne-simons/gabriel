@@ -3,6 +3,7 @@ import { Canvas } from '@react-three/fiber'
 import { useEffect, useMemo, useState } from 'react'
 import { AdditiveBlending } from 'three'
 import Particle from '../components/Particle'
+import ConstellationLines from '../components/ConstellationLines'
 
 export default function MoonPage() {
   const [particles, setParticles] = useState<Array<{ username: string; position: [number, number, number] }>>([])
@@ -95,8 +96,10 @@ export default function MoonPage() {
         dpr={[1, 2]}
         camera={{ fov: 75, position: [0, 0, 300] }}
       >
+        {/* Lines connecting stars */}
+        <ConstellationLines particles={particles} />
         {/* Subtle ambient lighting to enhance the glow */}
-        <ambientLight intensity={0.1} />
+        <ambientLight intensity={0.3} />
         {/* Stars/Particles */}
         <group>
           {particles?.map((particle, index) => (
@@ -107,7 +110,6 @@ export default function MoonPage() {
               <StarGeometry />
               <StarMaterial />
             </Particle>
-
           ))}
         </group>
       </Canvas>
