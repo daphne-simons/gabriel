@@ -20,7 +20,7 @@ export default function MoonWidget({ size, phase }: MoonWidgetProps) {
   return (
     <div>
       <Link
-        href="/"
+        href="/moon"
         className="sm:pt-2 md:pt-0 lg:pt-0 xl:pt-0 max-lg:gap-3 gap-6 flex flex-row items-center justify-center"
         aria-label={`Current moon phase: ${name}`}
       >
