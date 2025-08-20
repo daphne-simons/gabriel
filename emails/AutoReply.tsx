@@ -83,8 +83,16 @@ const AutoReplyEmail = (person: UserQuery) => {
             >
               Gabriel
             </Text> */}
-            {/* Logo as Imagecomponent here */}
-            <Img src={`${process.env.NEXT_PUBLIC_SITE_URL}/gabriel-logo.png`} alt="Gabriel Logo" />
+            {/* Logo as Image component*/}
+            <Img
+              src={`${process.env.NEXT_PUBLIC_SITE_URL}/gabriel-logo.png`} alt="Gabriel Logo"
+              style={{
+                marginTop: '50px',
+                height: '38px',
+                width: 'auto',
+                display: 'block',
+                margin: '50px auto 0 auto', // Centers the image
+              }} />
           </Heading>
 
           {/* BODY */}

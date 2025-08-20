@@ -31,20 +31,15 @@ export async function autoReplyProvider(person: UserQuery) {
   try {
     // Send the email using Resend API
     await resend.emails.send({
-      // TODO: This from address will need to change to a verified domain on resend, e.g. 'contact@gabriel.com' or whatever Ella wants to use for the domain.
-      // from: 'onboarding@resend.dev',
+      // This `from` address is the official Gabriel email - it has been verified on Resend.
       from: 'more@gabriel.exchange',
-      // TODO: this is the receiver address, replace with dynamic person.email OR multiple addresses, can send 50 max in the array)
-      // use this one for testing success of delivery: 'delivered@resend.dev'
-      // ellas test email: 'ellasutherland@me.com' 
-      // to: 'daphnejasminesimons@gmail.com',
+      // This `to` is the receiver address, currently using the dynamic email of the enquirer, but can also use multiple addresses, can send 50 max in the array)
       to: person.email,
       bcc: ['delivered@resend.dev'],
-      subject: `Auto-Reply to ${person.name}!`,
+      subject: `Gabriel Enquiry`,
       react: AutoReply(person),
 
-      // TODO: put Gabriel's email address here. For the user to 'reply_to'
-      // reply_to: 'daphne.jasmine.simons@gmail.com'
+      // This is the `reply_to` address, official Gabriel email. It is verified on Resend.
       reply_to: 'more@gabriel.exchange',
     })
   } catch (error) {
