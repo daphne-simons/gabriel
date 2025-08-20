@@ -73,7 +73,7 @@ const AutoReplyEmail = (person: UserQuery) => {
         >
           {/* TITLE */}
           <Heading>
-            <Text
+            {/* <Text
               style={{
                 marginTop: '50px',
                 fontFamily: 'times, serif',
@@ -82,7 +82,9 @@ const AutoReplyEmail = (person: UserQuery) => {
               }}
             >
               Gabriel
-            </Text>
+            </Text> */}
+            {/* Logo as Imagecomponent here */}
+            <Img src={`${process.env.NEXT_PUBLIC_SITE_URL}/gabriel-logo.png`} alt="Gabriel Logo" />
           </Heading>
 
           {/* BODY */}
