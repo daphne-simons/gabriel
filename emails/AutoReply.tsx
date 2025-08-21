@@ -161,8 +161,6 @@ const AutoReplyEmail = (person: UserQuery) => {
               <br />
               Alexandria, Sydney 2015, AU
               <br />
-              <br />
-              <br />
             </Text>
 
             <Text style={{
@@ -172,7 +170,6 @@ const AutoReplyEmail = (person: UserQuery) => {
               lineHeight: '14px',
               color: '#5F6368',
             }}>
-
               <Link href="mailto:more@gabriel.exchange" style={{
                 color: '#5F6368',
                 fontFamily: 'Roboto, Arial, sans-serif',
@@ -189,10 +186,7 @@ const AutoReplyEmail = (person: UserQuery) => {
                 gabriel.exchange
               </Link>
               <br />
-              <br />
-              <br />
             </Text>
-
             <Text style={{
               fontFamily: 'Roboto, Arial, sans-serif',
               fontWeight: 300,
