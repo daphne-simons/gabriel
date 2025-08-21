@@ -88,7 +88,7 @@ const AutoReplyEmail = (person: UserQuery) => {
               src={`${process.env.NEXT_PUBLIC_SITE_URL}/gabriel-logo.png`} alt="Gabriel Logo"
               style={{
                 marginTop: '50px',
-                height: '38px',
+                height: '50px',
                 width: 'auto',
                 display: 'block',
                 margin: '50px auto 0 auto', // Centers the image
@@ -128,15 +128,15 @@ const AutoReplyEmail = (person: UserQuery) => {
           {/* FOOTER */}
           <Section
             style={{
-              width: '70%',
-              paddingTop: '50px',
-              lineHeight: '18px',
+              width: '75%',
+              paddingTop: '50px'
             }}
           >
             <Text style={{
               fontFamily: 'Roboto, Arial, sans-serif',
               fontWeight: 500,
               fontSize: '14px',
+              lineHeight: '18px',
               color: '#5F6368',
             }}>
               Gabriel is a design studio led by Ella Sutherland.
@@ -152,6 +152,7 @@ const AutoReplyEmail = (person: UserQuery) => {
               fontFamily: 'Roboto, Arial, sans-serif',
               fontWeight: 300,
               fontSize: '14px',
+              lineHeight: '18px',
               color: '#5F6368',
             }}>
               140–142 McEvoy Street,
@@ -168,6 +169,7 @@ const AutoReplyEmail = (person: UserQuery) => {
               fontFamily: 'Roboto, Arial, sans-serif',
               fontWeight: 300,
               fontSize: '14px',
+              lineHeight: '18px',
               color: '#5F6368',
             }}>
 
