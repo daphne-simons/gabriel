@@ -130,6 +130,7 @@ const AutoReplyEmail = (person: UserQuery) => {
             style={{
               width: '70%',
               paddingTop: '50px',
+              lineHeight: '18px',
             }}
           >
             <Text style={{
@@ -142,6 +143,7 @@ const AutoReplyEmail = (person: UserQuery) => {
               <br />
               We work with a network of artist consultants to produce
               articulate outcomes for the cultural sector.
+              <br />
             </Text>
           </Section>
           <Section style={{
