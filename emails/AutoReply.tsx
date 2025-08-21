@@ -87,11 +87,11 @@ const AutoReplyEmail = (person: UserQuery) => {
             <Img
               src={`${process.env.NEXT_PUBLIC_SITE_URL}/gabriel-logo.png`} alt="Gabriel Logo"
               style={{
-                marginTop: '50px',
-                height: '50px',
+                marginTop: '80px',
+                height: '80px',
                 width: 'auto',
                 display: 'block',
-                margin: '50px auto 0 auto', // Centers the image
+                margin: '80px auto 0 auto', // Centers the image
               }} />
           </Heading>
 
@@ -126,6 +126,7 @@ const AutoReplyEmail = (person: UserQuery) => {
           <Hr />
 
           {/* FOOTER */}
+
           <Section
             style={{
               width: '75%',
@@ -135,8 +136,8 @@ const AutoReplyEmail = (person: UserQuery) => {
             <Text style={{
               fontFamily: 'Roboto, Arial, sans-serif',
               fontWeight: 500,
-              fontSize: '14px',
-              lineHeight: '18px',
+              fontSize: '12px',
+              lineHeight: '16px',
               color: '#5F6368',
             }}>
               Gabriel is a design studio led by Ella Sutherland.
@@ -151,8 +152,8 @@ const AutoReplyEmail = (person: UserQuery) => {
             <Text style={{
               fontFamily: 'Roboto, Arial, sans-serif',
               fontWeight: 300,
-              fontSize: '14px',
-              lineHeight: '18px',
+              fontSize: '12px',
+              lineHeight: '16px',
               color: '#5F6368',
             }}>
               140–142 McEvoy Street,
@@ -168,8 +169,8 @@ const AutoReplyEmail = (person: UserQuery) => {
             <Text style={{
               fontFamily: 'Roboto, Arial, sans-serif',
               fontWeight: 300,
-              fontSize: '14px',
-              lineHeight: '18px',
+              fontSize: '12px',
+              lineHeight: '16px',
               color: '#5F6368',
             }}>
 
@@ -195,7 +196,7 @@ const AutoReplyEmail = (person: UserQuery) => {
             <Text style={{
               fontFamily: 'Roboto, Arial, sans-serif',
               fontWeight: 300,
-              fontSize: '14px',
+              fontSize: '12px',
               color: '#5F6368',
             }}>
 
