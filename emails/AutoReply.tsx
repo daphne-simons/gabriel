@@ -137,29 +137,13 @@ const AutoReplyEmail = (person: UserQuery) => {
               fontFamily: 'Roboto, Arial, sans-serif',
               fontWeight: 500,
               fontSize: '12px',
-              lineHeight: '13px',
+              lineHeight: '14px',
               color: '#5F6368',
             }}>
               Gabriel is a design studio led by Ella Sutherland.
               <br />
               We work with a network of artist consultants to produce
               articulate outcomes for the cultural sector.
-            </Text>
-          </Section>
-          <Section style={{
-            width: '40%',
-          }}>
-            <Text style={{
-              fontFamily: 'Roboto, Arial, sans-serif',
-              fontWeight: 300,
-              fontSize: '12px',
-              lineHeight: '13px',
-              color: '#5F6368',
-            }}>
-              140–142 McEvoy Street,
-              <br />
-              Alexandria, Sydney 2015, AU
-              <br />
             </Text>
           </Section>
 
@@ -170,7 +154,22 @@ const AutoReplyEmail = (person: UserQuery) => {
               fontFamily: 'Roboto, Arial, sans-serif',
               fontWeight: 300,
               fontSize: '12px',
-              lineHeight: '13px',
+              lineHeight: '14px',
+              color: '#5F6368',
+            }}>
+              140–142 McEvoy Street,
+              <br />
+              Alexandria, Sydney 2015, AU
+              <br />
+              <br />
+              <br />
+            </Text>
+
+            <Text style={{
+              fontFamily: 'Roboto, Arial, sans-serif',
+              fontWeight: 300,
+              fontSize: '12px',
+              lineHeight: '14px',
               color: '#5F6368',
             }}>
 
@@ -189,17 +188,17 @@ const AutoReplyEmail = (person: UserQuery) => {
               }}>
                 gabriel.exchange
               </Link>
+              <br />
+              <br />
+              <br />
             </Text>
-          </Section>
 
-          <Section>
             <Text style={{
               fontFamily: 'Roboto, Arial, sans-serif',
               fontWeight: 300,
               fontSize: '12px',
               color: '#5F6368',
             }}>
-
               <Link href="https://www.instagram.com/gabriel_exchange/?utm_source=ig_web_button_share_sheet" style={{
                 color: '#5F6368',
                 fontFamily: 'Roboto, Arial, sans-serif',
