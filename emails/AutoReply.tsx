@@ -143,7 +143,6 @@ const AutoReplyEmail = (person: UserQuery) => {
               <br />
               We work with a network of artist consultants to produce
               articulate outcomes for the cultural sector.
-              <br />
             </Text>
           </Section>
           <Section style={{
@@ -159,6 +158,19 @@ const AutoReplyEmail = (person: UserQuery) => {
               <br />
               Alexandria, Sydney 2015, AU
               <br />
+            </Text>
+          </Section>
+
+          <Section style={{
+            width: '40%',
+          }}>
+            <Text style={{
+              fontFamily: 'Roboto, Arial, sans-serif',
+              fontWeight: 300,
+              fontSize: '14px',
+              color: '#5F6368',
+            }}>
+
               <Link href="mailto:more@gabriel.exchange" style={{
                 color: '#5F6368',
                 fontFamily: 'Roboto, Arial, sans-serif',
@@ -174,7 +186,17 @@ const AutoReplyEmail = (person: UserQuery) => {
               }}>
                 gabriel.exchange
               </Link>
-              <br />
+            </Text>
+          </Section>
+
+          <Section>
+            <Text style={{
+              fontFamily: 'Roboto, Arial, sans-serif',
+              fontWeight: 300,
+              fontSize: '14px',
+              color: '#5F6368',
+            }}>
+
               <Link href="https://www.instagram.com/gabriel_exchange/?utm_source=ig_web_button_share_sheet" style={{
                 color: '#5F6368',
                 fontFamily: 'Roboto, Arial, sans-serif',
@@ -184,9 +206,10 @@ const AutoReplyEmail = (person: UserQuery) => {
               </Link>
             </Text>
           </Section>
+
         </Container>
       </Body>
-    </Html>
+    </Html >
   )
 }
 
