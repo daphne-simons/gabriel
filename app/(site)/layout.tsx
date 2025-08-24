@@ -3,7 +3,7 @@ import '../globals.css'
 import ReactQueryProvider from '@/query/providers/ReactQueryProvider'
 import { getMoonPhaseForWidget } from './utils/moon-utils';
 import { Analytics } from "@vercel/analytics/next" // From Vercel; gives us the ability to observe user behaviour, to use, go to Analytics tab of project.
-import { SpeedInsights } from '@vercel/speed-insights/next'; // From Vercel; gives us the ability to observe user behaviour, to use, go to Analytics tab of project.
+import { SpeedInsights } from '@vercel/speed-insights/next'; // From Vercel; gives us the ability to observe the websites Performance metrics, to use, go to Speed Insights tab of project.
 
 const moonPhase = getMoonPhaseForWidget() // have to call this fn above the async function
 
