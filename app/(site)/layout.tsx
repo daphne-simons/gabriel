@@ -2,12 +2,9 @@ import type { Metadata } from 'next'
 import '../globals.css'
 import ReactQueryProvider from '@/query/providers/ReactQueryProvider'
 import { getMoonPhaseForWidget } from './utils/moon-utils';
-import ScrollManager from './components/ScrollManager';
+import { Analytics } from "@vercel/analytics/next" // From Vercel; gives us the ability to observe user behaviour, to use, go to Analytics tab of project.
 
-
-
-// have to call this fn above the async function
-const moonPhase = getMoonPhaseForWidget()
+const moonPhase = getMoonPhaseForWidget() // have to call this fn above the async function
 
 export async function generateMetadata(): Promise<Metadata> {
   // Create dynamic favicon path based on current moon phase
@@ -34,8 +31,8 @@ export default async function RootLayout({
       <body>
         <ReactQueryProvider>
           <main>
-            {/* <ScrollManager /> */}
             {children}
+            <Analytics />
           </main>
         </ReactQueryProvider>
       </body>
