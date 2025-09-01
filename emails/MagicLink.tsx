@@ -44,7 +44,7 @@ export default function MagicLink(contributor: any, magicLink: string) {
       </Head>
       <Body>
         <Container style={{ maxWidth: '500px', margin: '0 auto' }}>
-          <Heading style={{ fontSize: '24px', color: '#000', fontFamily: 'Roboto, Arial, sans-serif', fontWeight: 300 }}>Hello ${contributor.name},</Heading>
+          <Heading style={{ fontSize: '18px', color: '#000', fontFamily: 'Roboto, Arial, sans-serif', fontWeight: 300 }}>Hi {contributor.name.split(' ')[0]},</Heading>
           <Section>
             <Text style={{
               fontSize: '14px', color: '#666', fontFamily: 'Roboto, Arial, sans-serif', fontWeight: 300
