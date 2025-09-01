@@ -4,6 +4,8 @@ import { Resend } from 'resend'
 import EnquiryEmail from '@/emails/EnquiryEmail'
 import { UserQuery } from '@/app/(site)/models/users'
 import AutoReply from '@/emails/AutoReply'
+import MagicLink from '@/emails/MagicLink'
+import MagicConfirmation from '@/emails/MagicConfirmation'
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 export async function enquiryProvider(person: UserQuery) {
@@ -32,7 +34,7 @@ export async function autoReplyProvider(person: UserQuery) {
     // Send the email using Resend API
     await resend.emails.send({
       // This `from` address is the official Gabriel email - it has been verified on Resend.
-      from: 'more@gabriel.exchange',
+      from: 'Gabriel <more@gabriel.exchange>',
       // This `to` is the receiver address, currently using the dynamic email of the enquirer, but can also use multiple addresses, can send 50 max in the array)
       to: person.email,
       bcc: ['delivered@resend.dev'],
@@ -45,4 +47,39 @@ export async function autoReplyProvider(person: UserQuery) {
   } catch (error) {
     console.error('Error sending email:', error)
   }
+}
+
+export async function magicLinkProvider(contributor: any, magicLink: string) {
+  try {
+    await resend.emails.send({
+      from: 'Gabriel <more@gabriel.exchange>',
+      to: contributor.email,
+      subject: 'Your constellation portal is ready ✨',
+      react: MagicLink(contributor, magicLink),
+      reply_to: 'more@gabriel.exchange',
+    })
+  } catch (error) {
+    console.error('Error sending Magic Link email:', error)
+  }
+}
+
+export async function magicLinkConfirmationProvider(magicContributors: {
+  contributor: any
+  magicLink: string
+}[]) {
+
+  try {
+    await resend.emails.send({
+      from: 'Gabriel <more@gabriel.exchange>',
+      to: 'more@gabriel.exchange',
+      subject: 'Your Magic Link has been sent',
+      react: MagicConfirmation(magicContributors),
+    })
+  } catch (error) {
+    console.error('Error sending Magic Link email:', error)
+  }
+}
+
+export async function submissionProvider(submission) {
+  // TODO: create resend logic to send submission confirmation to Gabriel AND to the Submitter
 }

@@ -141,11 +141,21 @@ export async function POST(request: NextRequest) {
       status: 'pending'
     });
 
-    // // Clear the magic link token to prevent reuse (optional)
+    // OPTIONAL: Clear the magic link token to prevent reuse (optional)
     // await writeClient
     //   .patch(contributor._id)
     //   .unset(['magicLinkToken', 'magicLinkExpires'])
     //   .commit();
+
+    if (!submission) {
+      return NextResponse.json(
+        { error: 'Failed to create submission' },
+        { status: 500 }
+      );
+    }
+    // TODO: Send Email confirmation to contributor and Ella.
+    await sendSubmissionEmail(submission);
+
 
     return NextResponse.json({
       success: true,

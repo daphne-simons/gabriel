@@ -73,16 +73,6 @@ const AutoReplyEmail = (person: UserQuery) => {
         >
           {/* TITLE */}
           <Heading>
-            {/* <Text
-              style={{
-                marginTop: '50px',
-                fontFamily: 'times, serif',
-                fontSize: '38px',
-                color: '#E36E00',
-              }}
-            >
-              Gabriel
-            </Text> */}
             {/* Logo as Image component*/}
             <Img
               src={`${process.env.NEXT_PUBLIC_SITE_URL}/gabriel-logo.png`} alt="Gabriel Logo"
