@@ -1,13 +1,14 @@
 // API endpoint to submit contributor drops
-import { NextRequest, NextResponse } from 'next/server';
-import { ContributorByTokenParams, sanityFetch } from '@/sanity/config/client-config';
-import { contributorByTokenQuery } from '@/sanity/sanity-utils';
+import { sanityFetch } from '@/sanity/config/client-config';
 import writeClient from '@/sanity/config/write-client';
+import { ContributorModel } from '@/sanity/models/sanity-client-models';
+import { contributorByTokenQuery } from '@/sanity/sanity-utils';
 import { Ratelimit } from '@upstash/ratelimit';
 import { Redis } from '@upstash/redis';
-import { ContributorModel } from '@/sanity/models/sanity-client-models';
-import { v4 as uuidv4 } from 'uuid';
 import { Buffer } from 'buffer';
+import { NextRequest, NextResponse } from 'next/server';
+import { v4 as uuidv4 } from 'uuid';
+import { submissionConfirmationProvider } from '../../utils/resend-utils';
 
 // Create a rate limiter for submissions
 const ratelimit = new Ratelimit({
@@ -153,9 +154,8 @@ export async function POST(request: NextRequest) {
         { status: 500 }
       );
     }
-    // TODO: Send Email confirmation to contributor and Ella.
-    await sendSubmissionEmail(submission);
-
+    // TODO: Sends Email confirmation of submission to contributor and Ella.
+    await submissionConfirmationProvider(submission, contributor);
 
     return NextResponse.json({
       success: true,

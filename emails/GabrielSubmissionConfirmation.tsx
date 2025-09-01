@@ -6,13 +6,12 @@ import {
   Text,
   Heading,
   Head,
-  Font
+  Font,
+  Link
 } from '@react-email/components'
-export default function MagicConfirmation(magicContributors: { contributor: any; magicLink: string }[]) {
+export default function GabrielSubmissionConfirmation(submission: any, contributor: any) {
   return (
-
     <Html>
-      {/* Head contains declared Fonts */}
       <Head>
         <Font fontFamily="Roboto"
           fallbackFontFamily="Verdana"
@@ -47,28 +46,24 @@ export default function MagicConfirmation(magicContributors: { contributor: any;
           <Section>
             <Text style={{
               fontSize: '14px', color: '#666', fontFamily: 'Roboto, Arial, sans-serif', fontWeight: 300
-            }}>The following Contributors have recieved their Magic Links for the Gabriel Constellation.</Text>
-            {/* Map through array and format into a list for their Name: and Magic Link */}
-            {magicContributors.map((magicContributor, idx) => {
-              return (
-                <Text style={{
-                  fontSize: '14px', color: '#666', fontFamily: 'Roboto, Arial, sans-serif', fontWeight: 300
-                }} key={idx}>
-                  Name: {magicContributor.contributor} <br />
-                  Magic Link: <a href={magicContributor.magicLink}>{magicContributor.magicLink}</a>
-                </Text>
-              )
-            })}
-          </Section>
-          <Section>
+            }}>Hi Gabriel, {contributor.name} has submitted a contribution to the Gabriel Constellation Portal!</Text>
             <Text style={{
               fontSize: '14px', color: '#666', fontFamily: 'Roboto, Arial, sans-serif', fontWeight: 300
             }}>
-              Their links expire in 7 days.
+              Their submission included the following: {submission.name}.
+              <br></br>
+              Check it out live on the Gabriel Constellation now!
+              <Link href="https://gabriel.exchange" style={{
+                color: 'blue',
+                fontFamily: 'Roboto, Arial, sans-serif',
+                fontWeight: 300,
+              }}>
+                gabriel.exchange
+              </Link>
             </Text>
           </Section>
         </Container >
       </Body >
-    </Html >
+    </Html>
   )
 }

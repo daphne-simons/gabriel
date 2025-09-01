@@ -34,7 +34,7 @@ export async function GET(request: NextRequest) {
       return new Date(contributor.lastNudgedDate) < twoMonthsAgo;
     });
 
-    let magicContributors = [];
+    let magicContributors: { contributor: any; magicLink: string }[] = [];
 
     const results = await Promise.allSettled(
       contributorsToNudge.map(async (contributor: any) => {
@@ -58,7 +58,7 @@ export async function GET(request: NextRequest) {
         const magicLink = `${process.env.NEXT_PUBLIC_SITE_URL}/drop?token=${magicLinkToken}`;
         // Send magic link via Resend Provider
         await magicLinkProvider(contributor, magicLink);
-        magicContributors.push({ "Contributor": contributor.name, "Magic Link": magicLink });
+        magicContributors.push({ contributor: contributor.name, magicLink: magicLink });
 
         return { success: true, contributor: contributor.name };
       })
@@ -72,7 +72,7 @@ export async function GET(request: NextRequest) {
     }
     if (successful > 0) {
       console.log('Magic links sent successfully:', successful);
-      // TODO: send confirmation of Magic Link distribution email to Ella. 
+      // Sends confirmation of Magic Link distribution email to Ella. 
       await magicLinkConfirmationProvider(magicContributors);
     }
     return NextResponse.json({
