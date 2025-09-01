@@ -1,4 +1,4 @@
-// TODO: complete this submission confirmation email template
+// Sent to the Contributor 
 import {
   Body,
   Container,
@@ -8,9 +8,13 @@ import {
   Heading,
   Head,
   Font,
-  Link
+  Link,
+  Img
 } from '@react-email/components'
 export default function ContributorSubmissionConfirmation(submission: any, contributor: any) {
+
+  console.log(submission)
+
   return (
     <Html>
       <Head>
@@ -43,25 +47,35 @@ export default function ContributorSubmissionConfirmation(submission: any, contr
       </Head>
       <Body>
         <Container style={{ maxWidth: '500px', margin: '0 auto' }}>
-          <Heading style={{ fontSize: '24px', color: '#000', fontFamily: 'Roboto, Arial, sans-serif', fontWeight: 300 }}>Dear Gabriel,</Heading>
+          <Heading >
+            {/* Logo as Image component*/}
+            <Img
+              src={`${process.env.NEXT_PUBLIC_SITE_URL}/gabriel-logo.png`} alt="Gabriel Logo"
+              style={{
+                marginTop: '80px',
+                height: '80px',
+                width: 'auto',
+                display: 'block',
+                margin: '80px auto 0 auto', // Centers the image
+              }} />
+          </Heading>
           <Section>
             <Text style={{
               fontSize: '14px', color: '#666', fontFamily: 'Roboto, Arial, sans-serif', fontWeight: 300
-            }}>Hi {contributor.name}, thank you for your submission to the Gabriel Constellation Portal!</Text>
+            }}>Hi {contributor.name.split(' ')[0]}, thank you for your submission to the Gabriel Constellation Portal!</Text>
             <Text style={{
               fontSize: '14px', color: '#666', fontFamily: 'Roboto, Arial, sans-serif', fontWeight: 300
             }}>
-              Your submission included the following: {submission.name}.
-              <br></br>
               Check it out live on the Gabriel Constellation now!
-              <Link href="https://gabriel.exchange" style={{
-                color: 'blue',
-                fontFamily: 'Roboto, Arial, sans-serif',
-                fontWeight: 300,
-              }}>
-                gabriel.exchange
-              </Link>
             </Text>
+            <br></br>
+            <Link href="https://gabriel.exchange/moon" style={{
+              color: 'blue',
+              fontFamily: 'Roboto, Arial, sans-serif',
+              fontWeight: 300,
+            }}>
+              gabriel.exchange/moon
+            </Link>
           </Section>
         </Container >
       </Body >
