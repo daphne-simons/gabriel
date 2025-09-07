@@ -5,11 +5,24 @@ import { AdditiveBlending } from 'three'
 import ConstellationLines from './ConstellationLines'
 import Particle from './Particle'
 import BackgroundStars from './BackgroundStars'
+import { ContributorModel, SubmissionModel } from '@/sanity/models/sanity-client-models'
 
-export default function MoonPage({ contributors }: { contributors: any }) {
+export default function MoonPage({ contributors, submissions }: { contributors: ContributorModel[], submissions: SubmissionModel[] }) {
+
+  console.log('Contributors:', contributors);
+  console.log('Submissions:', submissions[0].assets[0].url);
+
+  // find latest matching submission for contributor: 
+  const latestSubmission = submissions.find((submission) => submission.contributor.name === contributors[1].name);
+  console.log('Latest Submission:', latestSubmission?.assets[0].url);
+
   const [sessionSeed] = useState(() => Math.random()) // Generate once per component mount
 
-  const [particles, setParticles] = useState<Array<{ name: string; position: [number, number, number] }>>([])
+  const [particles, setParticles] = useState<Array<{
+    name: string;
+    position: [number, number, number];
+    imageUrl?: string
+  }>>([])
 
   // POSITION LOGIC
   // Simple seeded random number generator (Linear Congruential Generator)
@@ -31,8 +44,9 @@ export default function MoonPage({ contributors }: { contributors: any }) {
     return Math.abs(hash)
   }
   // Generate constellation positions based on user data with session variation
-  const generateConstellationPositions = (consultants: { name: string }[]): Array<{ name: string; position: [number, number, number] }> => {
-    const positions: Array<{ name: string; position: [number, number, number] }> = []
+  const generateConstellationPositions = (consultants: { name: string; imageUrl?: string }[]): Array<{ name: string; position: [number, number, number], imageUrl?: string }> => {
+    const positions:
+      Array<{ name: string; position: [number, number, number], imageUrl?: string }> = []
     const minDistance = 75 // Minimum distance between stars
     const maxAttempts = 50 // Maximum attempts to place each star
 
@@ -93,7 +107,8 @@ export default function MoonPage({ contributors }: { contributors: any }) {
 
       positions.push({
         name: consultant.name,
-        position: newPosition
+        position: newPosition,
+        imageUrl: consultant.imageUrl
       })
     })
 
@@ -101,11 +116,18 @@ export default function MoonPage({ contributors }: { contributors: any }) {
   }
 
 
+  const getLatestSubmissionUrl = (contributorName: string): string | undefined => {
+    const latestSubmission = submissions.find((submission) =>
+      submission.contributor.name === contributorName
+    );
+    return latestSubmission?.assets[0]?.url;
+  }
+
   const loadConsultants = () => {
-    // TODO: replace this with data from sanity studio.
     const consultants = contributors.map((contributor: any) => {
       return {
-        name: contributor.name
+        name: contributor.name,
+        imageUrl: getLatestSubmissionUrl(contributor.name)
       }
     })
     return consultants
@@ -115,7 +137,7 @@ export default function MoonPage({ contributors }: { contributors: any }) {
     const consultants = loadConsultants()
     const positionedParticles = generateConstellationPositions(consultants)
     setParticles(positionedParticles)
-  }, [sessionSeed])
+  }, [sessionSeed, contributors, submissions])
 
   function StarMaterial() {
     return useMemo(() => (
@@ -155,6 +177,8 @@ export default function MoonPage({ contributors }: { contributors: any }) {
             <Particle
               key={particle.name}
               position={particle.position}
+              imageUrl={particle.imageUrl}
+              name={particle.name}
             >
               <StarGeometry />
               <StarMaterial />

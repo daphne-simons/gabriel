@@ -1,7 +1,7 @@
 import { sanityFetch } from '@/sanity/config/client-config'
-import { activeContributorsQuery } from '@/sanity/sanity-utils'
+import { activeContributorsQuery, submissionsQuery } from '@/sanity/sanity-utils'
 import { Suspense } from 'react'
-import MoonPage from '../components/constellation/MoonPage'
+import MoonPage from '../components/Constellation/MoonPage'
 
 export default async function Moon() {
   // Timer for transition page
@@ -13,10 +13,16 @@ export default async function Moon() {
     tags: ['contributor'],
   })
 
+  const submissions = await sanityFetch({
+    query: submissionsQuery,
+    // You can add multiple tags that matches with your document _id: ['project', 'post', etc]
+    tags: ['submission'],
+  })
+
   return (
     <>
       <Suspense >
-        <MoonPage contributors={contributors} />
+        <MoonPage contributors={contributors} submissions={submissions} />
       </Suspense >
     </>
   )
