@@ -5,7 +5,7 @@ import { useEffect, useState, useRef } from 'react'
 import Details from './Details'
 import { useSearchParams } from 'next/navigation'
 import SearchResultBar from './SearchResultBar'
-import SearchResultLogo from '../Logos/SearchResultLogo'
+import GeneralLogo from '../Logos/GeneralLogo'
 import { Category, Project, Tier } from '@/sanity/models/sanity-client-models'
 import SearchOptionsList from './SearchOptionsList'
 import { calculateBgColor, getMoonPhaseForWidget } from '../../utils/moon-utils'
@@ -136,7 +136,7 @@ export default function SearchResultsPage({
             <div className="flex flex-row w-full h-[36px] md:hidden lg:hidden xl:hidden 2xl:hidden justify-between">
               <div className="items-center order-1 sm:text-xl">
                 <Link href="/">
-                  <SearchResultLogo logoColor={theme.logoColor} />
+                  <GeneralLogo logoColor={theme.logoColor} />
                 </Link>
               </div>
               <div className="order-2 text-[#F8F9FA] text-sm md:hidden lg:hidden xl:hidden 2xl:hidden">
@@ -146,7 +146,7 @@ export default function SearchResultsPage({
             {/* MEDIUM TO LARGE devices - Logo and Moon Widget*/}
             <div className="max-md:hidden">
               <Link href="/">
-                <SearchResultLogo logoColor={theme.logoColor} />
+                <GeneralLogo logoColor={theme.logoColor} />
               </Link>
             </div>
             <SearchResultBar

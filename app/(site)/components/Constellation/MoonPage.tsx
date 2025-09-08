@@ -6,21 +6,20 @@ import ConstellationLines from './ConstellationLines'
 import Particle from './Particle'
 import BackgroundStars from './BackgroundStars'
 import { ContributorModel, SubmissionModel } from '@/sanity/models/sanity-client-models'
-import { calculateMoonPhase, determineConstellationPhase } from '../../utils/moon-utils'
+import { calculateBgColor, calculateMoonPhase, determineConstellationPhase } from '../../utils/moon-utils'
+import GeneralLogo from '../Logos/AboutEnquireLogo'
+import Link from 'next/link'
 
 export default function MoonPage({ contributors, submissions }: { contributors: ContributorModel[], submissions: SubmissionModel[] }) {
 
   // Get moon phase data: 
-  const phase = calculateMoonPhase() // Uses current date by default
+  const theme = calculateBgColor()
 
-  const { name, lightingRange } = phase
-  console.log('phase-moonpage', name, lightingRange);
-
-  // TODO: constellation properties from moon phase
+  const moonPhase = calculateMoonPhase() // Uses current date by default
+  const { name, lightingRange } = moonPhase
   const constellationPhase = determineConstellationPhase(name, lightingRange)
 
-  console.log('constellationPase', constellationPhase);
-
+  // dynamic variables for constellation styling
   const { starDensity, driftSpeed, lineThickness, thumbnailJitter, hueShift, radialGlow } = constellationPhase
 
   // Generate once per component mount
@@ -163,11 +162,15 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
   }
 
   return (
-    <div style={{ width: "100vw", height: "100vh", background: "#000814" }}>
+    <div className="w-full h-screen bg-[#000814] flex" >
+      <Link href="/" className="pl-4 pt-4 z-20 absolute">
+        <GeneralLogo logoColor={theme.logoColor} />
+      </Link>
       <Canvas
         dpr={[1, 2]}
         camera={{ fov: 75, position: [0, 0, 300] }}
       >
+
         {/* Background stars with slower moving speed */}
         <BackgroundStars
           count={starDensity}
@@ -193,6 +196,6 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
           ))}
         </group>
       </Canvas>
-    </div>
+    </div >
   )
 }

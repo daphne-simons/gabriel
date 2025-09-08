@@ -1,8 +1,4 @@
-interface Props {
-  logoColor: string
-}
-
-export default function SearchResultLogo({ logoColor }: Props) {
+export default function GeneralLogo({ logoColor }: { logoColor: string }) {
   return (
     <h1 className={`font-gramercy`}>
       <span
