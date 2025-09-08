@@ -30,8 +30,8 @@ export async function GET(request: NextRequest) {
     twoMonthsAgo.setMonth(twoMonthsAgo.getMonth() - 2);
 
     const contributorsToNudge = contributors.filter((contributor: any) => {
-      if (!contributor.lastNudgedDate) return true;
-      return new Date(contributor.lastNudgedDate) < twoMonthsAgo;
+      if (!contributor.lastNudgedAt) return true;
+      return new Date(contributor.lastNudgedAt) < twoMonthsAgo;
     });
 
     let magicContributors: { contributor: any; magicLink: string }[] = [];
@@ -49,7 +49,7 @@ export async function GET(request: NextRequest) {
           .set({
             magicLinkToken,
             magicLinkExpires: expiresAt.toISOString(),
-            lastNudgedDate: new Date().toISOString()
+            lastNudgedAt: new Date().toISOString()
           })
           .commit();
 
