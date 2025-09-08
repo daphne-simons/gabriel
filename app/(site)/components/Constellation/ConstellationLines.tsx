@@ -6,8 +6,8 @@ import { Vector3 } from 'three'
 
 export default function ConstellationLines({ particles, lineThickness }: { particles: Array<{ name: string; position: [number, number, number] }>, lineThickness: number }) {
   const groupRef = useRef<THREE.Group>(null)
-  const linesRef = useRef<THREE.Mesh[]>([]) // Changed from Line[] to Mesh[]
-  const LINE_THICKNESS = lineThickness // Adjust this value to change thickness
+  const linesRef = useRef<THREE.Mesh[]>([])
+  const LINE_THICKNESS = lineThickness
 
   const connections = useMemo(() => {
     if (particles.length < 2) return []
@@ -38,11 +38,9 @@ export default function ConstellationLines({ particles, lineThickness }: { parti
     return lines
   }, [particles])
 
-  // Create Three.js tube mesh objects for thick lines
   useEffect(() => {
     if (!groupRef.current) return
 
-    // Clear existing lines
     groupRef.current.clear()
     linesRef.current = []
 
@@ -50,25 +48,29 @@ export default function ConstellationLines({ particles, lineThickness }: { parti
       const startPos = new Vector3(...particles[connection.startIndex].position)
       const endPos = new Vector3(...particles[connection.endIndex].position)
 
-      // Create a curve from start to end point
       const curve = new THREE.LineCurve3(startPos, endPos)
 
-      // Create tube geometry along the curve
       const tubeGeometry = new THREE.TubeGeometry(
         curve,
-        1,              // path segments
-        LINE_THICKNESS, // tube radius (thickness)
-        6,              // radial segments
-        false           // closed
+        1,
+        LINE_THICKNESS,
+        6,
+        false
       )
 
       const material = new THREE.MeshBasicMaterial({
         color: 0x60a5fa,
         transparent: true,
-        opacity: connection.baseOpacity * 0.7
+        opacity: connection.baseOpacity * 0.7,
+        depthWrite: false, // Allow particles to render on top
+        depthTest: true,
       })
 
       const tubeMesh = new THREE.Mesh(tubeGeometry, material)
+
+      // Set render order - lower numbers render first (behind). E.g. constellation lines will render first
+      tubeMesh.renderOrder = 0
+
       groupRef.current!.add(tubeMesh)
       linesRef.current.push(tubeMesh)
     })
@@ -79,9 +81,8 @@ export default function ConstellationLines({ particles, lineThickness }: { parti
       }
       linesRef.current = []
     }
-  }, [connections, particles])
+  }, [connections, particles, LINE_THICKNESS])
 
-  // Update line positions every frame to follow the moving particles
   useFrame((state) => {
     if (!groupRef.current || linesRef.current.length === 0) return
 
@@ -94,7 +95,6 @@ export default function ConstellationLines({ particles, lineThickness }: { parti
       const startParticle = particles[connection.startIndex]
       const endParticle = particles[connection.endIndex]
 
-      // Calculate the same parallax movement as the Particle component
       const calculateDynamicPosition = (basePosition: [number, number, number]) => {
         const parallaxZ = Math.sin(time * 0.8 + basePosition[0] * 0.05) * 3
         const parallaxX = Math.sin(time * 0.6 + basePosition[1] * 0.03) * 4
@@ -103,14 +103,13 @@ export default function ConstellationLines({ particles, lineThickness }: { parti
         return [
           basePosition[0] + parallaxX,
           basePosition[1] + parallaxY,
-          basePosition[2] + parallaxZ
+          basePosition[2] + parallaxZ - 1 // Move lines slightly back
         ]
       }
 
       const dynamicStartPos = calculateDynamicPosition(startParticle.position)
       const dynamicEndPos = calculateDynamicPosition(endParticle.position)
 
-      // Recreate the tube geometry with new positions
       const startPos = new Vector3(...dynamicStartPos)
       const endPos = new Vector3(...dynamicEndPos)
       const curve = new THREE.LineCurve3(startPos, endPos)
@@ -123,11 +122,9 @@ export default function ConstellationLines({ particles, lineThickness }: { parti
         false
       )
 
-      // Update the mesh geometry
-      mesh.geometry.dispose() // Clean up old geometry
+      mesh.geometry.dispose()
       mesh.geometry = newGeometry
 
-      // Optional: Update opacity based on current distance
       const currentDistance = new Vector3(...dynamicStartPos).distanceTo(new Vector3(...dynamicEndPos))
       const maxDistance = 150
       const dynamicOpacity = Math.max(0.1, 1 - (currentDistance / maxDistance)) * connection.baseOpacity * 0.7
