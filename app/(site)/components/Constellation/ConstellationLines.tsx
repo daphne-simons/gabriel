@@ -4,16 +4,17 @@ import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { Vector3 } from 'three'
 
-export default function ConstellationLines({ particles }: { particles: Array<{ name: string; position: [number, number, number] }> }) {
+export default function ConstellationLines({ particles, lineThickness }: { particles: Array<{ name: string; position: [number, number, number] }>, lineThickness: number }) {
   const groupRef = useRef<THREE.Group>(null)
-  const linesRef = useRef<THREE.Line[]>([])
+  const linesRef = useRef<THREE.Mesh[]>([]) // Changed from Line[] to Mesh[]
+  const LINE_THICKNESS = lineThickness // Adjust this value to change thickness
 
   const connections = useMemo(() => {
     if (particles.length < 2) return []
 
     const lines = []
-    const maxConnections = 2 // Maximum connections per particle
-    const maxDistance = 160 // Maximum distance to connect particles
+    const maxConnections = 2
+    const maxDistance = 160
 
     for (let i = 0; i < particles.length; i++) {
       const currentParticle = particles[i]
@@ -28,7 +29,7 @@ export default function ConstellationLines({ particles }: { particles: Array<{ n
           lines.push({
             startIndex: i,
             endIndex: j,
-            baseOpacity: Math.max(1, 1 - (distance / maxDistance))
+            baseOpacity: Math.max(0.1, 1 - (distance / maxDistance))
           })
           connectionCount++
         }
@@ -37,7 +38,7 @@ export default function ConstellationLines({ particles }: { particles: Array<{ n
     return lines
   }, [particles])
 
-  // Create Three.js line objects
+  // Create Three.js tube mesh objects for thick lines
   useEffect(() => {
     if (!groupRef.current) return
 
@@ -46,20 +47,30 @@ export default function ConstellationLines({ particles }: { particles: Array<{ n
     linesRef.current = []
 
     connections.forEach((connection) => {
-      const points = []
-      points.push(new Vector3(...particles[connection.startIndex].position))
-      points.push(new Vector3(...particles[connection.endIndex].position))
+      const startPos = new Vector3(...particles[connection.startIndex].position)
+      const endPos = new Vector3(...particles[connection.endIndex].position)
 
-      const geometry = new THREE.BufferGeometry().setFromPoints(points)
-      const material = new THREE.LineBasicMaterial({
+      // Create a curve from start to end point
+      const curve = new THREE.LineCurve3(startPos, endPos)
+
+      // Create tube geometry along the curve
+      const tubeGeometry = new THREE.TubeGeometry(
+        curve,
+        1,              // path segments
+        LINE_THICKNESS, // tube radius (thickness)
+        6,              // radial segments
+        false           // closed
+      )
+
+      const material = new THREE.MeshBasicMaterial({
         color: 0x60a5fa,
         transparent: true,
         opacity: connection.baseOpacity * 0.7
       })
 
-      const line = new THREE.Line(geometry, material)
-      groupRef.current!.add(line)
-      linesRef.current.push(line)
+      const tubeMesh = new THREE.Mesh(tubeGeometry, material)
+      groupRef.current!.add(tubeMesh)
+      linesRef.current.push(tubeMesh)
     })
 
     return () => {
@@ -77,8 +88,8 @@ export default function ConstellationLines({ particles }: { particles: Array<{ n
     const time = state.clock.getElapsedTime()
 
     connections.forEach((connection, index) => {
-      const line = linesRef.current[index]
-      if (!line) return
+      const mesh = linesRef.current[index]
+      if (!mesh) return
 
       const startParticle = particles[connection.startIndex]
       const endParticle = particles[connection.endIndex]
@@ -99,19 +110,30 @@ export default function ConstellationLines({ particles }: { particles: Array<{ n
       const dynamicStartPos = calculateDynamicPosition(startParticle.position)
       const dynamicEndPos = calculateDynamicPosition(endParticle.position)
 
-      // Update line geometry with new positions
-      const positions = line.geometry.attributes.position
-      positions.setXYZ(0, dynamicStartPos[0], dynamicStartPos[1], dynamicStartPos[2])
-      positions.setXYZ(1, dynamicEndPos[0], dynamicEndPos[1], dynamicEndPos[2])
-      positions.needsUpdate = true
+      // Recreate the tube geometry with new positions
+      const startPos = new Vector3(...dynamicStartPos)
+      const endPos = new Vector3(...dynamicEndPos)
+      const curve = new THREE.LineCurve3(startPos, endPos)
 
-      // Optional: Update opacity based on current distance for more dynamic effect
+      const newGeometry = new THREE.TubeGeometry(
+        curve,
+        1,
+        LINE_THICKNESS,
+        6,
+        false
+      )
+
+      // Update the mesh geometry
+      mesh.geometry.dispose() // Clean up old geometry
+      mesh.geometry = newGeometry
+
+      // Optional: Update opacity based on current distance
       const currentDistance = new Vector3(...dynamicStartPos).distanceTo(new Vector3(...dynamicEndPos))
       const maxDistance = 150
-      const dynamicOpacity = Math.max(0.3, 1 - (currentDistance / maxDistance)) * connection.baseOpacity * 0.7
+      const dynamicOpacity = Math.max(0.1, 1 - (currentDistance / maxDistance)) * connection.baseOpacity * 0.7
 
-      if (line.material instanceof THREE.LineBasicMaterial) {
-        line.material.opacity = dynamicOpacity
+      if (mesh.material instanceof THREE.MeshBasicMaterial) {
+        mesh.material.opacity = dynamicOpacity
       }
     })
   })

@@ -15,23 +15,41 @@ export default function Particle({ position, children, imageUrl, name }: Particl
   const [imageError, setImageError] = useState(false)
   const [texture, setTexture] = useState<THREE.Texture | null>(null)
   const meshRef = useRef<THREE.Mesh>(null)
+  const textureRef = useRef<THREE.Texture | null>(null) // Keep reference to current texture
 
-  // Load texture manually to avoid hook rule violations with useTexture
+  // Load texture manually to avoid hook rule violations (conditional) with useTexture
   useEffect(() => {
     if (!imageUrl || imageUrl.trim() === '') {
       setTexture(null)
+      setImageError(false)
       return
     }
 
     const loader = new THREE.TextureLoader()
+    let mounted = true // Track if component is still mounted
 
     loader.load(
       imageUrl,
       // Success callback
       (loadedTexture) => {
+        if (!mounted) {
+          // Component unmounted before texture loaded, dispose immediately
+          loadedTexture.dispose()
+          return
+        }
+
         loadedTexture.wrapS = loadedTexture.wrapT = THREE.ClampToEdgeWrapping
         loadedTexture.minFilter = THREE.LinearFilter
         loadedTexture.magFilter = THREE.LinearFilter
+        loadedTexture.generateMipmaps = false // Prevent mipmap generation issues
+        loadedTexture.flipY = false // Prevent texture flipping issues
+
+        // Dispose old texture before setting new one
+        if (textureRef.current && textureRef.current !== loadedTexture) {
+          textureRef.current.dispose()
+        }
+
+        textureRef.current = loadedTexture
         setTexture(loadedTexture)
         setImageError(false)
       },
@@ -39,6 +57,8 @@ export default function Particle({ position, children, imageUrl, name }: Particl
       undefined,
       // Error callback
       (error) => {
+        if (!mounted) return
+
         console.warn(`Failed to load texture for ${name}:`, error)
         setImageError(true)
         setTexture(null)
@@ -47,8 +67,11 @@ export default function Particle({ position, children, imageUrl, name }: Particl
 
     // Cleanup function
     return () => {
-      if (texture) {
-        texture.dispose()
+      mounted = false
+      // Only dispose if we have a reference and it's not being used elsewhere
+      if (textureRef.current) {
+        textureRef.current.dispose()
+        textureRef.current = null
       }
     }
   }, [imageUrl, name])
@@ -63,6 +86,7 @@ export default function Particle({ position, children, imageUrl, name }: Particl
         transparent: true,
         opacity: 0.9,
         side: THREE.DoubleSide,
+        alphaTest: 0.1, // Add alpha test to prevent transparency issues
       })
     }
     return null
@@ -123,6 +147,18 @@ export default function Particle({ position, children, imageUrl, name }: Particl
   const shouldUseImage = imageUrl && !imageError && texture && imageMaterial
   const geometry = shouldUseImage ? imageGeometry : fallbackGeometry
   const material = shouldUseImage ? imageMaterial : fallbackMaterial
+
+  // Clean up materials on unmount
+  useEffect(() => {
+    return () => {
+      // Clean up materials
+      if (imageMaterial && imageMaterial !== fallbackMaterial) {
+        imageMaterial.dispose()
+      }
+      // Note: fallbackMaterial and geometries are memoized and shared,
+      // so we don't dispose them here to avoid affecting other instances
+    }
+  }, [imageMaterial])
 
   return (
     <mesh

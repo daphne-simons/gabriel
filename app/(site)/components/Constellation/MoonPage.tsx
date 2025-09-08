@@ -6,8 +6,23 @@ import ConstellationLines from './ConstellationLines'
 import Particle from './Particle'
 import BackgroundStars from './BackgroundStars'
 import { ContributorModel, SubmissionModel } from '@/sanity/models/sanity-client-models'
+import { calculateMoonPhase, determineConstellationPhase } from '../../utils/moon-utils'
 
 export default function MoonPage({ contributors, submissions }: { contributors: ContributorModel[], submissions: SubmissionModel[] }) {
+
+  // Get moon phase data: 
+  const phase = calculateMoonPhase() // Uses current date by default
+
+  const { name, lightingRange } = phase
+  console.log('phase-moonpage', name, lightingRange);
+
+  // TODO: constellation properties from moon phase
+  const constellationPhase = determineConstellationPhase(name, lightingRange)
+
+  console.log('constellationPase', constellationPhase);
+
+  const { starDensity, driftSpeed, lineThickness, thumbnailJitter, hueShift, radialGlow } = constellationPhase
+
   // Generate once per component mount
   const [sessionSeed] = useState(() => Math.random())
 
@@ -129,7 +144,7 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
     const consultants = loadConsultants()
     const positionedParticles = generateConstellationPositions(consultants)
     setParticles(positionedParticles)
-  }, [sessionSeed, contributors, submissions])
+  }, [sessionSeed])
 
   function StarMaterial() {
     return useMemo(() => (
@@ -155,14 +170,14 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
       >
         {/* Background stars with slower moving speed */}
         <BackgroundStars
-          count={3000}
-          size={0.9}
-          rotationSpeed={{ x: 0.00005, y: 0.0001 }}
+          count={starDensity}
+          size={1}
+          rotationSpeed={driftSpeed}
         />
         {/* Subtle ambient lighting to enhance the glow */}
         <ambientLight intensity={0.3} />
         {/* Lines connecting stars */}
-        <ConstellationLines particles={particles} />
+        <ConstellationLines particles={particles} lineThickness={lineThickness} />
         {/* Stars/Particles */}
         <group>
           {particles?.map((particle, index) => (

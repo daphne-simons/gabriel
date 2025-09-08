@@ -18,6 +18,17 @@ export interface MoonPhase {
   bgTheme: BgTheme;
 }
 
+interface ConstellationPhaseData {
+  name: string;
+  lightingRange: [number, number];
+  starDensity: number;
+  driftSpeed: { x: number; y: number };
+  lineThickness: number;
+  thumbnailJitter: number;
+  hueShift: number;
+  radialGlow: number;
+}
+
 // Debug info interface
 interface DebugInfo {
   inputDate: string;
@@ -137,8 +148,10 @@ export function calculateMoonPhase(date?: Date): MoonPhase {
   return mapPhaseNameToLocal(calculatedPhase.phase_name);
 }
 
+
 // Get background theme for any date
 export function calculateBgColor(date?: Date): BgTheme {
+  // console.log('current moon data', calculateMoonPhase(new Date()));
   const moonPhase = calculateMoonPhase(date);
   return moonPhase.bgTheme;
 }
@@ -155,74 +168,106 @@ export function getMoonPhaseForWidget() {
   const moonNameAndImg = { name: moonPhase.name, img: moonPhase.img };
   return moonNameAndImg;
 }
-// Debug function to test the fix
-// export function debugCurrentIssue(): void {
-//   console.log('🌙 DEBUGGING CURRENT MOON PHASE ISSUE');
-//   console.log('=====================================');
 
-//   const testDate = new Date('2025-06-24');
-//   console.log('Testing date:', testDate.toDateString());
-
-// Test with old logic (simulated)
-// const oldResult = calculateMoonPhaseForDateFixed(testDate);
-// console.log('\n🔍 Detailed calculation:');
-// console.log(oldResult.debug_info);
-
-// // Test with fixed logic
-// const newPhase = calculateMoonPhase(testDate);
-// console.log('\n✅ Final result:');
-// console.log(`Phase: ${newPhase.name}`);
-// console.log(`Lighting: ${getLightingLevel(testDate)}%`);
-
-// // Test consistency across multiple calls
-// console.log('\n🔄 Consistency test (5 calls):');
-// for (let i = 0; i < 5; i++) {
-//   const phase = calculateMoonPhase(testDate);
-//   console.log(`Call ${i + 1}: ${phase.name}`);
-// }
-
-// Test today's date
-// console.log('\n📅 Today\'s phase:');
-// const todayPhase = calculateMoonPhase();
-// console.log(`Today: ${todayPhase.name} (${getLightingLevel()}% lit)`);
-// }
-
-// Test function to verify the fix across a lunar cycle
-
-// export function testLunarCycle(): void {
-//   console.log('🌙 TESTING COMPLETE LUNAR CYCLE');
-//   console.log('===============================');
-
-//   const startDate = new Date('2024-03-10'); // Known new moon
-//   const phases: Array<{ date: string, phase: string, lighting: number, phaseFraction: number }> = [];
-
-//   for (let i = 0; i < 30; i++) {
-//     const testDate = new Date(startDate);
-//     testDate.setDate(testDate.getDate() + i);
-
-//     const result = calculateMoonPhaseForDateFixed(testDate);
-//     const phase = mapPhaseNameToLocal(result.phase_name);
-
-//     phases.push({
-//       date: testDate.toDateString(),
-//       phase: phase.name,
-//       lighting: Math.round(result.lighting_level * 100),
-//       phaseFraction: result.debug_info.phaseFraction
-//     });
-//   }
-
-//   // Print results
-//   phases.forEach((p, i) => {
-//     const arrow = i === 0 ? '👉' : '  ';
-//     console.log(`${arrow} Day ${i + 1}: ${p.date} - ${p.phase} (${p.lighting}% lit, fraction: ${p.phaseFraction.toFixed(3)})`);
-//   });
-
-//   // Verify we see all phases
-//   const uniquePhases = [...new Set(phases.map(p => p.phase))];
-//   console.log('\n📊 Phases found:', uniquePhases);
-//   console.log('✅ Expected 8 phases, found:', uniquePhases.length);
-// }
-
-// // Test the fix immediately
-// debugCurrentIssue();
-// testLunarCycle();
+// Calculate constellationPhaseData: 
+export function determineConstellationPhase(name: string, lightingRange: [number, number]): ConstellationPhaseData {
+  if (name === 'New Moon') {
+    return {
+      name: name,
+      lightingRange: lightingRange,
+      starDensity: 1000,
+      driftSpeed: { x: 0.00005, y: 0.0001 },
+      lineThickness: 0.2,
+      thumbnailJitter: 0,
+      hueShift: 0,
+      radialGlow: 0,
+    }
+  } else if (name === 'Waxing Crescent') {
+    return {
+      name: name,
+      lightingRange: lightingRange,
+      starDensity: 2000,
+      driftSpeed: { x: 0.0001, y: 0.0002 },
+      lineThickness: 0.25,
+      thumbnailJitter: 0,
+      hueShift: 0,
+      radialGlow: 0,
+    }
+  } else if (name === 'First Quarter') {
+    return {
+      name: name,
+      lightingRange: lightingRange,
+      starDensity: 3000,
+      driftSpeed: { x: 0.00012, y: 0.00025 },
+      lineThickness: 0.3,
+      thumbnailJitter: 0,
+      hueShift: 0,
+      radialGlow: 0,
+    }
+  } else if (name === 'Waxing Gibbous') {
+    return {
+      name: name,
+      lightingRange: lightingRange,
+      starDensity: 4000,
+      driftSpeed: { x: 0.00016, y: 0.00035 },
+      lineThickness: 0.35,
+      thumbnailJitter: 0,
+      hueShift: 0,
+      radialGlow: 0,
+    }
+  } else if (name === 'Full Moon') {
+    return {
+      name: name,
+      lightingRange: lightingRange,
+      starDensity: 5000,
+      driftSpeed: { x: 0.0002, y: 0.0004 },
+      lineThickness: 0.4,
+      thumbnailJitter: 0,
+      hueShift: 0,
+      radialGlow: 0,
+    }
+  } else if (name === 'Waning Gibbous') {
+    return {
+      name: name,
+      lightingRange: lightingRange,
+      starDensity: 4000,
+      driftSpeed: { x: 0.00016, y: 0.00035 },
+      lineThickness: 0.35,
+      thumbnailJitter: 0,
+      hueShift: 0,
+      radialGlow: 0,
+    }
+  } else if (name === 'Last Quarter') {
+    return {
+      name: name,
+      lightingRange: lightingRange,
+      starDensity: 3000,
+      driftSpeed: { x: 0.00012, y: 0.00025 },
+      lineThickness: 0.3,
+      thumbnailJitter: 0,
+      hueShift: 0,
+      radialGlow: 0,
+    }
+  } else if (name === 'Waning Crescent') {
+    return {
+      name: name,
+      lightingRange: lightingRange,
+      starDensity: 2000,
+      driftSpeed: { x: 0.0001, y: 0.0002 },
+      lineThickness: 0.25,
+      thumbnailJitter: 0,
+      hueShift: 0,
+      radialGlow: 0,
+    }
+  }
+  return {
+    name: name,
+    lightingRange: lightingRange,
+    starDensity: 2000,
+    driftSpeed: { x: 0.0001, y: 0.00015 },
+    lineThickness: 0.3,
+    thumbnailJitter: 0,
+    hueShift: 0,
+    radialGlow: 0,
+  }
+}
