@@ -7,7 +7,7 @@ import Particle from './Particle'
 import BackgroundStars from './BackgroundStars'
 import { ContributorModel, SubmissionModel } from '@/sanity/models/sanity-client-models'
 import { calculateBgColor, calculateMoonPhase, determineConstellationPhase } from '../../utils/moon-utils'
-import GeneralLogo from '../Logos/AboutEnquireLogo'
+import GeneralLogo from '../Logos/GeneralLogo'
 import Link from 'next/link'
 
 export default function MoonPage({ contributors, submissions }: { contributors: ContributorModel[], submissions: SubmissionModel[] }) {

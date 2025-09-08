@@ -1,9 +1,9 @@
 'use client'
 import Footer from '../Footer'
-import AboutEnquireLogo from '../Logos/AboutEnquireLogo'
 import Link from 'next/link'
 import EnquiryForm from '../EnquiryForm'
 import { calculateBgColor } from '../../utils/moon-utils'
+import GeneralLogo from '../Logos/GeneralLogo'
 
 export default function EnquiryPage() {
   const theme = calculateBgColor() // Uses current date by default
@@ -27,7 +27,7 @@ export default function EnquiryPage() {
         {/* Enquiry Header */}
         <ul className="w-full flex max-md:justify-between gap-4 p-6 text-sm">
           <Link href="/" className="pl-2">
-            <AboutEnquireLogo logoColor={theme.logoColor} />
+            <GeneralLogo logoColor={theme.logoColor} />
           </Link>
           <Link href="/about" className="px-8 p-2">
             <li className="pb-2 text-sm border-[#ffffff] hover:border-[#8AB4F7] border-b-2">About</li>

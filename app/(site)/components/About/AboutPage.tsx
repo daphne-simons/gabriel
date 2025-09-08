@@ -1,11 +1,11 @@
 import { AboutPageModel } from '@/sanity/models/sanity-client-models'
 import Link from 'next/link'
-import AboutEnquireLogo from '../Logos/AboutEnquireLogo'
 import { PortableText, PortableTextReactComponents } from 'next-sanity'
 import { PortableTextMarkComponentProps } from '@portabletext/react'
 
 import Footer from '../Footer'
 import { calculateBgColor } from '../../utils/moon-utils'
+import GeneralLogo from '../Logos/GeneralLogo'
 
 // Type for Sanity color mark data
 interface ColorMark {
@@ -41,7 +41,7 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
         {/* About Header */}
         <ul className="w-full flex max-md:justify-between gap-4 p-6 text-sm">
           <Link href="/" className="pl-2">
-            <AboutEnquireLogo logoColor={theme.logoColor} />
+            <GeneralLogo logoColor={theme.logoColor} />
           </Link>
           <Link href="/about" className="px-8 pt-2">
             <li className="pb-2 text-sm border-b-2 border-[#8AB4F7]">About</li>
