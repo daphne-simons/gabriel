@@ -109,11 +109,11 @@ export interface ContributorModel extends SanityDocument {
 // SUBMISSION SCHEMA:
 export interface SubmissionModel extends SanityDocument {
   _type: 'submission';
-  contributor: SanityReference; // References a contributor
-  assets: (SanityImage | SanityFile)[]; // Array of files OR images
+  contributor: { email: string | null, name: string }; // References a contributor
+  assets: { filename: string, mimeType: string, url: string }[]; // Array of files OR images
   caption: string;
   createdAt: string; // ISO date string
-  status: 'pending' | 'approved' | 'rejected'; // Added status field from schema
+  status?: 'pending' | 'approved' | 'rejected'; // Added status field from schema
 }
 
 // SUBMISSION with Contributor SCHEMA:

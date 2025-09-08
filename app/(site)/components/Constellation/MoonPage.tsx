@@ -8,15 +8,8 @@ import BackgroundStars from './BackgroundStars'
 import { ContributorModel, SubmissionModel } from '@/sanity/models/sanity-client-models'
 
 export default function MoonPage({ contributors, submissions }: { contributors: ContributorModel[], submissions: SubmissionModel[] }) {
-
-  console.log('Contributors:', contributors);
-  console.log('Submissions:', submissions[0].assets[0].url);
-
-  // find latest matching submission for contributor: 
-  const latestSubmission = submissions.find((submission) => submission.contributor.name === contributors[1].name);
-  console.log('Latest Submission:', latestSubmission?.assets[0].url);
-
-  const [sessionSeed] = useState(() => Math.random()) // Generate once per component mount
+  // Generate once per component mount
+  const [sessionSeed] = useState(() => Math.random())
 
   const [particles, setParticles] = useState<Array<{
     name: string;
@@ -114,7 +107,6 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
 
     return positions
   }
-
 
   const getLatestSubmissionUrl = (contributorName: string): string | undefined => {
     const latestSubmission = submissions.find((submission) =>
