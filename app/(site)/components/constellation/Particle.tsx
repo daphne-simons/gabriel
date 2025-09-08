@@ -16,7 +16,7 @@ export default function Particle({ position, children, imageUrl, name }: Particl
   const [texture, setTexture] = useState<THREE.Texture | null>(null)
   const meshRef = useRef<THREE.Mesh>(null)
 
-  // Load texture manually to avoid hook rule violations
+  // Load texture manually to avoid hook rule violations with useTexture
   useEffect(() => {
     if (!imageUrl || imageUrl.trim() === '') {
       setTexture(null)
