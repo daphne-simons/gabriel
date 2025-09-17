@@ -40,7 +40,7 @@ export default function Particle({ position, children, imageUrl, name }: Particl
         loadedTexture.minFilter = THREE.LinearFilter
         loadedTexture.magFilter = THREE.LinearFilter
         loadedTexture.generateMipmaps = false
-        loadedTexture.flipY = false
+        loadedTexture.flipY = true // webgl makes this false by default flipping everything upside down 
 
         if (textureRef.current && textureRef.current !== loadedTexture) {
           textureRef.current.dispose()
@@ -144,7 +144,7 @@ export default function Particle({ position, children, imageUrl, name }: Particl
         imageMaterial.dispose()
       }
     }
-  }, [imageMaterial])
+  }, [imageMaterial, fallbackMaterial])
 
   return (
     <mesh
