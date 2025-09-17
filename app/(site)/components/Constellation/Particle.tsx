@@ -104,14 +104,14 @@ export default function Particle({ position, children, imageUrl, name }: Particl
     if (meshRef.current) {
       const time = state.clock.getElapsedTime()
 
-      let finalScale = 1
+      let finalScale = 2
 
       if (isHovered) {
-        finalScale = 2
+        finalScale = 8
       } else {
         const pulseIntensity = 0.15
         const pulseSpeed = 1.5
-        finalScale = 1 + Math.sin(time * pulseSpeed + position[0] * 0.1) * pulseIntensity
+        finalScale = 4 + Math.sin(time * pulseSpeed + position[0] * 0.1) * pulseIntensity
       }
 
       const currentScale = THREE.MathUtils.lerp(
