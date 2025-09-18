@@ -148,7 +148,7 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
   function StarMaterial() {
     return useMemo(() => (
       <meshBasicMaterial
-        color="#ffffff"
+        // color="#ffffff"
         transparent
         opacity={0.9}
         blending={AdditiveBlending}
@@ -168,6 +168,7 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
       </Link>
       <Canvas
         dpr={[1, 2]}
+        // TODO: make the position of this dynamic
         camera={{ fov: 75, position: [0, 0, 300] }}
       >
 
@@ -190,6 +191,7 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
               position={particle.position}
               imageUrl={particle.imageUrl}
               name={particle.name}
+              color={theme.particlesStars}
             >
               <StarGeometry />
               <StarMaterial />

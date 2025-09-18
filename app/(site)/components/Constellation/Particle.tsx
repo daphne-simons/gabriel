@@ -8,9 +8,61 @@ interface ParticleProps {
   imageUrl?: string
   name: string
   children?: React.ReactNode
+  color: string
 }
 
-export default function Particle({ position, children, imageUrl, name }: ParticleProps) {
+// Color mapping for moon phases
+const moonPhaseColors = {
+  'new-moon': '#d0d6ff',
+  'waxing': '#c2d0ed',
+  'first-quarter': '#d4d0e8',
+  'waxing-gibbous': '#ffefef',
+  'full-moon': '#fffbf8',
+  'waning-gibbous': '#ffefef',
+  'last-quarter': '#d4d0e8',
+  'waning': '#c2d0ed'
+}
+// Helper function to extract color value
+const getColorValue = (colorInput: string): string => {
+  // If it's already a hex/rgb color, return as is
+  if (colorInput.startsWith('#') || colorInput.startsWith('rgb')) {
+    return colorInput
+  }
+
+  // Handle Tailwind class names like 'bg-pStarsWaning'
+  if (colorInput.includes('pStars')) {
+    const phaseName = colorInput.replace('bg-pStars', '')
+    const kebabCase = phaseName.replace(/([A-Z])/g, '-$1').toLowerCase().substring(1)
+    return moonPhaseColors[kebabCase as keyof typeof moonPhaseColors] || '#ffffff'
+  }
+
+  // Fallback to white
+  return '#ffffff'
+}
+
+function hexToRgba(hex: string, alpha = 1) {
+  // Remove '#' if present
+  hex = hex.startsWith('#') ? hex.slice(1) : hex;
+
+  // Handle 3-digit hex codes
+  if (hex.length === 3) {
+    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+  }
+
+  // Handle 8-digit hex codes (with alpha)
+  if (hex.length === 8) {
+    alpha = parseInt(hex.slice(6, 8), 16) / 255;
+    hex = hex.slice(0, 6);
+  }
+
+  const r = parseInt(hex.slice(0, 2), 16);
+  const g = parseInt(hex.slice(2, 4), 16);
+  const b = parseInt(hex.slice(4, 6), 16);
+  console.log(`rgba(${r}, ${g}, ${b}, ${alpha})`)
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
+
+export default function Particle({ position, children, imageUrl, name, color }: ParticleProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [imageError, setImageError] = useState(false)
   const [texture, setTexture] = useState<THREE.Texture | null>(null)
@@ -18,6 +70,15 @@ export default function Particle({ position, children, imageUrl, name }: Particl
   const meshRef = useRef<THREE.Mesh>(null)
   const textureRef = useRef<THREE.Texture | null>(null)
   const loadedImageUrl = useRef<string | null>(null)
+  const [resolvedColor, setResolvedColor] = useState('#ffffff')
+
+  // Resolve the color value
+  useEffect(() => {
+    const newColor = getColorValue(color)
+    setResolvedColor(newColor)
+    console.log(`Resolved ${color} to ${newColor}`)
+  }, [color])
+
 
   // Memoize the texture loader to prevent recreation
   const textureLoader = useMemo(() => new THREE.TextureLoader(), [])
@@ -124,7 +185,7 @@ export default function Particle({ position, children, imageUrl, name }: Particl
     return null
   }, [texture, imageUrl, imageError])
 
-  // Create soft glow texture with radial gradient
+  // Create soft glow texture with radial gradient - using white gradient
   const glowTexture = useMemo(() => {
     const canvas = document.createElement('canvas')
     const size = 128
@@ -136,13 +197,13 @@ export default function Particle({ position, children, imageUrl, name }: Particl
     const centerY = size / 2
     const radius = size / 2
 
-    // Create radial gradient
+    // Create radial gradient with WHITE instead of resolvedColor
     const gradient = context.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius)
     gradient.addColorStop(0, 'rgba(255, 255, 255, 0.8)')     // White center
-    gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.7)') // Still bright
-    gradient.addColorStop(0.6, 'rgba(255, 255, 255, 0.4)') // Fading
-    gradient.addColorStop(0.9, 'rgba(255, 255, 255, 0.1)') // Very faint
-    gradient.addColorStop(1, 'rgba(255, 255, 255, 0)')     // Transparent edge
+    gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.7)')   // Still bright white
+    gradient.addColorStop(0.6, 'rgba(255, 255, 255, 0.4)')   // Fading white
+    gradient.addColorStop(0.9, 'rgba(255, 255, 255, 0.1)')   // Very faint white
+    gradient.addColorStop(1, 'rgba(255, 255, 255, 0)')       // Transparent edge
 
     context.fillStyle = gradient
     context.fillRect(0, 0, size, size)
@@ -151,20 +212,21 @@ export default function Particle({ position, children, imageUrl, name }: Particl
     texture.needsUpdate = true
 
     return texture
-  }, [])
+  }, []) // Remove resolvedColor dependency
 
-  // Glow material for behind particles (jpeg and fallback)
+  // Glow material for behind particles - now depends on resolvedColor to recreate when color changes
   const glowMaterial = useMemo(() => (
     new THREE.MeshBasicMaterial({
       map: glowTexture,
-      color: "#4a90e2", // Tint the white gradient with star color
+      color: resolvedColor, // Tint the white gradient with star color
       transparent: true,
       opacity: 0.6,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
       depthTest: true,
     })
-  ), [glowTexture])
+  ), [glowTexture, resolvedColor]) // Add resolvedColor dependency
+
 
   const fallbackMaterial = useMemo(() => (
     new THREE.MeshBasicMaterial({
