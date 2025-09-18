@@ -114,7 +114,7 @@ export default function Particle({ position, children, imageUrl, name }: Particl
       return new THREE.MeshBasicMaterial({
         map: texture,
         transparent: true,
-        opacity: 0.9,
+        opacity: 1,
         side: THREE.DoubleSide,
         alphaTest: 0.1,
         depthWrite: true,
