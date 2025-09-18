@@ -156,7 +156,15 @@ const config: Config = {
         phaseGray: '#BBBBBB',
         phaseYellow: '#FFDD9C',
         phaseOrange: '#FF6C2F',
-
+        // particles-stars-colors
+        pStarsNewMoon: 'var(--particles-stars-new-moon)',
+        pStarsWaxing: 'var(--particles-stars-waxing)',
+        pStarsFirstQuarter: 'var(--particles-stars-first-quarter)',
+        pStarsWaxingGibbous: 'var(--particles-stars-waxing-gibbous)',
+        pStarsFullMoon: 'var(--particles-stars-full-moon)',
+        pStarsWaningGibbous: 'var(--particles-stars-waning-gibbous)',
+        pStarsLastQuarter: 'var(--particles-stars-last-quarter)',
+        pStarsWaning: 'var(--particles-stars-waning)',
       },
       spacing: {
         d: '8em',

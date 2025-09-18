@@ -1,5 +1,5 @@
 import { useFrame } from '@react-three/fiber'
-import { useMemo, useRef } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { AdditiveBlending } from 'three'
 import * as THREE from 'three'
 
@@ -9,11 +9,40 @@ interface BackgroundStarsProps {
   depth?: number // Additional depth range (default: 200)
   size?: number // Size of individual stars (default: 1)
   opacity?: number // Opacity of stars (default: 0.8)
-  color?: number // Color of stars (default: 0xffffff - white)
+  color?: string // Color of stars (default: #ffffff - white)
   rotationSpeed?: {
     x?: number // X rotation speed (default: 0.0002)
     y?: number // Y rotation speed (default: 0.0005)
   }
+}
+
+// Color mapping for moon phases
+const moonPhaseColors = {
+  'new-moon': '#d0d6ff',
+  'waxing': '#c2d0ed',
+  'first-quarter': '#d4d0e8',
+  'waxing-gibbous': '#ffefef',
+  'full-moon': '#fffbf8',
+  'waning-gibbous': '#ffefef',
+  'last-quarter': '#d4d0e8',
+  'waning': '#c2d0ed' // Changed from #ff0000 to match the commented value
+}
+// Helper function to extract color value
+const getColorValue = (colorInput: string): string => {
+  // If it's already a hex/rgb color, return as is
+  if (colorInput.startsWith('#') || colorInput.startsWith('rgb')) {
+    return colorInput
+  }
+
+  // Handle Tailwind class names like 'bg-pStarsWaning'
+  if (colorInput.includes('pStars')) {
+    const phaseName = colorInput.replace('bg-pStars', '')
+    const kebabCase = phaseName.replace(/([A-Z])/g, '-$1').toLowerCase().substring(1)
+    return moonPhaseColors[kebabCase as keyof typeof moonPhaseColors] || '#ffffff'
+  }
+
+  // Fallback to white
+  return '#ffffff'
 }
 
 // Custom component for making background stars
@@ -23,10 +52,18 @@ export default function BackgroundStars({
   depth = 200,
   size = 1,
   opacity = 0.8,
-  color = 0xffffff,
+  color = '#ffffff',
   rotationSpeed = { x: 0.0002, y: 0.0005 }
 }: BackgroundStarsProps = {}) {
+  const [resolvedColor, setResolvedColor] = useState('#ffffff')
   const starsRef = useRef<THREE.Points>(null)
+
+  // Resolve the color value
+  useEffect(() => {
+    const newColor = getColorValue(color)
+    setResolvedColor(newColor)
+    console.log(`Resolved ${color} to ${newColor}`)
+  }, [color])
 
   const starsGeometry = useMemo(() => {
     const geometry = new THREE.BufferGeometry()
@@ -49,13 +86,13 @@ export default function BackgroundStars({
 
   const starsMaterial = useMemo(() => {
     return new THREE.PointsMaterial({
-      color,
+      color: resolvedColor,
       size,
       transparent: true,
       opacity,
       blending: AdditiveBlending
     })
-  }, [color, size, opacity])
+  }, [resolvedColor, size, opacity])
 
   // Gentle rotation animation
   useFrame(() => {

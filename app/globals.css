@@ -24,6 +24,7 @@ See a production optimized version here: https://charmui.com
 body {
   font-family: Inter, sans-serif;
 }
+
 /* 
 @keyframes jumbo {
   from {
@@ -88,78 +89,87 @@ body {
 /* .bg-img {
   background-image: url('/moon-bg.png');
   background-size: cover;
-} */ 
+} */
 
 /* MOON SKIN VARIABLES */
 /* 
 @layer base { */
 :root {
-    /* Text Colour  */
-    --moon-text-new-moon: #e5e7eb;
-    --moon-text-waxing: #e5e7eb;
-    --moon-text-first-quarter: #f0f0f0;
-    --moon-text-waxing-gibbous: #353535;
-    --moon-text-full-moon: #202124;
-    --moon-text-waning-gibbous: #353535;
-    --moon-text-last-quarter: #f0f0f0;
-    --moon-text-waning: #e5e7eb;
-    /* Outline Color  */
-    --moon-outline-new-moon: #5f6368;
-    --moon-outline-waxing: #5f6368;
-    --moon-outline-first-quarter: #5f6368;
-    --moon-outline-waxing-gibbous: #5f6368;
-    --moon-outline-full-moon: #5f6368;
-    --moon-outline-waning-gibbous: #5f6368;
-    --moon-outline-last-quarter: #5f6368;
-    --moon-outline-waning: #5f6368;
-    /* Background Img  */
-    --moon-bg-img-new-moon: url('/moon-bg.png');
-    --moon-bg-img-waxing: url('/moon-bg.png');
-    --moon-bg-img-first-quarter: url('/moon-bg.png');
-    --moon-bg-img-waxing-gibbous: url('/moon-bg.png');
-    --moon-bg-img-full-moon: url('/moon-bg.png');
-    --moon-bg-img-waning-gibbous: url('/moon-bg.png');
-    --moon-bg-img-last-quarter: url('/moon-bg.png');
-    --moon-bg-img-waning: url('/moon-bg.png');
-    /* Background Color  */
-    --phase-pink: #ECBAB1;
-    --phase-gray: #BBBBBB;
-    --phase-yellow: #FFDD9C;
-    --phase-orange: #FF6C2F;
-    --moon-bg-color-new-moon: #3d3d3d;
-    --moon-bg-color-waxing: #8a8a8a;
-    --moon-bg-color-first-quarter: #bcbcbc;
-    --moon-bg-color-waxing-gibbous: #e3e3e3;
-    --moon-bg-color-full-moon: #ffffff;
-    --moon-bg-color-waning-gibbous: #e3e3e3;
-    --moon-bg-color-last-quarter: #bcbcbc;
-    --moon-bg-color-waning: #8a8a8a;
-    /* Various Color  */
-    --moon-border-color: #fff;
-    --moon-hover-color: #adadad;
-    /* Button and Search Background Colour */
-    --moon-bg-color-btn-search-new-moon: #3d3d3d;
-    --moon-bg-color-btn-search-waxing: #3d3d3d;
-    --moon-bg-color-btn-search-first-quarter: #8a8a8a;
-    --moon-bg-color-btn-search-waxing-gibbous: #e3e3e3;
-    --moon-bg-color-btn-search-full-moon: #ffffff;
-    --moon-bg-color-btn-search-waning-gibbous: #e3e3e3;
-    --moon-bg-color-btn-search-last-quarter: #8a8a8a;
-    --moon-bg-color-btn-search-waning: #3d3d3d;
-    /* Hover Search BG */
-    --moon-hover-search-bg-new-moon: #505050;
-    --moon-hover-search-bg-waxing: #505050;
-    --moon-hover-search-bg-first-quarter: #919090;
-    --moon-hover-search-bg-waxing-gibbous: #dfdede;
-    --moon-hover-search-bg-full-moon: #f5f5f5;
-    --moon-hover-search-bg-waning-gibbous: #dfdede;
-    --moon-hover-search-bg-last-quarter: #919090;
-    --moon-hover-search-bg-waning: #505050;
-  }
+  /* Text Colour  */
+  --moon-text-new-moon: #e5e7eb;
+  --moon-text-waxing: #e5e7eb;
+  --moon-text-first-quarter: #f0f0f0;
+  --moon-text-waxing-gibbous: #353535;
+  --moon-text-full-moon: #202124;
+  --moon-text-waning-gibbous: #353535;
+  --moon-text-last-quarter: #f0f0f0;
+  --moon-text-waning: #e5e7eb;
+  /* Outline Color  */
+  --moon-outline-new-moon: #5f6368;
+  --moon-outline-waxing: #5f6368;
+  --moon-outline-first-quarter: #5f6368;
+  --moon-outline-waxing-gibbous: #5f6368;
+  --moon-outline-full-moon: #5f6368;
+  --moon-outline-waning-gibbous: #5f6368;
+  --moon-outline-last-quarter: #5f6368;
+  --moon-outline-waning: #5f6368;
+  /* Background Img  */
+  --moon-bg-img-new-moon: url('/moon-bg.png');
+  --moon-bg-img-waxing: url('/moon-bg.png');
+  --moon-bg-img-first-quarter: url('/moon-bg.png');
+  --moon-bg-img-waxing-gibbous: url('/moon-bg.png');
+  --moon-bg-img-full-moon: url('/moon-bg.png');
+  --moon-bg-img-waning-gibbous: url('/moon-bg.png');
+  --moon-bg-img-last-quarter: url('/moon-bg.png');
+  --moon-bg-img-waning: url('/moon-bg.png');
+  /* Background Color  */
+  --phase-pink: #ECBAB1;
+  --phase-gray: #BBBBBB;
+  --phase-yellow: #FFDD9C;
+  --phase-orange: #FF6C2F;
+  --moon-bg-color-new-moon: #3d3d3d;
+  --moon-bg-color-waxing: #8a8a8a;
+  --moon-bg-color-first-quarter: #bcbcbc;
+  --moon-bg-color-waxing-gibbous: #e3e3e3;
+  --moon-bg-color-full-moon: #ffffff;
+  --moon-bg-color-waning-gibbous: #e3e3e3;
+  --moon-bg-color-last-quarter: #bcbcbc;
+  --moon-bg-color-waning: #8a8a8a;
+  /* Various Color  */
+  --moon-border-color: #fff;
+  --moon-hover-color: #adadad;
+  /* Button and Search Background Colour */
+  --moon-bg-color-btn-search-new-moon: #3d3d3d;
+  --moon-bg-color-btn-search-waxing: #3d3d3d;
+  --moon-bg-color-btn-search-first-quarter: #8a8a8a;
+  --moon-bg-color-btn-search-waxing-gibbous: #e3e3e3;
+  --moon-bg-color-btn-search-full-moon: #ffffff;
+  --moon-bg-color-btn-search-waning-gibbous: #e3e3e3;
+  --moon-bg-color-btn-search-last-quarter: #8a8a8a;
+  --moon-bg-color-btn-search-waning: #3d3d3d;
+  /* Hover Search BG */
+  --moon-hover-search-bg-new-moon: #505050;
+  --moon-hover-search-bg-waxing: #505050;
+  --moon-hover-search-bg-first-quarter: #919090;
+  --moon-hover-search-bg-waxing-gibbous: #dfdede;
+  --moon-hover-search-bg-full-moon: #f5f5f5;
+  --moon-hover-search-bg-waning-gibbous: #dfdede;
+  --moon-hover-search-bg-last-quarter: #919090;
+  --moon-hover-search-bg-waning: #505050;
+  /* Moon page colors for particles and stars */
+  --particles-stars-new-moon: #d0d6ff;
+  --particles-stars-waxing: #c2d0ed;
+  --particles-stars-first-quarter: #d4d0e8;
+  --particles-stars-waxing-gibbous: #ffefef;
+  --particles-stars-full-moon: #fffbf8;
+  --particles-stars-waning-gibbous: #ffefef;
+  --particles-stars-last-quarter: #d4d0e8;
+  --particles-stars-waning: #c2d0ed;
+  /* --particles-stars-waning: #ff0000; */
+}
 
-
-
-  html, body {
+html,
+body {
   overscroll-behavior: none;
   touch-action: pan-x pan-y;
   -webkit-overflow-scrolling: touch;

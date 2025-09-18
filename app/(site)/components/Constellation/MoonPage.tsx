@@ -160,7 +160,7 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
       <circleGeometry args={[2, 15]} />
     ), [])
   }
-
+  console.log('moonpage', theme)
   return (
     <div className="w-full h-screen bg-[#000814] flex" >
       <Link href="/" className="pl-4 pt-4 z-20 absolute">
@@ -173,6 +173,7 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
 
         {/* Background stars with slower moving speed */}
         <BackgroundStars
+          color={theme.particlesStars}
           count={starDensity}
           size={1}
           rotationSpeed={driftSpeed}
