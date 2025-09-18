@@ -124,17 +124,58 @@ export default function Particle({ position, children, imageUrl, name }: Particl
     return null
   }, [texture, imageUrl, imageError])
 
+  // Create soft glow texture with radial gradient
+  const glowTexture = useMemo(() => {
+    const canvas = document.createElement('canvas')
+    const size = 128
+    canvas.width = size
+    canvas.height = size
+
+    const context = canvas.getContext('2d')!
+    const centerX = size / 2
+    const centerY = size / 2
+    const radius = size / 2
+
+    // Create radial gradient
+    const gradient = context.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius)
+    gradient.addColorStop(0, 'rgba(255, 255, 255, 0.8)')     // White center
+    gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.7)') // Still bright
+    gradient.addColorStop(0.6, 'rgba(255, 255, 255, 0.4)') // Fading
+    gradient.addColorStop(0.9, 'rgba(255, 255, 255, 0.1)') // Very faint
+    gradient.addColorStop(1, 'rgba(255, 255, 255, 0)')     // Transparent edge
+
+    context.fillStyle = gradient
+    context.fillRect(0, 0, size, size)
+
+    const texture = new THREE.CanvasTexture(canvas)
+    texture.needsUpdate = true
+
+    return texture
+  }, [])
+
+  // Glow material for behind particles (jpeg and fallback)
+  const glowMaterial = useMemo(() => (
+    new THREE.MeshBasicMaterial({
+      map: glowTexture,
+      color: "#4a90e2", // Tint the white gradient with star color
+      transparent: true,
+      opacity: 0.6,
+      blending: THREE.AdditiveBlending,
+      depthWrite: false,
+      depthTest: true,
+    })
+  ), [glowTexture])
+
   const fallbackMaterial = useMemo(() => (
     new THREE.MeshBasicMaterial({
       color: "#ffffff",
       transparent: true,
-      opacity: 0.9,
+      opacity: 1,
       blending: THREE.AdditiveBlending,
       depthWrite: true,
       depthTest: true,
     })
   ), [])
-
 
   const fallbackGeometry = useMemo(() => new THREE.CircleGeometry(2, 15), [])
 
@@ -175,6 +216,8 @@ export default function Particle({ position, children, imageUrl, name }: Particl
   const shouldUseImage = imageUrl && !imageError && texture && imageMaterial
   const geometry = shouldUseImage ? imageGeometry : fallbackGeometry
   const material = shouldUseImage ? imageMaterial : fallbackMaterial
+  // Use plane geometry for the glow texture
+  const glowGeometry = useMemo(() => new THREE.PlaneGeometry(14, 14), []) // Good size for soft spread
 
   // Clean up only on unmount, not on every material change
   useEffect(() => {
@@ -187,16 +230,25 @@ export default function Particle({ position, children, imageUrl, name }: Particl
   }, [])
 
   return (
-    <mesh
+    <group
       ref={meshRef}
       onPointerEnter={() => setIsHovered(true)}
       onPointerLeave={() => setIsHovered(false)}
-      geometry={geometry}
-      material={material}
-      // Set render order - higher numbers render later (on top)
-      renderOrder={1}
     >
-      {children}
-    </mesh>
+      {/* Soft circular glow behind all particles */}
+      <mesh
+        geometry={glowGeometry}
+        material={glowMaterial}
+        renderOrder={0}
+      />
+      {/* Main image/circle layer */}
+      <mesh
+        geometry={geometry}
+        material={material}
+        renderOrder={1}
+      >
+        {children}
+      </mesh>
+    </group>
   )
 }
