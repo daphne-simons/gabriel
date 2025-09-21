@@ -1,6 +1,7 @@
 'use client'
-import { Canvas } from '@react-three/fiber'
-import { useEffect, useMemo, useState } from 'react'
+import { Canvas, useFrame, useThree } from '@react-three/fiber'
+import * as THREE from 'three'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { AdditiveBlending } from 'three'
 import ConstellationLines from './ConstellationLines'
 import Particle from './Particle'
@@ -160,6 +161,7 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
     ), [])
   }
 
+  // SATELLITE CAMERA - Dynamic momentum for moon phases
   function dynamicPhasePosition(phaseName: string): [number, number, number] {
     switch (phaseName) {
       case 'New Moon':
@@ -184,7 +186,118 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
   }
 
   const refinedPosition = dynamicPhasePosition(moonPhase.name)
+  console.log('camera refinedPosition', refinedPosition, 'phaseName', moonPhase.name);
 
+
+  function SatelliteCamera({ initialPosition, phaseName }: {
+    initialPosition: [number, number, number],
+    phaseName: string
+  }) {
+    const { camera } = useThree()
+    const timeRef = useRef(0)
+    const basePositionRef = useRef(new THREE.Vector3(...initialPosition))
+
+    // Initialize camera position immediately without animation
+    useEffect(() => {
+      camera.position.set(...initialPosition)
+      camera.lookAt(0, 0, 0)
+      basePositionRef.current.set(...initialPosition)
+      timeRef.current = 0
+    }, [phaseName]) // Reset when phase changes
+
+    // Different orbital characteristics for each phase
+    const getPhaseOrbit = (phase: string) => {
+      switch (phase) {
+        case 'New Moon':
+          return {
+            driftSpeed: 0.008,
+            orbitRadius: 15,
+            verticalDrift: 8,
+            direction: -1 // Counterclockwise
+          }
+        case 'Waxing Crescent':
+          return {
+            driftSpeed: 0.012,
+            orbitRadius: 20,
+            verticalDrift: 12,
+            direction: 1
+          }
+        case 'First Quarter':
+          return {
+            driftSpeed: 0.010,
+            orbitRadius: 18,
+            verticalDrift: 10,
+            direction: -1
+          }
+        case 'Waxing Gibbous':
+          return {
+            driftSpeed: 0.015,
+            orbitRadius: 25,
+            verticalDrift: 15,
+            direction: 1
+          }
+        case 'Full Moon':
+          return {
+            driftSpeed: 0.020,
+            orbitRadius: 30,
+            verticalDrift: 20,
+            direction: -1 // Dramatic reverse orbit
+          }
+        case 'Waning Gibbous':
+          return {
+            driftSpeed: 0.015,
+            orbitRadius: 25,
+            verticalDrift: 15,
+            direction: 1
+          }
+        case 'Last Quarter':
+          return {
+            driftSpeed: 0.010,
+            orbitRadius: 18,
+            verticalDrift: 10,
+            direction: -1
+          }
+        case 'Waning Crescent':
+          return {
+            driftSpeed: 0.008,
+            orbitRadius: 12,
+            verticalDrift: 6,
+            direction: 1
+          }
+        default:
+          return {
+            driftSpeed: 0.012,
+            orbitRadius: 20,
+            verticalDrift: 10,
+            direction: 1
+          }
+      }
+    }
+
+    useFrame((state, delta) => {
+      timeRef.current += delta
+      const time = timeRef.current
+      const basePos = basePositionRef.current
+      const orbit = getPhaseOrbit(phaseName)
+
+      // Create subtle orbital drift around the initial position
+      const driftX = Math.cos(time * orbit.driftSpeed * orbit.direction) * orbit.orbitRadius
+      const driftY = Math.sin(time * orbit.driftSpeed * orbit.direction * 0.7) * orbit.orbitRadius * 0.6
+      const driftZ = Math.sin(time * orbit.driftSpeed * 0.5) * orbit.verticalDrift
+
+      // Apply drift to the base position
+      camera.position.set(
+        basePos.x + driftX,
+        basePos.y + driftY,
+        basePos.z + driftZ
+      )
+
+      // Always maintain center view of the constellation 
+      camera.lookAt(0, 0, 0)
+    })
+
+    return null
+  }
   return (
     <div className="w-full h-screen bg-[#000814] flex" >
       <Link href="/" className="pl-4 pt-4 z-20 absolute">
@@ -192,19 +305,19 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
       </Link>
       <Canvas
         dpr={[1, 2]}
-        // TODO: make the position of this dynamic for phases
-        // position [ x, y, z]
-        // New Moon - [0, 0, 370]
-        // Waxing - [80, 0, 340]
-        // First Quarter - [40, -20, 330] 
-        // Waxing Gibbous - [0, -50, 320]
-        // Full Moon - [0, 0, 300]
-        // Waning Gibbous - [0, 50, 320]
-        // Last Quarter - [-40, 20, 330]
-        // Waning - [-80, 0, 340]
-        camera={{ fov: 75, position: refinedPosition }}
-      >
+      // DYNAMIC MOON POSITIONS [ x, y, z]
+      // New Moon - [0, 0, 370]
+      // Waxing - [80, 0, 340]
+      // First Quarter - [40, -20, 330] 
+      // Waxing Gibbous - [0, -50, 320]
+      // Full Moon - [0, 0, 300]
+      // Waning Gibbous - [0, 50, 320]
+      // Last Quarter - [-40, 20, 330]
+      // Waning - [-80, 0, 340]
+      // camera={{ fov: 75, position: refinedPosition }}
 
+      >
+        <SatelliteCamera initialPosition={refinedPosition} phaseName={moonPhase.name} />
         {/* Background stars with slower moving speed */}
         <BackgroundStars
           color={theme.particlesStars}
@@ -235,3 +348,4 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
     </div >
   )
 }
+

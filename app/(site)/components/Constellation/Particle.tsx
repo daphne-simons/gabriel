@@ -67,19 +67,18 @@ export default function Particle({ position, children, imageUrl, name, color }: 
   const [imageError, setImageError] = useState(false)
   const [texture, setTexture] = useState<THREE.Texture | null>(null)
   const [isLoading, setIsLoading] = useState(false)
-  // const meshRef = useRef<THREE.Mesh>(null)
   const meshRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(null);
   const textureRef = useRef<THREE.Texture | null>(null)
   const loadedImageUrl = useRef<string | null>(null)
   const [resolvedColor, setResolvedColor] = useState('#ffffff')
 
+  //// TEXTURES:
+
   // Resolve the color value
   useEffect(() => {
     const newColor = getColorValue(color)
     setResolvedColor(newColor)
-    console.log(`Resolved ${color} to ${newColor}`)
   }, [color])
-
 
   // Memoize the texture loader to prevent recreation
   const textureLoader = useMemo(() => new THREE.TextureLoader(), [])
@@ -169,10 +168,11 @@ export default function Particle({ position, children, imageUrl, name, color }: 
     }
   }, [imageUrl, loadTexture])
 
+  //// MATERIALS: 
   const imageGeometry = useMemo(() => new THREE.PlaneGeometry(8, 8), [])
 
   const imageMaterial = useMemo(() => {
-    imageUrl = '' // Use to simulate no image data - use fallback circles
+    // imageUrl = '' // Use to simulate no image data - use fallback circles
     if (texture && imageUrl && !imageError) {
       return new THREE.MeshBasicMaterial({
         map: texture,
@@ -339,13 +339,13 @@ export default function Particle({ position, children, imageUrl, name, color }: 
       onPointerEnter={() => setIsHovered(true)}
       onPointerLeave={() => setIsHovered(false)}
     >
-      {/* Soft circular glow behind all particles */}
+      {/* GLOW behind all particles */}
       <mesh
         geometry={glowGeometry}
         material={glowMaterial}
         renderOrder={0}
       />
-      {/* Main image/circle layer */}
+      {/* JPEG layer */}
       <mesh
         geometry={geometry}
         material={material}
