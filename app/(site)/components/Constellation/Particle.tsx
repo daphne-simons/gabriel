@@ -67,7 +67,8 @@ export default function Particle({ position, children, imageUrl, name, color }: 
   const [imageError, setImageError] = useState(false)
   const [texture, setTexture] = useState<THREE.Texture | null>(null)
   const [isLoading, setIsLoading] = useState(false)
-  const meshRef = useRef<THREE.Mesh>(null)
+  // const meshRef = useRef<THREE.Mesh>(null)
+  const meshRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(null);
   const textureRef = useRef<THREE.Texture | null>(null)
   const loadedImageUrl = useRef<string | null>(null)
   const [resolvedColor, setResolvedColor] = useState('#ffffff')
