@@ -172,6 +172,7 @@ export default function Particle({ position, children, imageUrl, name, color }: 
   const imageGeometry = useMemo(() => new THREE.PlaneGeometry(8, 8), [])
 
   const imageMaterial = useMemo(() => {
+    imageUrl = '' // Use to simulate no image data - use fallback circles
     if (texture && imageUrl && !imageError) {
       return new THREE.MeshBasicMaterial({
         map: texture,
@@ -186,62 +187,102 @@ export default function Particle({ position, children, imageUrl, name, color }: 
     return null
   }, [texture, imageUrl, imageError])
 
-  // Create soft glow texture with radial gradient - using white gradient
-  const glowTexture = useMemo(() => {
-    const canvas = document.createElement('canvas')
-    const size = 128
-    canvas.width = size
-    canvas.height = size
-
-    const context = canvas.getContext('2d')!
-    const centerX = size / 2
-    const centerY = size / 2
-    const radius = size / 2
-
-    // Create radial gradient with WHITE instead of resolvedColor
-    const gradient = context.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius)
-    gradient.addColorStop(0, 'rgba(255, 255, 255, 0.8)')     // White center
-    gradient.addColorStop(0.3, 'rgba(255, 255, 255, 0.7)')   // Still bright white
-    gradient.addColorStop(0.6, 'rgba(255, 255, 255, 0.4)')   // Fading white
-    gradient.addColorStop(0.9, 'rgba(255, 255, 255, 0.1)')   // Very faint white
-    gradient.addColorStop(1, 'rgba(255, 255, 255, 0)')       // Transparent edge
-
-    context.fillStyle = gradient
-    context.fillRect(0, 0, size, size)
-
-    const texture = new THREE.CanvasTexture(canvas)
-    texture.needsUpdate = true
-
-    return texture
-  }, []) // Remove resolvedColor dependency
-
-  // Glow material for behind particles - now depends on resolvedColor to recreate when color changes
+  // GLOW EFFECT: 
+  // For behind particles - Uses shaders and changes when resolvedColor changes with moon phase
   const glowMaterial = useMemo(() => (
-    new THREE.MeshBasicMaterial({
-      map: glowTexture,
-      color: resolvedColor, // Tint the white gradient with star color
+    new THREE.ShaderMaterial({
+      uniforms: {
+        color: { value: new THREE.Color(resolvedColor) },
+        opacity: { value: 0.3 }
+      },
+      vertexShader: `
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+      fragmentShader: `
+      uniform vec3 color;
+      uniform float opacity;
+      varying vec2 vUv;
+      
+      void main() {
+        // Calculate distance from center
+        vec2 center = vec2(0.5, 0.5);
+        float dist = distance(vUv, center);
+        
+        // Discard pixels outside the circle (creates circular shape)
+        if (dist > 0.5) {
+          discard;
+        }
+        
+        // Create soft radial gradient within the circle
+        float alpha = 1.0 - smoothstep(0.0, 0.5, dist);
+        
+        // Multi-stop gradient effect for smoother falloff
+        if (dist < 0.15) {
+          alpha = 0.8; // Bright center
+        } else if (dist < 0.3) {
+          alpha = mix(0.8, 0.6, (dist - 0.15) / 0.15);
+        } else if (dist < 0.45) {
+          alpha = mix(0.6, 0.2, (dist - 0.3) / 0.15);
+        } else {
+          alpha = mix(0.2, 0.0, (dist - 0.45) / 0.05); // Fade to transparent at edge
+        }
+        
+        gl_FragColor = vec4(color, alpha * opacity);
+      }
+    `,
       transparent: true,
-      opacity: 0.6,
       blending: THREE.AdditiveBlending,
       depthWrite: false,
       depthTest: true,
     })
-  ), [glowTexture, resolvedColor]) // Add resolvedColor dependency
+  ), [resolvedColor])
 
-
+  // FALLBACK STARS:
+  // Uses shaders to achieve a soft edge for fallback circle
   const fallbackMaterial = useMemo(() => (
-    new THREE.MeshBasicMaterial({
-      color: "#ffffff",
+    new THREE.ShaderMaterial({
+      uniforms: {
+        color: { value: new THREE.Color(resolvedColor) }, // Use resolved color instead of white
+        opacity: { value: 1.0 }
+      },
+      vertexShader: `
+      varying vec2 vUv;
+      void main() {
+        vUv = uv;
+        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+      }
+    `,
+      fragmentShader: `
+      uniform vec3 color;
+      uniform float opacity;
+      varying vec2 vUv;
+      
+      void main() {
+        // Calculate distance from center
+        vec2 center = vec2(0.5, 0.5);
+        float dist = distance(vUv, center);
+        
+        // Create smooth falloff with softer edges
+        float alpha = 1.0 - smoothstep(0.1, 0.5, dist); // Start fadeout later for softer look
+        alpha = pow(alpha, 1.5); // Less harsh falloff
+        
+        gl_FragColor = vec4(color, alpha * opacity);
+      }
+    `,
       transparent: true,
-      opacity: 1,
       blending: THREE.AdditiveBlending,
-      depthWrite: true,
+      depthWrite: false,
       depthTest: true,
     })
-  ), [])
+  ), [resolvedColor]) // Add resolvedColor as dependency
 
-  const fallbackGeometry = useMemo(() => new THREE.CircleGeometry(2, 15), [])
+  const fallbackGeometry = useMemo(() => new THREE.PlaneGeometry(4, 4), [])
 
+  // CONSTELLATION MOVEMENT - JPEG PULSE: 
   // This useFrame makes the constellation move slightly and pulse the scale of the jpegs
   useFrame((state) => {
     if (meshRef.current) {
@@ -280,7 +321,7 @@ export default function Particle({ position, children, imageUrl, name, color }: 
   const geometry = shouldUseImage ? imageGeometry : fallbackGeometry
   const material = shouldUseImage ? imageMaterial : fallbackMaterial
   // Use plane geometry for the glow texture
-  const glowGeometry = useMemo(() => new THREE.PlaneGeometry(14, 14), []) // Good size for soft spread
+  const glowGeometry = useMemo(() => new THREE.PlaneGeometry(16, 16), []) // Good size for soft spread
 
   // Clean up only on unmount, not on every material change
   useEffect(() => {
