@@ -305,17 +305,6 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
       </Link>
       <Canvas
         dpr={[1, 2]}
-      // DYNAMIC MOON POSITIONS [ x, y, z]
-      // New Moon - [0, 0, 370]
-      // Waxing - [80, 0, 340]
-      // First Quarter - [40, -20, 330] 
-      // Waxing Gibbous - [0, -50, 320]
-      // Full Moon - [0, 0, 300]
-      // Waning Gibbous - [0, 50, 320]
-      // Last Quarter - [-40, 20, 330]
-      // Waning - [-80, 0, 340]
-      // camera={{ fov: 75, position: refinedPosition }}
-
       >
         <SatelliteCamera initialPosition={refinedPosition} phaseName={moonPhase.name} />
         {/* Background stars with slower moving speed */}
@@ -328,7 +317,7 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
         {/* Subtle ambient lighting to enhance the glow */}
         <ambientLight intensity={0.3} />
         {/* Lines connecting stars */}
-        <ConstellationLines particles={particles} lineThickness={lineThickness} />
+        <ConstellationLines color={theme.particlesStars} particles={particles} lineThickness={lineThickness} />
         {/* Stars/Particles */}
         <group>
           {particles?.map((particle, index) => (

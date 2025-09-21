@@ -4,7 +4,7 @@ import { useEffect, useMemo, useRef } from 'react'
 import * as THREE from 'three'
 import { Vector3 } from 'three'
 
-export default function ConstellationLines({ particles, lineThickness }: { particles: Array<{ name: string; position: [number, number, number] }>, lineThickness: number }) {
+export default function ConstellationLines({ color, particles, lineThickness }: { color: string, particles: Array<{ name: string; position: [number, number, number] }>, lineThickness: number }) {
   const groupRef = useRef<THREE.Group>(null)
   const linesRef = useRef<THREE.Mesh[]>([])
   const LINE_THICKNESS = lineThickness
@@ -14,7 +14,7 @@ export default function ConstellationLines({ particles, lineThickness }: { parti
 
     const lines = []
     const maxConnections = 2
-    const maxDistance = 160
+    const maxDistance = 150
 
     for (let i = 0; i < particles.length; i++) {
       const currentParticle = particles[i]
@@ -29,7 +29,7 @@ export default function ConstellationLines({ particles, lineThickness }: { parti
           lines.push({
             startIndex: i,
             endIndex: j,
-            baseOpacity: Math.max(0.1, 1 - (distance / maxDistance))
+            baseOpacity: Math.max(0.4, 0.8 - (distance / maxDistance) * 0.4) // Less dramatic fade
           })
           connectionCount++
         }
@@ -59,9 +59,11 @@ export default function ConstellationLines({ particles, lineThickness }: { parti
       )
 
       const material = new THREE.MeshBasicMaterial({
-        color: 0x60a5fa,
+        color,
         transparent: true,
-        opacity: connection.baseOpacity * 0.7,
+        opacity: connection.baseOpacity * 1.2,
+        blending: THREE.AdditiveBlending, // Makes lines glow brighter
+
         depthWrite: false, // Allow particles to render on top
         depthTest: true,
       })
@@ -127,7 +129,7 @@ export default function ConstellationLines({ particles, lineThickness }: { parti
 
       const currentDistance = new Vector3(...dynamicStartPos).distanceTo(new Vector3(...dynamicEndPos))
       const maxDistance = 150
-      const dynamicOpacity = Math.max(0.1, 1 - (currentDistance / maxDistance)) * connection.baseOpacity * 0.7
+      const dynamicOpacity = Math.max(0.3, 0.9 - (currentDistance / maxDistance) * 0.3) * connection.baseOpacity // Much gentler fade
 
       if (mesh.material instanceof THREE.MeshBasicMaterial) {
         mesh.material.opacity = dynamicOpacity
