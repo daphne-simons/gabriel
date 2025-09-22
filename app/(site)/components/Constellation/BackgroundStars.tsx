@@ -21,7 +21,7 @@ export default function BackgroundStars({
   count = 2000,
   radius = 400,
   depth = 200,
-  size = 4,
+  size = 1.5,
   opacity = 1,
   color = '#ffffff',
   rotationSpeed = { x: 0.0002, y: 0.0005 }

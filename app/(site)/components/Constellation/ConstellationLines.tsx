@@ -7,6 +7,7 @@ import { Vector3 } from 'three'
 export default function ConstellationLines({ color, particles, lineThickness }: { color: string, particles: Array<{ name: string; position: [number, number, number] }>, lineThickness: number }) {
   const groupRef = useRef<THREE.Group>(null)
   const linesRef = useRef<THREE.Mesh[]>([])
+  const glowLinesRef = useRef<THREE.Mesh[]>([])
   const LINE_THICKNESS = lineThickness
 
   const connections = useMemo(() => {
@@ -14,7 +15,7 @@ export default function ConstellationLines({ color, particles, lineThickness }: 
 
     const lines = []
     const maxConnections = 2
-    const maxDistance = 150
+    const maxDistance = 180
 
     for (let i = 0; i < particles.length; i++) {
       const currentParticle = particles[i]
@@ -43,6 +44,51 @@ export default function ConstellationLines({ color, particles, lineThickness }: 
 
     groupRef.current.clear()
     linesRef.current = []
+    glowLinesRef.current = []
+
+    // Create custom shader material for soft glow
+    const createGlowMaterial = (baseOpacity: number, radius: number = 1.0) => {
+      return new THREE.ShaderMaterial({
+        uniforms: {
+          color: { value: new THREE.Color(color) },
+          opacity: { value: baseOpacity },
+          radius: { value: radius }
+        },
+        vertexShader: `
+          varying vec2 vUv;
+          varying vec3 vNormal;
+          void main() {
+            vUv = uv;
+            vNormal = normalize(normalMatrix * normal);
+            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+          }
+        `,
+        fragmentShader: `
+          uniform vec3 color;
+          uniform float opacity;
+          uniform float radius;
+          varying vec2 vUv;
+          varying vec3 vNormal;
+          
+          void main() {
+            // Create circular gradient based on UV coordinates
+            vec2 center = vec2(0.5, 0.5);
+            float dist = distance(vUv, center) * 2.0; // Scale distance
+            
+            // Create soft falloff
+            float alpha = 1.0 - smoothstep(0.0, radius, dist);
+            alpha = pow(alpha, 2.0); // Sharper falloff for more defined center
+            
+            gl_FragColor = vec4(color, alpha * opacity);
+          }
+        `,
+        transparent: true,
+        blending: THREE.AdditiveBlending,
+        depthWrite: false,
+        depthTest: true,
+        side: THREE.DoubleSide
+      })
+    }
 
     connections.forEach((connection) => {
       const startPos = new Vector3(...particles[connection.startIndex].position)
@@ -50,30 +96,36 @@ export default function ConstellationLines({ color, particles, lineThickness }: 
 
       const curve = new THREE.LineCurve3(startPos, endPos)
 
+      // Create main line with soft glow shader
       const tubeGeometry = new THREE.TubeGeometry(
         curve,
         1,
-        LINE_THICKNESS,
-        6,
+        LINE_THICKNESS * 0.8,
+        8,
         false
       )
 
-      const material = new THREE.MeshBasicMaterial({
-        color,
-        transparent: true,
-        opacity: connection.baseOpacity * 1.2,
-        blending: THREE.AdditiveBlending, // Makes lines glow brighter
-
-        depthWrite: false, // Allow particles to render on top
-        depthTest: true,
-      })
-
+      const material = createGlowMaterial(connection.baseOpacity * 2, 1)
       const tubeMesh = new THREE.Mesh(tubeGeometry, material)
+      tubeMesh.renderOrder = 1
 
-      // Set render order - lower numbers render first (behind). E.g. constellation lines will render first
-      tubeMesh.renderOrder = 0
+      // Create larger glow halo
+      const glowGeometry = new THREE.TubeGeometry(
+        curve,
+        1,
+        LINE_THICKNESS * 3.0, // Much wider for diffuse glow
+        8,
+        false
+      )
 
-      groupRef.current!.add(tubeMesh)
+      const glowMaterial = createGlowMaterial(connection.baseOpacity * 1, 2)
+      const glowMesh = new THREE.Mesh(glowGeometry, glowMaterial)
+      glowMesh.renderOrder = 0
+
+      groupRef.current!.add(glowMesh) // Add glow first
+      groupRef.current!.add(tubeMesh) // Add main line on top
+
+      glowLinesRef.current.push(glowMesh)
       linesRef.current.push(tubeMesh)
     })
 
@@ -82,6 +134,7 @@ export default function ConstellationLines({ color, particles, lineThickness }: 
         groupRef.current.clear()
       }
       linesRef.current = []
+      glowLinesRef.current = []
     }
   }, [connections, particles, LINE_THICKNESS])
 
@@ -92,7 +145,8 @@ export default function ConstellationLines({ color, particles, lineThickness }: 
 
     connections.forEach((connection, index) => {
       const mesh = linesRef.current[index]
-      if (!mesh) return
+      const glowMesh = glowLinesRef.current[index]
+      if (!mesh || !glowMesh) return
 
       const startParticle = particles[connection.startIndex]
       const endParticle = particles[connection.endIndex]
@@ -116,23 +170,42 @@ export default function ConstellationLines({ color, particles, lineThickness }: 
       const endPos = new Vector3(...dynamicEndPos)
       const curve = new THREE.LineCurve3(startPos, endPos)
 
+      // Update main line geometry
       const newGeometry = new THREE.TubeGeometry(
         curve,
         1,
-        LINE_THICKNESS,
-        6,
+        LINE_THICKNESS * 0.8,
+        8,
+        false
+      )
+
+      // Update glow line geometry
+      const newGlowGeometry = new THREE.TubeGeometry(
+        curve,
+        1,
+        LINE_THICKNESS * 3.0,
+        8,
         false
       )
 
       mesh.geometry.dispose()
       mesh.geometry = newGeometry
 
-      const currentDistance = new Vector3(...dynamicStartPos).distanceTo(new Vector3(...dynamicEndPos))
-      const maxDistance = 150
-      const dynamicOpacity = Math.max(0.3, 0.9 - (currentDistance / maxDistance) * 0.3) * connection.baseOpacity // Much gentler fade
+      glowMesh.geometry.dispose()
+      glowMesh.geometry = newGlowGeometry
 
-      if (mesh.material instanceof THREE.MeshBasicMaterial) {
-        mesh.material.opacity = dynamicOpacity
+      const currentDistance = new Vector3(...dynamicStartPos).distanceTo(new Vector3(...dynamicEndPos))
+      // 
+      const maxDistance = 180
+      const dynamicOpacity = Math.max(0.3, 0.9 - (currentDistance / maxDistance) * 0.3) * connection.baseOpacity
+
+      // Update shader material uniforms
+      if (mesh.material instanceof THREE.ShaderMaterial) {
+        mesh.material.uniforms.opacity.value = dynamicOpacity * 1.5
+      }
+
+      if (glowMesh.material instanceof THREE.ShaderMaterial) {
+        glowMesh.material.uniforms.opacity.value = dynamicOpacity * 0.5
       }
     })
   })

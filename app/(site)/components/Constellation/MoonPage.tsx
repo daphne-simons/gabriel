@@ -55,7 +55,7 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
   const generateConstellationPositions = (consultants: { name: string; imageUrl?: string }[]): Array<{ name: string; position: [number, number, number], imageUrl?: string }> => {
     const positions:
       Array<{ name: string; position: [number, number, number], imageUrl?: string }> = []
-    const minDistance = 75 // Minimum distance between stars
+    const minDistance = 80 // Minimum distance between stars
     const maxAttempts = 50 // Maximum attempts to place each star
 
     consultants.forEach((consultant, index) => {
@@ -72,9 +72,9 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
       while (!validPosition && attempts < maxAttempts) {
         // Safe viewing bounds - keep stars well within camera view
 
-        const safeRadius = 80
-        const maxRadius = 120 // horizontal ofset of 40
-        const safeHeight = 130
+        const safeRadius = 120
+        const maxRadius = 140 // horizontal ofset of 40
+        const safeHeight = 120
 
         // Generate position attempt
         const angle = (index / consultants.length) * Math.PI * 2 + random() * 0.4 + (attempts * 0.1) // Add attempt variation
@@ -105,7 +105,7 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
       // place it anyway but try to spread it out more
       if (!validPosition) {
         const fallbackAngle = (index / consultants.length) * Math.PI * 2
-        const fallbackRadius = 80 + (index % 3) * 40 // Spread across different radius rings
+        const fallbackRadius = 80 + (index % 3) * 50 // Spread across different radius rings
         newPosition = [
           Math.cos(fallbackAngle) * fallbackRadius,
           Math.sin(fallbackAngle) * fallbackRadius + (index % 2 - 0.5) * 60,
@@ -285,11 +285,10 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
         <BackgroundStars
           color={color}
           count={starDensity}
-          size={1}
           rotationSpeed={driftSpeed}
         />
         {/* Subtle ambient lighting to enhance the glow */}
-        <ambientLight intensity={0.3} />
+        <ambientLight intensity={0.4} />
         {/* Lines connecting stars */}
         <ConstellationLines color={color} particles={particles} lineThickness={lineThickness} />
         {/* Stars/Particles */}
