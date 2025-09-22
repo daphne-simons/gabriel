@@ -21,7 +21,7 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
   const constellationPhase = determineConstellationPhase(name, lightingRange)
 
   // dynamic variables for constellation styling
-  const { starDensity, driftSpeed, lineThickness, thumbnailJitter, hueShift, radialGlow } = constellationPhase
+  const { starDensity, position, color, driftSpeed, lineThickness } = constellationPhase
 
   // Generate once per component mount
   const [sessionSeed] = useState(() => Math.random())
@@ -162,32 +162,6 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
   }
 
   // SATELLITE CAMERA - Dynamic momentum for moon phases
-  function dynamicPhasePosition(phaseName: string): [number, number, number] {
-    switch (phaseName) {
-      case 'New Moon':
-        return [0, 0, 370]
-      case 'Waxing Crescent':
-        return [80, 0, 340]
-      case 'First Quarter':
-        return [40, -20, 330]
-      case 'Waxing Gibbous':
-        return [0, -50, 320]
-      case 'Full Moon':
-        return [0, 0, 300]
-      case 'Waning Gibbous':
-        return [0, 50, 320]
-      case 'Last Quarter':
-        return [-40, 20, 330]
-      case 'Waning Crescent':
-        return [-80, 0, 340]
-      default:
-        return [0, 0, 300]
-    }
-  }
-
-  const refinedPosition = dynamicPhasePosition(moonPhase.name)
-  console.log('camera refinedPosition', refinedPosition, 'phaseName', moonPhase.name);
-
 
   function SatelliteCamera({ initialPosition, phaseName }: {
     initialPosition: [number, number, number],
@@ -306,10 +280,10 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
       <Canvas
         dpr={[1, 2]}
       >
-        <SatelliteCamera initialPosition={refinedPosition} phaseName={moonPhase.name} />
+        <SatelliteCamera initialPosition={position} phaseName={moonPhase.name} />
         {/* Background stars with slower moving speed */}
         <BackgroundStars
-          color={theme.particlesStars}
+          color={color}
           count={starDensity}
           size={1}
           rotationSpeed={driftSpeed}
@@ -317,7 +291,7 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
         {/* Subtle ambient lighting to enhance the glow */}
         <ambientLight intensity={0.3} />
         {/* Lines connecting stars */}
-        <ConstellationLines color={theme.particlesStars} particles={particles} lineThickness={lineThickness} />
+        <ConstellationLines color={color} particles={particles} lineThickness={lineThickness} />
         {/* Stars/Particles */}
         <group>
           {particles?.map((particle, index) => (
@@ -326,7 +300,7 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
               position={particle.position}
               imageUrl={particle.imageUrl}
               name={particle.name}
-              color={theme.particlesStars}
+              color={color}
             >
               <StarGeometry />
               <StarMaterial />

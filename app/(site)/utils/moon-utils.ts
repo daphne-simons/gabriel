@@ -23,11 +23,10 @@ interface ConstellationPhaseData {
   name: string;
   lightingRange: [number, number];
   starDensity: number;
+  position: [number, number, number];
+  color: string;
   driftSpeed: { x: number; y: number };
   lineThickness: number;
-  thumbnailJitter: number;
-  hueShift: number;
-  radialGlow: number;
 }
 
 // Debug info interface
@@ -176,99 +175,90 @@ export function determineConstellationPhase(name: string, lightingRange: [number
     return {
       name: name,
       lightingRange: lightingRange,
-      starDensity: 1000,
+      starDensity: 2000,
+      position: [0, 0, 370],
+      color: '#d0d6ff',
       driftSpeed: { x: 0.00005, y: 0.0001 },
       lineThickness: 0.2,
-      thumbnailJitter: 0,
-      hueShift: 0,
-      radialGlow: 0,
     }
   } else if (name === 'Waxing Crescent') {
     return {
       name: name,
       lightingRange: lightingRange,
-      starDensity: 2000,
+      starDensity: 2500,
+      position: [80, 0, 340],
+      color: '#c2d0ed',
       driftSpeed: { x: 0.0001, y: 0.0002 },
       lineThickness: 0.25,
-      thumbnailJitter: 0,
-      hueShift: 0,
-      radialGlow: 0,
     }
   } else if (name === 'First Quarter') {
     return {
       name: name,
       lightingRange: lightingRange,
       starDensity: 3000,
+      position: [40, -20, 330],
+      color: '#d4d0e8',
       driftSpeed: { x: 0.00012, y: 0.00025 },
       lineThickness: 0.3,
-      thumbnailJitter: 0,
-      hueShift: 0,
-      radialGlow: 0,
     }
   } else if (name === 'Waxing Gibbous') {
     return {
       name: name,
       lightingRange: lightingRange,
       starDensity: 4000,
+      position: [0, -50, 320],
+      color: '#ffefef',
       driftSpeed: { x: 0.00016, y: 0.00035 },
       lineThickness: 0.35,
-      thumbnailJitter: 0,
-      hueShift: 0,
-      radialGlow: 0,
     }
   } else if (name === 'Full Moon') {
     return {
       name: name,
       lightingRange: lightingRange,
       starDensity: 5000,
+      position: [0, 0, 300],
+      color: '#fffbf8',
       driftSpeed: { x: 0.0002, y: 0.0004 },
       lineThickness: 0.4,
-      thumbnailJitter: 0,
-      hueShift: 0,
-      radialGlow: 0,
     }
   } else if (name === 'Waning Gibbous') {
     return {
       name: name,
       lightingRange: lightingRange,
       starDensity: 4000,
+      position: [0, 50, 320],
+      color: '#ffefef',
       driftSpeed: { x: 0.00016, y: 0.00035 },
       lineThickness: 0.35,
-      thumbnailJitter: 0,
-      hueShift: 0,
-      radialGlow: 0,
     }
   } else if (name === 'Last Quarter') {
     return {
       name: name,
       lightingRange: lightingRange,
       starDensity: 3000,
+      position: [-40, 20, 330],
+      color: '#d4d0e8',
       driftSpeed: { x: 0.00012, y: 0.00025 },
       lineThickness: 0.3,
-      thumbnailJitter: 0,
-      hueShift: 0,
-      radialGlow: 0,
     }
   } else if (name === 'Waning Crescent') {
     return {
       name: name,
       lightingRange: lightingRange,
-      starDensity: 2000,
+      starDensity: 2500,
+      position: [-80, 0, 340],
+      color: '#c2d0ed',
       driftSpeed: { x: 0.0001, y: 0.0002 },
-      lineThickness: 0.25,
-      thumbnailJitter: 0,
-      hueShift: 0,
-      radialGlow: 0,
+      lineThickness: 0.25
     }
   }
   return {
     name: name,
     lightingRange: lightingRange,
     starDensity: 2000,
-    driftSpeed: { x: 0.0001, y: 0.00015 },
+    position: [0, 0, 300],
+    color: '#fffbf8',
     lineThickness: 0.3,
-    thumbnailJitter: 0,
-    hueShift: 0,
-    radialGlow: 0,
+    driftSpeed: { x: 0.0002, y: 0.0004 },
   }
 }

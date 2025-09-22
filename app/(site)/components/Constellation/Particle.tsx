@@ -11,35 +11,6 @@ interface ParticleProps {
   color: string
 }
 
-// Color mapping for moon phases
-const moonPhaseColors = {
-  'new-moon': '#d0d6ff',
-  'waxing': '#c2d0ed',
-  'first-quarter': '#d4d0e8',
-  'waxing-gibbous': '#ffefef',
-  'full-moon': '#fffbf8',
-  'waning-gibbous': '#ffefef',
-  'last-quarter': '#d4d0e8',
-  'waning': '#c2d0ed'
-}
-// Helper function to extract color value
-const getColorValue = (colorInput: string): string => {
-  // If it's already a hex/rgb color, return as is
-  if (colorInput.startsWith('#') || colorInput.startsWith('rgb')) {
-    return colorInput
-  }
-
-  // Handle Tailwind class names like 'bg-pStarsWaning'
-  if (colorInput.includes('pStars')) {
-    const phaseName = colorInput.replace('bg-pStars', '')
-    const kebabCase = phaseName.replace(/([A-Z])/g, '-$1').toLowerCase().substring(1)
-    return moonPhaseColors[kebabCase as keyof typeof moonPhaseColors] || '#ffffff'
-  }
-
-  // Fallback to white
-  return '#ffffff'
-}
-
 function hexToRgba(hex: string, alpha = 1) {
   // Remove '#' if present
   hex = hex.startsWith('#') ? hex.slice(1) : hex;
@@ -70,15 +41,8 @@ export default function Particle({ position, children, imageUrl, name, color }: 
   const meshRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(null);
   const textureRef = useRef<THREE.Texture | null>(null)
   const loadedImageUrl = useRef<string | null>(null)
-  const [resolvedColor, setResolvedColor] = useState('#ffffff')
 
   //// TEXTURES:
-
-  // Resolve the color value
-  useEffect(() => {
-    const newColor = getColorValue(color)
-    setResolvedColor(newColor)
-  }, [color])
 
   // Memoize the texture loader to prevent recreation
   const textureLoader = useMemo(() => new THREE.TextureLoader(), [])
@@ -105,7 +69,6 @@ export default function Particle({ position, children, imageUrl, name, color }: 
       loadedTexture.minFilter = THREE.LinearFilter
       loadedTexture.magFilter = THREE.LinearFilter
       loadedTexture.generateMipmaps = false
-      // Remove this line: loadedTexture.flipY = false (this was causing upside down images)
 
       // Dispose old texture if it exists
       if (textureRef.current && textureRef.current !== loadedTexture) {
@@ -188,11 +151,11 @@ export default function Particle({ position, children, imageUrl, name, color }: 
   }, [texture, imageUrl, imageError])
 
   // GLOW EFFECT: 
-  // For behind particles - Uses shaders and changes when resolvedColor changes with moon phase
+  // For behind particles - Uses shaders and changes when color changes with moon phase
   const glowMaterial = useMemo(() => (
     new THREE.ShaderMaterial({
       uniforms: {
-        color: { value: new THREE.Color(resolvedColor) },
+        color: { value: new THREE.Color(color) },
         opacity: { value: 0.3 }
       },
       vertexShader: `
@@ -239,14 +202,14 @@ export default function Particle({ position, children, imageUrl, name, color }: 
       depthWrite: false,
       depthTest: true,
     })
-  ), [resolvedColor])
+  ), [color])
 
   // FALLBACK STARS:
   // Uses shaders to achieve a soft edge for fallback circle
   const fallbackMaterial = useMemo(() => (
     new THREE.ShaderMaterial({
       uniforms: {
-        color: { value: new THREE.Color(resolvedColor) }, // Use resolved color instead of white
+        color: { value: new THREE.Color(color) }, // Use dynamic color instead of white
         opacity: { value: 1.0 }
       },
       vertexShader: `
@@ -278,7 +241,7 @@ export default function Particle({ position, children, imageUrl, name, color }: 
       depthWrite: false,
       depthTest: true,
     })
-  ), [resolvedColor]) // Add resolvedColor as dependency
+  ), [color])
 
   const fallbackGeometry = useMemo(() => new THREE.PlaneGeometry(4, 4), [])
 
