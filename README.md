@@ -66,22 +66,7 @@ And check out the following files:
 
 Visit https://playwright.dev/docs/intro for more information. ✨
 
-### Extras/ mysteries: 
+### Extras: 
 
-- Resend logins? 
+- use https://heroicons.com/ instead of favicons, more tailwind functionality
 
-### Example .env file structure: 
-
-```js
-
-// Sanity studio for CMS 
-NEXT_PUBLIC_SANITY_HOOK_SECRET=
-
-// email provider 
-RESEND_API_KEY=
-
-// rate limiting middleware 
-UPSTASH_REDIS_REST_URL=
-UPSTASH_REDIS_REST_TOKEN=
-
-```
