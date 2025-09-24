@@ -9,36 +9,31 @@ interface ParticleProps {
   name: string
   children?: React.ReactNode
   color: string
+  // New dynamic variables for pulsing control
+  pulseIntensity?: number      // How much the glow pulses (0-1, default 0.3)
+  pulseSpeed?: number          // Speed of pulsing (default 1.0)
+  breathingIntensity?: number  // How much the glow size changes (0-1, default 0.2)
+  glowBaseSize?: number        // Base size of glow (default 16)
+
 }
 
-function hexToRgba(hex: string, alpha = 1) {
-  // Remove '#' if present
-  hex = hex.startsWith('#') ? hex.slice(1) : hex;
-
-  // Handle 3-digit hex codes
-  if (hex.length === 3) {
-    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
-  }
-
-  // Handle 8-digit hex codes (with alpha)
-  if (hex.length === 8) {
-    alpha = parseInt(hex.slice(6, 8), 16) / 255;
-    hex = hex.slice(0, 6);
-  }
-
-  const r = parseInt(hex.slice(0, 2), 16);
-  const g = parseInt(hex.slice(2, 4), 16);
-  const b = parseInt(hex.slice(4, 6), 16);
-  console.log(`rgba(${r}, ${g}, ${b}, ${alpha})`)
-  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
-}
-
-export default function Particle({ position, children, imageUrl, name, color }: ParticleProps) {
+export default function Particle({
+  position,
+  children,
+  imageUrl,
+  name,
+  color,
+  pulseIntensity = 0.3,
+  pulseSpeed = 1.0,
+  breathingIntensity = 0.2,
+  glowBaseSize = 16
+}: ParticleProps) {
   const [isHovered, setIsHovered] = useState(false)
   const [imageError, setImageError] = useState(false)
   const [texture, setTexture] = useState<THREE.Texture | null>(null)
   const [isLoading, setIsLoading] = useState(false)
   const meshRef = useRef<THREE.Group<THREE.Object3DEventMap> | null>(null);
+  const glowMeshRef = useRef<THREE.Mesh | null>(null);
   const textureRef = useRef<THREE.Texture | null>(null)
   const loadedImageUrl = useRef<string | null>(null)
 
@@ -132,7 +127,7 @@ export default function Particle({ position, children, imageUrl, name, color }: 
   }, [imageUrl, loadTexture])
 
   //// MATERIALS: 
-  const imageGeometry = useMemo(() => new THREE.PlaneGeometry(8, 8), [])
+  const imageGeometry = useMemo(() => new THREE.PlaneGeometry(10, 10), [])
 
   const imageMaterial = useMemo(() => {
     // imageUrl = '' // Use to simulate no image data - use fallback circles
@@ -151,12 +146,13 @@ export default function Particle({ position, children, imageUrl, name, color }: 
   }, [texture, imageUrl, imageError])
 
   // GLOW EFFECT: 
-  // For behind particles - Uses shaders and changes when color changes with moon phase
+  // For behind particles - Uses shaders and changes color with moon phase
   const glowMaterial = useMemo(() => (
     new THREE.ShaderMaterial({
       uniforms: {
         color: { value: new THREE.Color(color) },
-        opacity: { value: 0.3 }
+        opacity: { value: 0.3 },
+        pulseAmount: { value: 1.0 } // Dynamic uniform for pulsing
       },
       vertexShader: `
       varying vec2 vUv;
@@ -168,6 +164,7 @@ export default function Particle({ position, children, imageUrl, name, color }: 
       fragmentShader: `
       uniform vec3 color;
       uniform float opacity;
+      uniform float pulseAmount;
       varying vec2 vUv;
       
       void main() {
@@ -193,6 +190,10 @@ export default function Particle({ position, children, imageUrl, name, color }: 
         } else {
           alpha = mix(0.2, 0.0, (dist - 0.45) / 0.05); // Fade to transparent at edge
         }
+
+        // Apply pulsing effect to both brightness and alpha
+        float finalOpacity = alpha * opacity * pulseAmount;
+        vec3 finalColor = color * (0.8 + 0.2 * pulseAmount); // Subtle brightness variation
         
         gl_FragColor = vec4(color, alpha * opacity);
       }
@@ -245,20 +246,20 @@ export default function Particle({ position, children, imageUrl, name, color }: 
 
   const fallbackGeometry = useMemo(() => new THREE.PlaneGeometry(4, 4), [])
 
-  // CONSTELLATION MOVEMENT - JPEG PULSE: 
-  // This useFrame makes the constellation move slightly and pulse the scale of the jpegs
+  // CONSTELLATION MOVEMENT + GLOW PULSING: 
   useFrame((state) => {
     if (meshRef.current) {
       const time = state.clock.getElapsedTime()
 
+      // JPEG scaling logic
       let finalScale = 2
 
       if (isHovered) {
         finalScale = 8
       } else {
-        const pulseIntensity = 0.15
-        const pulseSpeed = 1.5
-        finalScale = 4 + Math.sin(time * pulseSpeed + position[0] * 0.1) * pulseIntensity
+        const pulseIntensityLocal = 0.15
+        const pulseSpeedLocal = 1.5
+        finalScale = 4 + Math.sin(time * pulseSpeedLocal + position[0] * 0.1) * pulseIntensityLocal
       }
 
       const currentScale = THREE.MathUtils.lerp(
@@ -268,6 +269,7 @@ export default function Particle({ position, children, imageUrl, name, color }: 
       )
       meshRef.current.scale.setScalar(currentScale)
 
+      // Existing parallax movement
       const parallaxZ = Math.sin(time * 0.8 + position[0] * 0.05) * 3
       const parallaxX = Math.sin(time * 0.6 + position[1] * 0.03) * 4
       const parallaxY = Math.cos(time * 0.7 + position[0] * 0.04) * 4
@@ -278,7 +280,29 @@ export default function Particle({ position, children, imageUrl, name, color }: 
         position[2] + parallaxZ + 2
       )
     }
+
+    // NEW GLOW PULSING LOGIC
+    if (glowMeshRef.current && glowMaterial) {
+      const time = state.clock.getElapsedTime()
+
+      // Create unique phase offset for each particle based on position
+      const phaseOffset = (position[0] + position[1] + position[2]) * 0.1
+
+      // Calculate pulsing values
+      const breathingPulse = Math.sin(time * pulseSpeed + phaseOffset) * breathingIntensity + 1
+      const brightnessPulse = Math.sin(time * pulseSpeed * 0.8 + phaseOffset) * pulseIntensity + 1
+
+      // Apply breathing effect to glow size
+      const glowScale = breathingPulse * (isHovered ? 1.5 : 1.0) // Enhance on hover
+      glowMeshRef.current.scale.setScalar(glowScale)
+
+      // Apply brightness pulsing to shader uniform
+      if (glowMaterial.uniforms.pulseAmount) {
+        glowMaterial.uniforms.pulseAmount.value = brightnessPulse * (isHovered ? 1.3 : 1.0)
+      }
+    }
   })
+
 
   const shouldUseImage = imageUrl && !imageError && texture && imageMaterial
   const geometry = shouldUseImage ? imageGeometry : fallbackGeometry
@@ -304,6 +328,7 @@ export default function Particle({ position, children, imageUrl, name, color }: 
     >
       {/* GLOW behind all particles */}
       <mesh
+        ref={glowMeshRef}
         geometry={glowGeometry}
         material={glowMaterial}
         renderOrder={0}

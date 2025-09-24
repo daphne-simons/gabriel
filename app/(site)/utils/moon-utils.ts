@@ -263,3 +263,141 @@ export function determineConstellationPhase(name: string, lightingRange: [number
     driftSpeed: { x: 0.0002, y: 0.0004 },
   }
 }
+
+// Dynamic 'breathing' glow for constellation stars/ jpegs
+export const getPulsingParameters = (moonPhaseName: string) => {
+  switch (moonPhaseName) {
+    case 'New Moon':
+      return {
+        pulseIntensity: 0.4,      // More dramatic pulsing in darkness
+        pulseSpeed: 0.8,          // Slower, more mysterious
+        breathingIntensity: 0.2,  // Larger size variation
+        glowBaseSize: 18
+      }
+    case 'Waxing Crescent':
+      return {
+        pulseIntensity: 0.25,
+        pulseSpeed: 1.2,
+        breathingIntensity: 0.2,
+        glowBaseSize: 16
+      }
+    case 'First Quarter':
+      return {
+        pulseIntensity: 0.2,
+        pulseSpeed: 1.0,
+        breathingIntensity: 0.15,
+        glowBaseSize: 16
+      }
+    case 'Waxing Gibbous':
+      return {
+        pulseIntensity: 0.15,
+        pulseSpeed: 1.3,
+        breathingIntensity: 0.1,
+        glowBaseSize: 14
+      }
+    case 'Full Moon':
+      return {
+        pulseIntensity: 0.1,      // Subtle pulsing in bright light
+        pulseSpeed: 1.8,          // Faster, more energetic
+        breathingIntensity: 0.08, // Minimal size change
+        glowBaseSize: 12
+      }
+    case 'Waning Gibbous':
+      return {
+        pulseIntensity: 0.15,
+        pulseSpeed: 1.4,
+        breathingIntensity: 0.12,
+        glowBaseSize: 14
+      }
+    case 'Last Quarter':
+      return {
+        pulseIntensity: 0.25,
+        pulseSpeed: 1.1,
+        breathingIntensity: 0.18,
+        glowBaseSize: 16
+      }
+    case 'Waning Crescent':
+      return {
+        pulseIntensity: 0.35,
+        pulseSpeed: 0.9,
+        breathingIntensity: 0.25,
+        glowBaseSize: 17
+      }
+    default:
+      return {
+        pulseIntensity: 0.3,
+        pulseSpeed: 1.0,
+        breathingIntensity: 0.2,
+        glowBaseSize: 16
+      }
+  }
+}
+
+// Dynamic data for roaming Camera Movement on Moon Page
+export const getPhaseOrbit = (phase: string) => {
+  switch (phase) {
+    case 'New Moon':
+      return {
+        driftSpeed: 0.008,
+        orbitRadius: 15,
+        verticalDrift: 8,
+        direction: -1 // Counterclockwise
+      }
+    case 'Waxing Crescent':
+      return {
+        driftSpeed: 0.012,
+        orbitRadius: 20,
+        verticalDrift: 12,
+        direction: 1
+      }
+    case 'First Quarter':
+      return {
+        driftSpeed: 0.010,
+        orbitRadius: 18,
+        verticalDrift: 10,
+        direction: -1
+      }
+    case 'Waxing Gibbous':
+      return {
+        driftSpeed: 0.015,
+        orbitRadius: 25,
+        verticalDrift: 15,
+        direction: 1
+      }
+    case 'Full Moon':
+      return {
+        driftSpeed: 0.020,
+        orbitRadius: 30,
+        verticalDrift: 20,
+        direction: -1 // Dramatic reverse orbit
+      }
+    case 'Waning Gibbous':
+      return {
+        driftSpeed: 0.015,
+        orbitRadius: 25,
+        verticalDrift: 15,
+        direction: 1
+      }
+    case 'Last Quarter':
+      return {
+        driftSpeed: 0.010,
+        orbitRadius: 18,
+        verticalDrift: 10,
+        direction: -1
+      }
+    case 'Waning Crescent':
+      return {
+        driftSpeed: 0.008,
+        orbitRadius: 12,
+        verticalDrift: 6,
+        direction: 1
+      }
+    default:
+      return {
+        driftSpeed: 0.012,
+        orbitRadius: 20,
+        verticalDrift: 10,
+        direction: 1
+      }
+  }
+}

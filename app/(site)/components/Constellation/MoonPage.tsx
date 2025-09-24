@@ -7,7 +7,7 @@ import ConstellationLines from './ConstellationLines'
 import Particle from './Particle'
 import BackgroundStars from './BackgroundStars'
 import { ContributorModel, SubmissionModel } from '@/sanity/models/sanity-client-models'
-import { calculateBgColor, calculateMoonPhase, determineConstellationPhase } from '../../utils/moon-utils'
+import { calculateBgColor, calculateMoonPhase, determineConstellationPhase, getPhaseOrbit, getPulsingParameters } from '../../utils/moon-utils'
 import GeneralLogo from '../Logos/GeneralLogo'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
@@ -139,6 +139,10 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
     })
     return consultants
   }
+
+  // / In your render function, get the pulsing parameters
+  const pulsingParams = getPulsingParameters(moonPhase.name)
+
   // USE EFFECTS
   useEffect(() => {
     const consultants = loadConsultants()
@@ -194,73 +198,7 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
     }, [phaseName]) // Reset when phase changes
 
     // Different orbital characteristics for each phase
-    const getPhaseOrbit = (phase: string) => {
-      switch (phase) {
-        case 'New Moon':
-          return {
-            driftSpeed: 0.008,
-            orbitRadius: 15,
-            verticalDrift: 8,
-            direction: -1 // Counterclockwise
-          }
-        case 'Waxing Crescent':
-          return {
-            driftSpeed: 0.012,
-            orbitRadius: 20,
-            verticalDrift: 12,
-            direction: 1
-          }
-        case 'First Quarter':
-          return {
-            driftSpeed: 0.010,
-            orbitRadius: 18,
-            verticalDrift: 10,
-            direction: -1
-          }
-        case 'Waxing Gibbous':
-          return {
-            driftSpeed: 0.015,
-            orbitRadius: 25,
-            verticalDrift: 15,
-            direction: 1
-          }
-        case 'Full Moon':
-          return {
-            driftSpeed: 0.020,
-            orbitRadius: 30,
-            verticalDrift: 20,
-            direction: -1 // Dramatic reverse orbit
-          }
-        case 'Waning Gibbous':
-          return {
-            driftSpeed: 0.015,
-            orbitRadius: 25,
-            verticalDrift: 15,
-            direction: 1
-          }
-        case 'Last Quarter':
-          return {
-            driftSpeed: 0.010,
-            orbitRadius: 18,
-            verticalDrift: 10,
-            direction: -1
-          }
-        case 'Waning Crescent':
-          return {
-            driftSpeed: 0.008,
-            orbitRadius: 12,
-            verticalDrift: 6,
-            direction: 1
-          }
-        default:
-          return {
-            driftSpeed: 0.012,
-            orbitRadius: 20,
-            verticalDrift: 10,
-            direction: 1
-          }
-      }
-    }
+
 
     useFrame((state, delta) => {
       timeRef.current += delta
@@ -320,6 +258,10 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
               imageUrl={particle.imageUrl}
               name={particle.name}
               color={color}
+              pulseIntensity={pulsingParams.pulseIntensity}
+              pulseSpeed={pulsingParams.pulseSpeed}
+              breathingIntensity={pulsingParams.breathingIntensity}
+              glowBaseSize={pulsingParams.glowBaseSize}
             >
               <StarGeometry />
               <StarMaterial />
