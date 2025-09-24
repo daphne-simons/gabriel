@@ -10,22 +10,22 @@ import { ContributorModel, SubmissionModel } from '@/sanity/models/sanity-client
 import { calculateBgColor, calculateMoonPhase, determineConstellationPhase } from '../../utils/moon-utils'
 import GeneralLogo from '../Logos/GeneralLogo'
 import Link from 'next/link'
+import { useRouter } from 'next/navigation'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faXmark } from '@fortawesome/free-solid-svg-icons'
 
 export default function MoonPage({ contributors, submissions }: { contributors: ContributorModel[], submissions: SubmissionModel[] }) {
+  const router = useRouter()
 
-  // Get moon phase data: 
-  const theme = calculateBgColor()
-
+  // Fetch relevant moon phase data
+  const theme = calculateBgColor() // Gets moon phase data
   const moonPhase = calculateMoonPhase() // Uses current date by default
   const { name, lightingRange } = moonPhase
   const constellationPhase = determineConstellationPhase(name, lightingRange)
+  const { starDensity, position, color, driftSpeed, lineThickness } = constellationPhase // Dynamic variables for constellation styling
 
-  // dynamic variables for constellation styling
-  const { starDensity, position, color, driftSpeed, lineThickness } = constellationPhase
-
-  // Generate once per component mount
-  const [sessionSeed] = useState(() => Math.random())
-
+  // STATES
+  const [sessionSeed] = useState(() => Math.random())  // Generate once per component mount, so that positions only change on re-render
   const [particles, setParticles] = useState<Array<{
     name: string;
     position: [number, number, number];
@@ -139,12 +139,26 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
     })
     return consultants
   }
-
+  // USE EFFECTS
   useEffect(() => {
     const consultants = loadConsultants()
     const positionedParticles = generateConstellationPositions(consultants)
     setParticles(positionedParticles)
   }, [sessionSeed])
+
+  useEffect(() => {
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        console.log('close')
+        router.push('/') // navigate back home
+      }
+    }
+    window.addEventListener('keydown', handleEscape);
+
+    return () => {
+      window.removeEventListener('keydown', handleEscape);
+    };
+  }, []);
 
   function StarMaterial() {
     return useMemo(() => (
@@ -274,9 +288,15 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
   }
   return (
     <div className="w-full h-screen bg-[#000814] flex" >
-      <Link href="/" className="pl-4 pt-4 z-20 absolute">
+      <Link href="/" className="pl-4 pt-4 z-20 absolute" aria-label="Gabriel logo that navigates back to home page">
         <GeneralLogo logoColor={theme.logoColor} />
       </Link>
+      <Link href="/" className="right-0 top-0 z-20 absolute p-4" aria-label="close button to return back home">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className={`size-7 ${theme.xColor}`}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
+        </svg>
+      </Link>
+      {/* 3D Canvas */}
       <Canvas
         dpr={[1, 2]}
       >

@@ -19,6 +19,10 @@ const config: Config = {
         custom: '2px',
       },
       textColor: {
+        phasePink: 'var(--phase-pink)',
+        phaseGray: 'var(--phase-gray)',
+        phaseYellow: 'var(--phase-yellow)',
+        phaseOrange: 'var(--phase-orange)',
         skin: {
           newMoon: 'var(--moon-text-new-moon)',
           waxing: 'var(--moon-text-waxing)',
