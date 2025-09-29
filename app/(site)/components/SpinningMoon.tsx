@@ -35,7 +35,7 @@ export default function SpinningMoon3D({
       if (width < 640) {
         // Mobile small
         setResponsiveScale(scale * 0.5)
-        setResponsivePosition([position[0], position[1] + 0.5, position[2]]) // slightly higher for mobile
+        setResponsivePosition([position[0], position[1] + 0.4, position[2]]) // slightly higher for mobile
       } else if (width < 768) {
         // Mobile
         setResponsiveScale(scale * 0.6)

@@ -25,6 +25,7 @@ export default function Template({
   const [showContent, setShowContent] = useState(false)
   const [isInitialLoad, setIsInitialLoad] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
+  const [zoomProgress, setZoomProgress] = useState(0)
 
   // Initialize cameFromEnquiry by checking sessionStorage immediately, using sessionStorage instead of useRef because it persists. UseRef was being reset too often
   const [cameFromEnquiry, setCameFromEnquiry] = useState(() => {
@@ -129,19 +130,9 @@ export default function Template({
           {isLoading && (
             <motion.div
               key={cameFromEnquiry ? "loading-from-enquiry" : (isInitialLoad ? "loading-initial" : "loading-home-return")}
-              initial={{
-                opacity: isInitialLoad ? 1 : 0,
-              }}
-              animate={{
-                opacity: 1,
-              }}
-              exit={{ opacity: 0 }}
-              transition={{
-                opacity: {
-                  duration: cameFromEnquiry ? 0.5 : 1,
-                  ease: "easeInOut"
-                }
-              }}
+              initial={{ opacity: 1 }}
+              animate={{ opacity: 1 - zoomProgress }} // 👈 fade as zoom continues
+              transition={{ duration: 0, ease: "linear" }} // no auto easing
               className="fixed inset-0 z-50 bg-[#000814]"
             >
 
@@ -160,6 +151,7 @@ export default function Template({
                     setIsLoading(false)
                     setShowContent(true)
                   }}
+                  onProgress={setZoomProgress} // 👈 connect
                 />
               </Canvas>
             </motion.div >

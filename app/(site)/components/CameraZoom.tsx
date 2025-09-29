@@ -9,13 +9,16 @@ interface CameraZoomProps {
   isInitialLoad: boolean
   isMobile: boolean
   onZoomComplete: () => void
+  onProgress?: (progress: number) => void // 👈 new
+
 }
 
 export default function CameraZoom({
   showMoon,
   isInitialLoad,
   isMobile,
-  onZoomComplete
+  onZoomComplete,
+  onProgress
 }: CameraZoomProps) {
   const { camera } = useThree()
   const hasZoomedRef = useRef(false)
@@ -32,37 +35,42 @@ export default function CameraZoom({
 
   useFrame((state) => {
     if (!hasZoomedRef.current) {
-      // Start zoom after delay
       const currentTime = state.clock.elapsedTime
 
+      // initialize start time
       if (zoomStartTimeRef.current === null) {
-        // zoomStartTimeRef.current = currentTime + (isInitialLoad ? 3 : 2) // too fast
         zoomStartTimeRef.current = currentTime + 1
-
       }
 
       if (currentTime >= zoomStartTimeRef.current) {
-        // const zoomDuration = isInitialLoad ? 3 : 2 // too fast
-        const zoomDuration = 2.8
+        const zoomDuration = 2.0
+        const zoomProgress = Math.min(
+          (currentTime - zoomStartTimeRef.current) / zoomDuration,
+          1
+        )
 
-        const zoomProgress = Math.min((currentTime - zoomStartTimeRef.current) / zoomDuration, 1)
+        // Quadratic ease-in
+        const eased = zoomProgress * zoomProgress
 
-        // Easing function (easeInOut)
-        const eased = zoomProgress < 0.5
-          ? 2 * zoomProgress * zoomProgress
-          : 1 - Math.pow(-2 * zoomProgress + 2, 2) / 2
-
-        // Zoom camera from start to end
+        // Camera zoom
         const startZ = 5
-        const endZ = 4
+        const endZ = 3
         camera.position.z = startZ + (endZ - startZ) * eased
 
-        // Add rotation for initial load
+        // Initial load rotation
         if (isInitialLoad) {
           rotationRef.current = eased * 15 * (Math.PI / 180) // 15 degrees
           camera.rotation.z = rotationRef.current
         }
 
+        // 🔑 delayed opacity fade
+        if (typeof onProgress === 'function') {
+          const fadeStart = 0.8 // start fading after 70% progress
+          const fadeProgress = zoomProgress < fadeStart
+            ? 0
+            : (zoomProgress - fadeStart) / (1 - fadeStart) // maps 0 → 1 only after fadeStart
+          onProgress(fadeProgress)
+        }
         if (zoomProgress >= 1) {
           hasZoomedRef.current = true
           onZoomComplete()
@@ -71,13 +79,14 @@ export default function CameraZoom({
     }
   })
 
+
   return (
     <>
       <BackgroundStars rotationSpeed={{ x: 0, y: 0 }} />
       {showMoon && (
         <SpinningMoon3D
-          position={[0, 0, 2]}
-          scale={isMobile ? 2 : 2.3}
+          position={isMobile ? [0, -0.3, 2] : [0, 0, 1.6]}
+          scale={isMobile ? 2.2 : 2.3}
           rotationSpeed={0.005}
         />
       )}
