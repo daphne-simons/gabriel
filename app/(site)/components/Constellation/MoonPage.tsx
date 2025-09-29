@@ -11,8 +11,8 @@ import { calculateBgColor, calculateMoonPhase, determineConstellationPhase, getP
 import GeneralLogo from '../Logos/GeneralLogo'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faXmark } from '@fortawesome/free-solid-svg-icons'
+// for testing 3DMOON
+// import SpinningMoon from '../SpinningMoon'
 
 export default function MoonPage({ contributors, submissions }: { contributors: ContributorModel[], submissions: SubmissionModel[] }) {
   const router = useRouter()
@@ -225,6 +225,17 @@ export default function MoonPage({ contributors, submissions }: { contributors: 
     return null
   }
   return (
+    // SPINNING3D MOON TESTING: 
+    // <>
+    //   <div className="main-bg z-10">
+    //     <div className="bg-wrapper z-10"></div>
+    //     <Canvas>
+    //       <BackgroundStars rotationSpeed={{ x: 0, y: 0 }} />
+    //       <SpinningMoon position={[0, 0, 2]} scale={1} />
+    //     </Canvas>
+    //   </div>
+    // </>
+
     <div className="w-full h-screen bg-[#000814] flex" >
       <Link href="/" className="pl-4 pt-4 z-20 absolute" aria-label="Gabriel logo that navigates back to home page">
         <GeneralLogo logoColor={theme.logoColor} />

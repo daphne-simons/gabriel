@@ -186,3 +186,30 @@ body {
   height: 100vh;
   width: 100%;
 }
+
+/* 
+html {
+  background-color: #000814;
+}
+
+body {
+  background-color: #000814;
+  margin: 0;
+  padding: 0;
+}
+
+#__next {
+  background-color: #000814;
+  min-height: 100vh;
+}
+
+#__root {
+  background-color: #000814;
+  min-height: 100vh;
+}
+
+.main-container {
+  background-color: #000814;
+}
+
+*/

@@ -11,7 +11,7 @@ export default function EnquiryPage() {
   return (
     <>
       <div
-        className="flex flex-col min-h-screen"
+        className="flex flex-col min-h-screen bg-[#ffffff]"
         style={{
           // Apply scroll fixes directly to the container
           overscrollBehavior: 'none',

@@ -3,6 +3,8 @@ import { activeContributorsQuery, submissionsQuery } from '@/sanity/sanity-utils
 import { Suspense } from 'react'
 import MoonPage from '../components/Constellation/MoonPage'
 import { ContributorModel, SubmissionModel } from '@/sanity/models/sanity-client-models'
+import SpinningMoon from '../components/SpinningMoon'
+import { Canvas } from '@react-three/fiber'
 
 export default async function Moon() {
   // Timer for transition page

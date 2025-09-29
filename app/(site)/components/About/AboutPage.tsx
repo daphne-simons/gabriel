@@ -37,7 +37,7 @@ export default function AboutPage({ data }: { data: AboutPageModel }) {
 
   return (
     <>
-      <div className="flex flex-col min-h-screen">
+      <div className="flex flex-col min-h-screen bg-[#ffffff]">
         {/* About Header */}
         <ul className="w-full flex max-md:justify-between gap-4 p-6 text-sm">
           <Link href="/" className="pl-2">
