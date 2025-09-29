@@ -14,18 +14,12 @@ export default function Template({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
-  const previousPathname = useRef<string>('')
-
 
   const isHomePage = pathname === '/'
   const isMoonPage = pathname === '/moon'
   const isSearchPage = pathname === '/search-results'
   const isEnquiryPage = pathname === '/enquiry'
   const isAboutPage = pathname === '/about'
-  console.log("pathname is:", pathname);
-
-  const isComingFromEnquiry = previousPathname.current === '/enquiry' && isHomePage
-
 
   const [isLoading, setIsLoading] = useState(true)
   const [showZoom, setShowZoom] = useState(false)
@@ -33,7 +27,18 @@ export default function Template({
   const [isInitialLoad, setIsInitialLoad] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
 
+  // Initialize cameFromEnquiry by checking sessionStorage immediately, using sessionStorage instead of useRef because it persists. UseRef was being reset too often
+  const [cameFromEnquiry, setCameFromEnquiry] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const prevPath = sessionStorage.getItem('previousPathname') || ''
+      return prevPath === '/enquiry' && pathname === '/'
+    }
+    return false
+  })
+
   console.log('initial load:', isInitialLoad)
+  console.log('pathname is:', pathname)
+  console.log('cameFromEnquiry:', cameFromEnquiry)
 
   // Detect mobile devices
   useEffect(() => {
@@ -48,6 +53,24 @@ export default function Template({
   }, [])
 
   useEffect(() => {
+    // Get previous pathname from sessionStorage (persists across remounts)
+    const prevPath = sessionStorage.getItem('previousPathname') || ''
+
+    // Only update cameFromEnquiry if we haven't already (on first render only)
+    if (prevPath === '/enquiry' && isHomePage && !cameFromEnquiry) {
+      setCameFromEnquiry(true)
+    }
+
+    // Reset cameFromEnquiry when leaving home page
+    if (!isHomePage && cameFromEnquiry) {
+      setCameFromEnquiry(false)
+    }
+
+    // Store current pathname for next navigation
+    sessionStorage.setItem('previousPathname', pathname)
+
+    console.log('Effect running - prevPath:', prevPath, 'current cameFromEnquiry:', cameFromEnquiry)
+
     // Check if this is the initial load
     if (isHomePage && !hasInitiallyLoaded) {
       setIsInitialLoad(true)
@@ -85,7 +108,7 @@ export default function Template({
       }
     }
     // HOME PAGE - Coming from Enquiry (no moon, faster transition)
-    else if (isComingFromEnquiry) {
+    else if (cameFromEnquiry) {
       const zoomTimer = setTimeout(() => {
         setShowZoom(true)
       }, 1000)
@@ -150,11 +173,8 @@ export default function Template({
         clearTimeout(contentTimer)
       }
     }
-    // Update previous pathname
-    return () => {
-      previousPathname.current = pathname
-    }
-  }, [pathname, isInitialLoad, isComingFromEnquiry]) // Add isInitialLoad dependency
+
+  }, [pathname, isInitialLoad, isHomePage, isMoonPage, isSearchPage, isEnquiryPage, isAboutPage])
 
   if (isHomePage) {
     return (
@@ -162,7 +182,7 @@ export default function Template({
         <AnimatePresence>
           {isLoading && (
             <motion.div
-              key={isComingFromEnquiry ? "loading-from-enquiry" : (isInitialLoad ? "loading-initial" : "loading-home-return")}
+              key={cameFromEnquiry ? "loading-from-enquiry" : (isInitialLoad ? "loading-initial" : "loading-home-return")}
               initial={{
                 scale: 1,
                 opacity: isInitialLoad ? 1 : 0,
@@ -176,7 +196,7 @@ export default function Template({
               exit={{ opacity: 0 }}
               transition={{
                 scale: {
-                  duration: isComingFromEnquiry ? 1.5 : (isInitialLoad ? 3 : 2),
+                  duration: cameFromEnquiry ? 1.5 : (isInitialLoad ? 3 : 2),
                   ease: "easeInOut"
                 },
                 rotate: {
@@ -184,7 +204,7 @@ export default function Template({
                   ease: [0.25, 0.1, 0.25, 1]
                 },
                 opacity: {
-                  duration: isComingFromEnquiry ? 0.5 : (isInitialLoad ? 0.5 : 1),
+                  duration: cameFromEnquiry ? 0.5 : (isInitialLoad ? 0.5 : 1),
                   ease: "easeInOut"
                 }
               }}
@@ -221,8 +241,8 @@ export default function Template({
                       gl={{ alpha: true, antialias: true }}
                     >
                       <BackgroundStars rotationSpeed={{ x: 0, y: 0 }} />
-                      {/* TODO: fix so that the moon only shows on Initial Load:*/}
-                      {!isComingFromEnquiry && (
+                      {/* Only show moon when NOT coming from enquiry */}
+                      {!cameFromEnquiry && (
                         <SpinningMoon3D
                           position={[0, 0, 2]}
                           scale={isMobile ? 2 : 2.3}
