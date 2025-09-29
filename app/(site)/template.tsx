@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { usePathname } from 'next/navigation'
 import BackgroundStars from './components/Constellation/BackgroundStars'
@@ -14,6 +14,9 @@ export default function Template({
   children: React.ReactNode
 }) {
   const pathname = usePathname()
+  const previousPathname = useRef<string>('')
+
+
   const isHomePage = pathname === '/'
   const isMoonPage = pathname === '/moon'
   const isSearchPage = pathname === '/search-results'
@@ -21,12 +24,29 @@ export default function Template({
   const isAboutPage = pathname === '/about'
   console.log("pathname is:", pathname);
 
+  const isComingFromEnquiry = previousPathname.current === '/enquiry' && isHomePage
+
+
   const [isLoading, setIsLoading] = useState(true)
   const [showZoom, setShowZoom] = useState(false)
   const [showContent, setShowContent] = useState(false)
   const [isInitialLoad, setIsInitialLoad] = useState(false)
+  const [isMobile, setIsMobile] = useState(false)
 
   console.log('initial load:', isInitialLoad)
+
+  // Detect mobile devices
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
+    window.addEventListener('resize', checkMobile)
+
+    return () => window.removeEventListener('resize', checkMobile)
+  }, [])
+
   useEffect(() => {
     // Check if this is the initial load
     if (isHomePage && !hasInitiallyLoaded) {
@@ -57,6 +77,26 @@ export default function Template({
       const contentTimer = setTimeout(() => {
         setShowContent(true)
       }, 3500)
+
+      return () => {
+        clearTimeout(zoomTimer)
+        clearTimeout(loadingTimer)
+        clearTimeout(contentTimer)
+      }
+    }
+    // HOME PAGE - Coming from Enquiry (no moon, faster transition)
+    else if (isComingFromEnquiry) {
+      const zoomTimer = setTimeout(() => {
+        setShowZoom(true)
+      }, 1000)
+
+      const loadingTimer = setTimeout(() => {
+        setIsLoading(false)
+      }, 1500)
+
+      const contentTimer = setTimeout(() => {
+        setShowContent(true)
+      }, 1500)
 
       return () => {
         clearTimeout(zoomTimer)
@@ -110,7 +150,11 @@ export default function Template({
         clearTimeout(contentTimer)
       }
     }
-  }, [pathname, isInitialLoad]) // Add isInitialLoad dependency
+    // Update previous pathname
+    return () => {
+      previousPathname.current = pathname
+    }
+  }, [pathname, isInitialLoad, isComingFromEnquiry]) // Add isInitialLoad dependency
 
   if (isHomePage) {
     return (
@@ -118,7 +162,7 @@ export default function Template({
         <AnimatePresence>
           {isLoading && (
             <motion.div
-              key={isInitialLoad ? "loading-initial" : "loading-home-return"}
+              key={isComingFromEnquiry ? "loading-from-enquiry" : (isInitialLoad ? "loading-initial" : "loading-home-return")}
               initial={{
                 scale: 1,
                 opacity: isInitialLoad ? 1 : 0,
@@ -132,7 +176,7 @@ export default function Template({
               exit={{ opacity: 0 }}
               transition={{
                 scale: {
-                  duration: isInitialLoad ? 3 : 2,
+                  duration: isComingFromEnquiry ? 1.5 : (isInitialLoad ? 3 : 2),
                   ease: "easeInOut"
                 },
                 rotate: {
@@ -140,7 +184,7 @@ export default function Template({
                   ease: [0.25, 0.1, 0.25, 1]
                 },
                 opacity: {
-                  duration: isInitialLoad ? 0.5 : 1,
+                  duration: isComingFromEnquiry ? 0.5 : (isInitialLoad ? 0.5 : 1),
                   ease: "easeInOut"
                 }
               }}
@@ -167,20 +211,24 @@ export default function Template({
               </div>
             </div> */}
               {/* TODO; fix weird white line flashing on the top left and top of the screen*/}
-              <div className="main-bg z-10">
+              <div className="main-bg z-10 bg-[#000814]">
                 <div className="bg-wrapper z-10">
                   {/* 3D Stars Background */}
-                  <div className="absolute inset-0 z-20">
-                    <Canvas>
+                  <div className="absolute inset-0 z-20 bg-[#000814]">
+                    <Canvas
+                      className="!bg-transparent"
+                      style={{ background: 'transparent' }}
+                      gl={{ alpha: true, antialias: true }}
+                    >
                       <BackgroundStars rotationSpeed={{ x: 0, y: 0 }} />
                       {/* TODO: fix so that the moon only shows on Initial Load:*/}
-                      {/* {isInitialLoad && ( */}
-                      <SpinningMoon3D
-                        position={[0, 0, 2]}
-                        scale={2}
-                        rotationSpeed={0.005}
-                      />
-                      {/* )} */}
+                      {!isComingFromEnquiry && (
+                        <SpinningMoon3D
+                          position={[0, 0, 2]}
+                          scale={isMobile ? 2 : 2.3}
+                          rotationSpeed={0.005}
+                        />
+                      )}
                     </Canvas>
                   </div>
                 </div>
@@ -217,16 +265,19 @@ export default function Template({
                   ease: "easeInOut"
                 }
               }}
-              className="fixed inset-0 z-50"
+              className="fixed inset-0 z-50 bg-[#000814]"
               style={{
                 transformOrigin: 'center center'
               }}
             >
-              <div className="main-bg ">
+              <div className="main-bg bg-[#000814]">
                 <div className="bg-wrapper">
-                  <div className="h-screen flex justify-center items-center">
-
-                    <Canvas>
+                  <div className="h-screen flex justify-center items-center bg-[#000814]">
+                    <Canvas
+                      className="!bg-transparent"
+                      style={{ background: 'transparent' }}
+                      gl={{ alpha: true, antialias: true }}
+                    >
                       <BackgroundStars rotationSpeed={{ x: 0, y: 0 }} />
                     </Canvas>
                   </div>
