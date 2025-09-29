@@ -1,9 +1,10 @@
 'use client'
-import { useState, useEffect, useRef } from 'react'
+
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { usePathname } from 'next/navigation'
-import BackgroundStars from './components/Constellation/BackgroundStars'
 import { Canvas } from '@react-three/fiber'
+import BackgroundStars from './components/Constellation/BackgroundStars'
 import CameraZoom from './components/CameraZoom'
 
 // Global variable to track if this is the initial site load

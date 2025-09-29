@@ -1,6 +1,5 @@
 import React, { useRef, useEffect } from 'react'
 import { useThree, useFrame } from '@react-three/fiber'
-import * as THREE from 'three'
 import BackgroundStars from './Constellation/BackgroundStars'
 import SpinningMoon3D from './SpinningMoon'
 
